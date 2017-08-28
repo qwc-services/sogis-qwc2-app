@@ -27,6 +27,7 @@
         {
             "name": "TopBar",
             "cfg": {
+              "logoFormat": "jpg",
               "menuItems": [
                 {"key": "ThemeSwitcher", "icon": "img/themes.svg"},
                 {"key": "LayerTree", "icon": "img/layers.svg"},
@@ -34,7 +35,6 @@
                 {"key": "Tools", "icon": "img/tools.svg", "subitems": [
                   {"key": "Measure", "icon": "img/measure_white.svg"},
                   {"key": "Draw", "icon": "img/draw.svg"},
-                  {"key": "DxfExport", "icon": "img/dxfexport.svg"},
                   {"key": "RasterExport", "icon": "img/rasterexport.svg"}
                 ]},
                 {"key": "Print", "icon": "img/print.svg"},
@@ -131,6 +131,7 @@
         {
             "name": "TopBar",
             "cfg": {
+              "logoFormat": "jpg",
               "menuItems": [
                 {"key": "ThemeSwitcher", "icon": "img/themes.svg"},
                 {"key": "LayerTree", "icon": "img/layers.svg"},
@@ -138,16 +139,10 @@
                 {"key": "Tools", "icon": "img/tools.svg", "subitems": [
                   {"key": "Measure", "icon": "img/measure_white.svg"},
                   {"key": "Draw", "icon": "img/draw.svg"},
-                  {"key": "DxfExport", "icon": "img/dxfexport.svg"},
                   {"key": "RasterExport", "icon": "img/rasterexport.svg"}
                 ]},
                 {"key": "Print", "icon": "img/print.svg"},
                 {"key": "Help", "icon": "img/info.svg"}
-              ],
-              "toolbarItems": [
-                {"key": "Measure", "mode": "LineString", "icon": "img/measure_line.svg"},
-                {"key": "Measure", "mode": "Polygon", "icon": "img/measure_polygon.svg"},
-                {"key": "Print", "icon": "img/print.svg"}
               ],
               "searchOptions": {
                 "minScale": 1000,
@@ -159,8 +154,8 @@
         {
           "name": "BottomBar",
           "cfg": {
-            "viewertitleUrl": "http://qgis.org/",
-            "termsUrl":  "http://qgis.org/"
+            "viewertitleUrl": "https://www.so.ch/verwaltung/bau-und-justizdepartement/amt-fuer-geoinformation/geoportal/",
+            "termsUrl":  "https://www.so.ch/rechtliches/"
           }
         },
         {
