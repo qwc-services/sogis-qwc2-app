@@ -59,11 +59,12 @@
 
 const axios = require('axios');
 const {addSearchResults} = require("../qwc2/QWC2Components/actions/search");
-const CoordinatesUtils = require('../qwc2/MapStore2/web/client/utils/CoordinatesUtils');
+const CoordinatesUtils = require('../qwc2/MapStore2Components/utils/CoordinatesUtils');
+const ProxyUtils = require('../qwc2/MapStore2Components/utils/ProxyUtils');
 
 function coordinatesSearch(text, requestId, searchOptions, dispatch) {
     let displaycrs = searchOptions.displaycrs || "EPSG:4326";
-    let matches = text.match(/^\s*(\d+\.?\d*),?\s*(\d+\.?\d*)\s*$/);
+    let matches = text.match(/^\s*([+-]?\d+\.?\d*)[,\s]\s*([+-]?\d+\.?\d*)\s*$/);
     let items = [];
     if(matches && matches.length >= 3) {
         let x = parseFloat(matches[1]);
@@ -181,7 +182,7 @@ function geoAdminLocationSearchResults(obj, requestId)
 ////////////////////////////////////////////////////////////////////////////////
 
 function usterSearch(text, requestId, searchOptions, dispatch) {
-    axios.get("https://webgis.uster.ch/wsgi/search.wsgi?&searchtables=&query="+ encodeURIComponent(text))
+    axios.get(ProxyUtils.addProxyIfNeeded("https://webgis.uster.ch/wsgi/search.wsgi?&searchtables=&query="+ encodeURIComponent(text)))
     .then(response => dispatch(usterSearchResults(response.data, requestId)));
 }
 
@@ -217,7 +218,7 @@ function usterSearchResults(obj, requestId) {
 
 function usterResultGeometry(resultItem, callback)
 {
-    axios.get("https://webgis.uster.ch/wsgi/getSearchGeom.wsgi?searchtable="+ encodeURIComponent(resultItem.searchtable) + "&displaytext=" + encodeURIComponent(resultItem.text))
+    axios.get(ProxyUtils.addProxyIfNeeded("https://webgis.uster.ch/wsgi/getSearchGeom.wsgi?searchtable="+ encodeURIComponent(resultItem.searchtable) + "&displaytext=" + encodeURIComponent(resultItem.text)))
     .then(response => callback(resultItem, response.data, "EPSG:21781"));
 }
 
@@ -280,12 +281,14 @@ function wolfsburgResultGeometry(resultItem, callback) {
 function glarusSearch(text, requestId, searchOptions, dispatch) {
     let limit = 9;
     axios.get("https://map.geo.gl.ch/search/all?limit=" + limit + "&query="+ encodeURIComponent(text))
-    .then(response => dispatch(glarusSearchResults(response.data, requestId, limit)));
+    .then(response => dispatch(glarusSearchResults(response.data, requestId, limit)))
+    .catch(error => dispatch(glarusSearchResults({}, requestId, limit)));
 }
 
 function glarusMoreResults(moreItem, text, requestId, dispatch) {
     axios.get("https://map.geo.gl.ch/search/" + moreItem.category + "?query="+ encodeURIComponent(text))
-    .then(response => dispatch(glarusSearchResults(response.data, requestId)));
+    .then(response => dispatch(glarusSearchResults(response.data, requestId)))
+    .catch(error => dispatch(glarusSearchResults({}, requestId)));
 }
 
 function glarusSearchResults(obj, requestId, limit = -1) {

@@ -1,0 +1,147 @@
+{
+  "locale": "ro-RO",
+  "messages": {
+    "appmenu": {
+      "items": {
+        "Draw": "Desenează",
+        "DxfExport": "Export DXF",
+        "Help": "Ajutor",
+        "LayerTree": "Straturi & Legendă",
+        "Measure": "Măsoară",
+        "Print": "Tipărire",
+        "RasterExport": "Export Raster",
+        "Share": "Trimite Link",
+        "ThemeSwitcher": "Hărți tematice",
+        "Tools": "Unelte hartă",
+        "IdentifyRegion": "Interogare regiune",
+        "Redlining": "Evidențiere",
+        "Editing": ""
+      },
+      "menulabel": "Hărți & Unelte"
+    },
+    "bottombar": {
+      "mousepos_label": "Coordonate",
+      "scale_label": "Scară",
+      "terms_label": "Termeni de utilizare",
+      "viewertitle_label": "Harta GIS"
+    },
+    "draw": {
+      "bbox": "Dreptunghi",
+      "circle": "Cerc",
+      "clearAll": "Șterge tot",
+      "delete": "Șterge",
+      "fillcolor": "Culoare interior",
+      "fillopacity": "Opacitate interior",
+      "fontsize": "Mărime font",
+      "line": "Linie",
+      "point": "Punct",
+      "polygon": "Poligon",
+      "strokecolor": "Culoare contur",
+      "strokewidth": "Lățime contur",
+      "text": "Text"
+    },
+    "dxfexport": {
+      "selectinfo": "Încadrați într-un dreptunghi zona de exportat..",
+      "symbologyscale": "Scara simboluri:"
+    },
+    "editing": {
+      "canceldelete": "",
+      "commit": "",
+      "delete": "",
+      "discard": "",
+      "draw": "",
+      "fields": "",
+      "layer": "",
+      "noeditablelayers": "",
+      "pick": "",
+      "reallydelete": ""
+    },
+    "identify": {
+      "querying": "Interogare..."
+    },
+    "identifyregion": {
+      "info": "Încadrați într-un poligon entitățile de identificat..."
+    },
+    "identifyTitle": "Info Entități",
+    "layertree": {
+      "maptip": "Arată indicii hartă",
+      "printlegend": "Tipărește legenda",
+      "transparency": "Transparență"
+    },
+    "measureComponent": {
+      "areaLabel": "Arie",
+      "bearingLabel": "Direcție",
+      "lengthLabel": "Lungime",
+      "pointLabel": "Poziție"
+    },
+    "noFeatureInfo": "Nu există informații în punctul cerut",
+    "print": {
+      "layout": "Șablon:",
+      "nolayouts": "Harta selectată nu suportă tipărirea",
+      "notheme": "Tematică neselectată",
+      "resolution": "Rezoluție:",
+      "rotation": "Rotație:",
+      "scale": "Scară:",
+      "submit": "Tipărește"
+    },
+    "rasterexport": {
+      "format": "Format:",
+      "selectinfo": "Încadrați într-un dreptunghi zona de exportat.."
+    },
+    "redlining": {
+      "fill": "Umplere",
+      "label": "Text",
+      "line": "Linie",
+      "outline": "Contur",
+      "pick": "Alege",
+      "point": "Punct",
+      "polygon": "Poligon",
+      "text": ""
+    },
+    "search": {
+      "more": "Mai multe...",
+      "placeholder": "Caută locații și coordonate...",
+      "coordinates": "Coordonate"
+    },
+    "share": {
+      "directLinkTitle": "Via link direct",
+      "generatingpermalink": "Generare permalink...",
+      "QRCodeLinkTitle": "cod QR",
+      "socialIntro": "În rețeaua socială favorită",
+      "msgToCopyUrl": "Click pt. copiere",
+      "msgCopiedUrl": "Copiat"
+    },
+    "themeswitcher": {
+      "filter": "Filtrare"
+    },
+    "bgswitcher": {
+      "nobg": "Fără fundal"
+    },
+    "layerinfo": {
+      "title": "Info Strat",
+      "abstract": "Abstract",
+      "attribution": "Atribuire",
+      "keywords": "Cuvinte cheie",
+      "dataUrl": "URL date",
+      "metadataUrl": "URL metadate",
+      "legend": "Legendă"
+    },
+    "locate": {
+      "tooltip": "Localizează-mă",
+      "metersUnit": "metri",
+      "feetUnit": "picioare",
+      "popup": "Ești la {distance} {unit} de acest punct",
+      "outsideMapBoundsMsg": "Ești localizat în afara limitelor hărții",
+      "statustooltip": {
+        "DISABLED": "Dezactivat",
+        "LOCATING": "Localizează...",
+        "ENABLED": "Activat",
+        "FOLLOWING": "Urmărește",
+        "PERMISSION_DENIED": "Acces refuzat"
+      }
+    },
+    "map": {
+      "loading": "Se încarcă..."
+    }
+  }
+}

@@ -8,7 +8,8 @@
 
 const Proj4js = require('proj4');
 const SearchProviders = require('./SearchProviders');
-const CoordinatesUtils = require('../qwc2/MapStore2/web/client/utils/CoordinatesUtils');
+const EditingInterface = require('./EditingInterface');
+const CoordinatesUtils = require('../qwc2/MapStore2Components/utils/CoordinatesUtils');
 const renderHelp = require('./Help');
 
 Proj4js.defs("EPSG:21781", "+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +towgs84=674.4,15.1,405.3,0,0,0,0 +units=m +no_defs");
@@ -35,7 +36,16 @@ module.exports = {
     },
     pluginsDef: {
         plugins: {
-            MapPlugin: require('../qwc2/QWC2Components/plugins/Map'),
+            MapPlugin: require('../qwc2/QWC2Components/plugins/Map')({
+                EditingSupport: require('../qwc2/QWC2Components/plugins/map/EditingSupport'),
+                MeasurementSupport: require('../qwc2/QWC2Components/plugins/map/MeasurementSupport'),
+                LocateSupport: require('../qwc2/QWC2Components/plugins/map/LocateSupport'),
+                OverviewSupport: require('../qwc2/QWC2Components/plugins/map/OverviewSupport'),
+                RedliningSupport: require('../qwc2/QWC2Components/plugins/map/RedliningSupport'),
+                ScaleBarSupport: require('../qwc2/QWC2Components/plugins/map/ScaleBarSupport'),
+                SelectionSupport: require('../qwc2/QWC2Components/plugins/map/SelectionSupport')
+            }),
+            HomeButtonPlugin: require('../qwc2/QWC2Components/plugins/HomeButton'),
             LocateButtonPlugin: require('../qwc2/QWC2Components/plugins/LocateButton'),
             ZoomInPlugin: require('../qwc2/QWC2Components/plugins/ZoomButtons'),
             ZoomOutPlugin: require('../qwc2/QWC2Components/plugins/ZoomButtons'),
@@ -58,9 +68,9 @@ module.exports = {
             HelpPlugin: require('../qwc2/QWC2Components/plugins/Help')(renderHelp),
             DxfExportPlugin: require('../qwc2/QWC2Components/plugins/DxfExport'),
             RasterExportPlugin: require('../qwc2/QWC2Components/plugins/RasterExport'),
-            DrawPlugin: require('../qwc2/QWC2Components/plugins/Draw')
-        },
-        requires: {}
+            RedliningPlugin: require('../qwc2/QWC2Components/plugins/Redlining'),
+            EditingPlugin: require('../qwc2/QWC2Components/plugins/Editing')(EditingInterface)
+        }
     },
     supportedLocales: {
          "it": {
