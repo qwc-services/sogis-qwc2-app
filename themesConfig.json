@@ -2,8 +2,8 @@
   "themes": {
     "items": [
       {
-        "title": "QWC2 Test 2056",
-        "url": "http://qwc2.sourcepole.ch/wms/solothurn/demoproject",
+        "title": "Solothurn",
+        "url": "http://localhost:8009/qgis/altlast",
         "attribution": "Kt. Solothurn",
         "attributionUrl": "https://www.so.ch/verwaltung/bau-und-justizdepartement/amt-fuer-geoinformation/geoportal/",
         "tiled": true,
@@ -27,7 +27,9 @@
           "framecolor": "#000000",
           "framewidth": 1
         },
-        "skipEmptyFeatureAttributes": true
+        "skipEmptyFeatureAttributes": true,
+        "editConfig": "editConfig.json",
+        "printResolutions": [300]
       }
     ],
     "backgroundLayers": [

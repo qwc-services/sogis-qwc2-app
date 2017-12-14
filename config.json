@@ -1,16 +1,33 @@
 {
-  "proxyUrl": "http://qwc2.sourcepole.ch/api/proxy?url=",
+  "proxyUrl": "http://127.0.0.1:5000/proxy?url=",
   "qwc2serverUrl": "http://qwc2.sourcepole.ch/api/",
   "translationsPath": "/translations",
   "assetsPath": "/assets",
   "urlPositionFormat": "extent",
   "urlPositionCrs": "",
-  "preserveExtentOnThemeSwitch": true,
-  "preserveBackgroundOnThemeSwitch": true,
+  "preserveExtentOnThemeSwitch": false,
+  "preserveBackgroundOnThemeSwitch": false,
+  "defaultFeatureStyle": {
+    "strokeColor": [0, 0, 255, 1],
+    "strokeWidth": 1,
+    "strokeDash": [4],
+    "fillColor": [255, 0, 255, 0.33],
+    "circleRadius": 10,
+    "circleBorder": 2,
+    "textFill": "black",
+    "textStroke": "white"
+  },
   "plugins": {
       "mobile": [
         {
           "name": "Map"
+        },
+        {
+          "name": "HomeButton"
+          ,
+          "cfg": {
+            "position": 2
+          }
         },
         {
           "name": "LocateButton",
@@ -34,7 +51,9 @@
                 {"key": "Share", "icon": "img/share.svg"},
                 {"key": "Tools", "icon": "img/tools.svg", "subitems": [
                   {"key": "Measure", "icon": "img/measure_white.svg"},
-                  {"key": "Draw", "icon": "img/draw.svg"},
+                  {"key": "Redlining", "icon": "img/draw.svg"},
+                  {"key": "Editing", "icon": "img/editing.svg"},
+                  {"key": "DxfExport", "icon": "img/dxfexport.svg"},
                   {"key": "RasterExport", "icon": "img/rasterexport.svg"}
                 ]},
                 {"key": "Print", "icon": "img/print.svg"},
@@ -68,7 +87,12 @@
           }
         },
         {
-          "name": "Share"
+          "name": "Share",
+          "cfg": {
+            "showSocials": true,
+            "showLink": true,
+            "showQRCode": true
+          }
         },
         {
           "name": "Print"
@@ -96,12 +120,22 @@
           "name": "RasterExport"
         },
         {
-          "name": "Draw"
+          "name": "Redlining"
+        },
+        {
+          "name": "Editing"
         }
       ],
       "desktop": [
         {
           "name": "Map"
+        },
+        {
+          "name": "HomeButton"
+          ,
+          "cfg": {
+            "position": 4
+          }
         },
         {
           "name": "LocateButton"
@@ -138,7 +172,9 @@
                 {"key": "Share", "icon": "img/share.svg"},
                 {"key": "Tools", "icon": "img/tools.svg", "subitems": [
                   {"key": "Measure", "icon": "img/measure_white.svg"},
-                  {"key": "Draw", "icon": "img/draw.svg"},
+                  {"key": "Redlining", "icon": "img/draw.svg"},
+                  {"key": "Editing", "icon": "img/editing.svg"},
+                  {"key": "DxfExport", "icon": "img/dxfexport.svg"},
                   {"key": "RasterExport", "icon": "img/rasterexport.svg"}
                 ]},
                 {"key": "Print", "icon": "img/print.svg"},
@@ -156,6 +192,7 @@
           "cfg": {
             "viewertitleUrl": "https://www.so.ch/verwaltung/bau-und-justizdepartement/amt-fuer-geoinformation/geoportal/",
             "termsUrl":  "https://www.so.ch/rechtliches/"
+
           }
         },
         {
@@ -195,7 +232,12 @@
           "name": "MapTip"
         },
         {
-          "name": "Share"
+          "name": "Share",
+          "cfg": {
+            "showSocials": true,
+            "showLink": true,
+            "showQRCode": true
+          }
         },
         {
           "name": "Print"
@@ -213,7 +255,10 @@
           "name": "RasterExport"
         },
         {
-          "name": "Draw"
+          "name": "Redlining"
+        },
+        {
+          "name": "Editing"
         }
       ]
   }

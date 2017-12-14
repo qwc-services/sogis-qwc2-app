@@ -1,0 +1,53 @@
+{
+    "edit_polygons": {
+        "layerName": "Polygons",
+        "geomType": "Polygon",
+        "fields": [
+            {
+                "id": "name",
+                "name": "Name",
+                "type": "text",
+                "constraints": {
+                    "maxLength": 255
+                }
+            },{
+                "id": "beschreibung",
+                "name": "Description",
+                "type": "text"
+            },{
+                "id": "nummer",
+                "name": "Number",
+                "type": "number",
+                "constraints": {
+                    "step": 1
+                }
+            },{
+                "id": "klasse",
+                "name": "Class",
+                "type": "number",
+                "constraints": {
+                    "min": 0,
+                    "max": 255,
+                    "step": 1
+                }
+            },{
+                "id": "wert",
+                "name": "Value",
+                "type": "number"
+            },{
+                "id": "genauigkeit",
+                "name": "Precision",
+                "type": "number",
+                "constraints": {
+                    "min": -99,
+                    "max": 99,
+                    "step": 0.01
+                }
+            },{
+                "id": "datum",
+                "name": "Date",
+                "type": "date"
+            }
+        ]
+    }
+}

@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const styleConfig = require("./styleConfig");
 
 const nodeEnv = process.env.NODE_ENV || 'development';
@@ -17,8 +18,8 @@ const plugins = [
   new webpack.DefinePlugin({
     "__DEVTOOLS__": !isProd
   }),
-  new webpack.NormalModuleReplacementPlugin(/openlayers$/, path.join(__dirname, "qwc2", "MapStore2", "web", "client", "libs", "openlayers")),
-  new webpack.NormalModuleReplacementPlugin(/proj4$/, path.join(__dirname, "qwc2", "MapStore2", "web", "client", "libs", "proj4")),
+  new webpack.NormalModuleReplacementPlugin(/openlayers$/, path.join(__dirname, "qwc2", "libs", "openlayers")),
+  new webpack.NormalModuleReplacementPlugin(/proj4$/, path.join(__dirname, "qwc2", "libs", "proj4")),
   new webpack.NoEmitOnErrorsPlugin(),
   new webpack.LoaderOptionsPlugin({
       debug: !isProd,
@@ -29,25 +30,17 @@ const plugins = [
 
 if (isProd) {
   plugins.push(new LodashModuleReplacementPlugin());
-  plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-        screw_ie8: true,
-        conditionals: true,
-        unused: true,
-        comparisons: true,
-        sequences: true,
-        dead_code: true,
-        evaluate: true,
-        if_return: true,
-        join_vars: true,
-      },
+  plugins.push(new UglifyJsPlugin({
+    uglifyOptions: {
+      ie8: false,
+      ecma: 8,
       output: {
-        comments: false
+        comments: false,
+        beautify: false,
       },
-    })
-  );
+      warnings: false
+    }
+  }));
 } else {
   plugins.push(new webpack.HotModuleReplacementPlugin());
 }
@@ -84,8 +77,8 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'react-hot-loader',
-        include: [path.join(__dirname, "js"), path.join(__dirname, "qwc2", "QWC2Components"), path.join(__dirname, "qwc2", "MapStore2", "web", "client")]
+        loader: 'react-hot-loader/webpack',
+        include: [path.join(__dirname, "js"), path.join(__dirname, "qwc2", "QWC2Components"), path.join(__dirname, "qwc2", "MapStore2Components")]
       },
       {
         test: /\.jsx?$/,

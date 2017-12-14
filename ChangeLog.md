@@ -54,6 +54,7 @@ v0.3 (XXX XX 2017):
 - Added LayerTree config properties: showRootEntry, showQueryableIcon, allowMapTips
 - Use assets/templates/legendprint.html as a template for the map legend print.
 - Added LayerTree groupTogglesSublayers config property to control whether toggling a group toggles just the group or also all the sublayers
+- New Redlining module
 
 
 **Incompatible changes**:
@@ -80,6 +81,11 @@ v0.3 (XXX XX 2017):
 
         localeData: require('react-intl/locale-data/<lang>')
 - The print legend functionality requires a assets/templates/legendprint.html file with an element with id="legendcontainer", which will contain the legend graphics. The HTML document title of this template **may** influence the suggested output name when printing to a file (depending on the browser).
+- The enabled MapPlugin components need to be specified in appConfig.js
+- The custom extent in themesConfig.json needs to be specified w.r.t. the crs specified in the theme mapCrs
+- Ported react components to use class definition and ES7 syntax, see i.e. [https://babeljs.io/blog/2015/06/07/react-on-es6-plus](https://babeljs.io/blog/2015/06/07/react-on-es6-plus). **Any custom react components will need to be updated**.
+- Most of the logic in js/app.jsx was moved to the core components, the file needs to be updated according to the latest version in qwc2-demo-app
+- The stylesheet assets/css/qwc2.css needs to be updated to include the style for `#container`, accoding to the latest version in qwc2-demo-app
 
 
 v0.2 (Jan 03 2017):

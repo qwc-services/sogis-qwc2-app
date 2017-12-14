@@ -16,7 +16,7 @@ let styleConfig = {
   titlebar_bg: "#595959",
   titlebar_fg: "white",
   // Messagebar
-  messagebar_bg: "#fcd5b5",
+  messagebar_bg: "#eeeeee",
   // Top and bottom panels
   panel_bg: "rgba(255,255, 255, 0.75)",
   panel_fg: "#595959",
@@ -30,6 +30,8 @@ let styleConfig = {
   item_fg: "#595959",
   item_border: "#a6a6a6",
   item_active: "#078aa3",
+  item_active_hover: "#05768a",
+  item_inactive_hover: "#dcdcdc"
 };
 
 module.exports = styleConfig;
