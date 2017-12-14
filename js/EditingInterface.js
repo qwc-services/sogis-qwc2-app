@@ -10,13 +10,13 @@ const axios = require('axios');
 const assign = require('object-assign');
 const {isEmpty} = require('lodash');
 const CoordinatesUtils = require('../qwc2/MapStore2Components/utils/CoordinatesUtils');
+const ConfigUtils = require('../qwc2/MapStore2Components/utils/ConfigUtils');
 const ProxyUtils = require('../qwc2/MapStore2Components/utils/ProxyUtils');
 const VectorLayerUtils = require('../qwc2/QWC2Components/utils/VectorLayerUtils');
 
-const SERVICE_URL = 'http://localhost:9092/';
-
 
 function somap_getFeature(layerId, mapPos, mapCrs, mapScale, dpi, callback) {
+    const SERVICE_URL = ConfigUtils.getConfigProp("editServiceUrl");
     let coo = CoordinatesUtils.reproject(mapPos, mapCrs, "EPSG:2056");
     // 5px tolerance
     let tol = (5. / dpi) * 0.0254 * mapScale;
@@ -36,6 +36,7 @@ function somap_getFeature(layerId, mapPos, mapCrs, mapScale, dpi, callback) {
 }
 
 function somap_addFeature(layerId, feature, mapCrs, callback) {
+    const SERVICE_URL = ConfigUtils.getConfigProp("editServiceUrl");
     let req = SERVICE_URL + layerId + '/';
     // Add CRS
     feature = assign({}, feature, {crs: {
@@ -49,6 +50,7 @@ function somap_addFeature(layerId, feature, mapCrs, callback) {
 }
 
 function somap_editFeature(layerId, feature, mapCrs, callback) {
+    const SERVICE_URL = ConfigUtils.getConfigProp("editServiceUrl");
     let req = SERVICE_URL + layerId + '/' + feature.id;
     // Add CRS
     feature = assign({}, feature, {crs: {
@@ -62,6 +64,7 @@ function somap_editFeature(layerId, feature, mapCrs, callback) {
 }
 
 function somap_deleteFeature(layerId, featureId, callback) {
+    const SERVICE_URL = ConfigUtils.getConfigProp("editServiceUrl");
     let req = SERVICE_URL + layerId + '/' + featureId;
 
     axios.delete(ProxyUtils.addProxyIfNeeded(req)).then(response => {
