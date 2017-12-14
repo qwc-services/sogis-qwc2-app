@@ -77,6 +77,7 @@
     "noFeatureInfo": "Nu există informații în punctul cerut",
     "print": {
       "layout": "Șablon:",
+      "grid": "",
       "nolayouts": "Harta selectată nu suportă tipărirea",
       "notheme": "Tematică neselectată",
       "resolution": "Rezoluție:",
@@ -89,6 +90,7 @@
       "selectinfo": "Încadrați într-un dreptunghi zona de exportat.."
     },
     "redlining": {
+      "border": "",
       "fill": "Umplere",
       "label": "Text",
       "line": "Linie",
@@ -96,7 +98,9 @@
       "pick": "Alege",
       "point": "Punct",
       "polygon": "Poligon",
-      "text": ""
+      "size": "",
+      "text": "",
+      "width": ""
     },
     "search": {
       "more": "Mai multe...",
