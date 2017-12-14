@@ -77,6 +77,7 @@
     "noFeatureInfo": "Non ci sono informazioni disponibili per il punto selezionato",
     "print": {
       "layout": "Layout",
+      "grid": "",
       "nolayouts": "",
       "notheme": "",
       "resolution": "Risoluzione:",
@@ -89,6 +90,7 @@
       "selectinfo": ""
     },
     "redlining": {
+      "border": "",
       "fill": "Riempimento",
       "label": "Ettichetta",
       "line": "Linea",
@@ -96,7 +98,9 @@
       "pick": "Seleziona",
       "point": "Punto",
       "polygon": "Poligono",
-      "text": ""
+      "size": "",
+      "text": "",
+      "width": ""
     },
     "search": {
       "more": "",
