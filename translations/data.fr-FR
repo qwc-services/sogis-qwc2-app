@@ -56,6 +56,9 @@
       "pick": "",
       "reallydelete": ""
     },
+    "fileselector": {
+      "placeholder": ""
+    },
     "identify": {
       "querying": "Identification en cours..."
     },
@@ -63,7 +66,17 @@
       "info": "Dessiner un polygone pour identifier les objets"
     },
     "identifyTitle": "Informations de l'objet",
+    "importlayer": {
+      "addlayer": "",
+      "filter": "",
+      "connect": "",
+      "nofeatures": "",
+      "queryservice": "",
+      "urlplaceholder": ""
+    },
     "layertree": {
+      "compare": "",
+      "importlayer": "",
       "maptip": "Afficher les maptips",
       "printlegend": "Afficher la légende",
       "transparency": "Transparence"
@@ -87,6 +100,7 @@
     },
     "rasterexport": {
       "format": "Format:",
+      "resolution": "",
       "selectinfo": "Dessiner un rectangle pour définir la zone à exporter"
     },
     "redlining": {
