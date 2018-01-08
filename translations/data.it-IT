@@ -56,6 +56,9 @@
       "pick": "",
       "reallydelete": ""
     },
+    "fileselector": {
+      "placeholder": ""
+    },
     "identify": {
       "querying": ""
     },
@@ -63,7 +66,17 @@
       "info": ""
     },
     "identifyTitle": "Informazioni Sulle Feature",
+    "importlayer": {
+      "addlayer": "",
+      "filter": "",
+      "connect": "",
+      "nofeatures": "",
+      "queryservice": "",
+      "urlplaceholder": ""
+    },
     "layertree": {
+      "compare": "",
+      "importlayer": "",
       "maptip": "",
       "printlegend": "",
       "transparency": ""
@@ -87,6 +100,7 @@
     },
     "rasterexport": {
       "format": "",
+      "resolution": "",
       "selectinfo": ""
     },
     "redlining": {
