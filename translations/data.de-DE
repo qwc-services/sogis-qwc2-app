@@ -23,7 +23,7 @@
       "mousepos_label": "Koordinaten",
       "scale_label": "Massstab",
       "terms_label": "Nutzungsbedingungen",
-      "viewertitle_label": "QWC2 Demo"
+      "viewertitle_label": ""
     },
     "draw": {
       "bbox": "",
@@ -144,13 +144,7 @@
       "metadataUrl": "Metadaten-URL",
       "legend": "Legende"
     },
-    "locate": {
-      "tooltip": "Meine Position",
-      "metersUnit": "Meter",
-      "feetUnit": "Fuss",
-      "popup": "Die Position liegt in einem Radius von {distance} {unit} von diesem Punkt",
-      "outsideMapBoundsMsg": "Die Position schient ausserhalb der Grenze der Karte zu liegen"
-    },
+    "locate": {},
     "map": {
       "loading": "Karte wird geladen"
     }

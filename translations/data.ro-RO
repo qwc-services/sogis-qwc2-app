@@ -91,8 +91,8 @@
     "print": {
       "layout": "Șablon:",
       "grid": "Grid",
-      "nolayouts": "Harta selectată nu suportă tipărirea",
-      "notheme": "Tematică neselectată",
+      "nolayouts": "Această temă nu are șabloane de print",
+      "notheme": "Nu avem selectată tema",
       "resolution": "Rezoluție:",
       "rotation": "Rotație:",
       "scale": "Scară:",
