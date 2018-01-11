@@ -23,7 +23,7 @@
       "mousepos_label": "Coordinates",
       "scale_label": "Scale",
       "terms_label": "Terms of use",
-      "viewertitle_label": ""
+      "viewertitle_label": "Geoportal Kt. Solothurn"
     },
     "draw": {
       "bbox": "Box",
@@ -118,8 +118,10 @@
     },
     "search": {
       "more": "More...",
-      "placeholder": "Search for locations and coordinates...",
-      "coordinates": "Coordinates"
+      "search": "Search",
+      "all": "All",
+      "coordinates": "Coordinates",
+      "placeholder": "Search for locations and coordinates..."
     },
     "share": {
       "directLinkTitle": "Via a direct link",
