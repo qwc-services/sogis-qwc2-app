@@ -37,7 +37,6 @@ module.exports = {
                 EditingSupport: require('../qwc2/QWC2Components/plugins/map/EditingSupport'),
                 MeasurementSupport: require('../qwc2/QWC2Components/plugins/map/MeasurementSupport'),
                 LocateSupport: require('../qwc2/QWC2Components/plugins/map/LocateSupport'),
-                OverviewSupport: require('../qwc2/QWC2Components/plugins/map/OverviewSupport'),
                 RedliningSupport: require('../qwc2/QWC2Components/plugins/map/RedliningSupport'),
                 ScaleBarSupport: require('../qwc2/QWC2Components/plugins/map/ScaleBarSupport'),
                 SelectionSupport: require('../qwc2/QWC2Components/plugins/map/SelectionSupport')
