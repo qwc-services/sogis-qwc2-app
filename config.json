@@ -113,7 +113,7 @@
           "cfg": {
             "showLegendIcons": true,
             "showRootEntry": true,
-            "showQueryableIcon": true,
+            "showQueryableIcon": false,
             "groupTogglesSublayers": false,
             "flattenGroups": true,
             "layerInfoWindowSize": {"width": 480, "height": 400}
@@ -223,7 +223,7 @@
           "cfg": {
             "showLegendIcons": true,
             "showRootEntry": true,
-            "showQueryableIcon": true,
+            "showQueryableIcon": false,
             "allowMapTips": true,
             "groupTogglesSublayers": false,
             "flattenGroups": true,
