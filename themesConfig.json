@@ -13,7 +13,7 @@
             "visibility": true
           }
         ],
-        "searchProviders": ["coordinates", "geoadmin"],
+        "searchProviders": ["coordinates", {"key": "places", "label": "Orte"}, {"key": "rivers", "label": "Flüsse"}],
         "mapCrs": "EPSG:2056",
         "additionalMouseCrs": ["EPSG:21781", "EPSG:2056"],
         "printLabelForSearchResult": "test",
