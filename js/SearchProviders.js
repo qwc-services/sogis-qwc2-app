@@ -60,6 +60,7 @@
 const axios = require('axios');
 const {addSearchResults} = require("../qwc2/QWC2Components/actions/search");
 const CoordinatesUtils = require('../qwc2/MapStore2Components/utils/CoordinatesUtils');
+const ConfigUtils = require('../qwc2/MapStore2Components/utils/ConfigUtils');
 const ProxyUtils = require('../qwc2/MapStore2Components/utils/ProxyUtils');
 
 function coordinatesSearch(text, requestId, searchOptions, dispatch) {
@@ -122,7 +123,8 @@ function coordinatesSearch(text, requestId, searchOptions, dispatch) {
 
 function solothurnSearch(key, text, requestId, searchOptions, dispatch)
 {
-    axios.get(ProxyUtils.addProxyIfNeeded("http://localhost:9091/?datasets=" + key + "&searchtext=" + encodeURIComponent(text)))
+    const SEARCH_URL = ConfigUtils.getConfigProp("searchServiceUrl");
+    axios.get(ProxyUtils.addProxyIfNeeded(SEARCH_URL + "?datasets=" + key + "&searchtext=" + encodeURIComponent(text)))
     .then(response => dispatch(solothurnResults(key, response.data, requestId)))
     .catch(error => dispatch(solothurnResults(key, {}, requestId)));
 }

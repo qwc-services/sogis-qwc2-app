@@ -2,6 +2,7 @@
   "proxyUrl": "http://127.0.0.1:5000/proxy?url=",
   "qwc2serverUrl": "http://qwc2.sourcepole.ch/api/",
   "editServiceUrl": "http://localhost:9092/",
+  "searchServiceUrl": "http://localhost:9091/",
   "translationsPath": "/translations",
   "assetsPath": "/assets",
   "urlPositionFormat": "extent",
