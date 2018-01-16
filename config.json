@@ -56,7 +56,6 @@
                   {"key": "Measure", "icon": "img/measure_white.svg"},
                   {"key": "Redlining", "icon": "img/draw.svg"},
                   {"key": "Editing", "icon": "img/editing.svg"},
-                  {"key": "DxfExport", "icon": "img/dxfexport.svg"},
                   {"key": "RasterExport", "icon": "img/rasterexport.svg"}
                 ]},
                 {"key": "Print", "icon": "img/print.svg"},
@@ -118,9 +117,6 @@
             "flattenGroups": true,
             "layerInfoWindowSize": {"width": 480, "height": 400}
           }
-        },
-        {
-          "name": "DxfExport"
         },
         {
           "name": "RasterExport",
@@ -186,7 +182,6 @@
                   {"key": "Measure", "icon": "img/measure_white.svg"},
                   {"key": "Redlining", "icon": "img/draw.svg"},
                   {"key": "Editing", "icon": "img/editing.svg"},
-                  {"key": "DxfExport", "icon": "img/dxfexport.svg"},
                   {"key": "RasterExport", "icon": "img/rasterexport.svg"}
                 ]},
                 {"key": "Print", "icon": "img/print.svg"},
@@ -262,9 +257,6 @@
         },
         {
           "name": "MapCopyright"
-        },
-        {
-          "name": "DxfExport"
         },
         {
           "name": "RasterExport",
