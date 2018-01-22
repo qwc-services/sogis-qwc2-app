@@ -1,14 +1,15 @@
 {
-  "proxyUrl": "http://127.0.0.1:5000/proxy?url=",
-  "qwc2serverUrl": "http://qwc2.sourcepole.ch/api/",
+  "proxyServiceUrl": "http://localhost:5000/",
+  "permalinkServiceUrl": "http://localhost:5001/",
+  "elevationServiceUrl": "http://localhost:5002/",
   "editServiceUrl": "http://localhost:9092/",
   "searchServiceUrl": "http://localhost:9091/",
   "translationsPath": "/translations",
   "assetsPath": "/assets",
   "urlPositionFormat": "extent",
   "urlPositionCrs": "",
-  "preserveExtentOnThemeSwitch": false,
-  "preserveBackgroundOnThemeSwitch": false,
+  "preserveExtentOnThemeSwitch": true,
+  "preserveBackgroundOnThemeSwitch": true,
   "preserveNonThemeLayersOnThemeSwitch": true,
   "allowReorderingLayers": true,
   "defaultFeatureStyle": {
@@ -133,6 +134,9 @@
         },
         {
           "name": "MapCompare"
+        },
+        {
+          "name": "HeightProfile"
         }
       ],
       "desktop": [
@@ -273,6 +277,9 @@
         },
         {
           "name": "MapCompare"
+        },
+        {
+          "name": "HeightProfile"
         }
       ]
   }
