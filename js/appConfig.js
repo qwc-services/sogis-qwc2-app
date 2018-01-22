@@ -65,7 +65,8 @@ module.exports = {
             RasterExportPlugin: require('../qwc2/QWC2Components/plugins/RasterExport'),
             RedliningPlugin: require('../qwc2/QWC2Components/plugins/Redlining'),
             EditingPlugin: require('../qwc2/QWC2Components/plugins/Editing')(EditingInterface),
-            MapComparePlugin: require('../qwc2/QWC2Components/plugins/MapCompare')
+            MapComparePlugin: require('../qwc2/QWC2Components/plugins/MapCompare'),
+            HeightProfilePlugin: require('../qwc2/QWC2Components/plugins/HeightProfile')
         }
     },
     supportedLocales: {
