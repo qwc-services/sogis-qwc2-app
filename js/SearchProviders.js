@@ -163,6 +163,9 @@ module.exports = {
         }
     },
     searchProviderFactory: (cfg) => {
+        if(!cfg.key) {
+            return null;
+        }
         return {
             label: cfg.label,
             onSearch: (text, requestId, searchOptions, dispatch) => solothurnSearch(cfg.key, text, requestId, searchOptions, dispatch)
