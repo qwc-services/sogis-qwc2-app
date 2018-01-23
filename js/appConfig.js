@@ -66,7 +66,8 @@ module.exports = {
             RedliningPlugin: require('../qwc2/QWC2Components/plugins/Redlining'),
             EditingPlugin: require('../qwc2/QWC2Components/plugins/Editing')(EditingInterface),
             MapComparePlugin: require('../qwc2/QWC2Components/plugins/MapCompare'),
-            HeightProfilePlugin: require('../qwc2/QWC2Components/plugins/HeightProfile')
+            HeightProfilePlugin: require('../qwc2/QWC2Components/plugins/HeightProfile'),
+            AuthenticationPlugin: require('./plugins/Authentication')
         }
     },
     supportedLocales: {
