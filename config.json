@@ -4,6 +4,7 @@
   "elevationServiceUrl": "http://localhost:5002/",
   "editServiceUrl": "http://localhost:9092/",
   "searchServiceUrl": "http://localhost:9091/",
+  "authServiceUrl": "http://localhost:8088/",
   "translationsPath": "/translations",
   "assetsPath": "/assets",
   "urlPositionFormat": "extent",
@@ -61,7 +62,8 @@
                   {"key": "RasterExport", "icon": "img/rasterexport.svg"}
                 ]},
                 {"key": "Print", "icon": "img/print.svg"},
-                {"key": "Help", "icon": "img/info.svg"}
+                {"key": "Help", "icon": "img/info.svg"},
+                {"key": "Login", "icon": "img/login.svg"}
               ],
               "searchOptions": {
                 "minScale": 1000,
@@ -137,6 +139,9 @@
         },
         {
           "name": "HeightProfile"
+        },
+        {
+          "name": "Authentication"
         }
       ],
       "desktop": [
@@ -190,7 +195,8 @@
                   {"key": "RasterExport", "icon": "img/rasterexport.svg"}
                 ]},
                 {"key": "Print", "icon": "img/print.svg"},
-                {"key": "Help", "icon": "img/info.svg"}
+                {"key": "Help", "icon": "img/info.svg"},
+                {"key": "Login", "icon": "img/login.svg"}
               ],
               "searchOptions": {
                 "minScale": 1000,
@@ -280,6 +286,9 @@
         },
         {
           "name": "HeightProfile"
+        },
+        {
+          "name": "Authentication"
         }
       ]
   }
