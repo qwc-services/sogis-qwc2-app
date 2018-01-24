@@ -75,8 +75,8 @@ function coordinatesSearch(text, requestId, searchOptions, dispatch) {
             items.push({
                 id: "coord0",
                 text: x + ", " + y + " (" + displaycrs + ")",
-                x: coord.x,
-                y: coord.y,
+                x: coord[0],
+                y: coord[1],
                 crs: "EPSG:4326",
                 bbox: [x, y, x, y]
             });

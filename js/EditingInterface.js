@@ -20,7 +20,7 @@ function somap_getFeature(layerId, mapPos, mapCrs, mapScale, dpi, callback) {
     let coo = CoordinatesUtils.reproject(mapPos, mapCrs, "EPSG:2056");
     // 5px tolerance
     let tol = (5. / dpi) * 0.0254 * mapScale;
-    let bbox = (coo.x - tol) + "," + (coo.y - tol) + "," + (coo.x + tol) + "," + (coo.y + tol);
+    let bbox = (coo[0] - tol) + "," + (coo[1] - tol) + "," + (coo[0] + tol) + "," + (coo[1] + tol);
 
     let req = SERVICE_URL + layerId + '?bbox=' + bbox;
     axios.get(ProxyUtils.addProxyIfNeeded(req)).then(response => {
