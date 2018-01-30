@@ -25,6 +25,10 @@
       "terms_label": "Conditions d'utilisation",
       "viewertitle_label": "Page d'accueil"
     },
+    "copybtn": {
+      "click_to_copy": "Cliquer pour copier",
+      "copied": "Copiée"
+    },
     "draw": {
       "bbox": "Rectangle",
       "circle": "Cercle",
@@ -85,6 +89,9 @@
       "maptip": "Afficher les maptips",
       "printlegend": "Afficher la légende",
       "transparency": "Transparence"
+    },
+    "mapinfotooltip": {
+      "elevation": ""
     },
     "measureComponent": {
       "areaLabel": "Surface",

@@ -25,6 +25,10 @@
       "terms_label": "",
       "viewertitle_label": ""
     },
+    "copybtn": {
+      "click_to_copy": "Clicca per copiare",
+      "copied": "Copiato"
+    },
     "draw": {
       "bbox": "",
       "circle": "",
@@ -85,6 +89,9 @@
       "maptip": "",
       "printlegend": "",
       "transparency": ""
+    },
+    "mapinfotooltip": {
+      "elevation": ""
     },
     "measureComponent": {
       "areaLabel": "Area",

@@ -25,6 +25,10 @@
       "terms_label": "Termeni de utilizare",
       "viewertitle_label": "Harta GIS"
     },
+    "copybtn": {
+      "click_to_copy": "Click pt. copiere",
+      "copied": "Copiat"
+    },
     "draw": {
       "bbox": "Dreptunghi",
       "circle": "Cerc",
@@ -85,6 +89,9 @@
       "maptip": "Arată indicii hartă",
       "printlegend": "Tipărește legenda",
       "transparency": "Transparență"
+    },
+    "mapinfotooltip": {
+      "elevation": ""
     },
     "measureComponent": {
       "areaLabel": "Arie",

@@ -27,6 +27,10 @@
       "terms_label": "Terms of use",
       "viewertitle_label": "Geoportal Kt. Solothurn"
     },
+    "copybtn": {
+      "click_to_copy": "Click to copy",
+      "copied": "Copied"
+    },
     "draw": {
       "bbox": "Box",
       "circle": "Circle",
@@ -87,6 +91,9 @@
       "maptip": "Show layer map tips",
       "printlegend": "Print legend",
       "transparency": "Transparency"
+    },
+    "mapinfotooltip": {
+      "elevation": ""
     },
     "measureComponent": {
       "areaLabel": "Area",
