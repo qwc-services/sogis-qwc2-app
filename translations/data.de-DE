@@ -25,6 +25,10 @@
       "terms_label": "Nutzungsbedingungen",
       "viewertitle_label": ""
     },
+    "copybtn": {
+      "click_to_copy": "Kopieren in Zwischenablage",
+      "copied": "Kopiert"
+    },
     "draw": {
       "bbox": "",
       "circle": "",
@@ -85,6 +89,9 @@
       "maptip": "Kartentipps anzeigen",
       "printlegend": "Legende drucken",
       "transparency": "Transparenz"
+    },
+    "mapinfotooltip": {
+      "elevation": ""
     },
     "measureComponent": {
       "areaLabel": "Fläche",
