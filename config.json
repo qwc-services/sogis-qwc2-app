@@ -5,6 +5,7 @@
   "editServiceUrl": "http://localhost:9092/",
   "searchServiceUrl": "http://localhost:9091/",
   "authServiceUrl": "http://localhost:8088/",
+  "mapInfoService":  "http://localhost:8093/",
   "translationsPath": "/translations",
   "assetsPath": "/assets",
   "urlPositionFormat": "extent",
@@ -139,6 +140,9 @@
         },
         {
           "name": "HeightProfile"
+        },
+        {
+          "name": "MapInfoTooltip"
         },
         {
           "name": "Authentication"
@@ -286,6 +290,9 @@
         },
         {
           "name": "HeightProfile"
+        },
+        {
+          "name": "MapInfoTooltip"
         },
         {
           "name": "Authentication"
