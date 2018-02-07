@@ -69,12 +69,13 @@
       "height": ""
     },
     "identify": {
-      "querying": "Interogare..."
+      "querying": "Interogare...",
+      "noresults": "Nu există informații în punctul cerut",
+      "title": "Info Entități"
     },
     "identifyregion": {
       "info": "Încadrați într-un poligon entitățile de identificat..."
     },
-    "identifyTitle": "Info Entități",
     "importlayer": {
       "addlayer": "",
       "filter": "",
@@ -90,6 +91,9 @@
       "printlegend": "Tipărește legenda",
       "transparency": "Transparență"
     },
+    "map": {
+      "loading": "Se încarcă..."
+    },
     "mapinfotooltip": {
       "elevation": ""
     },
@@ -99,7 +103,6 @@
       "lengthLabel": "Lungime",
       "pointLabel": "Poziție"
     },
-    "noFeatureInfo": "Nu există informații în punctul cerut",
     "print": {
       "layout": "Șablon:",
       "grid": "Grid",
@@ -172,8 +175,7 @@
         "PERMISSION_DENIED": "Acces refuzat"
       }
     },
-    "map": {
-      "loading": "Se încarcă..."
-    }
+    "identifyTitle": "Info Entități",
+    "noFeatureInfo": "Nu există informații în punctul cerut"
   }
 }
