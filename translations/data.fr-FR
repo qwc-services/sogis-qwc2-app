@@ -74,7 +74,6 @@
     "identifyregion": {
       "info": "Dessiner un polygone pour identifier les objets"
     },
-    "identifyTitle": "Informations de l'objet",
     "importlayer": {
       "addlayer": "Ajouter un calque",
       "filter": "Filtrer",
@@ -90,6 +89,9 @@
       "printlegend": "Afficher la légende",
       "transparency": "Transparence"
     },
+    "map": {
+      "loading": "Chargement de la carte..."
+    },
     "mapinfotooltip": {
       "elevation": ""
     },
@@ -99,7 +101,6 @@
       "lengthLabel": "Longueur",
       "pointLabel": "Position"
     },
-    "noFeatureInfo": "Aucune information n'est disponible pour le point cliqué.",
     "print": {
       "layout": "Format",
       "grid": "Grille",
@@ -130,10 +131,10 @@
     },
     "search": {
       "more": "Plus...",
-      "search": "",
-      "all": "",
       "placeholder": "Recherche par toponyme ou coordonnées...",
-      "coordinates": "Coordonnées"
+      "coordinates": "Coordonnées",
+      "search": "",
+      "all": ""
     },
     "share": {
       "directLinkTitle": "Via un lien direct",
@@ -159,8 +160,7 @@
       "legend": "Légende"
     },
     "locate": {},
-    "map": {
-      "loading": "Chargement de la carte..."
-    }
+    "identifyTitle": "Informations de l'objet",
+    "noFeatureInfo": "Aucune information n'est disponible pour le point cliqué."
   }
 }

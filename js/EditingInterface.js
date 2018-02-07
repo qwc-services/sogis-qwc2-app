@@ -15,6 +15,18 @@ const ProxyUtils = require('../qwc2/MapStore2Components/utils/ProxyUtils');
 const VectorLayerUtils = require('../qwc2/QWC2Components/utils/VectorLayerUtils');
 
 
+function buildErrMsg(err) {
+    let message = "Commit failed";
+    if(err.response && err.response.data && err.response.data.message) {
+        message = err.response.data.message;
+        if(err.response.data.geometry_errors) {
+            message += ":\n";
+            message += err.response.data.geometry_errors.map(entry => " - " + entry.reason + " at " + entry.location);
+        }
+    }
+    return message;
+}
+
 function somap_getFeature(layerId, mapPos, mapCrs, mapScale, dpi, callback) {
     const SERVICE_URL = ConfigUtils.getConfigProp("editServiceUrl");
     let coo = CoordinatesUtils.reproject(mapPos, mapCrs, "EPSG:2056");
@@ -46,7 +58,7 @@ function somap_addFeature(layerId, feature, mapCrs, callback) {
 
     axios.post(ProxyUtils.addProxyIfNeeded(req), feature).then(response => {
         callback(true);
-    }).catch(err => callback(false));
+    }).catch(err => callback(false, buildErrMsg(err)));
 }
 
 function somap_editFeature(layerId, feature, mapCrs, callback) {
@@ -60,7 +72,7 @@ function somap_editFeature(layerId, feature, mapCrs, callback) {
 
     axios.put(ProxyUtils.addProxyIfNeeded(req), feature).then(response => {
         callback(true);
-    }).catch(err => callback(false));
+    }).catch(err => callback(false, buildErrMsg(err)));
 }
 
 function somap_deleteFeature(layerId, featureId, callback) {
@@ -69,7 +81,7 @@ function somap_deleteFeature(layerId, featureId, callback) {
 
     axios.delete(ProxyUtils.addProxyIfNeeded(req)).then(response => {
         callback(true);
-    }).catch(err => callback(false));
+    }).catch(err => callback(false, buildErrMsg(err)));
 }
 
 module.exports = {

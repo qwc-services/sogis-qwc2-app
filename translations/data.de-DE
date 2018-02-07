@@ -69,12 +69,13 @@
       "height": ""
     },
     "identify": {
-      "querying": "Objekte werden abgefragt..."
+      "querying": "Objekte werden abgefragt...",
+      "featureReport": "Objektblatt",
+      "title": "Objektinformationen"
     },
     "identifyregion": {
       "info": "Polygon um die zu identifizierende Objekte zeichnen"
     },
-    "identifyTitle": "Objektinformationen",
     "importlayer": {
       "addlayer": "",
       "filter": "",
@@ -84,11 +85,14 @@
       "urlplaceholder": ""
     },
     "layertree": {
-      "compare": "",
-      "importlayer": "",
       "maptip": "Kartentipps anzeigen",
       "printlegend": "Legende drucken",
-      "transparency": "Transparenz"
+      "transparency": "Transparenz",
+      "compare": "",
+      "importlayer": ""
+    },
+    "map": {
+      "loading": "Karte wird geladen"
     },
     "mapinfotooltip": {
       "elevation": ""
@@ -99,24 +103,22 @@
       "lengthLabel": "Länge",
       "pointLabel": "Position"
     },
-    "noFeatureInfo": "Am ausgewählten Punkt sind keine Informationen verfügbar",
     "print": {
       "layout": "Format",
-      "grid": "",
       "nolayouts": "Das gewählte Thema stellt keine Druck-Vorlagen zur Verfügung.",
       "notheme": "Kein Thema selektiert",
       "resolution": "Auflösung",
       "rotation": "Rotation",
       "scale": "Massstab",
-      "submit": "PDF erzeugen"
+      "submit": "PDF erzeugen",
+      "grid": ""
     },
     "rasterexport": {
       "format": "Format:",
-      "resolution": "",
-      "selectinfo": "Rechteck aufziehen um die zu exportierende Region"
+      "selectinfo": "Rechteck aufziehen um die zu exportierende Region",
+      "resolution": ""
     },
     "redlining": {
-      "border": "",
       "fill": "Füllung",
       "label": "Beschriftung",
       "line": "Linie",
@@ -124,16 +126,17 @@
       "pick": "Auswählen",
       "point": "Punkt",
       "polygon": "Polygon",
+      "border": "",
       "size": "",
       "text": "",
       "width": ""
     },
     "search": {
       "more": "Mehr...",
-      "search": "",
-      "all": "",
       "placeholder": "Suche nach Objekten/Namen und Koordinaten",
-      "coordinates": "Koordinaten"
+      "coordinates": "Koordinaten",
+      "search": "",
+      "all": ""
     },
     "share": {
       "directLinkTitle": "Über einen direkten Link",
@@ -146,6 +149,7 @@
     "themeswitcher": {
       "filter": "Filter"
     },
+    "identifyTitle": "Objektinformationen",
     "bgswitcher": {
       "nobg": "Kein Hintergrund"
     },
@@ -159,8 +163,6 @@
       "legend": "Legende"
     },
     "locate": {},
-    "map": {
-      "loading": "Karte wird geladen"
-    }
+    "noFeatureInfo": "Am ausgewählten Punkt sind keine Informationen verfügbar"
   }
 }
