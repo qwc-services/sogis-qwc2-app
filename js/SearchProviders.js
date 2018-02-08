@@ -58,7 +58,7 @@
 */
 
 const axios = require('axios');
-const {addSearchResults} = require("../qwc2/QWC2Components/actions/search");
+const {addSearchResults, SearchResultType} = require("../qwc2/QWC2Components/actions/search");
 const CoordinatesUtils = require('../qwc2/MapStore2Components/utils/CoordinatesUtils');
 const ConfigUtils = require('../qwc2/MapStore2Components/utils/ConfigUtils');
 const ProxyUtils = require('../qwc2/MapStore2Components/utils/ProxyUtils');
@@ -155,11 +155,41 @@ function solothurnResults(key, obj, requestId)
 
 ////////////////////////////////////////////////////////////////////////////////
 
+function layerSearch(text, requestId, searchOptions, dispatch) {
+    const SEARCH_URL = ConfigUtils.getConfigProp("searchServiceUrl");
+    axios.get(ProxyUtils.addProxyIfNeeded(SEARCH_URL + "layersearch?searchtext=" + encodeURIComponent(text)))
+    .then(response => dispatch(layerResults(response.data, requestId)))
+    .catch(error => dispatch(layerResults({}, requestId)));
+}
+
+function layerResults(obj, requestId) {
+    let results = [];
+    if(obj.results) {
+        results.push({
+            id: "layers",
+            title: "Layers",
+            items: obj.results.map(result => ({
+                type: SearchResultType.THEMELAYER,
+                id: result.id,
+                text: result.title,
+                layer: result.layer
+            }))
+        });
+    }
+    return addSearchResults({data: results, provider: "layers", reqId: requestId}, true);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
 module.exports = {
     SearchProviders: {
         "coordinates": {
             label: "Koordinaten",
             onSearch: coordinatesSearch
+        },
+        "layers": {
+            label: "Ebenen",
+            onSearch: layerSearch
         }
     },
     searchProviderFactory: (cfg) => {
