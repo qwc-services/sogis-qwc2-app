@@ -149,7 +149,6 @@
     "themeswitcher": {
       "filter": "Filter"
     },
-    "identifyTitle": "Objektinformationen",
     "bgswitcher": {
       "nobg": "Kein Hintergrund"
     },
@@ -162,7 +161,6 @@
       "metadataUrl": "Metadaten-URL",
       "legend": "Legende"
     },
-    "locate": {},
-    "noFeatureInfo": "Am ausgewählten Punkt sind keine Informationen verfügbar"
+    "locate": {}
   }
 }

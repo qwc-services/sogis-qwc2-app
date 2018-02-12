@@ -159,8 +159,6 @@
       "metadataUrl": "URL des métadonnées",
       "legend": "Légende"
     },
-    "locate": {},
-    "identifyTitle": "Informations de l'objet",
-    "noFeatureInfo": "Aucune information n'est disponible pour le point cliqué."
+    "locate": {}
   }
 }
