@@ -178,8 +178,6 @@
         "FOLLOWING": "Following",
         "PERMISSION_DENIED": "Permission denied"
       }
-    },
-    "identifyTitle": "Feature Info",
-    "noFeatureInfo": "There is no information available for the point you clicked"
+    }
   }
 }
