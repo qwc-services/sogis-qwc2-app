@@ -58,6 +58,7 @@
 */
 
 const axios = require('axios');
+const isEmpty = require('lodash.isempty');
 const {addSearchResults, SearchResultType} = require("../qwc2/QWC2Components/actions/search");
 const CoordinatesUtils = require('../qwc2/MapStore2Components/utils/CoordinatesUtils');
 const ConfigUtils = require('../qwc2/MapStore2Components/utils/ConfigUtils');
@@ -164,7 +165,7 @@ function layerSearch(text, requestId, searchOptions, dispatch) {
 
 function layerResults(obj, requestId) {
     let results = [];
-    if(obj.results) {
+    if(!isEmpty(obj.results)) {
         results.push({
             id: "layers",
             title: "Layers",
