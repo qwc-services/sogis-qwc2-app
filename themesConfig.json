@@ -3,7 +3,7 @@
     "items": [
       {
         "title": "Solothurn",
-        "url": "http://localhost:8001/qgis/altlast",
+        "url": "http://localhost:8001/ows/altlast",
         "attribution": "Kt. Solothurn",
         "attributionUrl": "https://www.so.ch/verwaltung/bau-und-justizdepartement/amt-fuer-geoinformation/geoportal/",
         "tiled": true,
