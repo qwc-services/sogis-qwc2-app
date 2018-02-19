@@ -6,6 +6,7 @@
   "searchServiceUrl": "http://localhost:5011/",
   "authServiceUrl": "http://localhost:5017/",
   "mapInfoService":  "http://localhost:5016/",
+  "featureReportService": "http://localhost:5018/",
   "translationsPath": "/translations",
   "assetsPath": "/assets",
   "urlPositionFormat": "extent",
