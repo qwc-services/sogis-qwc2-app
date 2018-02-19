@@ -141,7 +141,7 @@ function solothurnResults(key, obj, requestId)
             items: group.items.map(item => { return {
                 id: item.id,
                 text: item.label,
-                bbox: [item.x, item.y, item.x, item.y],
+                bbox: item.bbox,
                 x: item.x,
                 y: item.y,
                 crs: "EPSG:2056",
