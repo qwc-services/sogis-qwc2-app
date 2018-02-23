@@ -1,4 +1,4 @@
-v0.3 (XXX XX 2017):
+v1.0 (XXX XX 2018):
 
 **Important**:
 - Run `yarn install` to upgrade dependencies.
@@ -55,6 +55,19 @@ v0.3 (XXX XX 2017):
 - Use assets/templates/legendprint.html as a template for the map legend print.
 - Added LayerTree groupTogglesSublayers config property to control whether toggling a group toggles just the group or also all the sublayers
 - New Redlining module
+- Editing support
+- Support for importing WMS layers
+- Support for importing KML layers
+- Add option to flatten layer tree groups (config.json -> LayerTree -> flattenGroups)
+- Optionally allow reordering layers in layer tree (controlled via config.json -> allowReorderingLayers)
+- Add option to preseve non-theme layers on theme switch (config.json -> preserveNonThemeLayersOnThemeSwitch)
+- Add possibility to specify DPIs for raster export (config.json -> RasterExport -> dpis)
+- Add option to reset to default theme when logo image is clicked (config.json -> TopBar -> logoClickResetsTheme)
+- Add possibility to compare top layer with remaining layers of map
+- Redlining and additional layers added by the user are sent to the permalink service and restored if the service returns them, see https://github.com/sourcepole/qwc2-server
+- Add height profile plugin, see https://github.com/sourcepole/qwc2-server for a sample service
+- Add a plugin for displaying a map info tooltip on rightclick
+- Add client-side logic to download feature reports, see https://github.com/sourcepole/qwc2-server for a sample service
 
 
 **Incompatible changes**:
@@ -86,6 +99,19 @@ v0.3 (XXX XX 2017):
 - Ported react components to use class definition and ES7 syntax, see i.e. [https://babeljs.io/blog/2015/06/07/react-on-es6-plus](https://babeljs.io/blog/2015/06/07/react-on-es6-plus). **Any custom react components will need to be updated**.
 - Most of the logic in js/app.jsx was moved to the core components, the file needs to be updated according to the latest version in qwc2-demo-app
 - The stylesheet assets/css/qwc2.css needs to be updated to include the style for `#container`, accoding to the latest version in qwc2-demo-app
+- The npm packages are now used for openlayers and proj4. The corresponding `link` and `script` lines need to be removed from `index.html`, and in `js/appConfig.js` the proj import needs to be changed to `const Proj4js = require('proj4').default;`. Also, the following line needs to be removed from webpack.config.js:
+
+      new webpack.NormalModuleReplacementPlugin(/proj4$/, path.join(__dirname, "qwc2", "libs", "proj4")),
+
+- `qwc2serverUrl` in `config.json` was renamed to `permalinkServiceUrl` for clarity
+- `proxyUrl` in `config.json` was renamed to `proxyServiceUrl` for clarity, and is now only the base URL without `url` query parameter
+- The codebase now consistently uses `[x, y]` as point format (instead of a mix of `{x: x, y: y}` and `[x, y]`). So i.e. CoordinatesUtils.reproject will also return a point in `[x, y]` format.
+- The following lines need to be removed from `assets/css/qwc2.css`:
+
+      -input[type=range] {
+       -    display: initial!important;
+       -    width: initial!important;
+      -}
 
 
 v0.2 (Jan 03 2017):
