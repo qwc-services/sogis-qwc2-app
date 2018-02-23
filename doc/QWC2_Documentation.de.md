@@ -1,3 +1,5 @@
+# HINWEIS: Diese Dokumentation ist obsolet und wird nicht mehr gepflegt. Bitte die [Englische Dokumentation](https://github.com/qgis/qwc2-demo-app/blob/master/doc/QWC2_Documentation.md) verwenden.
+
 # QWC2 Dokumentation
 
 ## Voraussetzungen
