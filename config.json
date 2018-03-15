@@ -73,7 +73,8 @@
                 "providerSelectionAllowAll": true
               },
               "appMenuClearsTask": true,
-              "logoClickResetsTheme": true
+              "logoClickResetsTheme": true,
+              "logoUrl": "/"
             }
         },
         {
@@ -209,7 +210,8 @@
                 "providerSelectionAllowAll": true
               },
               "appMenuClearsTask": true,
-              "logoClickResetsTheme": true
+              "logoClickResetsTheme": true,
+              "logoUrl": "/"
             }
         },
         {
