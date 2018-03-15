@@ -199,7 +199,8 @@ module.exports = {
         }
         return {
             label: cfg.label,
-            onSearch: (text, requestId, searchOptions, dispatch) => solothurnSearch(cfg.key, text, requestId, searchOptions, dispatch)
+            onSearch: (text, requestId, searchOptions, dispatch) => solothurnSearch(cfg.key, text, requestId, searchOptions, dispatch),
+            requiresLayer: cfg.layerName
         };
     }
 };
