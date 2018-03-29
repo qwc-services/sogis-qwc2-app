@@ -3,7 +3,6 @@
   "messages": {
     "appmenu": {
       "items": {
-        "Draw": "Desenează",
         "DxfExport": "Export DXF",
         "Help": "Ajutor",
         "LayerTree": "Straturi & Legendă",
@@ -15,9 +14,13 @@
         "Tools": "Unelte hartă",
         "IdentifyRegion": "Interogare regiune",
         "Redlining": "Evidențiere",
-        "Editing": ""
+        "Editing": "Editare",
+        "Draw": "Desenează"
       },
       "menulabel": "Hărți & Unelte"
+    },
+    "bgswitcher": {
+      "nobg": "Fără fundal"
     },
     "bottombar": {
       "mousepos_label": "Coordonate",
@@ -29,73 +32,83 @@
       "click_to_copy": "Click pt. copiere",
       "copied": "Copiat"
     },
-    "draw": {
-      "bbox": "Dreptunghi",
-      "circle": "Cerc",
-      "clearAll": "Șterge tot",
-      "delete": "Șterge",
-      "fillcolor": "Culoare interior",
-      "fillopacity": "Opacitate interior",
-      "fontsize": "Mărime font",
-      "line": "Linie",
-      "point": "Punct",
-      "polygon": "Poligon",
-      "strokecolor": "Culoare contur",
-      "strokewidth": "Lățime contur",
-      "text": "Text"
-    },
     "dxfexport": {
       "selectinfo": "Încadrați într-un dreptunghi zona de exportat..",
       "symbologyscale": "Scara simboluri:"
     },
     "editing": {
-      "canceldelete": "",
-      "commit": "",
-      "delete": "",
-      "discard": "",
-      "draw": "",
-      "fields": "",
-      "layer": "",
-      "noeditablelayers": "",
-      "pick": "",
-      "reallydelete": ""
+      "canceldelete": "Elimină modificările",
+      "commit": "Salvează",
+      "delete": "Șterge",
+      "discard": "Renunță",
+      "draw": "Desenează",
+      "fields": "Câmpuri",
+      "layer": "Strat",
+      "noeditablelayers": "Tema nu conține straturi ce se pot modifica",
+      "pick": "Alege",
+      "reallydelete": "Șterge"
     },
     "fileselector": {
-      "placeholder": ""
+      "placeholder": "Selectează fișierul"
     },
     "heightprofile": {
-      "asl": "",
-      "distance": "",
-      "height": ""
+      "asl": "a.s.l.",
+      "distance": "Distanța",
+      "height": "Înălțimea"
     },
     "identify": {
       "querying": "Interogare...",
       "noresults": "Nu există informații în punctul cerut",
+      "export": "Export",
+      "featureReport": "Raport entitate",
       "title": "Info Entități"
     },
     "identifyregion": {
       "info": "Încadrați într-un poligon entitățile de identificat..."
     },
     "importlayer": {
-      "addlayer": "",
-      "filter": "",
-      "connect": "",
-      "nofeatures": "",
-      "queryservice": "",
-      "urlplaceholder": ""
+      "addlayer": "Adaugă strat",
+      "filter": "Filtrare",
+      "connect": "Conectare",
+      "nofeatures": "Nu s-a putut importa nicio entitate",
+      "urlplaceholder": "Introdu URL către WMS, WFS, KML..."
+    },
+    "layerinfo": {
+      "title": "Info Strat",
+      "abstract": "Abstract",
+      "attribution": "Atribuire",
+      "keywords": "Cuvinte cheie",
+      "dataUrl": "URL date",
+      "metadataUrl": "URL metadate",
+      "legend": "Legendă"
     },
     "layertree": {
-      "compare": "",
-      "importlayer": "",
+      "compare": "Compară stratul de sus",
+      "importlayer": "Import strat",
       "maptip": "Arată indicii hartă",
       "printlegend": "Tipărește legenda",
       "transparency": "Transparență"
+    },
+    "locate": {
+      "metersUnit": "metri",
+      "feetUnit": "picioare",
+      "popup": "Ești la {distance} {unit} de acest punct",
+      "statustooltip": {
+        "DISABLED": "Dezactivat",
+        "LOCATING": "Localizează...",
+        "ENABLED": "Activat",
+        "FOLLOWING": "Urmărește",
+        "PERMISSION_DENIED": "Acces refuzat"
+      },
+      "tooltip": "Localizează-mă",
+      "outsideMapBoundsMsg": "Ești localizat în afara limitelor hărții"
     },
     "map": {
       "loading": "Se încarcă..."
     },
     "mapinfotooltip": {
-      "elevation": ""
+      "elevation": "Altitudine",
+      "title": "Poziție"
     },
     "measureComponent": {
       "areaLabel": "Arie",
@@ -115,11 +128,11 @@
     },
     "rasterexport": {
       "format": "Format:",
-      "resolution": "",
+      "resolution": "Rezoluție",
       "selectinfo": "Încadrați într-un dreptunghi zona de exportat.."
     },
     "redlining": {
-      "border": "",
+      "border": "Margine",
       "fill": "Umplere",
       "label": "Text",
       "line": "Linie",
@@ -127,14 +140,14 @@
       "pick": "Alege",
       "point": "Punct",
       "polygon": "Poligon",
-      "size": "",
-      "text": "",
-      "width": ""
+      "size": "Mărime",
+      "text": "Text",
+      "width": "Lățime"
     },
     "search": {
       "more": "Mai multe...",
-      "search": "",
-      "all": "",
+      "search": "Caută",
+      "all": "Toate",
       "placeholder": "Caută locații și coordonate...",
       "coordinates": "Coordonate"
     },
@@ -149,31 +162,20 @@
     "themeswitcher": {
       "filter": "Filtrare"
     },
-    "bgswitcher": {
-      "nobg": "Fără fundal"
-    },
-    "layerinfo": {
-      "title": "Info Strat",
-      "abstract": "Abstract",
-      "attribution": "Atribuire",
-      "keywords": "Cuvinte cheie",
-      "dataUrl": "URL date",
-      "metadataUrl": "URL metadate",
-      "legend": "Legendă"
-    },
-    "locate": {
-      "tooltip": "Localizează-mă",
-      "metersUnit": "metri",
-      "feetUnit": "picioare",
-      "popup": "Ești la {distance} {unit} de acest punct",
-      "outsideMapBoundsMsg": "Ești localizat în afara limitelor hărții",
-      "statustooltip": {
-        "DISABLED": "Dezactivat",
-        "LOCATING": "Localizează...",
-        "ENABLED": "Activat",
-        "FOLLOWING": "Urmărește",
-        "PERMISSION_DENIED": "Acces refuzat"
-      }
+    "draw": {
+      "bbox": "Dreptunghi",
+      "circle": "Cerc",
+      "clearAll": "Șterge tot",
+      "delete": "Șterge",
+      "fillcolor": "Culoare interior",
+      "fillopacity": "Opacitate interior",
+      "fontsize": "Mărime font",
+      "line": "Linie",
+      "point": "Punct",
+      "polygon": "Poligon",
+      "strokecolor": "Culoare contur",
+      "strokewidth": "Lățime contur",
+      "text": "Text"
     }
   }
 }
