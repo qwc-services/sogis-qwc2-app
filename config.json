@@ -123,6 +123,7 @@
             "showQueryableIcon": false,
             "groupTogglesSublayers": false,
             "flattenGroups": true,
+            "legendThumbnail": "legend_thumbnail.svg",
             "layerInfoWindowSize": {"width": 480, "height": 400}
           }
         },
@@ -241,6 +242,7 @@
             "allowMapTips": true,
             "groupTogglesSublayers": false,
             "flattenGroups": true,
+            "legendThumbnail": "legend_thumbnail.svg",
             "layerInfoWindowSize": {"width": 480, "height": 400}
           }
         },
