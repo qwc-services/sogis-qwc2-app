@@ -3,7 +3,6 @@
   "messages": {
     "appmenu": {
       "items": {
-        "Draw": "Draw",
         "DxfExport": "DXF Export",
         "Help": "Help",
         "LayerTree": "Layers & Legend",
@@ -16,10 +15,14 @@
         "IdentifyRegion": "Identify Region",
         "Redlining": "Redlining",
         "Editing": "Editing",
+        "Draw": "Draw",
         "Login": "Login",
         "Logout": "Logout"
       },
       "menulabel": "Map & Tools"
+    },
+    "bgswitcher": {
+      "nobg": "No background"
     },
     "bottombar": {
       "mousepos_label": "Coordinates",
@@ -30,21 +33,6 @@
     "copybtn": {
       "click_to_copy": "Click to copy",
       "copied": "Copied"
-    },
-    "draw": {
-      "bbox": "Box",
-      "circle": "Circle",
-      "clearAll": "Clear all",
-      "delete": "Delete",
-      "fillcolor": "Fill color",
-      "fillopacity": "Fill opacity",
-      "fontsize": "Font size",
-      "line": "Line",
-      "point": "Point",
-      "polygon": "Polygon",
-      "strokecolor": "Stroke color",
-      "strokewidth": "Stroke width",
-      "text": "Text"
     },
     "dxfexport": {
       "selectinfo": "Drag a rectangle around the region to export...",
@@ -85,8 +73,17 @@
       "filter": "Filter...",
       "connect": "Connect",
       "nofeatures": "No features could be imported.",
-      "queryservice": "Query service..",
-      "urlplaceholder": "Enter URL to WMS, WFS, KML..."
+      "urlplaceholder": "Enter URL to WMS, WFS, KML...",
+      "queryservice": "Query service.."
+    },
+    "layerinfo": {
+      "title": "Layer Info",
+      "abstract": "Abstract",
+      "attribution": "Attribution",
+      "keywords": "Keywords",
+      "dataUrl": "Data URL",
+      "metadataUrl": "Metadata URL",
+      "legend": "Legend"
     },
     "layertree": {
       "compare": "Compare top layer",
@@ -95,11 +92,26 @@
       "printlegend": "Print legend",
       "transparency": "Transparency"
     },
+    "locate": {
+      "metersUnit": "meters",
+      "feetUnit": "feet",
+      "popup": "You are within {distance} {unit} from this point",
+      "statustooltip": {
+        "DISABLED": "Disabled",
+        "LOCATING": "Locating...",
+        "ENABLED": "Enabled",
+        "FOLLOWING": "Following",
+        "PERMISSION_DENIED": "Permission denied"
+      },
+      "tooltip": "Locate me",
+      "outsideMapBoundsMsg": "You seem located outside the boundaries of the map"
+    },
     "map": {
       "loading": "Loading..."
     },
     "mapinfotooltip": {
-      "elevation": "Elevation"
+      "elevation": "Elevation",
+      "title": "Position"
     },
     "measureComponent": {
       "areaLabel": "Area",
@@ -153,31 +165,20 @@
     "themeswitcher": {
       "filter": "Filter..."
     },
-    "bgswitcher": {
-      "nobg": "No background"
-    },
-    "layerinfo": {
-      "title": "Layer Info",
-      "abstract": "Abstract",
-      "attribution": "Attribution",
-      "keywords": "Keywords",
-      "dataUrl": "Data URL",
-      "metadataUrl": "Metadata URL",
-      "legend": "Legend"
-    },
-    "locate": {
-      "tooltip": "Locate me",
-      "metersUnit": "meters",
-      "feetUnit": "feet",
-      "popup": "You are within {distance} {unit} from this point",
-      "outsideMapBoundsMsg": "You seem located outside the boundaries of the map",
-      "statustooltip": {
-        "DISABLED": "Disabled",
-        "LOCATING": "Locating...",
-        "ENABLED": "Enabled",
-        "FOLLOWING": "Following",
-        "PERMISSION_DENIED": "Permission denied"
-      }
+    "draw": {
+      "bbox": "Box",
+      "circle": "Circle",
+      "clearAll": "Clear all",
+      "delete": "Delete",
+      "fillcolor": "Fill color",
+      "fillopacity": "Fill opacity",
+      "fontsize": "Font size",
+      "line": "Line",
+      "point": "Point",
+      "polygon": "Polygon",
+      "strokecolor": "Stroke color",
+      "strokewidth": "Stroke width",
+      "text": "Text"
     }
   }
 }
