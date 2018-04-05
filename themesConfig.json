@@ -13,7 +13,17 @@
             "visibility": true
           }
         ],
-        "searchProviders": ["coordinates", "layers", {"key": "places", "label": "Orte"}, {"key": "rivers", "label": "Flüsse"}],
+        "searchProviders": [
+            "coordinates",
+            "layers",
+            {"key": "addresses", "label": "Adressen"},
+            {"key": "egids", "label": "EGIDs"},
+            {"key": "municipalities", "label": "Gemeindenamen", "geometry": true},
+            {"key": "parcels", "label": "Grundstücke", "geometry": true},
+            {"key": "fields", "label": "Flurnamen", "geometry": true},
+            {"key": "places", "label": "Orte"},
+            {"key": "rivers", "label": "Flüsse"}
+        ],
         "mapCrs": "EPSG:2056",
         "additionalMouseCrs": ["EPSG:21781", "EPSG:2056"],
         "printLabelForSearchResult": "test",

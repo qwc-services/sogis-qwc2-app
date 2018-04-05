@@ -59,6 +59,7 @@
 
 const axios = require('axios');
 const isEmpty = require('lodash.isempty');
+const assign = require('object-assign');
 const {addSearchResults, SearchResultType} = require("../qwc2/QWC2Components/actions/search");
 const CoordinatesUtils = require('../qwc2/MapStore2Components/utils/CoordinatesUtils');
 const ConfigUtils = require('../qwc2/MapStore2Components/utils/ConfigUtils');
@@ -126,11 +127,11 @@ function solothurnSearch(key, text, requestId, searchOptions, dispatch)
 {
     const SEARCH_URL = ConfigUtils.getConfigProp("searchServiceUrl");
     axios.get(ProxyUtils.addProxyIfNeeded(SEARCH_URL + "?datasets=" + key + "&searchtext=" + encodeURIComponent(text)))
-    .then(response => dispatch(solothurnResults(key, response.data, requestId)))
-    .catch(error => dispatch(solothurnResults(key, {}, requestId)));
+    .then(response => dispatch(solothurnSearchResults(key, response.data, requestId)))
+    .catch(error => dispatch(solothurnSearchResults(key, {}, requestId)));
 }
 
-function solothurnResults(key, obj, requestId)
+function solothurnSearchResults(key, obj, requestId)
 {
     let results = [];
     let idcounter = 0;
@@ -152,6 +153,13 @@ function solothurnResults(key, obj, requestId)
         results.push(groupResult);
     });
     return addSearchResults({data: results, provider: key, reqId: requestId}, true);
+}
+
+function solothurnSearchResultGeometry(resultItem, callback)
+{
+    const SEARCH_URL = ConfigUtils.getConfigProp("searchServiceUrl");
+    axios.get(ProxyUtils.addProxyIfNeeded(SEARCH_URL + resultItem.provider + "/" + resultItem.id + "/geometry"))
+    .then(response => callback(resultItem, response.data.geometry, "EPSG:2056"));
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -200,6 +208,7 @@ module.exports = {
         return {
             label: cfg.label,
             onSearch: (text, requestId, searchOptions, dispatch) => solothurnSearch(cfg.key, text, requestId, searchOptions, dispatch),
+            getResultGeometry: cfg.geometry ? solothurnSearchResultGeometry : null,
             requiresLayer: cfg.layerName
         };
     }
