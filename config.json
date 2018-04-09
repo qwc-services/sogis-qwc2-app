@@ -118,7 +118,7 @@
         {
           "name": "LayerTree",
           "cfg": {
-            "showLegendIcons": true,
+            "showLegendIcons": false,
             "showRootEntry": true,
             "showQueryableIcon": false,
             "groupTogglesSublayers": false,
@@ -236,7 +236,7 @@
         {
           "name": "LayerTree",
           "cfg": {
-            "showLegendIcons": true,
+            "showLegendIcons": false,
             "showRootEntry": true,
             "showQueryableIcon": false,
             "allowMapTips": true,
