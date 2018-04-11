@@ -7,6 +7,7 @@
  */
 
 const Proj4js = require('proj4').default;
+const assign = require('object-assign');
 const {SearchProviders, searchProviderFactory} = require('./SearchProviders');
 const EditingInterface = require('./EditingInterface');
 const CoordinatesUtils = require('../qwc2/MapStore2Components/utils/CoordinatesUtils');
@@ -69,6 +70,25 @@ module.exports = {
             HeightProfilePlugin: require('../qwc2/QWC2Components/plugins/HeightProfile'),
             MapInfoTooltipPlugin: require('../qwc2/QWC2Components/plugins/MapInfoTooltip'),
             AuthenticationPlugin: require('./plugins/Authentication')
+        }
+    },
+    actionLogger: (action) => {
+        let blacklist = [
+            'CHANGE_BROWSER_PROPERTIES',
+            'CHANGE_LOCALE',
+            'CHANGE_MAP_VIEW',
+            'CHANGE_MOUSE_POSITION_STATE',
+            'IDENTIFY_RESPONSE',
+            'LOCAL_CONFIG_LOADED',
+            'PURGE_IDENTIFY_RESULTS',
+            'SET_LAYER_LOADING',
+            'SET_CURRENT_TASK_BLOCKED',
+            'THEMES_LOADED'
+        ];
+        if(!blacklist.includes(action.type)) {
+            let data = assign({}, action);
+            delete data['type'];
+            _paq.push(['trackEvent', 'Action', action.type, JSON.stringify(data)]);
         }
     },
     supportedLocales: {
