@@ -48,7 +48,8 @@
       "layer": "Layer",
       "noeditablelayers": "No editable layers are configured for this theme.",
       "pick": "Pick",
-      "reallydelete": "Delete"
+      "reallydelete": "Delete",
+      "select": ""
     },
     "fileselector": {
       "placeholder": "Select file..."
