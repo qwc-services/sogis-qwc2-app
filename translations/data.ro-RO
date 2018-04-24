@@ -14,8 +14,7 @@
         "Tools": "Unelte hartă",
         "IdentifyRegion": "Interogare regiune",
         "Redlining": "Evidențiere",
-        "Editing": "Editare",
-        "Draw": "Desenează"
+        "Editing": "Editare"
       },
       "menulabel": "Hărți & Unelte"
     },
@@ -53,7 +52,7 @@
       "placeholder": "Selectează fișierul"
     },
     "heightprofile": {
-      "asl": "a.s.l.",
+      "asl": "dM",
       "distance": "Distanța",
       "height": "Înălțimea"
     },
@@ -100,9 +99,7 @@
         "ENABLED": "Activat",
         "FOLLOWING": "Urmărește",
         "PERMISSION_DENIED": "Acces refuzat"
-      },
-      "tooltip": "Localizează-mă",
-      "outsideMapBoundsMsg": "Ești localizat în afara limitelor hărții"
+      }
     },
     "map": {
       "loading": "Se încarcă..."
@@ -148,35 +145,22 @@
     "search": {
       "more": "Mai multe...",
       "search": "Caută",
-      "all": "Toate",
-      "placeholder": "Caută locații și coordonate...",
-      "coordinates": "Coordonate"
+      "all": "Toate"
     },
     "share": {
       "directLinkTitle": "Via link direct",
       "generatingpermalink": "Generare permalink...",
       "QRCodeLinkTitle": "cod QR",
-      "socialIntro": "În rețeaua socială favorită",
-      "msgToCopyUrl": "Click pt. copiere",
-      "msgCopiedUrl": "Copiat"
+      "socialIntro": "În rețeaua socială favorită"
+    },
+    "tooltip": {
+      "home": "",
+      "zoomin": "",
+      "zoomout": "",
+      "background": ""
     },
     "themeswitcher": {
       "filter": "Filtrare"
-    },
-    "draw": {
-      "bbox": "Dreptunghi",
-      "circle": "Cerc",
-      "clearAll": "Șterge tot",
-      "delete": "Șterge",
-      "fillcolor": "Culoare interior",
-      "fillopacity": "Opacitate interior",
-      "fontsize": "Mărime font",
-      "line": "Linie",
-      "point": "Punct",
-      "polygon": "Poligon",
-      "strokecolor": "Culoare contur",
-      "strokewidth": "Lățime contur",
-      "text": "Text"
     }
   }
 }
