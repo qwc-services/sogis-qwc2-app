@@ -14,8 +14,7 @@
         "Tools": "Outils",
         "IdentifyRegion": "Interroger la région",
         "Redlining": "Redlining",
-        "Editing": "Editer",
-        "Draw": "Dessiner"
+        "Editing": "Editer"
       },
       "menulabel": "Cartes et outils"
     },
@@ -72,8 +71,7 @@
       "filter": "Filtrer",
       "connect": "Connecter",
       "nofeatures": "Aucune entité ne peut être importée.",
-      "urlplaceholder": "Entrer l'URL d'un WMS, WFS, KML...",
-      "queryservice": "Interrogation du service..."
+      "urlplaceholder": "Entrer l'URL d'un WMS, WFS, KML..."
     },
     "layerinfo": {
       "title": "Informations dur la couche",
@@ -147,35 +145,22 @@
     "search": {
       "more": "Plus...",
       "search": "",
-      "all": "",
-      "placeholder": "Recherche par toponyme ou coordonnées...",
-      "coordinates": "Coordonnées"
+      "all": ""
     },
     "share": {
       "directLinkTitle": "Via un lien direct",
       "generatingpermalink": "Un lien permanent est généré...",
       "QRCodeLinkTitle": "QR code",
-      "socialIntro": "Via votre réseau social favori",
-      "msgToCopyUrl": "Cliquer pour copier",
-      "msgCopiedUrl": "URL copiée"
+      "socialIntro": "Via votre réseau social favori"
+    },
+    "tooltip": {
+      "home": "",
+      "zoomin": "",
+      "zoomout": "",
+      "background": ""
     },
     "themeswitcher": {
       "filter": "Filtre"
-    },
-    "draw": {
-      "bbox": "Rectangle",
-      "circle": "Cercle",
-      "clearAll": "Tout effacer",
-      "delete": "Supprimer",
-      "fillcolor": "Remplissage",
-      "fillopacity": "Opacité",
-      "fontsize": "Taile de police",
-      "line": "Ligne",
-      "point": "Point",
-      "polygon": "Polygone",
-      "strokecolor": "Couleur du trait",
-      "strokewidth": "Epaisseur du trait",
-      "text": "Texte"
     }
   }
 }

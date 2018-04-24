@@ -15,7 +15,6 @@
         "IdentifyRegion": "Identify Region",
         "Redlining": "Redlining",
         "Editing": "Editing",
-        "Draw": "Draw",
         "Login": "Login",
         "Logout": "Logout"
       },
@@ -46,7 +45,7 @@
       "draw": "Draw",
       "fields": "Fields",
       "layer": "Layer",
-      "noeditablelayers": "No editable layers are configured for this theme.",
+      "noeditablelayers": "No editable layers.",
       "pick": "Pick",
       "reallydelete": "Delete",
       "select": ""
@@ -74,8 +73,7 @@
       "filter": "Filter...",
       "connect": "Connect",
       "nofeatures": "No features could be imported.",
-      "urlplaceholder": "Enter URL to WMS, WFS, KML...",
-      "queryservice": "Query service.."
+      "urlplaceholder": "Enter URL to WMS, WFS, KML..."
     },
     "layerinfo": {
       "title": "Layer Info",
@@ -98,14 +96,12 @@
       "feetUnit": "feet",
       "popup": "You are within {distance} {unit} from this point",
       "statustooltip": {
-        "DISABLED": "Disabled",
-        "LOCATING": "Locating...",
-        "ENABLED": "Enabled",
-        "FOLLOWING": "Following",
-        "PERMISSION_DENIED": "Permission denied"
-      },
-      "tooltip": "Locate me",
-      "outsideMapBoundsMsg": "You seem located outside the boundaries of the map"
+        "DISABLED": "Position: disabled",
+        "LOCATING": "Position: locating...",
+        "ENABLED": "Position: enabled",
+        "FOLLOWING": "Position: following",
+        "PERMISSION_DENIED": "Position: permission denied"
+      }
     },
     "map": {
       "loading": "Loading..."
@@ -151,35 +147,22 @@
     "search": {
       "more": "More...",
       "search": "Search",
-      "all": "All",
-      "coordinates": "Coordinates",
-      "placeholder": "Search for locations and coordinates..."
+      "all": "All"
     },
     "share": {
       "directLinkTitle": "Via a direct link",
       "generatingpermalink": "Generating permalink...",
       "QRCodeLinkTitle": "qr code",
-      "socialIntro": "In your favourite social network",
-      "msgToCopyUrl": "Click to copy",
-      "msgCopiedUrl": "Copied"
+      "socialIntro": "In your favourite social network"
+    },
+    "tooltip": {
+      "home": "Show entire map",
+      "zoomin": "Zoom in",
+      "zoomout": "Zoom out",
+      "background": "Switch background"
     },
     "themeswitcher": {
       "filter": "Filter..."
-    },
-    "draw": {
-      "bbox": "Box",
-      "circle": "Circle",
-      "clearAll": "Clear all",
-      "delete": "Delete",
-      "fillcolor": "Fill color",
-      "fillopacity": "Fill opacity",
-      "fontsize": "Font size",
-      "line": "Line",
-      "point": "Point",
-      "polygon": "Polygon",
-      "strokecolor": "Stroke color",
-      "strokewidth": "Stroke width",
-      "text": "Text"
     }
   }
 }
