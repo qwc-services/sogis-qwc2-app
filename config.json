@@ -122,6 +122,7 @@
             "showRootEntry": true,
             "showQueryableIcon": false,
             "groupTogglesSublayers": false,
+            "grayUnchecked": true,
             "flattenGroups": true,
             "legendThumbnail": "legend_thumbnail.svg",
             "layerInfoWindowSize": {"width": 480, "height": 400}
@@ -241,6 +242,7 @@
             "showQueryableIcon": false,
             "allowMapTips": true,
             "groupTogglesSublayers": false,
+            "grayUnchecked": true,
             "flattenGroups": true,
             "legendThumbnail": "legend_thumbnail.svg",
             "layerInfoWindowSize": {"width": 480, "height": 400}
