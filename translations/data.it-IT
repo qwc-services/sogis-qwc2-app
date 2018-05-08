@@ -14,7 +14,8 @@
         "Tools": "Strumenti",
         "IdentifyRegion": "Identifica regione",
         "Redlining": "Redlining",
-        "Editing": "Edita"
+        "Editing": "Edita",
+        "LandRegisterExtract": ""
       },
       "menulabel": "Mappa e strumenti"
     },
