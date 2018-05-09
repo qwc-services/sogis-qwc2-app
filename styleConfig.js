@@ -2,7 +2,7 @@ let styleConfig = {
   // Base foreground (text) color
   base_fg: "#595959",
   // Top and bottom panels
-  panel_bg: "rgba(255, 255, 255, 0.75)",
+  panel_bg: "rgba(255, 255, 255, 0.9)",
   panel_fg: "#595959",
   // Titlebars
   titlebar_bg: "#595959",
