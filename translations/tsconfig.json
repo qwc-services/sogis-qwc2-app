@@ -1,10 +1,7 @@
 {
   "languages": [
     "de-DE",
-    "en-US",
-    "fr-FR",
-    "it-IT",
-    "ro-RO"
+    "en-US"
     ],
     "strings": [
         "appmenu.items.LandRegisterExtract",
