@@ -19,8 +19,8 @@
   "wmsDpi": 96,
   "defaultFeatureStyle": {
     "strokeColor": [0, 0, 255, 1],
-    "strokeWidth": 1,
-    "strokeDash": [4],
+    "strokeWidth": 2,
+    "strokeDash": [],
     "fillColor": [255, 0, 255, 0.33],
     "circleRadius": 10,
     "circleBorder": 2,
