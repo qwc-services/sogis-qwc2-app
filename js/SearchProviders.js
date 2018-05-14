@@ -114,6 +114,7 @@ function coordinatesSearch(text, requestId, searchOptions, dispatch) {
             {
                 id: "coords",
                 titlemsgid: "search.coordinates",
+                priority: 2,
                 items: items
             }
         );
@@ -148,7 +149,8 @@ function solothurnSearchResults(key, obj, requestId)
                 crs: "EPSG:2056",
                 provider: key,
                 category: group.category
-            }})
+            }}),
+            priority: group.priority || 1
         };
         results.push(groupResult);
     });
