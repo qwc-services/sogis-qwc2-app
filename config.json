@@ -307,7 +307,10 @@
           "name": "MapCompare"
         },
         {
-          "name": "HeightProfile"
+          "name": "HeightProfile",
+          "cfg": {
+            "height": 200
+          }
         },
         {
           "name": "MapInfoTooltip"
