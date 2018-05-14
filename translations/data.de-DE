@@ -15,7 +15,9 @@
         "IdentifyRegion": "Region abfragen",
         "Redlining": "Zeichnen",
         "Editing": "Editieren",
-        "LandRegisterExtract": "Grundbuchauszug"
+        "LandRegisterExtract": "Grundbuchauszug",
+        "Login": "Login",
+        "Logout": "Logout"
       },
       "menulabel": "Karte & Werkzeuge"
     },
