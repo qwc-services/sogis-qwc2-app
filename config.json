@@ -73,7 +73,8 @@
               "searchOptions": {
                 "minScale": 1000,
                 "showProviderSelection": true,
-                "providerSelectionAllowAll": true
+                "providerSelectionAllowAll": true,
+                "zoomToLayers": false
               },
               "appMenuClearsTask": true,
               "logoClickResetsTheme": true,
@@ -218,7 +219,8 @@
               "searchOptions": {
                 "minScale": 1000,
                 "showProviderSelection": true,
-                "providerSelectionAllowAll": true
+                "providerSelectionAllowAll": true,
+                "zoomToLayers": false
               },
               "appMenuClearsTask": true,
               "logoClickResetsTheme": true,
