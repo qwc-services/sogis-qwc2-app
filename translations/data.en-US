@@ -49,7 +49,7 @@
       "noeditablelayers": "No editable layers.",
       "pick": "Pick",
       "reallydelete": "Delete",
-      "select": ""
+      "select": "Select"
     },
     "fileselector": {
       "placeholder": "Select file..."
@@ -120,6 +120,8 @@
     "print": {
       "layout": "Layout:",
       "grid": "Grid:",
+      "maximize": "Maximize",
+      "minimize": "Minimize",
       "nolayouts": "The selected theme does not support printing",
       "notheme": "No theme selected",
       "resolution": "Resolution:",
@@ -148,7 +150,8 @@
     "search": {
       "more": "More...",
       "search": "Search",
-      "all": "All"
+      "all": "All",
+      "coordinates": "Coordinates"
     },
     "share": {
       "directLinkTitle": "Via a direct link",
