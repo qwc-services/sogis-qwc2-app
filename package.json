@@ -2,7 +2,7 @@
     "name": "QWC2Solothurn",
     "version": "2017.12.14",
     "description": "QGIS Web Client 2",
-    "repository": "git@github.com:sourcepole/qwc2-demo-app.git",
+    "repository": "git@git.sourcepole.ch:ktso/qwc2-solothurn.git",
     "main": "index.js",
     "devDependencies": {
         "babel-core": "^6.23.1",
