@@ -123,6 +123,8 @@
         {
           "name": "LayerTree",
           "cfg": {
+            "width": "30em",
+            "allowMapTips": false,
             "showLegendIcons": false,
             "showRootEntry": true,
             "showQueryableIcon": false,
@@ -247,10 +249,11 @@
         {
           "name": "LayerTree",
           "cfg": {
+            "width": "30em",
+            "allowMapTips": false,
             "showLegendIcons": false,
             "showRootEntry": true,
             "showQueryableIcon": false,
-            "allowMapTips": true,
             "groupTogglesSublayers": false,
             "grayUnchecked": true,
             "flattenGroups": true,
