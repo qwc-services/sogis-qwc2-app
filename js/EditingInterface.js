@@ -8,7 +8,7 @@
 
 const axios = require('axios');
 const assign = require('object-assign');
-const {isEmpty} = require('lodash');
+const isEmpty = require('lodash.isempty');
 const CoordinatesUtils = require('../qwc2/MapStore2Components/utils/CoordinatesUtils');
 const ConfigUtils = require('../qwc2/MapStore2Components/utils/ConfigUtils');
 const ProxyUtils = require('../qwc2/MapStore2Components/utils/ProxyUtils');
