@@ -1,3 +1,4 @@
-div.sidebar-body {
+div.sidebar-body,
+#TaskBar div.body {
     font-size: small;
 }
