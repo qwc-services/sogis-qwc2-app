@@ -2,3 +2,7 @@ div.sidebar-body,
 #TaskBar div.body {
     font-size: small;
 }
+
+#LayerTree div.layertree-container {
+    max-height: calc(100vh - 9em)!important;
+}
