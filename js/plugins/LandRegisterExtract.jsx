@@ -130,8 +130,8 @@ class LandRegisterExtract extends React.Component {
         if(printGrid && printGrid.length > 0 && this.state.scale && this.state.grid) {
             let cur = 0;
             for(; cur < printGrid.length-1 && this.state.scale < printGrid[cur].s; ++cur);
-            gridIntervalX = (<input readOnly="true" name={mapName + ":GRID_INTERVAL_X"} type={formvisibility} value={printGrid[cur].x} />);
-            gridIntervalY = (<input readOnly="true" name={mapName + ":GRID_INTERVAL_Y"} type={formvisibility} value={printGrid[cur].y} />);
+            gridIntervalX = (<input readOnly="true" name={"GRID_INTERVAL_X"} type={formvisibility} value={printGrid[cur].x} />);
+            gridIntervalY = (<input readOnly="true" name={"GRID_INTERVAL_Y"} type={formvisibility} value={printGrid[cur].y} />);
         }
 
         return (
