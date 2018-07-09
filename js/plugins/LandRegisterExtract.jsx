@@ -18,6 +18,7 @@ const ConfigUtils = require("../../qwc2/MapStore2Components/utils/ConfigUtils");
 const {changeRotation} = require('../../qwc2/QWC2Components/actions/map');
 const {SideBar} = require('../../qwc2/QWC2Components/components/SideBar');
 const PrintFrame = require('../../qwc2/QWC2Components/components/PrintFrame');
+const ToggleSwitch = require('../../qwc2/QWC2Components/components/widgets/ToggleSwitch');
 
 require('./style/LandRegisterExtract.css');
 
@@ -123,6 +124,16 @@ class LandRegisterExtract extends React.Component {
             resolutionChooser = (<input name="DPI" type="number" value={this.state.dpi || ""} onChange={this.changeResolution} min="50" max="1200"/>)
         }
 
+        let gridIntervalX = null;
+        let gridIntervalY = null;
+        let printGrid = this.props.theme.printGrid;
+        if(printGrid && printGrid.length > 0 && this.state.scale && this.state.grid) {
+            let cur = 0;
+            for(; cur < printGrid.length-1 && this.state.scale < printGrid[cur].s; ++cur);
+            gridIntervalX = (<input readOnly="true" name={mapName + ":GRID_INTERVAL_X"} type={formvisibility} value={printGrid[cur].x} />);
+            gridIntervalY = (<input readOnly="true" name={mapName + ":GRID_INTERVAL_Y"} type={formvisibility} value={printGrid[cur].y} />);
+        }
+
         return (
             <div role="body" className="print-body">
                 <form action={action} method="POST" target="_blank">
@@ -167,10 +178,20 @@ class LandRegisterExtract extends React.Component {
                                 </span>
                             </td>
                         </tr>
+                        {printGrid ? (
+                            <tr>
+                                <td><Message msgId="print.grid" /></td>
+                                <td>
+                                    <ToggleSwitch onChange={(newstate) => this.setState({grid: newstate})} active={this.state.grid} />
+                                </td>
+                            </tr>
+                        ) : null}
                     </tbody></table>
                     <div>
                         <input readOnly="true" name="extent" type={formvisibility} value={extent || ""} />
                         <input readOnly="true" name="SRS" type={formvisibility} value={mapCrs} />
+                        {gridIntervalX}
+                        {gridIntervalY}
                         {resolutionInput}
                     </div>
                     <div className="button-bar">
