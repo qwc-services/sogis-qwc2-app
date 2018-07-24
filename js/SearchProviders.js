@@ -80,7 +80,7 @@ function coordinatesSearch(text, requestId, searchOptions, dispatch) {
                 x: coord[0],
                 y: coord[1],
                 crs: "EPSG:4326",
-                bbox: [x, y, x, y]
+                bbox: [coord[0], coord[1], coord[0], coord[1]]
             });
         }
         if(x >= -180 && x <= 180 && y >= -90 && y <= 90) {
