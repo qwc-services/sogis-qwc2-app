@@ -20,6 +20,7 @@
             {"key": "egids", "label": "EGIDs"},
             {"key": "municipalities", "label": "Gemeindenamen", "geometry": true},
             {"key": "parcels", "label": "Grundstücke", "geometry": true},
+            {"key": "parcels_proj", "label": "Grundstücke (proj.)", "geometry": true},
             {"key": "fields", "label": "Flurnamen", "geometry": true},
             {"key": "places", "label": "Orte"},
             {"key": "rivers", "label": "Flüsse"}
