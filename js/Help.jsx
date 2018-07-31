@@ -9,7 +9,7 @@
 const React = require('react');
 
 function renderHelp() {
-    return (<div>Help</div>);
+    return (<div><a href='https://geo.so.ch/docs/ch.so.agi.webgisclient/hilfe.pdf'>Hilfe</a></div>);
 }
 
 module.exports = renderHelp;
