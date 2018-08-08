@@ -170,6 +170,10 @@
     },
     "themeswitcher": {
       "filter": "Filter"
+    },
+    "ccc": {
+      "createObject": "Object erfassen",
+      "editObject": "Object editieren"
     }
   }
 }
