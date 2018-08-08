@@ -40,7 +40,8 @@ module.exports = {
                 LocateSupport: require('../qwc2/QWC2Components/plugins/map/LocateSupport'),
                 RedliningSupport: require('../qwc2/QWC2Components/plugins/map/RedliningSupport'),
                 ScaleBarSupport: require('../qwc2/QWC2Components/plugins/map/ScaleBarSupport'),
-                SelectionSupport: require('../qwc2/QWC2Components/plugins/map/SelectionSupport')
+                SelectionSupport: require('../qwc2/QWC2Components/plugins/map/SelectionSupport'),
+                CCCEditSupport: require('./plugins/CCCEditSupport')
             }),
             HomeButtonPlugin: require('../qwc2/QWC2Components/plugins/HomeButton'),
             LocateButtonPlugin: require('../qwc2/QWC2Components/plugins/LocateButton'),
@@ -70,7 +71,13 @@ module.exports = {
             HeightProfilePlugin: require('../qwc2/QWC2Components/plugins/HeightProfile'),
             MapInfoTooltipPlugin: require('../qwc2/QWC2Components/plugins/MapInfoTooltip'),
             AuthenticationPlugin: require('../qwc2/QWC2Components/plugins/Authentication'),
-            LandRegisterExtract: require('./plugins/LandRegisterExtract')
+            LandRegisterExtractPlugin: require('./plugins/LandRegisterExtract'),
+            CCCInterfacePlugin: require('./plugins/CCCInterface')
+        },
+        cfg: {
+            IdentifyPlugin: {
+                attributeCalculator: require('./plugins/CCCInterface').CCCAttributeCalculator
+            }
         }
     },
     actionLogger: (action) => {

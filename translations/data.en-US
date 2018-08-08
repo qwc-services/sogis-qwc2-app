@@ -170,6 +170,10 @@
     },
     "themeswitcher": {
       "filter": "Filter..."
+    },
+    "ccc": {
+      "createObject": "Draw feature",
+      "editObject": "Edit feature"
     }
   }
 }
