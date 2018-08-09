@@ -178,7 +178,7 @@ function layerResults(obj, requestId) {
     if(!isEmpty(obj.results)) {
         results.push({
             id: "layers",
-            title: "Layers",
+            title: "Karten",
             items: obj.results.map(result => ({
                 type: SearchResultType.THEMELAYER,
                 id: result.id,
@@ -199,7 +199,7 @@ module.exports = {
             onSearch: coordinatesSearch
         },
         "layers": {
-            label: "Ebenen",
+            label: "Karten",
             onSearch: layerSearch
         }
     },
