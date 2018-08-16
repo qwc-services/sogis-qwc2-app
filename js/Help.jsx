@@ -9,7 +9,7 @@
 const React = require('react');
 
 function renderHelp() {
-    return (<div><a href='https://geo.so.ch/docs/ch.so.agi.webgisclient/hilfe.pdf'>Hilfe</a></div>);
+    return (<div><a href="https://www.so.ch/verwaltung/bau-und-justizdepartement/amt-fuer-geoinformation/hilfe/hilfe-web-gis-client/" target="_blank">Hilfe zum Web GIS Client</a></div>);
 }
 
 module.exports = renderHelp;
