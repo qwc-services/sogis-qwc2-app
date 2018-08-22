@@ -76,7 +76,7 @@ class CCCInterface extends React.Component {
     loadInitialLayers = () => {
         const searchService = ConfigUtils.getConfigProp("searchServiceUrl");
         let layers = encodeURIComponent(CccAppConfig.initialLayers.join(","));
-        let url = searchService.replace(/\/$/g, "") + "/getlayers?layers=" + layers
+        let url = searchService.replace(/\/$/g, "") + "/getlayers?layers=" + layers;
         axios.get(url).then(response => {
             let layers = response.data;
             if(Array.isArray(layers)) {
