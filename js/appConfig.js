@@ -99,6 +99,7 @@ module.exports = {
             _paq.push(['trackEvent', 'Action', action.type, JSON.stringify(data)]);
         }
     },
+    themeLayerRestorer: require('./themeLayerRestorer'),
     supportedLocales: {
          "en": {
             code: "en-US",
