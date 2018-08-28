@@ -7,7 +7,7 @@
   "mapInfoService":  "/api/v1/mapinfo/",
   "featureReportService": "/api/v1/document",
   "landRegisterService": "/api/v1/landreg",
-  "cccService": "/api/v1/ccc",
+  "cccConfigService": "/api/v1/ccc",
   "translationsPath": "/translations",
   "assetsPath": "/assets",
   "urlPositionFormat": "extent",

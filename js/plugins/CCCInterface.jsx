@@ -55,8 +55,8 @@ class CCCInterface extends React.Component {
         this.session = UrlParams.getParam('session');
         let appintegration = UrlParams.getParam('appintegration');
         if(this.session && appintegration) {
-            const cccService = ConfigUtils.getConfigProp("cccService");
-            axios.get(cccService + "?app=" + encodeURIComponent(appintegration))
+            const cccConfigService = ConfigUtils.getConfigProp("cccConfigService");
+            axios.get(cccConfigService + "?app=" + encodeURIComponent(appintegration))
             .then(response => {
                 CccAppConfig = response.data;
                 document.title = CccAppConfig.title;
@@ -166,8 +166,8 @@ class CCCInterface extends React.Component {
         }
     }
     processZoomTo = (zoomTo) => {
-        const appConfigService = ConfigUtils.getConfigProp("cccService");
-        axios.post(appConfigService.replace(/\/$/g, "") + '/zoomTo', zoomTo).then(response => {
+        const cccConfigService = ConfigUtils.getConfigProp("cccConfigService");
+        axios.post(cccConfigService.replace(/\/$/g, "") + '/zoomTo', zoomTo).then(response => {
             if(response.data && response.data.result) {
                 let result = response.data.result;
                 // find max zoom level greater than min scale
