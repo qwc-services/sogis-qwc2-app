@@ -53,6 +53,9 @@ class CCCInterface extends React.Component {
     componentDidMount() {
         // If "session" and "appintegration" URL params are set, query configuration
         this.session = UrlParams.getParam('session');
+        if(!this.session.startsWith('{') && !this.session.endsWith('}')) {
+            this.session = '{' + this.session + '}';
+        }
         let appintegration = UrlParams.getParam('appintegration');
         if(this.session && appintegration) {
             const cccConfigService = ConfigUtils.getConfigProp("cccConfigService");
@@ -89,7 +92,7 @@ class CCCInterface extends React.Component {
     createWebSocket = () => {
         CccConnection = new WebSocket(CccAppConfig.cccServer);
         CccConnection.onopen = () => {
-            if(UrlParams.getParam('session')) {
+            if(this.session) {
                 let msg = {
                     "apiVersion": "1.0",
                     "method": "connectGis",
