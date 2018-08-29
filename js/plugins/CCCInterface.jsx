@@ -169,6 +169,7 @@ class CCCInterface extends React.Component {
             this.props.refreshLayer(layer => layer.isThemeLayer);
         }
         else if(message.method === "showGeoObject") {
+            this.stopEdit();
             let feature = {
                 "type": "Feature",
                 "id": uuid.v4(),
