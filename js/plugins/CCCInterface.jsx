@@ -12,12 +12,13 @@ const {connect} = require('react-redux');
 const assign = require('object-assign');
 const axios = require('axios');
 const uuid = require('uuid');
+const ol = require('openlayers');
 const Message = require('../../qwc2/MapStore2Components/components/I18N/Message');
 const ConfigUtils = require("../../qwc2/MapStore2Components/utils/ConfigUtils");
 const CoordinatesUtils = require('../../qwc2/MapStore2Components/utils/CoordinatesUtils');
 const MapUtils = require('../../qwc2/MapStore2Components/utils/MapUtils');
 const {LayerRole, addThemeSublayer, addLayerFeatures, refreshLayer, removeLayer} = require('../../qwc2/QWC2Components/actions/layers');
-const {zoomToPoint} = require('../../qwc2/QWC2Components/actions/map');
+const {zoomToPoint, zoomToExtent} = require('../../qwc2/QWC2Components/actions/map');
 const {setCurrentTask} = require('../../qwc2/QWC2Components/actions/task');
 const {TaskBar} = require('../../qwc2/QWC2Components/components/TaskBar');
 const ButtonBar = require('../../qwc2/QWC2Components/components/widgets/ButtonBar');
@@ -32,6 +33,7 @@ class CCCInterface extends React.Component {
         map: PropTypes.object,
         ccc: PropTypes.object,
         zoomToPoint: PropTypes.func,
+        zoomToExtent: PropTypes.func,
         changeCCCState: PropTypes.func,
         setCurrentTask: PropTypes.func,
         refreshLayer: PropTypes.func,
@@ -146,6 +148,15 @@ class CCCInterface extends React.Component {
                 "id": uuid.v4(),
                 "geometry": message.data
             };
+            let extent = new ol.format.GeoJSON().readFeature(feature).getGeometry().getExtent();
+            if(extent[0] == extent[2] || extent[1] == extent[3]) {
+                let x = 0.5 * (extent[0] + extent[2]);
+                let y = 0.5 * (extent[1] + extent[3]);
+                let maxZoom = this.getMaxZoomForMinScale(CccAppConfig.minEditScale);
+                this.props.zoomToPoint([x, y], maxZoom, "EPSG:2056");
+            } else {
+                this.props.zoomToExtent(extent, "EPSG:2056");
+            }
             this.props.changeCCCState({action: 'Edit', geomType: message.data.type, feature: feature});
             this.props.setCurrentTask('CccEdit');
         }
@@ -196,6 +207,19 @@ class CCCInterface extends React.Component {
                 }
             }
         });
+    }
+    getMaxZoomForMinScale(minScale) {
+        // find max zoom level greater than min scale
+        let maxZoom = 0;
+        const scales = this.props.map.scales;
+        for (let i = 0; i < scales.length; ++i) {
+            if (scales[i] < minScale) {
+                break;
+            } else {
+                maxZoom = i;
+            }
+        }
+        return maxZoom;
     }
     render() {
         if(this.props.ccc.action) {
@@ -261,6 +285,7 @@ function CCCAttributeCalculator(layer, feature) {
 module.exports = {
     CCCInterfacePlugin: connect(selector, {
         zoomToPoint: zoomToPoint,
+        zoomToExtent: zoomToExtent,
         changeCCCState: changeCCCState,
         setCurrentTask: setCurrentTask,
         refreshLayer: refreshLayer,
