@@ -12,9 +12,9 @@ const ConfigUtils = require('../qwc2/MapStore2Components/utils/ConfigUtils');
 function themeLayerRestorer(missingLayers, theme, callback) {
     // Invoked for layers specified in the l url parameter which are missing in the specified theme
     const searchService = ConfigUtils.getConfigProp("searchServiceUrl");
-    let layers = encodeURIComponent(missingLayers.join(","));
-    let url = searchService.replace(/\/$/g, "") + "/getlayers?layers=" + layers;
-    axios.get(url).then(response => {
+    let url = searchService.replace(/\/$/g, "") + "/getlayers";
+    let params = {layers: missingLayers.join(",")};
+    axios.get(url, {params: params}).then(response => {
         let sublayers = response.data;
         callback(Array.isArray(sublayers) ? sublayers : []);
     }).catch(e => {
