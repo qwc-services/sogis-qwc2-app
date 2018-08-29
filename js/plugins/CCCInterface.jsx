@@ -184,26 +184,17 @@ class CCCInterface extends React.Component {
         axios.post(cccConfigService.replace(/\/$/g, "") + '/zoomTo', zoomTo).then(response => {
             if(response.data && response.data.result) {
                 let result = response.data.result;
-                // find max zoom level greater than min scale
-                let maxZoom = 0;
-                const scales = this.props.map.scales;
-                for (let i in scales) {
-                    if (scales[i] < result.minScale) {
-                        break;
-                    } else {
-                        maxZoom = i;
-                    }
-                }
+                let maxZoom = this.getMaxZoomForMinScale(result.minScale);
 
                 const newZoom = MapUtils.getZoomForExtent(CoordinatesUtils.reprojectBbox(result.bbox, result.crs, this.props.map.projection), this.props.map.resolutions, this.props.map.size, 0, maxZoom) - 1;
                 let center = [0.5 * (result.bbox[0] + result.bbox[2]), 0.5 * (result.bbox[1] + result.bbox[3])]
                 this.props.zoomToPoint(center, Math.min(maxZoom, newZoom), result.crs);
-                if(result.feature) {
+                if(result.features) {
                     let layer = {
                         id: "cccselection",
                         role: LayerRole.SELECTION
                     };
-                    this.props.addLayerFeatures(layer, [result.feature], true);
+                    this.props.addLayerFeatures(layer, result.features, true);
                 }
             }
         });
