@@ -125,9 +125,6 @@ class CCCInterface extends React.Component {
             console.log("Invalid message: " + ev.data);
         }
 
-        if(message.zoomTo !== undefined) {
-            this.processZoomTo(message.zoomTo);
-        }
         if(message.context) {
             this.currentContext = message.context;
         }
@@ -139,10 +136,15 @@ class CCCInterface extends React.Component {
             alert(message.message);
         }
         else if(message.method == "createGeoObject") {
+            this.stopEdit();
+            if(message.zoomTo !== undefined) {
+                this.processZoomTo(message.zoomTo);
+            }
             this.props.changeCCCState({action: 'Draw', geomType: CccAppConfig.editGeomType});
             this.props.setCurrentTask('CccEdit');
         }
         else if(message.method == "editGeoObject") {
+            this.stopEdit();
             let feature = {
                 "type": "Feature",
                 "id": uuid.v4(),
