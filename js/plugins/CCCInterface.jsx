@@ -78,15 +78,17 @@ class CCCInterface extends React.Component {
     }
     loadInitialLayers = () => {
         const searchService = ConfigUtils.getConfigProp("searchServiceUrl");
-        let layers = encodeURIComponent(CccAppConfig.initialLayers.join(","));
-        let url = searchService.replace(/\/$/g, "") + "/getlayers?layers=" + layers;
-        axios.get(url).then(response => {
+        let url = searchService.replace(/\/$/g, "") + "/getlayers";
+        let params = {layers: CccAppConfig.initialLayers.join(",")};
+        axios.get(url, {params: params}).then(response => {
             let layers = response.data;
             if(Array.isArray(layers)) {
                 this.props.addThemeSublayer({
                     "sublayers": layers
                 });
             }
+        }).catch(error => {
+            console.log("Failed to load initial layers");
         });
     }
     createWebSocket = () => {
