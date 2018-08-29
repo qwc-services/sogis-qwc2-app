@@ -125,7 +125,7 @@ class CCCInterface extends React.Component {
             console.log("Invalid message: " + ev.data);
         }
 
-        if(message.zoomTo) {
+        if(message.zoomTo !== undefined) {
             this.processZoomTo(message.zoomTo);
         }
         if(message.context) {
