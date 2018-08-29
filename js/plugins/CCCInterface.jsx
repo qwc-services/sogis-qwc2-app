@@ -55,11 +55,9 @@ class CCCInterface extends React.Component {
     componentDidMount() {
         // If "session" and "appintegration" URL params are set, query configuration
         this.session = UrlParams.getParam('session');
-        if(!this.session.startsWith('{') && !this.session.endsWith('}')) {
-            this.session = '{' + this.session + '}';
-        }
         let appintegration = UrlParams.getParam('appintegration');
         if(this.session && appintegration) {
+            this.session = '{' + this.session + '}';
             const cccConfigService = ConfigUtils.getConfigProp("cccConfigService");
             axios.get(cccConfigService + "?app=" + encodeURIComponent(appintegration))
             .then(response => {
