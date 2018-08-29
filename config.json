@@ -3,7 +3,7 @@
   "elevationServiceUrl": "/elevation/",
   "editServiceUrl": "/api/v1/data/",
   "searchServiceUrl": "/api/v1/search/",
-  "authServiceUrl": "/",
+  "authServiceUrl": "/auth/",
   "mapInfoService":  "/api/v1/mapinfo/",
   "featureReportService": "/api/v1/document",
   "landRegisterService": "/api/v1/landreg",
