@@ -150,15 +150,7 @@ class CCCInterface extends React.Component {
                 "id": uuid.v4(),
                 "geometry": message.data
             };
-            let extent = new ol.format.GeoJSON().readFeature(feature).getGeometry().getExtent();
-            if(extent[0] == extent[2] || extent[1] == extent[3]) {
-                let x = 0.5 * (extent[0] + extent[2]);
-                let y = 0.5 * (extent[1] + extent[3]);
-                let maxZoom = this.getMaxZoomForMinScale(CccAppConfig.minEditScale);
-                this.props.zoomToPoint([x, y], maxZoom, "EPSG:2056");
-            } else {
-                this.props.zoomToExtent(extent, "EPSG:2056");
-            }
+            this.zoomToFeature(feature);
             this.props.changeCCCState({action: 'Edit', geomType: message.data.type, feature: feature});
             this.props.setCurrentTask('CccEdit');
         }
@@ -175,6 +167,7 @@ class CCCInterface extends React.Component {
                 "id": uuid.v4(),
                 "geometry": message.data
             };
+            this.zoomToFeature(feature);
             let layer = {
                 id: "cccselection",
                 role: LayerRole.SELECTION
@@ -202,7 +195,18 @@ class CCCInterface extends React.Component {
             }
         });
     }
-    getMaxZoomForMinScale(minScale) {
+    zoomToFeature = (feature) => {
+        let extent = new ol.format.GeoJSON().readFeature(feature).getGeometry().getExtent();
+        if(extent[0] == extent[2] || extent[1] == extent[3]) {
+            let x = 0.5 * (extent[0] + extent[2]);
+            let y = 0.5 * (extent[1] + extent[3]);
+            let maxZoom = this.getMaxZoomForMinScale(CccAppConfig.minEditScale);
+            this.props.zoomToPoint([x, y], maxZoom, "EPSG:2056");
+        } else {
+            this.props.zoomToExtent(extent, "EPSG:2056");
+        }
+    }
+    getMaxZoomForMinScale = (minScale) => {
         // find max zoom level greater than min scale
         let maxZoom = 0;
         const scales = this.props.map.scales;
