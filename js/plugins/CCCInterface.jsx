@@ -109,7 +109,7 @@ class CCCInterface extends React.Component {
             this.reset();
         }
         CccConnection.onerror = (err) => {
-            console.log("Connection error: " + error);
+            console.log("Connection error: " + err);
             this.reset();
         }
         CccConnection.onmessage = this.processWebSocketMessage;
