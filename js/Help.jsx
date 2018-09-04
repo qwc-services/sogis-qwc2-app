@@ -27,7 +27,7 @@ function renderHelp() {
                     </p>
                     <p>
                         <a href="https://geo.so.ch" target="_blank">Geoportal Kanton Solothurn</a>
-                        <br/>Kontakt: agi@bd.so.ch
+                        <br/>Kontakt: <a href="mailto:agi@bd.so.ch">agi@bd.so.ch</a>
                     </p>
                  </div>
              </div>);
