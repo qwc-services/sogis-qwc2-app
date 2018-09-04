@@ -12,7 +12,7 @@ function renderHelp() {
     return (<div role="body">
                 <div style="margin: 0.5em;">
                     <p>
-                        <img src="https://geo.so.ch/map/assets/img/logo.jpg" width="200">
+                        <img src="https://geo.so.ch/map/assets/img/logo.jpg" width="200"/>
                     </p>
                     <p>
                         Daten: Kanton Solothurn / Gemeinden
