@@ -3601,13 +3601,13 @@ obuf@^1.0.0, obuf@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/obuf/-/obuf-1.1.1.tgz#104124b6c602c6796881a042541d36db43a5264e"
 
-ol@^4.6.4:
-  version "4.6.5"
-  resolved "https://registry.yarnpkg.com/ol/-/ol-4.6.5.tgz#3b628ffb65885f277ceb24bb0c6eee0a38727442"
+ol@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/ol/-/ol-5.2.0.tgz#5659ba9762def144deb8dcba97357aa5f8cc8a05"
   dependencies:
     pbf "3.1.0"
     pixelworks "1.1.0"
-    rbush "2.0.1"
+    rbush "2.0.2"
 
 on-finished@~2.3.0:
   version "2.3.0"
@@ -4278,7 +4278,7 @@ querystringify@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-1.0.0.tgz#6286242112c5b712fa654e526652bf6a13ff05cb"
 
-quickselect@^1.0.0:
+quickselect@^1.0.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/quickselect/-/quickselect-1.1.1.tgz#852e412ce418f237ad5b660d70cffac647ae94c2"
 
@@ -4319,11 +4319,11 @@ raw-body@2.3.2:
     iconv-lite "0.4.19"
     unpipe "1.0.0"
 
-rbush@2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/rbush/-/rbush-2.0.1.tgz#4cfaca28c3064bc0ee75431a1b79990e875eefa9"
+rbush@2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/rbush/-/rbush-2.0.2.tgz#bb6005c2731b7ba1d5a9a035772927d16a614605"
   dependencies:
-    quickselect "^1.0.0"
+    quickselect "^1.0.1"
 
 rc@^1.1.7:
   version "1.2.2"
