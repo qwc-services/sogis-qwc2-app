@@ -114,7 +114,10 @@
           }
         },
         {
-          "name": "Print"
+          "name": "Print",
+          "cfg": {
+            "printExternalLayers": true
+          }
         },
         {
           "name": "Help"
@@ -293,7 +296,10 @@
           }
         },
         {
-          "name": "Print"
+          "name": "Print",
+          "cfg": {
+            "printExternalLayers": true
+          }
         },
         {
           "name": "Help"
