@@ -11,6 +11,7 @@ const PropTypes = require('prop-types');
 const {connect} = require('react-redux');
 const assign = require('object-assign');
 const isEmpty = require('lodash.isempty');
+const axios = require('axios');
 const Message = require('../../qwc2/MapStore2Components/components/I18N/Message');
 const MapUtils = require('../../qwc2/MapStore2Components/utils/MapUtils');
 const CoordinatesUtils = require('../../qwc2/MapStore2Components/utils/CoordinatesUtils');
@@ -54,10 +55,21 @@ class LandRegisterExtract extends React.Component {
         ]
     }
     state = {
-        layout: null, scale: null, dpi: 300, initialRotation: 0, grid: false
+        layouts: [],
+        currentLayout: null,
+        scale: null,
+        dpi: 300,
+        initialRotation: 0,
+        grid: false
     }
-    componentWillMount() {
-        this.setState({layout: this.props.layouts.find(layout => layout.default) || this.props.layouts[0]});
+    componentDidMount() {
+        // Get available templates
+        let query = ConfigUtils.getConfigProp("landRegisterService").replace(/\/$/g, "") + '/templates';
+        axios.get(query).then(response => {
+            let layouts = response.data || [];
+            let currentLayout = layouts.find(layout => layout.default) || (!isEmpty(layouts) ? layouts[0] : null);
+            this.setState({layouts, currentLayout});
+        }).catch(e => {console.log(e)});
     }
     componentWillReceiveProps(newProps) {
         let newState = assign({}, this.state);
@@ -90,7 +102,10 @@ class LandRegisterExtract extends React.Component {
         if(!this.props.visible || !this.props.theme) {
             return null;
         }
-        let currentLayoutname = this.state.layout ? this.state.layout.name : "";
+        if(!this.state.currentLayout) {
+            return (<div role="body" className="print-body"><Message msgId="print.nolayouts" /></div>);
+        }
+        let currentLayoutname = this.state.currentLayout ? this.state.currentLayout.name : "";
 
         let formvisibility = 'hidden';
         let action = ConfigUtils.getConfigProp("landRegisterService").replace(/\/$/g, "") + '/print';
@@ -142,7 +157,7 @@ class LandRegisterExtract extends React.Component {
                             <td><Message msgId="print.layout" /></td>
                             <td>
                                 <select name="TEMPLATE" onChange={this.changeLayout} value={currentLayoutname}>
-                                    {this.props.layouts.map(item => {
+                                    {this.state.layouts.map(item => {
                                         return (
                                             <option key={item.name} value={item.name}>{item.name}</option>
                                         )
@@ -195,7 +210,7 @@ class LandRegisterExtract extends React.Component {
                         {resolutionInput}
                     </div>
                     <div className="button-bar">
-                        <button type="submit"><Message msgId="print.submit" /></button>
+                        <button className="button" type="submit"><Message msgId="print.submit" /></button>
                     </div>
                 </form>
             </div>
@@ -203,10 +218,10 @@ class LandRegisterExtract extends React.Component {
     }
     render() {
         let printFrame = null;
-        if(this.props.visible && this.state.layout) {
+        if(this.props.visible && this.state.currentLayout) {
             let frame = {
-                width: this.state.scale * this.state.layout.width / 1000.,
-                height: this.state.scale * this.state.layout.height / 1000.,
+                width: this.state.scale * this.state.currentLayout.map.width / 1000.,
+                height: this.state.scale * this.state.currentLayout.map.height / 1000.,
             };
             printFrame = (<PrintFrame map={this.props.map} fixedFrame={frame} />);
         }
@@ -223,8 +238,8 @@ class LandRegisterExtract extends React.Component {
         );
     }
     changeLayout = (ev) => {
-        let layout = this.props.layouts.find(item => item.name == ev.target.value);
-        this.setState({layout: layout});
+        let currentLayout = this.state.layouts.find(item => item.name == ev.target.value);
+        this.setState({currentLayout: currentLayout});
     }
     changeScale = (ev) => {
         this.setState({scale: ev.target.value});
@@ -243,12 +258,12 @@ class LandRegisterExtract extends React.Component {
         this.props.changeRotation(angle / 180. * Math.PI);
     }
     computeCurrentExtent = () => {
-        if(!this.props.map || !this.state.layout || !this.state.scale) {
+        if(!this.props.map || !this.state.currentLayout || !this.state.scale) {
             return [0, 0, 0, 0];
         }
         let center = this.props.map.center;
-        let widthm = this.state.scale * this.state.layout.width / 1000.;
-        let heightm = this.state.scale * this.state.layout.height / 1000.;
+        let widthm = this.state.scale * this.state.currentLayout.width / 1000.;
+        let heightm = this.state.scale * this.state.currentLayout.height / 1000.;
         let {width, height} = MapUtils.transformExtent(this.props.map.projection, center, widthm, heightm);
         let x1 = center[0]- 0.5 * width;
         let x2 = center[0] + 0.5 * width;

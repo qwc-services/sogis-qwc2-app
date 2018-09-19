@@ -55,6 +55,9 @@
 }
 
 #LandRegisterExtract div.button-bar {
-    margin: 1em;
+    margin: 1em 0.25em 0.25em 0.25em;
     text-align: center;
+}
+#LandRegisterExtract div.button-bar > button {
+    width: 100%;
 }
