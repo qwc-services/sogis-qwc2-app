@@ -262,8 +262,8 @@ class LandRegisterExtract extends React.Component {
             return [0, 0, 0, 0];
         }
         let center = this.props.map.center;
-        let widthm = this.state.scale * this.state.currentLayout.width / 1000.;
-        let heightm = this.state.scale * this.state.currentLayout.height / 1000.;
+        let widthm = this.state.scale * this.state.currentLayout.map.width / 1000.;
+        let heightm = this.state.scale * this.state.currentLayout.map.height / 1000.;
         let {width, height} = MapUtils.transformExtent(this.props.map.projection, center, widthm, heightm);
         let x1 = center[0]- 0.5 * width;
         let x2 = center[0] + 0.5 * width;
