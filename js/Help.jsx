@@ -12,7 +12,7 @@ function renderHelp() {
     return (<div role="body">
                 <div style={{margin: "0.5em"}}>
                     <p>
-                        <img src="map/assets/img/logo-transparent.png" width="200"/>
+                        <img src="assets/img/logo-transparent.png" width="200"/>
                     </p>
                     <p>
                         <a href="https://www.so.ch/verwaltung/bau-und-justizdepartement/amt-fuer-geoinformation/hilfe/hilfe-web-gis-client/" target="_blank">Benutzerhilfe</a>
