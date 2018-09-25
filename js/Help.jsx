@@ -15,7 +15,7 @@ function renderHelp() {
                         <img src="assets/img/logo-transparent.png" width="200"/>
                     </p>
                     <p>
-                        <a href="https://www.so.ch/verwaltung/bau-und-justizdepartement/amt-fuer-geoinformation/hilfe/hilfe-web-gis-client/" target="_blank">Benutzerhilfe</a>
+                        <a href="https://geohelp.so.ch/index.php?id=24854" target="_blank">Benutzerhilfe</a>
                         <br/>
                         <a href="https://www.so.ch/fileadmin/internet/bjd/bjd-agi/xls/Amtliche_Vermessung/Web_GIS_Client/Uebersicht_Karte.xlsx" target="_blank">Layerliste</a>
                         <br/>
