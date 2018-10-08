@@ -15,9 +15,9 @@
         "IdentifyRegion": "Region abfragen",
         "Redlining": "Zeichnen",
         "Editing": "Editieren",
-        "LandRegisterExtract": "Auszug Plan für das Grundbuch",
-        "Login": "Login",
-        "Logout": "Logout"
+        "Login": "Anmelden",
+        "Logout": "Abmelden",
+        "LandRegisterExtract": "Auszug Plan für das Grundbuch"
       },
       "menulabel": "Karte & Werkzeuge"
     },
@@ -137,9 +137,11 @@
       "selectinfo": "Rechteck aufziehen um die zu exportierende Region"
     },
     "redlining": {
+      "add": "Hinzufügen",
       "border": "Rand",
       "fill": "Füllung",
       "label": "Beschriftung",
+      "layer": "Ebene",
       "line": "Linie",
       "outline": "Rand",
       "pick": "Auswählen",
