@@ -10,7 +10,7 @@
   "cccConfigService": "/api/v1/ccc",
   "translationsPath": "/translations",
   "assetsPath": "/assets",
-  "urlPositionFormat": "extent",
+  "urlPositionFormat": "centerAndZoom",
   "urlPositionCrs": "",
   "preserveExtentOnThemeSwitch": true,
   "preserveBackgroundOnThemeSwitch": true,
