@@ -221,6 +221,10 @@ class CCCInterface extends React.Component {
     }
     renderBody = () => {
         let msgId = this.props.ccc.action === "Draw" ? "ccc.createObject" : "ccc.editObject";
+        let buttons = [
+            {key: 'Commit', icon: 'ok', label: "editing.commit", extraClasses: "edit-commit"},
+            {key: 'Delete', icon: 'trash', label: "editing.delete", extraClasses: "edit-discard"}
+        ];
         return (
             <span>
                 <div><b><Message msgId={msgId} /></b></div>
@@ -230,10 +234,6 @@ class CCCInterface extends React.Component {
     }
     render() {
         if(this.props.ccc.action) {
-            let buttons = [
-                {key: 'Commit', icon: 'ok', label: "editing.commit", extraClasses: "edit-commit"},
-                {key: 'Delete', icon: 'trash', label: "editing.delete", extraClasses: "edit-discard"}
-            ];
             return (
                 <TaskBar task="CccEdit" onHide={this.stopEdit}>
                     {() => ({
