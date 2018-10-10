@@ -15,9 +15,9 @@
         "IdentifyRegion": "Identify Region",
         "Redlining": "Redlining",
         "Editing": "Editing",
-        "LandRegisterExtract": "Land Register Map Extract",
         "Login": "Login",
-        "Logout": "Logout"
+        "Logout": "Logout",
+        "LandRegisterExtract": "Land Register Map Extract"
       },
       "menulabel": "Map & Tools"
     },
@@ -137,9 +137,11 @@
       "selectinfo": "Drag a rectangle around the region to export..."
     },
     "redlining": {
+      "add": "Add",
       "border": "Border",
       "fill": "Fill",
       "label": "Label",
+      "layer": "Layer",
       "line": "Line",
       "outline": "Outline",
       "pick": "Pick",
