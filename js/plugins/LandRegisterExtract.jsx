@@ -25,34 +25,10 @@ require('./style/LandRegisterExtract.css');
 
 class LandRegisterExtract extends React.Component {
     static propTypes = {
-        visible: PropTypes.bool,
         theme: PropTypes.object,
         map: PropTypes.object,
         changeRotation: PropTypes.func,
         layouts: PropTypes.array
-    }
-    static defaultProps = {
-        visible: false,
-        layouts: [
-            {
-                name: "A3-Hoch",
-                width: 297,
-                height: 420
-            },{
-                name: "A3-Quer",
-                width: 420,
-                height: 297
-            },{
-                name: "A4-Hoch",
-                width: 210,
-                height: 297,
-                default: true
-            },{
-                name: "A4-Quer",
-                width: 297,
-                height: 210
-            }
-        ]
     }
     state = {
         layouts: [],
@@ -71,35 +47,27 @@ class LandRegisterExtract extends React.Component {
             this.setState({layouts, currentLayout});
         }).catch(e => {console.log(e)});
     }
-    componentWillReceiveProps(newProps) {
-        let newState = assign({}, this.state);
-        if(newProps.visible && newProps.visible !== this.props.visible) {
-            let scale = Math.round(newProps.map.scales[newProps.map.zoom] / 2);
-            if(newProps.theme.printScales && newProps.theme.printScales.length > 0) {
-                let closestVal = Math.abs(scale - newProps.theme.printScales[0]);
-                let closestIdx = 0;
-                for(let i = 1; i < newProps.theme.printScales.length; ++i) {
-                    let currVal = Math.abs(scale - newProps.theme.printScales[i]);
-                    if(currVal < closestVal) {
-                        closestVal = currVal;
-                        closestIdx = i;
-                    }
+    onShow = () => {
+        let scale = Math.round(MapUtils.computeForZoom(this.props.map.scales, this.props.map.zoom) / 2);
+        if(this.props.theme.printScales && this.props.theme.printScales.length > 0) {
+            let closestVal = Math.abs(scale - this.props.theme.printScales[0]);
+            let closestIdx = 0;
+            for(let i = 1; i < this.props.theme.printScales.length; ++i) {
+                let currVal = Math.abs(scale - this.props.theme.printScales[i]);
+                if(currVal < closestVal) {
+                    closestVal = currVal;
+                    closestIdx = i;
                 }
-                scale = newProps.theme.printScales[closestIdx];
             }
-            newState["scale"] = scale;
-            newState["initialRotation"] = newProps.map.bbox.rotation;
+            scale = this.props.theme.printScales[closestIdx];
         }
-        this.setState(newState);
-    }
-    shouldComponentUpdate(newProps, nextState) {
-        return newProps.visible || this.props.visible;
+        this.setState({scale: scale, initialRotation: this.props.map.bbox.rotation});
     }
     onHide = () => {
         this.props.changeRotation(this.state.initialRotation);
     }
     renderBody = () => {
-        if(!this.props.visible || !this.props.theme) {
+        if(!this.props.theme) {
             return null;
         }
         if(!this.state.currentLayout) {
@@ -216,25 +184,26 @@ class LandRegisterExtract extends React.Component {
             </div>
         );
     }
-    render() {
+    renderPrintFrame = () => {
         let printFrame = null;
-        if(this.props.visible && this.state.currentLayout) {
+        if(this.state.layout) {
             let frame = {
-                width: this.state.scale * this.state.currentLayout.map.width / 1000.,
-                height: this.state.scale * this.state.currentLayout.map.height / 1000.,
+                width: this.state.scale * this.state.layout.map.width / 1000.,
+                height: this.state.scale * this.state.layout.map.height / 1000.,
             };
             printFrame = (<PrintFrame map={this.props.map} fixedFrame={frame} />);
         }
-        let assetsPath = ConfigUtils.getConfigProp("assetsPath");
+        return printFrame;
+    }
+    render() {
         return (
-            <div>
-                <SideBar id="LandRegisterExtract" onHide={this.onHide} width="20em"
-                    title="appmenu.items.LandRegisterExtract"
-                    icon={assetsPath + "/img/print_white.svg"}>
-                    {this.renderBody()}
-                </SideBar>
-                {printFrame}
-            </div>
+            <SideBar id="LandRegisterExtract" onShow={this.onShow} onHide={this.onHide}
+                width="20em" title="appmenu.items.LandRegisterExtract" icon="print">
+                {() => ({
+                    body: this.renderBody(),
+                    extra: this.renderPrintFrame()
+                })}
+            </SideBar>
         );
     }
     changeLayout = (ev) => {
@@ -274,7 +243,6 @@ class LandRegisterExtract extends React.Component {
 };
 
 const selector = (state) => ({
-    visible: state.task ? state.task.id === 'LandRegisterExtract': false,
     theme: state.theme ? state.theme.current : null,
     map: state.map ? state.map : null,
     search: state.search
