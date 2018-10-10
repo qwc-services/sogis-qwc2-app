@@ -219,6 +219,14 @@ class CCCInterface extends React.Component {
         }
         return maxZoom;
     }
+    renderBody = () => {
+        return (
+            <span>
+                <div><b><Message msgId={msgId} /></b></div>
+                <ButtonBar disabled={!this.props.ccc.changed} buttons={buttons} onClick={action => this.commitEdit(action === 'Delete')}/>
+            </span>
+        );
+    }
     render() {
         if(this.props.ccc.action) {
             let buttons = [
@@ -228,10 +236,9 @@ class CCCInterface extends React.Component {
             let msgId = this.props.ccc.action === "Draw" ? "ccc.createObject" : "ccc.editObject";
             return (
                 <TaskBar task="CccEdit" onHide={this.stopEdit}>
-                    <span role="body">
-                        <div><b><Message msgId={msgId} /></b></div>
-                        <ButtonBar disabled={!this.props.ccc.changed} buttons={buttons} onClick={action => this.commitEdit(action === 'Delete')}/>
-                    </span>
+                    {() => ({
+                        body: this.renderBody()
+                    })}
                 </TaskBar>
             );
         }
