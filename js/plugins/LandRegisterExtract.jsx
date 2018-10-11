@@ -186,10 +186,10 @@ class LandRegisterExtract extends React.Component {
     }
     renderPrintFrame = () => {
         let printFrame = null;
-        if(this.state.layout) {
+        if(this.state.currentLayout) {
             let frame = {
-                width: this.state.scale * this.state.layout.map.width / 1000.,
-                height: this.state.scale * this.state.layout.map.height / 1000.,
+                width: this.state.scale * this.state.currentLayout.map.width / 1000.,
+                height: this.state.scale * this.state.currentLayout.map.height / 1000.,
             };
             printFrame = (<PrintFrame map={this.props.map} fixedFrame={frame} />);
         }
