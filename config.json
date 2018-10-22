@@ -137,6 +137,7 @@
             "grayUnchecked": true,
             "flattenGroups": true,
             "legendThumbnail": "legend_thumbnail.svg",
+            "bboxDependentLegend": true,
             "layerInfoWindowSize": {"width": 480, "height": 400}
           }
         },
@@ -269,6 +270,7 @@
             "grayUnchecked": true,
             "flattenGroups": true,
             "legendThumbnail": "legend_thumbnail.svg",
+            "bboxDependentLegend": true,
             "layerInfoWindowSize": {"width": 480, "height": 400}
           }
         },
