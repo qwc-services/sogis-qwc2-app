@@ -265,17 +265,34 @@ const selector = (state) => ({
 });
 
 function CCCAttributeCalculator(layer, feature) {
-    if(!CccConnection || !CccAppConfig || !CccAppConfig.notifyLayers || !CccAppConfig.notifyLayers.includes(layer)) {
+    if(!CccConnection || !CccAppConfig || !CccAppConfig.notifyLayers) {
+        return [];
+    }
+    let layername = feature.layername || layer;
+    let notifyEntry = CccAppConfig.notifyLayers.find(entry => entry.layer === layername);
+    if(!notifyEntry) {
         return [];
     }
     let clickHandler = (ev) => {
         if(!CccConnection) {
             return;
         }
+        let mappedProps = {};
+        if(feature.attribnames) {
+            mappedProps = Object.entries(feature.attribnames).reduce((res, [attrtitle, attrname]) => {
+                return assign(res, {[attrname]: feature.properties[attrtitle]});
+            }, {});
+        } else {
+            mappedProps = feature.properties;
+        }
         CccConnection.send(JSON.stringify({
             "apiVersion": "1.0",
             "method": "notifyGeoObjectSelected",
-            "context_list": [feature.properties]
+            "context_list": [
+                Object.entries(notifyEntry.mapping).reduce((res, [attr, cccattr]) => {
+                    return assign(res, {[cccattr]: mappedProps[attr] || null});
+                }, {})
+            ]
         }));
     }
     return [(
