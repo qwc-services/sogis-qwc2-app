@@ -176,8 +176,9 @@
       "addtotheme": "Dem aktuellen Thema hinzufügen"
     },
     "ccc": {
-      "createObject": "Object erfassen",
-      "editObject": "Object editieren"
+      "createObject": "Objekt erfassen",
+      "editObject": "Objekt editieren",
+      "showObject": "Objekt(e) selektiert"
     }
   }
 }
