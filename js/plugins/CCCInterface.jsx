@@ -173,6 +173,8 @@ class CCCInterface extends React.Component {
                 role: LayerRole.SELECTION
             };
             this.props.addLayerFeatures(layer, [feature], true);
+            this.props.changeCCCState({action: 'Show'});
+            this.props.setCurrentTask('CccEdit');
         }
     }
     processZoomTo = (zoomTo) => {
@@ -220,15 +222,22 @@ class CCCInterface extends React.Component {
         return maxZoom;
     }
     renderBody = () => {
-        let msgId = this.props.ccc.action === "Draw" ? "ccc.createObject" : "ccc.editObject";
-        let buttons = [
+        let msgId = "";
+        if(this.props.ccc.action === "Draw") {
+            msgId = "ccc.createObject";
+        } else if(this.props.ccc.action === "Edit") {
+            msgId = "ccc.editObject";
+        } else {
+            msgId = "ccc.showObject";
+        }
+        let buttons = this.props.ccc.action === "Show" ? null : [
             {key: 'Commit', icon: 'ok', label: "editing.commit", extraClasses: "edit-commit"},
             {key: 'Delete', icon: 'trash', label: "editing.delete", extraClasses: "edit-discard"}
         ];
         return (
             <span>
                 <div><b><Message msgId={msgId} /></b></div>
-                <ButtonBar disabled={!this.props.ccc.changed} buttons={buttons} onClick={action => this.commitEdit(action === 'Delete')}/>
+                {buttons ? (<ButtonBar disabled={!this.props.ccc.changed} buttons={buttons} onClick={action => this.commitEdit(action === 'Delete')}/>) : null}
             </span>
         );
     }

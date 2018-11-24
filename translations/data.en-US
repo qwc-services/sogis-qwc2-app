@@ -177,7 +177,8 @@
     },
     "ccc": {
       "createObject": "Draw feature",
-      "editObject": "Edit feature"
+      "editObject": "Edit feature",
+      "showObject": "Object(s) selected"
     }
   }
 }
