@@ -24,9 +24,16 @@ const {TaskBar} = require('../../qwc2/QWC2Components/components/TaskBar');
 const ButtonBar = require('../../qwc2/QWC2Components/components/widgets/ButtonBar');
 const {UrlParams} = require("../../qwc2/QWC2Components/utils/PermaLinkUtils");
 const {changeCCCState} = require('./actions/ccc');
+require('./style/CCCInterface.css');
 
 let CccAppConfig = null;
 let CccConnection = null;
+
+const CCCStatus = {
+    NORMAL: {msgId: ""},
+    CONFIG_ERROR: {msgId: "ccc.configError"},
+    CONNECTION_ERROR: {msgId: "ccc.connError"}
+};
 
 class CCCInterface extends React.Component {
     static propTypes = {
@@ -44,6 +51,9 @@ class CCCInterface extends React.Component {
     constructor(props) {
         super(props);
         this.reset();
+    }
+    state = {
+        status: CCCStatus.NORMAL
     }
     reset() {
         CccConnection = null;
@@ -72,6 +82,7 @@ class CCCInterface extends React.Component {
             })
             .catch(error => {
                 console.log("Failed to query app configuration");
+                this.setState({status: CCCStatus.CONFIG_ERROR});
                 this.reset();
             });
         }
@@ -106,10 +117,12 @@ class CCCInterface extends React.Component {
         }
         CccConnection.onclose = () => {
             console.log("Connection closed");
+            this.setState({status: CCCStatus.CONNECTION_ERROR});
             this.reset();
         }
         CccConnection.onerror = (err) => {
             console.log("Connection error: " + err);
+            this.setState({status: CCCStatus.CONNECTION_ERROR});
             this.reset();
         }
         CccConnection.onmessage = this.processWebSocketMessage;
@@ -242,6 +255,13 @@ class CCCInterface extends React.Component {
         );
     }
     render() {
+        if(this.state.status && this.state.status !== CCCStatus.NORMAL) {
+            return (
+                <div className="ccc-error-overlay">
+                    <Message msgId={this.state.status.msgId} />
+                </div>
+            );
+        }
         if(this.props.ccc.action) {
             return (
                 <TaskBar task="CccEdit" onHide={this.stopEdit}>

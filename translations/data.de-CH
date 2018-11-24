@@ -178,7 +178,9 @@
     "ccc": {
       "createObject": "Objekt erfassen",
       "editObject": "Objekt editieren",
-      "showObject": "Objekt(e) selektiert"
+      "showObject": "Objekt(e) selektiert",
+      "configError": "CCC Konfigurationsfehler",
+      "connError": "CCC Verbindungsfehler"
     }
   }
 }
