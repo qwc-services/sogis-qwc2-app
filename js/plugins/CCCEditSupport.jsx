@@ -110,6 +110,10 @@ class CCCEditSupport extends React.Component {
                 let modifyInteraction = new ol.interaction.Modify({
                     features: new ol.Collection([this.currentFeature]),
                     condition: (event) => {  return event.pointerEvent.buttons === 1 },
+                    deleteCondition: (event) => {
+                        // delete vertices on SHIFT + click
+                        return ol.events.condition.shiftKeyOnly(event) && ol.events.condition.singleClick(event);
+                    },
                     style: this.interactionStyle
                 });
                 this.props.map.addInteraction(modifyInteraction);
@@ -134,6 +138,10 @@ class CCCEditSupport extends React.Component {
         let modifyInteraction = new ol.interaction.Modify({
             features: new ol.Collection([this.currentFeature]),
             condition: (event) => {  return event.pointerEvent.buttons === 1 },
+            deleteCondition: (event) => {
+                // delete vertices on SHIFT + click
+                return ol.events.condition.shiftKeyOnly(event) && ol.events.condition.singleClick(event);
+            },
             style: this.interactionStyle
         });
         modifyInteraction.on('modifyend', (evt) => {
