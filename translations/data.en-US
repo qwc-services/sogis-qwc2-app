@@ -178,7 +178,9 @@
     "ccc": {
       "createObject": "Draw feature",
       "editObject": "Edit feature",
-      "showObject": "Object(s) selected"
+      "showObject": "Object(s) selected",
+      "configError": "CCC configuration error",
+      "connError": "CCC connection lost"
     }
   }
 }
