@@ -24,9 +24,16 @@ const {TaskBar} = require('../../qwc2/QWC2Components/components/TaskBar');
 const ButtonBar = require('../../qwc2/QWC2Components/components/widgets/ButtonBar');
 const {UrlParams} = require("../../qwc2/QWC2Components/utils/PermaLinkUtils");
 const {changeCCCState} = require('./actions/ccc');
+require('./style/CCCInterface.css');
 
 let CccAppConfig = null;
 let CccConnection = null;
+
+const CCCStatus = {
+    NORMAL: {msgId: ""},
+    CONFIG_ERROR: {msgId: "ccc.configError"},
+    CONNECTION_ERROR: {msgId: "ccc.connError"}
+};
 
 class CCCInterface extends React.Component {
     static propTypes = {
@@ -44,6 +51,9 @@ class CCCInterface extends React.Component {
     constructor(props) {
         super(props);
         this.reset();
+    }
+    state = {
+        status: CCCStatus.NORMAL
     }
     reset() {
         CccConnection = null;
@@ -72,6 +82,7 @@ class CCCInterface extends React.Component {
             })
             .catch(error => {
                 console.log("Failed to query app configuration");
+                this.setState({status: CCCStatus.CONFIG_ERROR});
                 this.reset();
             });
         }
@@ -106,10 +117,12 @@ class CCCInterface extends React.Component {
         }
         CccConnection.onclose = () => {
             console.log("Connection closed");
+            this.setState({status: CCCStatus.CONNECTION_ERROR});
             this.reset();
         }
         CccConnection.onerror = (err) => {
             console.log("Connection error: " + err);
+            this.setState({status: CCCStatus.CONNECTION_ERROR});
             this.reset();
         }
         CccConnection.onmessage = this.processWebSocketMessage;
@@ -173,6 +186,8 @@ class CCCInterface extends React.Component {
                 role: LayerRole.SELECTION
             };
             this.props.addLayerFeatures(layer, [feature], true);
+            this.props.changeCCCState({action: 'Show'});
+            this.props.setCurrentTask('CccEdit');
         }
     }
     processZoomTo = (zoomTo) => {
@@ -220,19 +235,33 @@ class CCCInterface extends React.Component {
         return maxZoom;
     }
     renderBody = () => {
-        let msgId = this.props.ccc.action === "Draw" ? "ccc.createObject" : "ccc.editObject";
-        let buttons = [
+        let msgId = "";
+        if(this.props.ccc.action === "Draw") {
+            msgId = "ccc.createObject";
+        } else if(this.props.ccc.action === "Edit") {
+            msgId = "ccc.editObject";
+        } else {
+            msgId = "ccc.showObject";
+        }
+        let buttons = this.props.ccc.action === "Show" ? null : [
             {key: 'Commit', icon: 'ok', label: "editing.commit", extraClasses: "edit-commit"},
             {key: 'Delete', icon: 'trash', label: "editing.delete", extraClasses: "edit-discard"}
         ];
         return (
             <span>
                 <div><b><Message msgId={msgId} /></b></div>
-                <ButtonBar disabled={!this.props.ccc.changed} buttons={buttons} onClick={action => this.commitEdit(action === 'Delete')}/>
+                {buttons ? (<ButtonBar disabled={!this.props.ccc.changed} buttons={buttons} onClick={action => this.commitEdit(action === 'Delete')}/>) : null}
             </span>
         );
     }
     render() {
+        if(this.state.status && this.state.status !== CCCStatus.NORMAL) {
+            return (
+                <div className="ccc-error-overlay">
+                    <Message msgId={this.state.status.msgId} />
+                </div>
+            );
+        }
         if(this.props.ccc.action) {
             return (
                 <TaskBar task="CccEdit" onHide={this.stopEdit}>
@@ -256,6 +285,7 @@ class CCCInterface extends React.Component {
     stopEdit = () => {
         this.props.changeCCCState({action: null, geomType: null});
         this.props.removeLayer('cccselection');
+        this.props.setCurrentTask(null);
     }
 };
 
@@ -265,17 +295,34 @@ const selector = (state) => ({
 });
 
 function CCCAttributeCalculator(layer, feature) {
-    if(!CccConnection || !CccAppConfig || !CccAppConfig.notifyLayers || !CccAppConfig.notifyLayers.includes(layer)) {
+    if(!CccConnection || !CccAppConfig || !CccAppConfig.notifyLayers) {
+        return [];
+    }
+    let layername = feature.layername || layer;
+    let notifyEntry = CccAppConfig.notifyLayers.find(entry => entry.layer === layername);
+    if(!notifyEntry) {
         return [];
     }
     let clickHandler = (ev) => {
         if(!CccConnection) {
             return;
         }
+        let mappedProps = {};
+        if(feature.attribnames) {
+            mappedProps = Object.entries(feature.attribnames).reduce((res, [attrtitle, attrname]) => {
+                return assign(res, {[attrname]: feature.properties[attrtitle]});
+            }, {});
+        } else {
+            mappedProps = feature.properties;
+        }
         CccConnection.send(JSON.stringify({
             "apiVersion": "1.0",
             "method": "notifyGeoObjectSelected",
-            "context_list": [feature.properties]
+            "context_list": [
+                Object.entries(notifyEntry.mapping).reduce((res, [attr, cccattr]) => {
+                    return assign(res, {[cccattr]: mappedProps[attr] || null});
+                }, {})
+            ]
         }));
     }
     return [(

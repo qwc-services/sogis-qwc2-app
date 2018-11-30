@@ -36,7 +36,7 @@ class LandRegisterExtract extends React.Component {
         scale: null,
         dpi: 300,
         initialRotation: 0,
-        grid: false
+        grid: true
     }
     componentDidMount() {
         // Get available templates
