@@ -56,7 +56,7 @@
         {
             "name": "TopBar",
             "cfg": {
-              "logoFormat": "jpg",
+              "logoFormat": "png",
               "menuItems": [
                 {"key": "ThemeSwitcher", "icon": "themes"},
                 {"key": "LayerTree", "icon": "layers"},
@@ -214,7 +214,7 @@
         {
             "name": "TopBar",
             "cfg": {
-              "logoFormat": "jpg",
+              "logoFormat": "png",
               "menuItems": [
                 {"key": "ThemeSwitcher", "icon": "themes"},
                 {"key": "LayerTree", "icon": "layers"},

@@ -156,6 +156,7 @@
       "search": "Suchen",
       "searchall": "Ort suchen oder Karte hinzufügen...",
       "all": "Alle",
+      "themes": "Themen",
       "coordinates": "Koordinaten"
     },
     "share": {
@@ -171,11 +172,15 @@
       "background": "Hintergrundkarte wechseln"
     },
     "themeswitcher": {
-      "filter": "Filter"
+      "filter": "Filter",
+      "addtotheme": "Dem aktuellen Thema hinzufügen"
     },
     "ccc": {
-      "createObject": "Object erfassen",
-      "editObject": "Object editieren"
+      "createObject": "Objekt erfassen",
+      "editObject": "Objekt editieren",
+      "showObject": "Objekt(e) selektiert",
+      "configError": "CCC Konfigurationsfehler",
+      "connError": "CCC Verbindungsfehler"
     }
   }
 }
