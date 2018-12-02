@@ -48,6 +48,7 @@ class CCCInterface extends React.Component {
         addLayerFeatures: PropTypes.func,
         addThemeSublayer: PropTypes.func,
         removeLayer: PropTypes.func,
+        cccselection: PropTypes.bool
     }
     constructor(props) {
         super(props);
@@ -246,14 +247,16 @@ class CCCInterface extends React.Component {
         } else {
             msgId = "ccc.showObject";
         }
-        let buttons = this.props.ccc.action === "Show" ? null : [
-            {key: 'Commit', icon: 'ok', label: "editing.commit", extraClasses: "edit-commit"},
-            {key: 'Delete', icon: 'trash', label: "editing.delete", extraClasses: "edit-discard"}
-        ];
+        let buttons = [];
+        if(this.props.ccc.action === "Draw" || this.props.ccc.action === "Edit") {
+            buttons.push({key: 'Commit', icon: 'ok', label: "editing.commit", extraClasses: "edit-commit", disabled: !this.props.ccc.changed});
+            buttons.push({key: 'Cancel', icon: 'remove', label: "ccc.cancel", extraClasses: "edit-discard"});
+        }
+        buttons.push({key: 'Deselect', label: "ccc.deselect", disabled: !this.props.cccselection});
         return (
             <span>
                 <div><b><Message msgId={msgId} /></b></div>
-                {buttons ? (<ButtonBar disabled={!this.props.ccc.changed} buttons={buttons} onClick={action => this.commitEdit(action === 'Delete')}/>) : null}
+                <ButtonBar buttons={buttons} onClick={this.buttonClicked} />
             </span>
         );
     }
@@ -267,7 +270,7 @@ class CCCInterface extends React.Component {
         }
         if(this.props.ccc.action) {
             return (
-                <TaskBar task="CccEdit" onHide={this.stopEdit}>
+                <TaskBar task="CccEdit" onHide={this.stopEdit} unblockOnClose={true}>
                     {() => ({
                         body: this.renderBody()
                     })}
@@ -276,14 +279,20 @@ class CCCInterface extends React.Component {
         }
         return null;
     }
-    commitEdit = (deleteFeature = false) => {
-        CccConnection.send(JSON.stringify({
-            "apiVersion": "1.0",
-            "method": "notifyEditGeoObjectDone",
-            "context": this.currentContext,
-            "data": deleteFeature ? null : this.props.ccc.feature.geometry
-        }));
-        this.stopEdit();
+    buttonClicked = (action) => {
+        if(action === 'Commit') {
+            CccConnection.send(JSON.stringify({
+                "apiVersion": "1.0",
+                "method": "notifyEditGeoObjectDone",
+                "context": this.currentContext,
+                "data": this.props.ccc.feature.geometry
+            }));
+            this.stopEdit();
+        } else if(action === 'Cancel' || (action === 'Deselect' && this.props.ccc.action === 'Show')) {
+            this.stopEdit();
+        } else if(action === 'Deselect') {
+            this.props.removeLayer('cccselection');
+        }
     }
     stopEdit = () => {
         this.props.changeCCCState({action: null, geomType: null});
@@ -292,11 +301,6 @@ class CCCInterface extends React.Component {
         this.props.setCurrentTaskBlocked(false);
     }
 };
-
-const selector = (state) => ({
-    map: state.map,
-    ccc: state.ccc
-});
 
 function CCCAttributeCalculator(layer, feature) {
     if(!CccConnection || !CccAppConfig || !CccAppConfig.notifyLayers) {
@@ -337,6 +341,13 @@ function CCCAttributeCalculator(layer, feature) {
         </tr>
     )];
 }
+
+
+const selector = (state) => ({
+    map: state.map,
+    ccc: state.ccc,
+    cccselection: !!(state.layers.flat || []).find(layer => layer.id === 'cccselection')
+});
 
 module.exports = {
     CCCInterfacePlugin: connect(selector, {
