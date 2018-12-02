@@ -19,7 +19,7 @@ const CoordinatesUtils = require('../../qwc2/MapStore2Components/utils/Coordinat
 const MapUtils = require('../../qwc2/MapStore2Components/utils/MapUtils');
 const {LayerRole, addThemeSublayer, addLayerFeatures, refreshLayer, removeLayer} = require('../../qwc2/QWC2Components/actions/layers');
 const {zoomToPoint, zoomToExtent} = require('../../qwc2/QWC2Components/actions/map');
-const {setCurrentTask} = require('../../qwc2/QWC2Components/actions/task');
+const {setCurrentTask,setCurrentTaskBlocked} = require('../../qwc2/QWC2Components/actions/task');
 const {TaskBar} = require('../../qwc2/QWC2Components/components/TaskBar');
 const ButtonBar = require('../../qwc2/QWC2Components/components/widgets/ButtonBar');
 const {UrlParams} = require("../../qwc2/QWC2Components/utils/PermaLinkUtils");
@@ -43,6 +43,7 @@ class CCCInterface extends React.Component {
         zoomToExtent: PropTypes.func,
         changeCCCState: PropTypes.func,
         setCurrentTask: PropTypes.func,
+        setCurrentTaskBlocked: PropTypes.func,
         refreshLayer: PropTypes.func,
         addLayerFeatures: PropTypes.func,
         addThemeSublayer: PropTypes.func,
@@ -155,6 +156,7 @@ class CCCInterface extends React.Component {
             }
             this.props.changeCCCState({action: 'Draw', geomType: CccAppConfig.editGeomType});
             this.props.setCurrentTask('CccEdit');
+            this.props.setCurrentTaskBlocked(true);
         }
         else if(message.method == "editGeoObject") {
             this.stopEdit();
@@ -166,6 +168,7 @@ class CCCInterface extends React.Component {
             this.zoomToFeature(feature);
             this.props.changeCCCState({action: 'Edit', geomType: message.data.type, feature: feature});
             this.props.setCurrentTask('CccEdit');
+            this.props.setCurrentTaskBlocked(true);
         }
         else if(message.method === "cancelEditGeoObject") {
             this.stopEdit();
@@ -286,6 +289,7 @@ class CCCInterface extends React.Component {
         this.props.changeCCCState({action: null, geomType: null});
         this.props.removeLayer('cccselection');
         this.props.setCurrentTask(null);
+        this.props.setCurrentTaskBlocked(false);
     }
 };
 
@@ -340,6 +344,7 @@ module.exports = {
         zoomToExtent: zoomToExtent,
         changeCCCState: changeCCCState,
         setCurrentTask: setCurrentTask,
+        setCurrentTaskBlocked: setCurrentTaskBlocked,
         refreshLayer: refreshLayer,
         addLayerFeatures: addLayerFeatures,
         addThemeSublayer: addThemeSublayer,
