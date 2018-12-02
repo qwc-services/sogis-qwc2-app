@@ -180,7 +180,9 @@
       "editObject": "Edit feature",
       "showObject": "Object(s) selected",
       "configError": "CCC configuration error",
-      "connError": "CCC connection lost"
+      "connError": "CCC connection lost",
+      "cancel": "Cancel",
+      "deselect": "Clear selection"
     }
   }
 }

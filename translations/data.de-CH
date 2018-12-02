@@ -180,7 +180,9 @@
       "editObject": "Objekt editieren",
       "showObject": "Objekt(e) selektiert",
       "configError": "CCC Konfigurationsfehler",
-      "connError": "CCC Verbindungsfehler"
+      "connError": "CCC Verbindungsfehler",
+      "cancel": "Abbrechen",
+      "deselect": "Selektion aufheben"
     }
   }
 }
