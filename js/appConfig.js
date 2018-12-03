@@ -91,7 +91,14 @@ module.exports = {
             'PURGE_IDENTIFY_RESULTS',
             'SET_LAYER_LOADING',
             'SET_CURRENT_TASK_BLOCKED',
-            'THEMES_LOADED'
+            'THEMES_LOADED',
+            'CLICK_ON_MAP',
+            'SET_IDENTIFY_ENABLED',
+            'IDENTIFY_EMPTY',
+            'REMOVE_ALL_LAYERS',
+            'SET_CURRENT_THEME',
+            'RESTORE_LAYER_STATE',
+            'REPLACE_PLACEHOLDER_LAYER'
         ];
         if(!blacklist.includes(action.type)) {
             let data = assign({}, action);
