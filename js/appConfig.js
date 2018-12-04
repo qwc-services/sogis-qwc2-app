@@ -97,13 +97,14 @@ module.exports = {
             'REMOVE_LAYER_FEATURES',
             'REPLACE_PLACEHOLDER_LAYER',
             'RESTORE_LAYER_STATE',
+            'SEARCH_ADD_RESULT',
+            'SEARCH_CHANGE',
             'SET_LAYER_LOADING',
             'SET_CURRENT_TASK_BLOCKED',
             'SET_CURRENT_THEME',
             'SET_IDENTIFY_ENABLED',
             'THEMES_LOADED',
-            'TOGGLE_FULLSCREEN',
-            'SEARCH_CHANGE'
+            'TOGGLE_FULLSCREEN'
         ];
         let alterations = {
             'SEARCH_SET_REQUEST': (action) => ({...action, text: state.search.text})
