@@ -80,29 +80,40 @@ module.exports = {
             }
         }
     },
-    actionLogger: (action) => {
+    actionLogger: (action, state) => {
         let blacklist = [
+            'ADD_LAYER_FEATURES',
             'CHANGE_BROWSER_PROPERTIES',
             'CHANGE_LOCALE',
             'CHANGE_MAP_VIEW',
+            'CHANGE_MEASUREMENT_STATE',
             'CHANGE_MOUSE_POSITION_STATE',
+            'CLICK_ON_MAP',
+            'IDENTIFY_EMPTY',
             'IDENTIFY_RESPONSE',
             'LOCAL_CONFIG_LOADED',
             'PURGE_IDENTIFY_RESULTS',
+            'REMOVE_ALL_LAYERS',
+            'REMOVE_LAYER_FEATURES',
+            'REPLACE_PLACEHOLDER_LAYER',
+            'RESTORE_LAYER_STATE',
             'SET_LAYER_LOADING',
             'SET_CURRENT_TASK_BLOCKED',
-            'THEMES_LOADED',
-            'CLICK_ON_MAP',
-            'SET_IDENTIFY_ENABLED',
-            'IDENTIFY_EMPTY',
-            'REMOVE_ALL_LAYERS',
             'SET_CURRENT_THEME',
-            'RESTORE_LAYER_STATE',
-            'REPLACE_PLACEHOLDER_LAYER'
+            'SET_IDENTIFY_ENABLED',
+            'THEMES_LOADED',
+            'TOGGLE_FULLSCREEN',
+            'SEARCH_CHANGE'
         ];
+        let alterations = {
+            'SEARCH_SET_REQUEST': (action) => ({...action, text: state.search.text})
+        };
         if(!blacklist.includes(action.type)) {
             let data = assign({}, action);
             delete data['type'];
+            if(alterations[action.type]) {
+                data = alterations[action.type](data);
+            }
             _paq.push(['trackEvent', 'Action', action.type, JSON.stringify(data)]);
         }
     },
