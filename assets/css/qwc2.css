@@ -6,3 +6,11 @@ div.sidebar-body,
 #LayerTree div.layertree-container {
     max-height: calc(100vh - 9em)!important;
 }
+
+#IdentifyViewer table.identify-attr-subtable {
+    width: 100%;
+}
+
+#IdentifyViewer td.identify-attr-spacer {
+    height: 8px;
+}
