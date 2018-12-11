@@ -175,7 +175,7 @@ class CCCInterface extends React.Component {
             this.stopEdit();
         }
         else if(message.method === "notifyObjectUpdated") {
-            this.props.refreshLayer(layer => layer.isThemeLayer);
+            this.props.refreshLayer(layer => layer.role === LayerRole.THEME);
         }
         else if(message.method === "showGeoObject") {
             this.stopEdit();
