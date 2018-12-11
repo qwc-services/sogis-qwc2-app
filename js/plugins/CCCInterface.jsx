@@ -249,7 +249,7 @@ class CCCInterface extends React.Component {
         }
         let buttons = [];
         if(this.props.ccc.action === "Draw" || this.props.ccc.action === "Edit") {
-            buttons.push({key: 'Commit', icon: 'ok', label: "editing.commit", extraClasses: "edit-commit", disabled: !this.props.ccc.changed});
+            buttons.push({key: 'Commit', icon: 'ok', label: "ccc.commit", extraClasses: "edit-commit", disabled: !this.props.ccc.changed});
             buttons.push({key: 'Cancel', icon: 'remove', label: "ccc.cancel", extraClasses: "edit-discard"});
         }
         if(this.props.ccc.action !== "Edit") {

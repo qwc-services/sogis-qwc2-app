@@ -5,9 +5,13 @@
     ],
     "strings": [
         "appmenu.items.LandRegisterExtract",
-        "appmenu.items.Login",
-        "appmenu.items.Logout",
         "ccc.createObject",
-        "ccc.editObject"
+        "ccc.editObject",
+        "ccc.showObject",
+        "ccc.configError",
+        "ccc.connError",
+        "ccc.commit",
+        "ccc.cancel",
+        "ccc.deselect"
     ]
 }

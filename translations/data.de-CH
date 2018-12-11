@@ -176,11 +176,12 @@
       "addtotheme": "Dem aktuellen Thema hinzufügen"
     },
     "ccc": {
-      "createObject": "Objekt erfassen",
-      "editObject": "Objekt editieren",
+      "createObject": "Objektgeometrie erfassen",
+      "editObject": "Objektgeometrie editieren",
       "showObject": "Objekt(e) selektiert",
       "configError": "CCC Konfigurationsfehler",
-      "connError": "CCC Verbindungsfehler",
+      "connError": "CCC-Verbindung wurde geschlossen",
+      "commit": "Übernehmen",
       "cancel": "Abbrechen",
       "deselect": "Selektion aufheben"
     }
