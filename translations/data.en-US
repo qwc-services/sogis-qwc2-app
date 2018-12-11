@@ -176,11 +176,12 @@
       "addtotheme": "Add to current theme"
     },
     "ccc": {
-      "createObject": "Draw feature",
-      "editObject": "Edit feature",
+      "createObject": "Draw feature geometry",
+      "editObject": "Edit feature geometry",
       "showObject": "Object(s) selected",
       "configError": "CCC configuration error",
-      "connError": "CCC connection lost",
+      "connError": "CCC connection closed",
+      "commit": "Apply",
       "cancel": "Cancel",
       "deselect": "Clear selection"
     }
