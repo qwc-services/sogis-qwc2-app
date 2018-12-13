@@ -5,7 +5,7 @@
       "items": {
         "DxfExport": "DXF-Export",
         "Help": "Hilfe",
-        "LayerTree": "Ebenen und Legende",
+        "LayerTree": "Kartenebenen und Legende",
         "Measure": "Messen",
         "Print": "Drucken",
         "RasterExport": "Raster-Export",
@@ -45,8 +45,8 @@
       "discard": "Abbrechen",
       "draw": "Zeichnen",
       "fields": "Felder",
-      "layer": "Ebene",
-      "noeditablelayers": "Keine editierbare Ebenen.",
+      "layer": "Kartenebene",
+      "noeditablelayers": "Keine editierbare Kartenebenen.",
       "pick": "Auswählen",
       "reallydelete": "Löschen",
       "select": "Auswählen"
@@ -71,7 +71,7 @@
       "info": "Polygon um die zu identifizierende Objekte zeichnen"
     },
     "importlayer": {
-      "addlayer": "Ebene hinzufügen",
+      "addlayer": "Kartenebene hinzufügen",
       "filter": "Filter...",
       "connect": "Verbinden",
       "nofeatures": "Keine Objekte konnten importiert werden",
@@ -79,7 +79,7 @@
       "urlplaceholder": "WMS, WFS oder KML URL eingeben..."
     },
     "layerinfo": {
-      "title": "Ebeneninformationen",
+      "title": "Kartenebeneninformationen",
       "abstract": "Zusammenfassung",
       "attribution": "Attribution",
       "keywords": "Schlüsselwörter",
@@ -88,8 +88,8 @@
       "legend": "Legende"
     },
     "layertree": {
-      "compare": "Oberste Ebene vergleichen",
-      "importlayer": "Ebene importieren",
+      "compare": "Oberste Kartenebene vergleichen",
+      "importlayer": "Kartenebene importieren",
       "maptip": "Kartentipps anzeigen",
       "printlegend": "Legende drucken",
       "transparency": "Transparenz"
@@ -141,7 +141,7 @@
       "border": "Rand",
       "fill": "Füllung",
       "label": "Beschriftung",
-      "layer": "Ebene",
+      "layer": "Kartenebene",
       "line": "Linie",
       "outline": "Rand",
       "pick": "Auswählen",
