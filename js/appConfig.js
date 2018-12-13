@@ -97,7 +97,7 @@ module.exports = {
             'REMOVE_LAYER_FEATURES',
             'REPLACE_PLACEHOLDER_LAYER',
             'RESTORE_LAYER_STATE',
-            'SEARCH_ADD_RESULT',
+            'SEARCH_ADD_RESULTS',
             'SEARCH_CHANGE',
             'SET_LAYER_LOADING',
             'SET_CURRENT_TASK_BLOCKED',
