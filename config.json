@@ -59,8 +59,8 @@
               "logoFormat": "png",
               "menuItems": [
                 {"key": "ThemeSwitcher", "icon": "themes"},
-                {"key": "LayerTree", "icon": "layers"},
-                {"key": "Share", "icon": "share"},
+                {"key": "LayerTree", "icon": "layers", "identifyEnabled": true},
+                {"key": "Share", "icon": "share", "identifyEnabled": true},
                 {"key": "Tools", "icon": "tools", "subitems": [
                   {"key": "Measure", "icon": "measure"},
                   {"key": "Redlining", "icon": "draw"},
@@ -69,7 +69,7 @@
                 ]},
                 {"key": "Print", "icon": "print"},
                 {"key": "LandRegisterExtract", "icon": "print"},
-                {"key": "Help", "icon": "info"},
+                {"key": "Help", "icon": "info", "identifyEnabled": true},
                 {"key": "Login", "icon": "login"}
               ],
               "searchOptions": {
@@ -217,8 +217,8 @@
               "logoFormat": "png",
               "menuItems": [
                 {"key": "ThemeSwitcher", "icon": "themes"},
-                {"key": "LayerTree", "icon": "layers"},
-                {"key": "Share", "icon": "share"},
+                {"key": "LayerTree", "icon": "layers", "identifyEnabled": true},
+                {"key": "Share", "icon": "share", "identifyEnabled": true},
                 {"key": "Tools", "icon": "tools", "subitems": [
                   {"key": "Measure", "icon": "measure"},
                   {"key": "Redlining", "icon": "draw"},
@@ -227,7 +227,7 @@
                 ]},
                 {"key": "Print", "icon": "print"},
                 {"key": "LandRegisterExtract", "icon": "print"},
-                {"key": "Help", "icon": "info"},
+                {"key": "Help", "icon": "info", "identifyEnabled": true},
                 {"key": "Login", "icon": "login"}
               ],
               "searchOptions": {
