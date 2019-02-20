@@ -299,8 +299,8 @@ class CCCInterface extends React.Component {
     stopEdit = () => {
         this.props.changeCCCState({action: null, geomType: null});
         this.props.removeLayer('cccselection');
-        this.props.setCurrentTask(null);
         this.props.setCurrentTaskBlocked(false);
+        this.props.setCurrentTask(null);
     }
 };
 
