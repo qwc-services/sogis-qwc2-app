@@ -13,5 +13,15 @@
         "ccc.commit",
         "ccc.cancel",
         "ccc.deselect"
-    ]
+    ],
+    "overrides": [
+        "appmenu.items.LayerTree",
+        "editing.layer",
+        "editing.noeditablelayers",
+        "importlayer.addlayer",
+        "layerinfo.title",
+        "layertree.compare",
+        "layertree.importlayer",
+        "redlining.layer"
+   ]
 }
