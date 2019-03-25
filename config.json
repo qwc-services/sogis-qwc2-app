@@ -101,7 +101,7 @@
               "FI_POLYGON_TOLERANCE": 8,
               "feature_count": 20
             },
-            "enableExport": false,
+            "exportFormat": null,
             "longAttributesDisplay": "wrap",
             "displayResultTree": false
           }
@@ -284,7 +284,7 @@
               "FI_POLYGON_TOLERANCE": 4,
               "feature_count": 20
             },
-            "enableExport": false,
+            "exportFormat": null,
             "longAttributesDisplay": "wrap",
             "displayResultTree": false,
             "initialWidth": 480,
