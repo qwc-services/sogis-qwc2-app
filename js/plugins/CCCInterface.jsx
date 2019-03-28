@@ -13,6 +13,7 @@ const assign = require('object-assign');
 const axios = require('axios');
 const uuid = require('uuid');
 const ol = require('openlayers');
+const isEmpty = require('lodash.isempty');
 const Message = require('../../qwc2/MapStore2Components/components/I18N/Message');
 const ConfigUtils = require("../../qwc2/MapStore2Components/utils/ConfigUtils");
 const CoordinatesUtils = require('../../qwc2/MapStore2Components/utils/CoordinatesUtils');
@@ -94,8 +95,8 @@ class CCCInterface extends React.Component {
         let url = searchService.replace(/\/$/g, "") + "/getlayers";
         let params = {layers: CccAppConfig.initialLayers.join(",")};
         axios.get(url, {params: params}).then(response => {
-            let layers = response.data;
-            if(Array.isArray(layers)) {
+            let layers = [].concat(...Object.values(response.data));
+            if(!isEmpty(layers)) {
                 this.props.addThemeSublayer({
                     "sublayers": layers
                 });
