@@ -192,7 +192,7 @@ class CCCInterface extends React.Component {
             };
             this.props.addLayerFeatures(layer, [feature], true);
             this.props.changeCCCState({action: 'Show'});
-            this.props.setCurrentTask('CccEdit');
+            this.props.setCurrentTask('CccEdit', null, true);
         }
     }
     processZoomTo = (zoomTo) => {
