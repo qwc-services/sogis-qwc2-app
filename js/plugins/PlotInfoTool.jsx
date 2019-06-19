@@ -106,7 +106,7 @@ class PlotInfoTool extends React.Component {
             <div role="body" className="plot-info-dialog-body">
                 <div className="plot-info-dialog-header">
                     {this.state.plotInfo.length > 1 ? (
-                        <select value={this.state.currentPlot} onChange={ev => this.setState({currentPlot: ev.target.value})}>
+                        <select value={this.state.currentPlot} onChange={ev => this.setState({currentPlot: ev.target.value, expandedInfo: null, expandedInfoData: null, pendingPdfs: []})}>
                             {this.state.plotInfo.map((entry, idx) => (
                                 <option key={"plot" + idx} value={idx}>{entry.label}</option>
                             ))}
