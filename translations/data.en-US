@@ -17,7 +17,9 @@
         "Editing": "Editing",
         "Login": "Login",
         "Logout": "Logout",
-        "LandRegisterExtract": "Land Register Map Extract"
+        "LandRegisterExtract": "Land Register Map Extract",
+        "PlotInfoTool": "Plot information",
+        "PlotInfoTool_comment": "ÖREB cadastre"
       },
       "menulabel": "Map & Tools"
     },
@@ -184,6 +186,24 @@
       "commit": "Apply",
       "cancel": "Cancel",
       "deselect": "Clear selection"
+    },
+    "oereb": {
+      "concernedThemes": "Concerned themes",
+      "notConcernedThemes": "Not concerned themes",
+      "themeWithoutData": "Themes without data",
+      "generalInformation": "General and legal information",
+      "type": "Type",
+      "area": "Area",
+      "perc": "Fraction",
+      "regulations": "Regulations",
+      "legalbasis": "Legal bases",
+      "responsibleoffice": "Responsible office",
+      "responsibleauthority": "Responsible authority",
+      "fundations": "Fundations",
+      "generalinfo": "General information"
+    },
+    "plotinfotool": {
+      "loading": "Loading data..."
     }
   }
 }

@@ -34,8 +34,7 @@
         "url-loader": "^0.6.2",
         "webpack": "^3.8.1",
         "webpack-bundle-size-analyzer": "^2.5.0",
-        "webpack-dev-server": "^2.4.1",
-        "xml2js": "^0.4.19"
+        "webpack-dev-server": "^2.4.1"
     },
     "//": "replace react-sortable-items with official on npm when 0.0.10 with remove_deprecated PR in included",
     "dependencies": {
@@ -87,7 +86,8 @@
         "sortablejs": "^1.7.0",
         "uglifyjs-webpack-plugin": "^1.1.1",
         "webfonts-generator": "^0.4.0",
-        "wellknown": "^0.5.0"
+        "wellknown": "^0.5.0",
+        "xml2js": "^0.4.19"
     },
     "scripts": {
         "clean": "rimraf dist",

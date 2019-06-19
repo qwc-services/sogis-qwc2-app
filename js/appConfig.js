@@ -72,7 +72,8 @@ module.exports = {
             MapInfoTooltipPlugin: require('../qwc2/QWC2Components/plugins/MapInfoTooltip'),
             AuthenticationPlugin: require('../qwc2/QWC2Components/plugins/Authentication'),
             LandRegisterExtractPlugin: require('./plugins/LandRegisterExtract'),
-            CCCInterfacePlugin: require('./plugins/CCCInterface')
+            CCCInterfacePlugin: require('./plugins/CCCInterface'),
+            PlotInfoToolPlugin: require('./plugins/PlotInfoTool')
         },
         cfg: {
             IdentifyPlugin: {

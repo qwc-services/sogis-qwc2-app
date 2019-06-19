@@ -5,6 +5,8 @@
     ],
     "strings": [
         "appmenu.items.LandRegisterExtract",
+        "appmenu.items.PlotInfoTool",
+        "appmenu.items.PlotInfoTool_comment",
         "ccc.createObject",
         "ccc.editObject",
         "ccc.showObject",
@@ -12,7 +14,21 @@
         "ccc.connError",
         "ccc.commit",
         "ccc.cancel",
-        "ccc.deselect"
+        "ccc.deselect",
+        "oereb.concernedThemes",
+        "oereb.notConcernedThemes",
+        "oereb.themeWithoutData",
+        "oereb.generalInformation",
+        "oereb.type",
+        "oereb.area",
+        "oereb.perc",
+        "oereb.regulations",
+        "oereb.legalbasis",
+        "oereb.responsibleoffice",
+        "oereb.responsibleauthority",
+        "oereb.fundations",
+        "oereb.generalinfo",
+        "plotinfotool.loading"
     ],
     "overrides": [
         "appmenu.items.LayerTree",
