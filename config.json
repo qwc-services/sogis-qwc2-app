@@ -8,6 +8,7 @@
   "featureReportService": "/api/v1/document",
   "landRegisterService": "/api/v1/landreg",
   "cccConfigService": "/api/v1/ccc",
+  "plotInfoService": "/api/v1/plotinfo/",
   "translationsPath": "/translations",
   "assetsPath": "/assets",
   "urlPositionFormat": "centerAndZoom",
@@ -60,6 +61,7 @@
               "menuItems": [
                 {"key": "ThemeSwitcher", "icon": "themes"},
                 {"key": "LayerTree", "icon": "layers", "identifyEnabled": true},
+                {"key": "PlotInfoTool", "icon": "plot_info", "comment": true},
                 {"key": "Share", "icon": "share", "identifyEnabled": true},
                 {"key": "Tools", "icon": "tools", "subitems": [
                   {"key": "Measure", "icon": "measure"},
@@ -174,6 +176,9 @@
         },
         {
           "name": "CCCInterface"
+        },
+        {
+          "name": "PlotInfoTool"
         }
       ],
       "desktop": [
@@ -219,6 +224,7 @@
               "menuItems": [
                 {"key": "ThemeSwitcher", "icon": "themes"},
                 {"key": "LayerTree", "icon": "layers", "identifyEnabled": true},
+                {"key": "PlotInfoTool", "icon": "plot_info", "comment": true},
                 {"key": "Share", "icon": "share", "identifyEnabled": true},
                 {"key": "Tools", "icon": "tools", "subitems": [
                   {"key": "Measure", "icon": "measure"},
@@ -349,6 +355,20 @@
         },
         {
           "name": "CCCInterface"
+        },
+        {
+          "name": "PlotInfoTool",
+          "cfg": {
+            "toolLayers": ["Grundstücke"],
+            "infoQueries": [
+              {
+                "key": "plotdescr",
+                "title": "Grundstückbeschrieb",
+                "query": "/plot/$egrid$",
+                "pdfQuery": null
+              }
+            ]
+          }
         }
       ]
   }
