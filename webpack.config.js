@@ -1,7 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
+const os = require('os');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const styleConfig = require("./styleConfig");
 
 const nodeEnv = process.env.NODE_ENV || 'development';
@@ -23,21 +24,19 @@ const plugins = [
   new webpack.LoaderOptionsPlugin({
       debug: !isProd,
       minimize: isProd
-  }),
-  new webpack.IgnorePlugin(/^(turf|leaflet.*)$/)
+  })
 ];
 
 if (isProd) {
   plugins.push(new LodashModuleReplacementPlugin());
-  plugins.push(new UglifyJsPlugin({
-    uglifyOptions: {
-      ie8: false,
+  plugins.push(new TerserPlugin({
+    parallel: true,
+    sourceMap: true,
+    terserOptions: {
       ecma: 8,
       output: {
-        comments: false,
-        beautify: false,
-      },
-      warnings: false
+        comments: false
+      }
     }
   }));
 } else {
@@ -46,6 +45,7 @@ if (isProd) {
 
 module.exports = {
   devtool: isProd ? 'source-map' : 'eval',
+  mode: nodeEnv === "production" ? "production" : "development",
   entry: {
     'webpack-dev-server': 'webpack-dev-server/client?http://0.0.0.0:8081',
     'webpack': 'webpack/hot/only-dev-server',
@@ -58,13 +58,11 @@ module.exports = {
   },
   plugins,
   resolve: {
-    extensions: [".js", ".jsx"]
+    extensions: [".js", ".jsx"],
+    symlinks: false
   },
   module: {
     rules: [
-      {
-        test: /\.json$/, loader: "json-loader"
-      },
       {
         test: /\.(woff|woff2)(\?\w+)?$/,
         use: {
@@ -88,14 +86,11 @@ module.exports = {
       { test: /\.(png|jpg|gif)$/, loader: 'url-loader', query: {name: '[path][name].[ext]', limit: 8192} }, // inline base64 URLs for <=8k images, direct URLs for the rest
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: 'react-hot-loader/webpack',
-        include: [path.join(__dirname, "js"), path.join(__dirname, "qwc2", "QWC2Components"), path.join(__dirname, "qwc2", "MapStore2Components")]
-      },
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader'
+        exclude: os.platform() === 'win32' ? /node_modules\\(?!(qwc2)\\).*/ : /node_modules\/(?!(qwc2)\/).*/,
+        use: {
+            loader: 'babel-loader',
+            options: { babelrcRoots: ['.', path.resolve(__dirname, 'node_modules', 'qwc2')] }
+        }
       }
     ]
   },

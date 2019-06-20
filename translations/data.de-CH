@@ -131,7 +131,9 @@
       "resolution": "Auflösung",
       "rotation": "Rotation",
       "scale": "Massstab",
-      "submit": "PDF erzeugen"
+      "submit": "PDF erzeugen",
+      "output": "Druckausgabe",
+      "wait": "Bitte warten..."
     },
     "rasterexport": {
       "format": "Format:",
@@ -141,6 +143,15 @@
     "redlining": {
       "add": "Hinzufügen",
       "border": "Rand",
+      "buffer": "Puffern",
+      "bufferlayername": "Objektpuffer",
+      "bufferdistance": "Distanz",
+      "bufferlayer": "Zielebene",
+      "buffercompute": "Berechnen",
+      "bufferselectfeature": "Zu pufferndes Objekt auswählen...",
+      "delete": "Löschen",
+      "draw": "Zeichnen",
+      "edit": "Bearbeiten",
       "fill": "Füllung",
       "label": "Beschriftung",
       "layer": "Kartenebene",
@@ -159,6 +170,8 @@
       "searchall": "Ort suchen oder Karte hinzufügen...",
       "all": "Alle",
       "themes": "Themen",
+      "invisiblelayer": "Das Resultat liegt auf einer Ebene, die ausgeschaltet ist.",
+      "enablelayer": "Ebene einschalten",
       "coordinates": "Koordinaten"
     },
     "share": {

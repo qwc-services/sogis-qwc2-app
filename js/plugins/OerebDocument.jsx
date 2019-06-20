@@ -12,10 +12,10 @@ const {connect} = require('react-redux');
 const isEmpty = require('lodash.isempty');
 const uuid = require('uuid');
 const url = require('url');
-const {LayerRole, addLayer, removeLayer} = require('../../qwc2/QWC2Components/actions/layers');
-const LayerUtils = require('../../qwc2/QWC2Components/utils/LayerUtils');
-const Icon = require('../../qwc2/QWC2Components/components/Icon');
-const Message = require("../../qwc2/MapStore2Components/components/I18N/Message");
+const {LayerRole, addLayer, removeLayer} = require('qwc2/actions/layers');
+const LayerUtils = require('qwc2/utils/LayerUtils');
+const Icon = require('qwc2/components/Icon');
+const Message = require("qwc2/components/I18N/Message");
 require('./style/OerebDocument.css');
 
 const DataNS = "http://schemas.geo.admin.ch/V_D/OeREB/1.0/ExtractData";
@@ -203,7 +203,8 @@ class OerebDocument extends React.Component {
         let landOwnRestr = extract.RealEstate.RestrictionOnLandownership;
         let entry = landOwnRestr.find(entry => entry.Theme.Code === name);
         if(expandedTheme && entry && entry.Map && entry.Map.ReferenceWMS) {
-            let parts = url.parse(entry.Map.ReferenceWMS, true);
+            let wmsUrl = "http://localhost:8088/ows/somap?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&LAYERS=Belastete%20Standorte&STYLES=&SRS=EPSG%3A2056&CRS=EPSG%3A2056&TILED=false&DPI=96&OPACITIES=255&t=561&WIDTH=1281&HEIGHT=638&BBOX=2610490.2916666665%2C1235286.6666666665%2C2624047.5416666665%2C1242038.833333333";
+            let parts = url.parse(wmsUrl/*entry.Map.ReferenceWMS*/, true);
             let baseUrl = parts.protocol + '//' + parts.host + parts.pathname;
             let params = parts.query;
             let layer = {

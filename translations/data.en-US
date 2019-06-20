@@ -131,7 +131,9 @@
       "resolution": "Resolution:",
       "rotation": "Rotation:",
       "scale": "Scale:",
-      "submit": "Print"
+      "submit": "Print",
+      "output": "Print output",
+      "wait": "Please wait..."
     },
     "rasterexport": {
       "format": "Format:",
@@ -141,6 +143,15 @@
     "redlining": {
       "add": "Add",
       "border": "Border",
+      "buffer": "Buffer",
+      "bufferlayername": "Buffer",
+      "bufferdistance": "Distance",
+      "bufferlayer": "Destination",
+      "buffercompute": "Compute",
+      "bufferselectfeature": "Select a feature to buffer...",
+      "delete": "Delete",
+      "draw": "Draw",
+      "edit": "Edit",
       "fill": "Fill",
       "label": "Label",
       "layer": "Layer",
@@ -159,6 +170,8 @@
       "searchall": "Search places or add maps...",
       "all": "All",
       "themes": "Themes",
+      "invisiblelayer": "The result lies on a layer which is not visible.",
+      "enablelayer": "Enable layer",
       "coordinates": "Coordinates"
     },
     "share": {
