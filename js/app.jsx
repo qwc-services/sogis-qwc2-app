@@ -10,11 +10,12 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 
 const appConfig = require('./appConfig');
+require('../icons/build/qwc2-icons.css');
 
-const LocaleUtils = require('../qwc2/MapStore2Components/utils/LocaleUtils');
+const LocaleUtils = require('qwc2/utils/LocaleUtils');
 LocaleUtils.setSupportedLocales(appConfig.supportedLocales);
 
-const StandardApp = require('../qwc2/QWC2Components/components/StandardApp');
+const StandardApp = require('qwc2/components/StandardApp');
 
 ReactDOM.render(
     <StandardApp appConfig={appConfig}/>,

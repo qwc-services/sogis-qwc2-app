@@ -10,7 +10,7 @@ const Proj4js = require('proj4').default;
 const assign = require('object-assign');
 const {SearchProviders, searchProviderFactory} = require('./SearchProviders');
 const EditingInterface = require('./EditingInterface');
-const CoordinatesUtils = require('../qwc2/MapStore2Components/utils/CoordinatesUtils');
+const CoordinatesUtils = require('qwc2/utils/CoordinatesUtils');
 const renderHelp = require('./Help');
 
 Proj4js.defs("EPSG:21781", "+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +towgs84=674.4,15.1,405.3,0,0,0,0 +units=m +no_defs");
@@ -34,43 +34,43 @@ module.exports = {
     },
     pluginsDef: {
         plugins: {
-            MapPlugin: require('../qwc2/QWC2Components/plugins/Map')({
-                EditingSupport: require('../qwc2/QWC2Components/plugins/map/EditingSupport'),
-                MeasurementSupport: require('../qwc2/QWC2Components/plugins/map/MeasurementSupport'),
-                LocateSupport: require('../qwc2/QWC2Components/plugins/map/LocateSupport'),
-                RedliningSupport: require('../qwc2/QWC2Components/plugins/map/RedliningSupport'),
-                ScaleBarSupport: require('../qwc2/QWC2Components/plugins/map/ScaleBarSupport'),
-                SelectionSupport: require('../qwc2/QWC2Components/plugins/map/SelectionSupport'),
+            MapPlugin: require('qwc2/plugins/Map')({
+                EditingSupport: require('qwc2/plugins/map/EditingSupport'),
+                MeasurementSupport: require('qwc2/plugins/map/MeasurementSupport'),
+                LocateSupport: require('qwc2/plugins/map/LocateSupport'),
+                RedliningSupport: require('qwc2/plugins/map/RedliningSupport'),
+                ScaleBarSupport: require('qwc2/plugins/map/ScaleBarSupport'),
+                SelectionSupport: require('qwc2/plugins/map/SelectionSupport'),
                 CCCEditSupport: require('./plugins/CCCEditSupport')
             }),
-            HomeButtonPlugin: require('../qwc2/QWC2Components/plugins/HomeButton'),
-            LocateButtonPlugin: require('../qwc2/QWC2Components/plugins/LocateButton'),
-            ZoomInPlugin: require('../qwc2/QWC2Components/plugins/ZoomButtons'),
-            ZoomOutPlugin: require('../qwc2/QWC2Components/plugins/ZoomButtons'),
-            BackgroundSwitcherPlugin: require('../qwc2/QWC2Components/plugins/BackgroundSwitcher'),
-            TopBarPlugin: require('../qwc2/QWC2Components/plugins/TopBar')({
-                 AppMenu: require("../qwc2/QWC2Components/components/AppMenu"),
-                 Search: require("../qwc2/QWC2Components/components/Search")(SearchProviders, searchProviderFactory),
-                 Toolbar: require("../qwc2/QWC2Components/components/Toolbar"),
-                 FullscreenSwitcher: require("../qwc2/QWC2Components/components/FullscreenSwitcher")
+            HomeButtonPlugin: require('qwc2/plugins/HomeButton'),
+            LocateButtonPlugin: require('qwc2/plugins/LocateButton'),
+            ZoomInPlugin: require('qwc2/plugins/ZoomButtons'),
+            ZoomOutPlugin: require('qwc2/plugins/ZoomButtons'),
+            BackgroundSwitcherPlugin: require('qwc2/plugins/BackgroundSwitcher'),
+            TopBarPlugin: require('qwc2/plugins/TopBar')({
+                 AppMenu: require("qwc2/components/AppMenu"),
+                 Search: require("qwc2/components/Search")(SearchProviders, searchProviderFactory),
+                 Toolbar: require("qwc2/components/Toolbar"),
+                 FullscreenSwitcher: require("qwc2/components/FullscreenSwitcher")
             }),
-            BottomBarPlugin: require('../qwc2/QWC2Components/plugins/BottomBar'),
-            MeasurePlugin: require('../qwc2/QWC2Components/plugins/Measure'),
-            ThemeSwitcherPlugin: require('../qwc2/QWC2Components/plugins/ThemeSwitcher'),
-            LayerTreePlugin: require('../qwc2/QWC2Components/plugins/LayerTree'),
-            IdentifyPlugin: require('../qwc2/QWC2Components/plugins/Identify'),
-            MapTipPlugin: require('../qwc2/QWC2Components/plugins/MapTip'),
-            SharePlugin: require('../qwc2/QWC2Components/plugins/Share'),
-            MapCopyrightPlugin: require('../qwc2/QWC2Components/plugins/MapCopyright'),
-            PrintPlugin: require('../qwc2/QWC2Components/plugins/Print'),
-            HelpPlugin: require('../qwc2/QWC2Components/plugins/Help')(renderHelp),
-            RasterExportPlugin: require('../qwc2/QWC2Components/plugins/RasterExport'),
-            RedliningPlugin: require('../qwc2/QWC2Components/plugins/Redlining'),
-            EditingPlugin: require('../qwc2/QWC2Components/plugins/Editing')(EditingInterface),
-            MapComparePlugin: require('../qwc2/QWC2Components/plugins/MapCompare'),
-            HeightProfilePlugin: require('../qwc2/QWC2Components/plugins/HeightProfile'),
-            MapInfoTooltipPlugin: require('../qwc2/QWC2Components/plugins/MapInfoTooltip'),
-            AuthenticationPlugin: require('../qwc2/QWC2Components/plugins/Authentication'),
+            BottomBarPlugin: require('qwc2/plugins/BottomBar'),
+            MeasurePlugin: require('qwc2/plugins/Measure'),
+            ThemeSwitcherPlugin: require('qwc2/plugins/ThemeSwitcher'),
+            LayerTreePlugin: require('qwc2/plugins/LayerTree'),
+            IdentifyPlugin: require('qwc2/plugins/Identify'),
+            MapTipPlugin: require('qwc2/plugins/MapTip'),
+            SharePlugin: require('qwc2/plugins/Share'),
+            MapCopyrightPlugin: require('qwc2/plugins/MapCopyright'),
+            PrintPlugin: require('qwc2/plugins/Print'),
+            HelpPlugin: require('qwc2/plugins/Help')(renderHelp),
+            RasterExportPlugin: require('qwc2/plugins/RasterExport'),
+            RedliningPlugin: require('qwc2/plugins/Redlining')({}),
+            EditingPlugin: require('qwc2/plugins/Editing')(EditingInterface),
+            MapComparePlugin: require('qwc2/plugins/MapCompare'),
+            HeightProfilePlugin: require('qwc2/plugins/HeightProfile'),
+            MapInfoTooltipPlugin: require('qwc2/plugins/MapInfoTooltip'),
+            AuthenticationPlugin: require('qwc2/plugins/Authentication'),
             LandRegisterExtractPlugin: require('./plugins/LandRegisterExtract'),
             CCCInterfacePlugin: require('./plugins/CCCInterface'),
             PlotInfoToolPlugin: require('./plugins/PlotInfoTool')

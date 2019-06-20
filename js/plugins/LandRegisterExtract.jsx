@@ -12,14 +12,14 @@ const {connect} = require('react-redux');
 const assign = require('object-assign');
 const isEmpty = require('lodash.isempty');
 const axios = require('axios');
-const Message = require('../../qwc2/MapStore2Components/components/I18N/Message');
-const MapUtils = require('../../qwc2/MapStore2Components/utils/MapUtils');
-const CoordinatesUtils = require('../../qwc2/MapStore2Components/utils/CoordinatesUtils');
-const ConfigUtils = require("../../qwc2/MapStore2Components/utils/ConfigUtils");
-const {changeRotation} = require('../../qwc2/QWC2Components/actions/map');
-const {SideBar} = require('../../qwc2/QWC2Components/components/SideBar');
-const PrintFrame = require('../../qwc2/QWC2Components/components/PrintFrame');
-const ToggleSwitch = require('../../qwc2/QWC2Components/components/widgets/ToggleSwitch');
+const Message = require('qwc2/components/I18N/Message');
+const MapUtils = require('qwc2/utils/MapUtils');
+const CoordinatesUtils = require('qwc2/utils/CoordinatesUtils');
+const ConfigUtils = require("qwc2/utils/ConfigUtils");
+const {changeRotation} = require('qwc2/actions/map');
+const {SideBar} = require('qwc2/components/SideBar');
+const PrintFrame = require('qwc2/components/PrintFrame');
+const ToggleSwitch = require('qwc2/components/widgets/ToggleSwitch');
 
 require('./style/LandRegisterExtract.css');
 
@@ -253,6 +253,6 @@ module.exports = {
         changeRotation: changeRotation
     })(LandRegisterExtract),
     reducers: {
-        task: require('../../qwc2/QWC2Components/reducers/task')
+        task: require('qwc2/reducers/task')
     }
 }

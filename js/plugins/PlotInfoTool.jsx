@@ -13,15 +13,15 @@ const isEmpty = require('lodash.isempty');
 const axios = require('axios');
 const FileSaver = require('file-saver');
 const xml2js = require('xml2js');
-const ConfigUtils = require('../../qwc2/MapStore2Components/utils/ConfigUtils');
-const {changeSelectionState} = require('../../qwc2/MapStore2Components/actions/selection');
-const {setCurrentTask} = require('../../qwc2/QWC2Components/actions/task');
-const {LayerRole, addThemeSublayer, addLayerFeatures, removeLayer} = require('../../qwc2/QWC2Components/actions/layers');
-const Message = require("../../qwc2/MapStore2Components/components/I18N/Message");
-const ResizeableWindow = require('../../qwc2/QWC2Components/components/ResizeableWindow');
-const Spinner = require('../../qwc2/QWC2Components/components/Spinner');
-const Icon = require('../../qwc2/QWC2Components/components/Icon');
-const VectorLayerUtils = require('../../qwc2/QWC2Components/utils/VectorLayerUtils');
+const ConfigUtils = require('qwc2/utils/ConfigUtils');
+const {changeSelectionState} = require('qwc2/actions/selection');
+const {setCurrentTask} = require('qwc2/actions/task');
+const {LayerRole, addThemeSublayer, addLayerFeatures, removeLayer} = require('qwc2/actions/layers');
+const Message = require("qwc2/components/I18N/Message");
+const ResizeableWindow = require('qwc2/components/ResizeableWindow');
+const Spinner = require('qwc2/components/Spinner');
+const Icon = require('qwc2/components/Icon');
+const VectorLayerUtils = require('qwc2/utils/VectorLayerUtils');
 const themeLayerRestorer = require('../themeLayerRestorer');
 const OerebDocument = require('./OerebDocument');
 require('./style/PlotInfoTool.css');
@@ -98,9 +98,9 @@ class PlotInfoTool extends React.Component {
         let infoQueries = [...this.props.infoQueries, {
             key: "oereb",
             title: "ÖREB-Informationen",
-            query: "/oereb/xml/$egrid$",
-            responseTransform: this.oerebXmlToJson,
-            pdfQuery: "/oereb/pdf/$egrid$"
+            query: "/oereb/xml/CH315904177797",
+            pdfQuery: "/oereb/pdf/CH315904177797",
+            responseTransform: this.oerebXmlToJson
         }];
         return (
             <div role="body" className="plot-info-dialog-body">
@@ -257,6 +257,6 @@ module.exports = {
         }
     )(PlotInfoTool),
     reducers: {
-        selection: require('../../qwc2/MapStore2Components/reducers/selection')
+        selection: require('qwc2/reducers/selection')
     }
 };

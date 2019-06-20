@@ -9,10 +9,10 @@
 const axios = require('axios');
 const assign = require('object-assign');
 const isEmpty = require('lodash.isempty');
-const CoordinatesUtils = require('../qwc2/MapStore2Components/utils/CoordinatesUtils');
-const ConfigUtils = require('../qwc2/MapStore2Components/utils/ConfigUtils');
-const ProxyUtils = require('../qwc2/MapStore2Components/utils/ProxyUtils');
-const VectorLayerUtils = require('../qwc2/QWC2Components/utils/VectorLayerUtils');
+const CoordinatesUtils = require('qwc2/utils/CoordinatesUtils');
+const ConfigUtils = require('qwc2/utils/ConfigUtils');
+const ProxyUtils = require('qwc2/utils/ProxyUtils');
+const VectorLayerUtils = require('qwc2/utils/VectorLayerUtils');
 
 
 function buildErrMsg(err) {

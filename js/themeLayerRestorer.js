@@ -7,8 +7,8 @@
  */
 
 const axios = require('axios');
-const ConfigUtils = require('../qwc2/MapStore2Components/utils/ConfigUtils');
-const LayerUtils = require('../qwc2/QWC2Components/utils/LayerUtils');
+const ConfigUtils = require('qwc2/utils/ConfigUtils');
+const LayerUtils = require('qwc2/utils/LayerUtils');
 
 function themeLayerRestorer(missingLayers, theme, callback) {
     // Invoked for layers specified in the l url parameter which are missing in the specified theme

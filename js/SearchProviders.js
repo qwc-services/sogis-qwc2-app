@@ -60,10 +60,10 @@
 const axios = require('axios');
 const isEmpty = require('lodash.isempty');
 const assign = require('object-assign');
-const {addSearchResults, SearchResultType} = require("../qwc2/QWC2Components/actions/search");
-const CoordinatesUtils = require('../qwc2/MapStore2Components/utils/CoordinatesUtils');
-const ConfigUtils = require('../qwc2/MapStore2Components/utils/ConfigUtils');
-const ProxyUtils = require('../qwc2/MapStore2Components/utils/ProxyUtils');
+const {addSearchResults, SearchResultType} = require("qwc2/actions/search");
+const CoordinatesUtils = require('qwc2/utils/CoordinatesUtils');
+const ConfigUtils = require('qwc2/utils/ConfigUtils');
+const ProxyUtils = require('qwc2/utils/ProxyUtils');
 
 function coordinatesSearch(text, requestId, searchOptions, dispatch) {
     let displaycrs = searchOptions.displaycrs || "EPSG:4326";
