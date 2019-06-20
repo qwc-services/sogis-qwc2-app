@@ -50,7 +50,8 @@ module.exports = {
             BackgroundSwitcherPlugin: require('qwc2/plugins/BackgroundSwitcher'),
             TopBarPlugin: require('qwc2/plugins/TopBar')({
                  AppMenu: require("qwc2/components/AppMenu"),
-                 Search: require("qwc2/components/Search")(SearchProviders, searchProviderFactory),
+                 // Search: require("qwc2/components/Search")(SearchProviders, searchProviderFactory),
+                 Search: require("./plugins/SearchBox"),
                  Toolbar: require("qwc2/components/Toolbar"),
                  FullscreenSwitcher: require("qwc2/components/FullscreenSwitcher")
             }),

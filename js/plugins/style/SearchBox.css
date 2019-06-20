@@ -1,0 +1,59 @@
+div.SearchBox {
+    flex: 1 1 auto;
+    position: relative;
+    height: 2em;
+    max-width: 70ch;
+}
+
+div.SearchBox > div.searchbox-field {
+    width: 100%;
+    border: 1px solid @item_border@;
+    height: 2em;
+    display: flex;
+    align-items: center;
+}
+
+div.SearchBox > div.searchbox-field > span.icon {
+    flex: 0 0 2em;
+    text-align: center;
+}
+div.SearchBox > div.searchbox-field > input {
+    border: 0;
+    outline: 0;
+    flex: 1 1 auto;
+}
+
+div.SearchBox > div.searchbox-results {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    max-height: calc(100vh - 4em);
+    max-height: calc(var(--vh, 1vh) * 100 - 4em);
+    background-color: rgba(255,255, 255, 0.85);
+    border-left: 1px solid @item_border@;
+    border-right: 1px solid @item_border@;
+    border-bottom: 1px solid @item_border@;
+    box-shadow: 0px 2px 4px rgba(136, 136, 136, 0.5);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+div.SearchBox div.searchbox-results-section-title {
+    background-color: @container_bg@;
+    font-weight: bold;
+    padding: 0.5em;
+    cursor: pointer;
+}
+
+div.SearchBox div.searchbox-results-section-title > span.icon {
+    margin-right: 0.5em;
+}
+
+div.SearchBox div.searchbox-results-section-body > div {
+    padding: 0.25em 0.5em;
+}
+
+div.SearchBox div.searchbox-results-section-body > div:hover {
+    background-color: @button_hover_bg@;
+}

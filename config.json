@@ -2,7 +2,7 @@
   "permalinkServiceUrl": "/permalink/",
   "elevationServiceUrl": "/elevation/",
   "editServiceUrl": "/api/v1/data/",
-  "searchServiceUrl": "/api/v1/search/",
+  "searchServiceUrl": "/api/search/v2/",
   "authServiceUrl": "/auth/",
   "mapInfoService":  "/api/v1/mapinfo/",
   "featureReportService": "/api/v1/document",
