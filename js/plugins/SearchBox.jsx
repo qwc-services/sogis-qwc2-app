@@ -104,6 +104,28 @@ class SearchBox extends React.Component {
             </div>
         );
     }
+    renderLayers = () => {
+        let layers = (this.state.searchResults.results || []).filter(result => result.dataproduct);
+        if(isEmpty(layers)) {
+            return null;
+        }
+        return (
+            <div key="layers">
+                <div className="searchbox-results-section-title" onMouseDown={this.killEvent} onClick={ev => this.toggleSection("layers")}>
+                    <Icon icon={!!this.state.collapsedSections["layers"] ? "expand" : "collapse"} /><Message msgId="searchbox.layers" />
+                </div>
+                {!this.state.collapsedSections["layers"] ? (
+                    <div className="searchbox-results-section-body">
+                        {layers.map((entry ,idx) => (
+                            <div key={"p" + idx} onMouseDown={this.killEvent} onClick={ev => this.selectLayerResult(entry.dataproduct)}>
+                                {entry.dataproduct.display}
+                            </div>
+                        ))}
+                    </div>
+                ) : null}
+            </div>
+        );
+    }
     renderSearchResults = () => {
         if(!this.state.resultsVisible) {
             return false;
@@ -111,7 +133,8 @@ class SearchBox extends React.Component {
         let children = [
             this.renderRecentResults(),
             this.renderFilters(),
-            this.renderPlaces()
+            this.renderPlaces(),
+            this.renderLayers()
         ].filter(element => element);
         if(isEmpty(children)) {
             return null;
@@ -198,6 +221,15 @@ class SearchBox extends React.Component {
         })
     }
     selectFeatureResult = (result) => {
+        let text = this.state.searchResults.query_text;
+        if(!this.state.recentSearches.includes(text)) {
+            this.setState({recentSearches: [text, ...this.state.recentSearches.slice(0, 4)]});
+        }
+        if(this.searchBox) {
+            this.searchBox.blur();
+        }
+    }
+    selectLayerResult = (result) => {
         let text = this.state.searchResults.query_text;
         if(!this.state.recentSearches.includes(text)) {
             this.setState({recentSearches: [text, ...this.state.recentSearches.slice(0, 4)]});
