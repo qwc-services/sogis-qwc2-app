@@ -203,12 +203,8 @@ class SearchBox extends React.Component {
     startSearch = () => {
         const service = ConfigUtils.getConfigProp("searchServiceUrl").replace(/\/$/g, "") + '/';
         let searchText = this.state.searchText;
-        let searchFilter = '';
-        let pos = searchText.indexOf(":");
-        if(pos > 0) {
-            searchFilter = searchText.substr(0, pos);
-            searchText = searchText.substr(pos + 1);
-        }
+        // TODO: default_filter from topics.json + active layers with searchable true
+        let searchFilter = 'dataproduct,ch.so.agi.av.gebaeudeadressen.gebaeudeeingaenge,ch.so.agi.gemeindegrenzen.bezirk,ch.so.agi.gemeindegrenzen,ch.so.afu.fliessgewaesser.netz,ch.so.agi.av.grundstuecke.rechtskraeftig,ch.so.arp.richtplan.nationalstrassen_bestehend';
         let params = {
             searchtext: searchText.trim(),
             filter: searchFilter.trim(),
