@@ -91,9 +91,9 @@ class CCCInterface extends React.Component {
         }
     }
     loadInitialLayers = () => {
-        const searchService = ConfigUtils.getConfigProp("searchServiceUrl");
-        let url = searchService.replace(/\/$/g, "") + "/getlayers";
-        let params = {layers: CccAppConfig.initialLayers.join(",")};
+        const dataproductService = ConfigUtils.getConfigProp("dataproductServiceUrl");
+        let url = dataproductService.replace(/\/$/g, "") + "/weblayers";
+        let params = {filter: CccAppConfig.initialLayers.join(",")};
         axios.get(url, {params: params}).then(response => {
             let layers = [].concat(...Object.values(response.data));
             if(!isEmpty(layers)) {
