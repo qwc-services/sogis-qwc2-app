@@ -62,12 +62,19 @@ class SearchBox extends React.Component {
         if(isEmpty(this.state.searchResults.result_counts) || this.state.searchResults.result_counts.length < 2) {
             return null;
         }
+        const minResultsExanded = ConfigUtils.getConfigProp("minResultsExanded");
+        let resultCount = this.state.searchResults.result_counts.reduce((res, entry) => {
+                // dataproduct count is always null
+                return entry.count ? res + entry.count : res;
+            }, 0);
+        let initialCollapsed = resultCount < minResultsExanded;
+        let collapsed = (this.state.collapsedSections["filter"] === undefined) ? initialCollapsed : this.state.collapsedSections["filter"];
         return (
             <div key="filter">
                 <div className="searchbox-results-section-title" onMouseDown={this.killEvent} onClick={ev => this.toggleSection("filter")}>
-                    <Icon icon={!!this.state.collapsedSections["filter"] ? "expand" : "collapse"} /><Message msgId="searchbox.filter" />
+                    <Icon icon={collapsed ? "expand" : "collapse"} /><Message msgId="searchbox.filter" />
                 </div>
-                {!this.state.collapsedSections["filter"] ? (
+                {!collapsed ? (
                     <div className="searchbox-results-section-body">
                         {this.state.searchResults.result_counts.map((entry ,idx) => {
                             let value = entry.filterword + ": " + this.state.searchResults.query_text;
