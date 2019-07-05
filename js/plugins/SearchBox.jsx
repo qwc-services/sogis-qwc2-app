@@ -14,6 +14,7 @@ const axios = require('axios');
 const Icon = require('qwc2/components/Icon');
 const Message = require("qwc2/components/I18N/Message");
 const ConfigUtils = require("qwc2/utils/ConfigUtils");
+const LocaleUtils = require('qwc2/utils/LocaleUtils');
 require('./style/SearchBox.css');
 
 class SearchBox extends React.Component {
@@ -29,6 +30,9 @@ class SearchBox extends React.Component {
         searchResults: {},
         resultsVisible: false,
         collapsedSections: {}
+    }
+    static contextTypes = {
+        messages: PropTypes.object
     }
     constructor(props) {
         super(props);
@@ -58,15 +62,11 @@ class SearchBox extends React.Component {
             </div>
         );
     }
-    renderFilters = () => {
+    renderFilters = (resultCount) => {
         if(isEmpty(this.state.searchResults.result_counts) || this.state.searchResults.result_counts.length < 2) {
             return null;
         }
         const minResultsExanded = ConfigUtils.getConfigProp("minResultsExanded");
-        let resultCount = this.state.searchResults.result_counts.reduce((res, entry) => {
-                // dataproduct count is always null
-                return entry.count ? res + entry.count : res;
-            }, 0);
         let initialCollapsed = resultCount < minResultsExanded;
         let collapsed = (this.state.collapsedSections["filter"] === undefined) ? initialCollapsed : this.state.collapsedSections["filter"];
         return (
@@ -89,11 +89,12 @@ class SearchBox extends React.Component {
             </div>
         );
     }
-    renderPlaces = () => {
+    renderPlaces = (resultCount) => {
         let features = (this.state.searchResults.results || []).filter(result => result.feature);
         if(isEmpty(features)) {
             return null;
         }
+        let additionalResults = resultCount - features.length;
         return (
             <div key="places">
                 <div className="searchbox-results-section-title" onMouseDown={this.killEvent} onClick={ev => this.toggleSection("places")}>
@@ -102,10 +103,15 @@ class SearchBox extends React.Component {
                 {!this.state.collapsedSections["places"] ? (
                     <div className="searchbox-results-section-body">
                         {features.map((entry ,idx) => (
-                            <div key={"p" + idx} onMouseDown={this.killEvent} onClick={ev => this.selectFeatureResult(entry.feature)}>
+                            <div key={"p" + idx} className="result" onMouseDown={this.killEvent} onClick={ev => this.selectFeatureResult(entry.feature)}>
                                 {entry.feature.display}
                             </div>
                         ))}
+                        {additionalResults > 0 && (
+                            <div className="more-results">
+                                {additionalResults} <Message msgId="searchbox.more" />
+                            </div>
+                        )}
                     </div>
                 ) : null}
             </div>
@@ -137,10 +143,16 @@ class SearchBox extends React.Component {
         if(!this.state.resultsVisible) {
             return false;
         }
+        let resultCount = this.state.searchResults.result_counts ?
+            this.state.searchResults.result_counts.reduce((res, entry) => {
+                // dataproduct count is always null
+                return entry.count ? res + entry.count : res;
+            }, 0)
+        : 0;
         let children = [
             this.renderRecentResults(),
-            this.renderFilters(),
-            this.renderPlaces(),
+            this.renderFilters(resultCount),
+            this.renderPlaces(resultCount),
             this.renderLayers()
         ].filter(element => element);
         if(isEmpty(children)) {
@@ -166,19 +178,15 @@ class SearchBox extends React.Component {
         this.setState({collapsedSections: newCollapsedSections});
     }
     render() {
-        let placeholder = "Search...";
+        let placeholder = LocaleUtils.getMessageById(this.context.messages, "searchbox.placeholder");
         return (
             <div className="SearchBox">
                 <div className="searchbox-field">
                     <Icon icon="search" />
-                    <Message msgId="searchbox.placeholder">
-                        {text => (
-                            <input type="text" ref={el => this.searchBox = el}
-                                placeholder={placeholder} value={this.state.searchText}
-                                 onChange={ev => this.searchTextChanged(ev.target.value)} onKeyDown={this.onKeyDown}
-                                onFocus={this.onFocus} onBlur={this.onBlur} />
-                        )}
-                    </Message>
+                        <input type="text" ref={el => this.searchBox = el}
+                            placeholder={placeholder} value={this.state.searchText}
+                            onChange={ev => this.searchTextChanged(ev.target.value)} onKeyDown={this.onKeyDown}
+                            onFocus={this.onFocus} onBlur={this.onBlur} />
                 </div>
                 {this.renderSearchResults()}
             </div>

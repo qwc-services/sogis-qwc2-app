@@ -54,6 +54,12 @@ div.SearchBox div.searchbox-results-section-body > div {
     padding: 0.25em 0.5em;
 }
 
-div.SearchBox div.searchbox-results-section-body > div:hover {
+div.SearchBox div.searchbox-results-section-body > div.result:hover {
     background-color: @button_hover_bg@;
 }
+
+div.SearchBox div.searchbox-results-section-body > div.more-results {
+    color: grey;
+    font-style: italic;
+}
+

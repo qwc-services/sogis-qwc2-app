@@ -28,7 +28,13 @@
         "oereb.responsibleauthority",
         "oereb.fundations",
         "oereb.generalinfo",
-        "plotinfotool.loading"
+        "plotinfotool.loading",
+        "searchbox.placeholder",
+        "searchbox.recent",
+        "searchbox.filter",
+        "searchbox.places",
+        "searchbox.layers",
+        "searchbox.more"
     ],
     "overrides": [
         "appmenu.items.LayerTree",
