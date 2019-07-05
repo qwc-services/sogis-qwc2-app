@@ -143,6 +143,7 @@ class SearchBox extends React.Component {
         if(!this.state.resultsVisible) {
             return false;
         }
+        console.log(this.state.searchResults);
         let resultCount = this.state.searchResults.result_counts ?
             this.state.searchResults.result_counts.reduce((res, entry) => {
                 // dataproduct count is always null
@@ -231,7 +232,7 @@ class SearchBox extends React.Component {
             console.warn("Search failed: " + e);
         })
     }
-    selectFeatureResult = (result) => {
+    updateRecentSearches = (result) => {
         let text = this.state.searchResults.query_text;
         if(!this.state.recentSearches.includes(text)) {
             this.setState({recentSearches: [text, ...this.state.recentSearches.slice(0, 4)]});
@@ -240,14 +241,24 @@ class SearchBox extends React.Component {
             this.searchBox.blur();
         }
     }
+    selectFeatureResult = (result) => {
+        console.log(result);
+        this.updateRecentSearches(result);
+        // URL example: /api/data/v1/ch.so.afu.fliessgewaesser.netz/?filter=[["gewissnr","=",1179]]
+        let filter = `[["${result.id_field_name}","=",${result.feature_id}]]`;
+        const DATA_URL = ConfigUtils.getConfigProp("editServiceUrl").replace(/\/$/g, "");
+        axios.get(DATA_URL + "/" + result.dataproduct_id + "/?filter=" + filter)
+        .then(response => this.showFeatureGeometry(result, response.data));
+    }
+    showFeatureGeometry = (item, featureCollection) => {
+        console.log(featureCollection);
+    }
     selectLayerResult = (result) => {
-        let text = this.state.searchResults.query_text;
-        if(!this.state.recentSearches.includes(text)) {
-            this.setState({recentSearches: [text, ...this.state.recentSearches.slice(0, 4)]});
-        }
-        if(this.searchBox) {
-            this.searchBox.blur();
-        }
+        console.log(result);
+        this.updateRecentSearches(result);
+        // this.props.addThemeSublayer(item.layer);
+        // Show layer tree to notify user that something has happened
+        // this.props.setCurrentTask('LayerTree');
     }
 };
 
