@@ -217,6 +217,14 @@
     },
     "plotinfotool": {
       "loading": "Loading data..."
+    },
+    "searchbox": {
+      "placeholder": "Search...",
+      "recent": "Recent searches",
+      "filter": "Refine search",
+      "places": "Places",
+      "layers": "Maps",
+      "more": "more results"
     }
   }
 }
