@@ -2,6 +2,7 @@
   "permalinkServiceUrl": "http://localhost:5001/",
   "elevationServiceUrl": "http://localhost:5002/",
   "editServiceUrl": "http://localhost:5012/",
+  "dataproductServiceUrl": "http://localhost:5023/",
   "searchServiceUrl": "http://localhost:5011/",
   "authServiceUrl": "http://localhost:5017/",
   "mapInfoService":  "http://localhost:5016/",
