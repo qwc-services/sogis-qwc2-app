@@ -245,7 +245,12 @@ class SearchBox extends React.Component {
         console.log(result);
         this.updateRecentSearches(result);
         // URL example: /api/data/v1/ch.so.afu.fliessgewaesser.netz/?filter=[["gewissnr","=",1179]]
-        let filter = `[["${result.id_field_name}","=",${result.feature_id}]]`;
+        let filter = `[["${result.id_field_name}","=",`;
+        if (typeof(result.feature_id) === 'string') {
+            filter += `"${result.feature_id}"]]`;
+        } else {
+            filter += `${result.feature_id}]]`;
+        }
         const DATA_URL = ConfigUtils.getConfigProp("editServiceUrl").replace(/\/$/g, "");
         axios.get(DATA_URL + "/" + result.dataproduct_id + "/?filter=" + filter)
         .then(response => this.showFeatureGeometry(result, response.data));
