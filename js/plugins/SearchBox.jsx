@@ -9,6 +9,7 @@
 const React = require('react');
 const PropTypes = require('prop-types');
 const {connect} = require('react-redux');
+const {createSelector} = require('reselect');
 const isEmpty = require('lodash.isempty');
 const axios = require('axios');
 const {setActiveLayerInfo} = require('qwc2/actions/layerinfo');
@@ -18,6 +19,7 @@ const {setCurrentTask} = require('qwc2/actions/task');
 const Icon = require('qwc2/components/Icon');
 const Message = require("qwc2/components/I18N/Message");
 const ConfigUtils = require("qwc2/utils/ConfigUtils");
+const LayerUtils = require('qwc2/utils/LayerUtils');
 const LocaleUtils = require('qwc2/utils/LocaleUtils');
 const CoordinatesUtils = require('qwc2/utils/CoordinatesUtils');
 const MapUtils = require('qwc2/utils/MapUtils');
@@ -27,6 +29,7 @@ class SearchBox extends React.Component {
     static propTypes = {
         map: PropTypes.object,
         layers: PropTypes.array,
+        searchFilter: PropTypes.string,
         resultLimit: PropTypes.number,
         addThemeSublayer: PropTypes.func,
         addLayerFeatures: PropTypes.func,
@@ -236,11 +239,9 @@ class SearchBox extends React.Component {
     startSearch = () => {
         const service = ConfigUtils.getConfigProp("searchServiceUrl").replace(/\/$/g, "") + '/';
         let searchText = this.state.searchText;
-        // TODO: default_filter from topics.json + active layers with searchable true
-        let searchFilter = 'dataproduct,ch.so.agi.av.gebaeudeadressen.gebaeudeeingaenge,ch.so.agi.gemeindegrenzen.bezirk,ch.so.agi.gemeindegrenzen,ch.so.afu.fliessgewaesser.netz,ch.so.agi.av.grundstuecke.rechtskraeftig,ch.so.arp.richtplan.nationalstrassen_bestehend';
         let params = {
             searchtext: searchText.trim(),
-            filter: searchFilter.trim(),
+            filter: this.props.searchFilter,
             limit: this.props.resultLimit
         };
         axios.get(service, {params}).then(response => {
@@ -318,9 +319,33 @@ class SearchBox extends React.Component {
     }
 };
 
-module.exports = connect(state => ({
-    map: state.map
-}), {
+const searchFilterSelector = createSelector([state => state.theme, state => state.layers.flat], (theme, layers) => {
+    let searchFilter = [];
+    // default filter from themes.json
+    if(theme && theme.current) {
+        let provider = theme.current.searchProviders.find(entry => entry.provider === "solr");
+        if(provider) {
+            searchFilter = provider.default;
+        }
+    }
+    // searchterms of active layers
+    for(let layer of layers) {
+        if(layer.role === LayerRole.THEME) {
+            for(let entry of LayerUtils.explodeLayers([layer])) {
+                searchFilter = searchFilter.concat(entry.sublayer.searchterms || []);
+            }
+        }
+    }
+    return [...new Set(searchFilter)].join(",");
+});
+
+module.exports = connect(
+    createSelector([state => state, searchFilterSelector], (state, searchFilter) => ({
+        map: state.map,
+        layers: state.layers.flat,
+        searchFilter: searchFilter
+    })
+), {
     addThemeSublayer: addThemeSublayer,
     addLayerFeatures: addLayerFeatures,
     removeLayer: removeLayer,
