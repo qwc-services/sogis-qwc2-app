@@ -11,6 +11,7 @@ const PropTypes = require('prop-types');
 const {connect} = require('react-redux');
 const isEmpty = require('lodash.isempty');
 const axios = require('axios');
+const {setActiveLayerInfo} = require('qwc2/actions/layerinfo');
 const {zoomToPoint} = require('qwc2/actions/map');
 const {LayerRole, addLayerFeatures, addThemeSublayer, removeLayer} = require('qwc2/actions/layers');
 const {setCurrentTask} = require('qwc2/actions/task');
@@ -25,10 +26,12 @@ require('./style/SearchBox.css');
 class SearchBox extends React.Component {
     static propTypes = {
         map: PropTypes.object,
+        layers: PropTypes.array,
         resultLimit: PropTypes.number,
         addThemeSublayer: PropTypes.func,
         addLayerFeatures: PropTypes.func,
         removeLayer: PropTypes.func,
+        setActiveLayerInfo: PropTypes.func,
         setCurrentTask: PropTypes.func,
         zoomToPoint: PropTypes.func,
         searchOptions: PropTypes.object
@@ -91,8 +94,8 @@ class SearchBox extends React.Component {
                         {this.state.searchResults.result_counts.map((entry ,idx) => {
                             let value = entry.filterword + ": " + this.state.searchResults.query_text;
                             return (
-                                <div key={"f" + idx} onMouseDown={this.killEvent} onClick={ev => this.searchTextChanged(value)}>
-                                    {value}
+                                <div key={"f" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => this.searchTextChanged(value)}>
+                                    <span className="searchbox-result-label">{value}</span>
                                 </div>
                             );
                         })}
@@ -115,12 +118,12 @@ class SearchBox extends React.Component {
                 {!this.state.collapsedSections["places"] ? (
                     <div className="searchbox-results-section-body">
                         {features.map((entry ,idx) => (
-                            <div key={"p" + idx} className="result" onMouseDown={this.killEvent} onClick={ev => this.selectFeatureResult(entry.feature)}>
-                                {entry.feature.display}
+                            <div key={"p" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => this.selectFeatureResult(entry.feature)}>
+                                <span className="searchbox-result-label">{entry.feature.display}</span>
                             </div>
                         ))}
                         {additionalResults > 0 && (
-                            <div className="more-results">
+                            <div className="searchbox-more-results">
                                 {additionalResults} <Message msgId="searchbox.more" />
                             </div>
                         )}
@@ -142,8 +145,9 @@ class SearchBox extends React.Component {
                 {!this.state.collapsedSections["layers"] ? (
                     <div className="searchbox-results-section-body">
                         {layers.map((entry ,idx) => (
-                            <div key={"p" + idx} onMouseDown={this.killEvent} onClick={ev => this.selectLayerResult(entry.dataproduct)}>
-                                {entry.dataproduct.display}
+                            <div key={"p" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => this.selectLayerResult(entry.dataproduct)}>
+                                <span className="searchbox-result-label">{entry.dataproduct.display}</span>
+                                {entry.dataproduct.dset_info ? (<Icon icon="info-sign" onClick={ev => {this.killEvent(ev); this.selectLayerResult(entry.dataproduct, true); }} />) : null}
                             </div>
                         ))}
                     </div>
@@ -284,19 +288,32 @@ class SearchBox extends React.Component {
         this.props.addLayerFeatures(layer, data.features, true);
 
     }
-    selectLayerResult = (result) => {
+    selectLayerResult = (result, info=false) => {
         this.updateRecentSearches(result);
         const DATAPRODUCT_URL = ConfigUtils.getConfigProp("dataproductServiceUrl").replace(/\/$/g, "");
         let params = {
             filter: result.dataproduct_id
         };
-        axios.get(DATAPRODUCT_URL + "/weblayers", {params}).then(response => this.addLayer(result, response.data));
+        axios.get(DATAPRODUCT_URL + "/weblayers", {params}).then(response => {
+            if(info) {
+                this.showLayerInfo(result, response.data);
+            } else {
+                this.addLayer(result, response.data);
+            }
+        });
     }
     addLayer = (item, data) => {
         if(!isEmpty(data[item.dataproduct_id])) {
             this.props.addThemeSublayer({sublayers: data[item.dataproduct_id]});
             // Show layer tree to notify user that something has happened
             this.props.setCurrentTask('LayerTree');
+        }
+    }
+    showLayerInfo = (item, data) => {
+        let layer = this.props.layers.find(layer => layer.role === LayerRole.THEME);
+        if(layer && !isEmpty(data[item.dataproduct_id])) {
+            let sublayer = data[item.dataproduct_id][0];
+            this.props.setActiveLayerInfo(layer, sublayer);
         }
     }
 };
@@ -307,6 +324,7 @@ module.exports = connect(state => ({
     addThemeSublayer: addThemeSublayer,
     addLayerFeatures: addLayerFeatures,
     removeLayer: removeLayer,
+    setActiveLayerInfo: setActiveLayerInfo,
     setCurrentTask: setCurrentTask,
     zoomToPoint: zoomToPoint
 })(SearchBox);
