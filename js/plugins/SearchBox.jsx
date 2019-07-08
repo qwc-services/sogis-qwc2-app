@@ -24,11 +24,13 @@ const LayerUtils = require('qwc2/utils/LayerUtils');
 const LocaleUtils = require('qwc2/utils/LocaleUtils');
 const CoordinatesUtils = require('qwc2/utils/CoordinatesUtils');
 const MapUtils = require('qwc2/utils/MapUtils');
+const {UrlParams} = require("qwc2/utils/PermaLinkUtils");
 require('./style/SearchBox.css');
 
 class SearchBox extends React.Component {
     static propTypes = {
         map: PropTypes.object,
+        theme: PropTypes.object,
         layers: PropTypes.array,
         searchFilter: PropTypes.string,
         displaycrs: PropTypes.string,
@@ -60,6 +62,33 @@ class SearchBox extends React.Component {
         this.searchBox = null;
         this.searchTimeout = null;
         this.preventBlur = false;
+    }
+    componentWillReceiveProps = (newProps) => {
+        // Restore highlight from URL as soon as theme is loaded
+        if(newProps.theme && !this.props.theme) {
+            let hc = UrlParams.getParam('hc');
+            let hp = UrlParams.getParam('hp');
+            let hf = UrlParams.getParam('hf');
+            if(hp && hf) {
+                const DATA_URL = ConfigUtils.getConfigProp("editServiceUrl").replace(/\/$/g, "");
+                axios.get(DATA_URL + "/" + hp + "/?filter=" + hf)
+                .then(response => this.showFeatureGeometry(response.data));
+            } else if(hc) {
+                let p = [];
+                try {
+                    p = hc.split(",").map(x => parseFloat(x.trim())).slice(0, 2);
+                } catch(e) {};
+                if(p.length === 2) {
+                    this.selectCoordinateResult({
+                        display: p[0] + ", " + p[1] + " (EPSG:2056)",
+                        x: p[0],
+                        y: p[1],
+                        crs: "EPSG:2056"
+                    })
+                }
+            }
+            UrlParams.updateParams({hp: undefined, hf: undefined, hc: undefined});
+        }
     }
     renderRecentResults = () => {
         let recentSearches = this.state.recentSearches.filter(entry => entry.toLowerCase().includes(this.state.searchText.toLowerCase()));
@@ -339,7 +368,10 @@ class SearchBox extends React.Component {
             }
         }
     }
-    updateRecentSearches = (result) => {
+    updateRecentSearches = () => {
+        if(!this.state.searchResults || !this.state.searchResults.query_text) {
+            return;
+        }
         let text = this.state.searchResults.query_text;
         if(!this.state.recentSearches.includes(text)) {
             this.setState({recentSearches: [text, ...this.state.recentSearches.slice(0, 4)]});
@@ -349,6 +381,7 @@ class SearchBox extends React.Component {
         }
     }
     selectCoordinateResult = (result) => {
+        this.updateRecentSearches();
         this.props.zoomToPoint([result.x, result.y], this.props.searchOptions.minScale, result.crs);
         let feature = {
             geometry: {type: 'Point', coordinates: [result.x, result.y]},
@@ -361,9 +394,11 @@ class SearchBox extends React.Component {
             role: LayerRole.SELECTION
         };
         this.props.addLayerFeatures(layer, [feature], true);
+        let c = CoordinatesUtils.reproject([result.x, result.y], result.crs, "EPSG:2056");
+        UrlParams.updateParams({hp: undefined, hf: undefined, hc: c[0].toFixed(0) + "," + c[1].toFixed(0)});
     }
     selectFeatureResult = (result) => {
-        this.updateRecentSearches(result);
+        this.updateRecentSearches();
         // URL example: /api/data/v1/ch.so.afu.fliessgewaesser.netz/?filter=[["gewissnr","=",1179]]
         let filter = `[["${result.id_field_name}","=",`;
         if (typeof(result.feature_id) === 'string') {
@@ -373,9 +408,10 @@ class SearchBox extends React.Component {
         }
         const DATA_URL = ConfigUtils.getConfigProp("editServiceUrl").replace(/\/$/g, "");
         axios.get(DATA_URL + "/" + result.dataproduct_id + "/?filter=" + filter)
-        .then(response => this.showFeatureGeometry(result, response.data));
+        .then(response => this.showFeatureGeometry(response.data));
+        UrlParams.updateParams({hp: result.dataproduct_id, hf: filter, hc: undefined});
     }
-    showFeatureGeometry = (item, data) => {
+    showFeatureGeometry = ( data) => {
         // Zoom to bbox
         let maxZoom = MapUtils.computeZoom(this.props.map.scales, this.props.searchOptions.minScale);
         let bbox = CoordinatesUtils.reprojectBbox(data.bbox, data.crs.properties.name, this.props.map.projection);
@@ -393,7 +429,7 @@ class SearchBox extends React.Component {
 
     }
     selectLayerResult = (result, info=false) => {
-        this.updateRecentSearches(result);
+        this.updateRecentSearches();
         const DATAPRODUCT_URL = ConfigUtils.getConfigProp("dataproductServiceUrl").replace(/\/$/g, "");
         let params = {
             filter: result.dataproduct_id
@@ -405,6 +441,7 @@ class SearchBox extends React.Component {
                 this.addLayer(result, response.data);
             }
         });
+        UrlParams.updateParams({hp: undefined, hf: undefined, hc: undefined});
     }
     addLayer = (item, data) => {
         if(!isEmpty(data[item.dataproduct_id])) {
@@ -446,6 +483,7 @@ module.exports = connect(
     createSelector([state => state, searchFilterSelector, displayCrsSelector], (state, searchFilter, displaycrs) => ({
         map: state.map,
         layers: state.layers.flat,
+        theme: state.theme.current,
         searchFilter: searchFilter,
         displaycrs: displaycrs
     })
