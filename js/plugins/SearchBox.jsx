@@ -113,6 +113,7 @@ class SearchBox extends React.Component {
             return null;
         }
         let additionalResults = resultCount - features.length;
+        let iconPath = ConfigUtils.getConfigProp("assetsPath").replace(/\/$/g, "") + '/img/search/';
         return (
             <div key="places">
                 <div className="searchbox-results-section-title" onMouseDown={this.killEvent} onClick={ev => this.toggleSection("places")}>
@@ -122,6 +123,7 @@ class SearchBox extends React.Component {
                     <div className="searchbox-results-section-body">
                         {features.map((entry ,idx) => (
                             <div key={"p" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => this.selectFeatureResult(entry.feature)}>
+                                <img src={iconPath + entry.feature.dataproduct_id + ".svg"} onError={ev => { ev.target.src = iconPath + "feature.svg";}} />
                                 <span className="searchbox-result-label">{entry.feature.display}</span>
                             </div>
                         ))}
@@ -140,6 +142,7 @@ class SearchBox extends React.Component {
         if(isEmpty(layers)) {
             return null;
         }
+        let iconPath = ConfigUtils.getConfigProp("assetsPath").replace(/\/$/g, "") + '/img/search/';
         return (
             <div key="layers">
                 <div className="searchbox-results-section-title" onMouseDown={this.killEvent} onClick={ev => this.toggleSection("layers")}>
@@ -149,6 +152,7 @@ class SearchBox extends React.Component {
                     <div className="searchbox-results-section-body">
                         {layers.map((entry ,idx) => (
                             <div key={"p" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => this.selectLayerResult(entry.dataproduct)}>
+                                <img src={iconPath + entry.dataproduct.dataproduct_id + ".svg"} onError={ev => { ev.target.src = iconPath + "dataproduct.svg";}} />
                                 <span className="searchbox-result-label">{entry.dataproduct.display}</span>
                                 {entry.dataproduct.dset_info ? (<Icon icon="info-sign" onClick={ev => {this.killEvent(ev); this.selectLayerResult(entry.dataproduct, true); }} />) : null}
                             </div>
