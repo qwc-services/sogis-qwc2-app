@@ -50,33 +50,37 @@ div.SearchBox div.searchbox-results-section-title > span.icon {
     margin-right: 0.5em;
 }
 
-div.SearchBox div.searchbox-results-section-body > div {
+div.searchbox-result {
     padding: 0.25em 0.5em;
     display: flex;
     align-items: center;
 }
 
-div.SearchBox div.searchbox-results-section-body > div > img {
-    flex: 0 0 0.25em;
-    margin-right: 0.25em;
-}
-
-div.SearchBox div.searchbox-results-section-body > div.searchbox-result:hover {
+div.searchbox-result:hover {
     background-color: @button_hover_bg@;
 }
 
-div.SearchBox div.searchbox-results-section-body > div.searchbox-more-results {
+div.searchbox-result > img {
+    flex: 0 0 0.25em;
+}
+
+div.searchbox-result > span.icon {
+    flex: 0 0 1em;
+}
+
+span.searchbox-result-label {
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 0.25em;
+}
+
+div.searchbox-more-results {
     color: grey;
     font-style: italic;
 }
 
-div.SearchBox div.searchbox-results-section-body > div > span.searchbox-result-label {
-    flex: 1 1 auto;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-div.SearchBox div.searchbox-results-section-body > div > span.icon {
-    flex: 0 0 1em;
-    margin-left: 0.25em;
+div.searchbox-result-group {
+    margin-left: 1em;
+    border-left: 1px solid @button_hover_bg@;
 }

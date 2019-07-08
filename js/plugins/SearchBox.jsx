@@ -49,7 +49,8 @@ class SearchBox extends React.Component {
         recentSearches: [],
         searchResults: {},
         resultsVisible: false,
-        collapsedSections: {}
+        collapsedSections: {},
+        expandedLayerGroup: null
     }
     static contextTypes = {
         messages: PropTypes.object
@@ -166,7 +167,6 @@ class SearchBox extends React.Component {
         if(isEmpty(layers)) {
             return null;
         }
-        let iconPath = ConfigUtils.getConfigProp("assetsPath").replace(/\/$/g, "") + '/img/search/';
         return (
             <div key="layers">
                 <div className="searchbox-results-section-title" onMouseDown={this.killEvent} onClick={ev => this.toggleSection("layers")}>
@@ -174,17 +174,38 @@ class SearchBox extends React.Component {
                 </div>
                 {!this.state.collapsedSections["layers"] ? (
                     <div className="searchbox-results-section-body">
-                        {layers.map((entry ,idx) => (
-                            <div key={"p" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => this.selectLayerResult(entry.dataproduct)}>
-                                <img src={iconPath + entry.dataproduct.dataproduct_id + ".svg"} onError={ev => { ev.target.src = iconPath + "dataproduct.svg";}} />
-                                <span className="searchbox-result-label">{entry.dataproduct.display}</span>
-                                {entry.dataproduct.dset_info ? (<Icon icon="info-sign" onClick={ev => {this.killEvent(ev); this.selectLayerResult(entry.dataproduct, true); }} />) : null}
-                            </div>
-                        ))}
+                        {layers.map((entry ,idx) => !isEmpty(entry.dataproduct.sublayers) ? this.renderLayerGroup(entry.dataproduct, idx) : this.renderLayer(entry.dataproduct, idx))}
                     </div>
                 ) : null}
             </div>
         );
+    }
+    renderLayer = (dataproduct, idx) => {
+        let iconPath = ConfigUtils.getConfigProp("assetsPath").replace(/\/$/g, "") + '/img/search/';
+        return (
+            <div key={"p" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => this.selectLayerResult(dataproduct)}>
+                <img src={iconPath + dataproduct.dataproduct_id + ".svg"} onError={ev => { ev.target.src = iconPath + "dataproduct.svg";}} />
+                <span className="searchbox-result-label">{dataproduct.display}</span>
+                {dataproduct.dset_info ? (<Icon icon="info-sign" onClick={ev => {this.killEvent(ev); this.selectLayerResult(dataproduct, true); }} />) : null}
+            </div>
+        );
+    }
+    renderLayerGroup = (dataproduct, idx) => {
+        return [(
+            <div key={"g" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => this.selectLayerResult(dataproduct)}>
+                <Icon icon={this.state.expandedLayerGroup === dataproduct.dataproduct_id ? "minus" : "plus"} onClick={ev => this.toggleLayerGroup(ev, dataproduct.dataproduct_id)} />
+                <span className="searchbox-result-label">{dataproduct.display}</span>
+                {dataproduct.dset_info ? (<Icon icon="info-sign" onClick={ev => {this.killEvent(ev); this.selectLayerResult(dataproduct, true); }} />) : null}
+            </div>
+        ),
+        this.state.expandedLayerGroup === dataproduct.dataproduct_id ? (
+            <div className="searchbox-result-group">{dataproduct.sublayers.map(this.renderLayer)}</div>
+        ) : null
+    ];
+    }
+    toggleLayerGroup = (ev, dataproduct_id) => {
+        this.killEvent(ev);
+        this.setState({expandedLayerGroup: this.state.expandedLayerGroup === dataproduct_id ? null : dataproduct_id});
     }
     renderSearchResults = () => {
         if(!this.state.resultsVisible) {
@@ -257,7 +278,7 @@ class SearchBox extends React.Component {
         if(this.preventBlur && this.searchBox) {
             this.searchBox.focus();
         } else {
-            this.setState({resultsVisible: false, collapsedSections: {}});
+            this.setState({resultsVisible: false, collapsedSections: {}, expandedLayerGroup: null});
         }
     }
     onKeyDown = (ev) => {
