@@ -219,6 +219,7 @@
       "loading": "Daten werden geladen..."
     },
     "searchbox": {
+      "coordinates": "Koordinaten",
       "placeholder": "Suchen + Finden: Orte, Namen, Karten, Koordinaten, …",
       "recent": "Zuletzt gesucht",
       "filter": "Suche verfeinern",

@@ -18,6 +18,7 @@ const {LayerRole, addLayerFeatures, addThemeSublayer, removeLayer} = require('qw
 const {setCurrentTask} = require('qwc2/actions/task');
 const Icon = require('qwc2/components/Icon');
 const Message = require("qwc2/components/I18N/Message");
+const displayCrsSelector = require('qwc2/selectors/displaycrs');
 const ConfigUtils = require("qwc2/utils/ConfigUtils");
 const LayerUtils = require('qwc2/utils/LayerUtils');
 const LocaleUtils = require('qwc2/utils/LocaleUtils');
@@ -30,6 +31,7 @@ class SearchBox extends React.Component {
         map: PropTypes.object,
         layers: PropTypes.array,
         searchFilter: PropTypes.string,
+        displaycrs: PropTypes.string,
         resultLimit: PropTypes.number,
         addThemeSublayer: PropTypes.func,
         addLayerFeatures: PropTypes.func,
@@ -107,6 +109,28 @@ class SearchBox extends React.Component {
             </div>
         );
     }
+    renderCoordinates = () => {
+        let coordinates = (this.state.searchResults.results || []).filter(result => result.coordinate);
+        if(isEmpty(coordinates)) {
+            return null;
+        }
+        return (
+            <div key="coordinates">
+                <div className="searchbox-results-section-title" onMouseDown={this.killEvent} onClick={ev => this.toggleSection("coordinates")}>
+                    <Icon icon={!!this.state.collapsedSections["coordinates"] ? "expand" : "collapse"} /><Message msgId="searchbox.coordinates" />
+                </div>
+                {!this.state.collapsedSections["coordinates"] ? (
+                    <div className="searchbox-results-section-body">
+                        {coordinates.map((entry ,idx) => (
+                            <div key={"c" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => this.selectCoordinateResult(entry.coordinate)}>
+                                <span className="searchbox-result-label">{entry.coordinate.display}</span>
+                            </div>
+                        ))}
+                    </div>
+                ) : null}
+            </div>
+        );
+    }
     renderPlaces = (resultCount) => {
         let features = (this.state.searchResults.results || []).filter(result => result.feature);
         if(isEmpty(features)) {
@@ -176,6 +200,7 @@ class SearchBox extends React.Component {
         let children = [
             this.renderRecentResults(),
             this.renderFilters(resultCount),
+            this.renderCoordinates(),
             this.renderPlaces(resultCount),
             this.renderLayers()
         ].filter(element => element);
@@ -249,10 +274,49 @@ class SearchBox extends React.Component {
             limit: this.props.resultLimit
         };
         axios.get(service, {params}).then(response => {
-            this.setState({searchResults: {...response.data, query_text: searchText}});
+            let searchResults = {...response.data, query_text: searchText};
+            this.addCoordinateResults(searchText, searchResults.results);
+            this.setState({searchResults: searchResults});
         }).catch(e => {
             console.warn("Search failed: " + e);
         })
+    }
+    addCoordinateResults = (text, results) => {
+        let displaycrs = this.props.displaycrs || "EPSG:4326";
+        let matches = text.replace(/[^\d.-\s]/g, '').match(/^\s*([+-]?\d+\.?\d*)[,\s]\s*([+-]?\d+\.?\d*)\s*$/);
+        if(matches && matches.length >= 3) {
+            let x = parseFloat(matches[1]);
+            let y = parseFloat(matches[2]);
+            if(displaycrs !== "EPSG:4326") {
+                let coord = CoordinatesUtils.reproject([x, y], displaycrs, "EPSG:4326");
+                results.push({"coordinate": {
+                    display: x + ", " + y + " (" + displaycrs + ")",
+                    x: coord[0],
+                    y: coord[1],
+                    crs: "EPSG:4326"
+                }});
+            }
+            if(x >= -180 && x <= 180 && y >= -90 && y <= 90) {
+                let title = Math.abs(x) + (x >= 0 ? "°E" : "°W") + ", "
+                          + Math.abs(y) + (y >= 0 ? "°N" : "°S");
+                results.push({"coordinate": {
+                    display: title,
+                    x: x,
+                    y: y,
+                    crs: "EPSG:4326"
+                }});
+            }
+            if(x >= -90 && x <= 90 && y >= -180 && y <= 180 && x != y) {
+                let title = Math.abs(y) + (y >= 0 ? "°E" : "°W") + ", "
+                          + Math.abs(x) + (x >= 0 ? "°N" : "°S");
+                results.push({"coordinate": {
+                    display: title,
+                    x: y,
+                    y: x,
+                    crs: "EPSG:4326"
+                }});
+            }
+        }
     }
     updateRecentSearches = (result) => {
         let text = this.state.searchResults.query_text;
@@ -262,6 +326,20 @@ class SearchBox extends React.Component {
         if(this.searchBox) {
             this.searchBox.blur();
         }
+    }
+    selectCoordinateResult = (result) => {
+        this.props.zoomToPoint([result.x, result.y], this.props.searchOptions.minScale, result.crs);
+        let feature = {
+            geometry: {type: 'Point', coordinates: [result.x, result.y]},
+            styleName: 'marker',
+            crs: result.crs,
+            properties: { label: result.display }
+        }
+        let layer = {
+            id: "searchselection",
+            role: LayerRole.SELECTION
+        };
+        this.props.addLayerFeatures(layer, [feature], true);
     }
     selectFeatureResult = (result) => {
         this.updateRecentSearches(result);
@@ -344,10 +422,11 @@ const searchFilterSelector = createSelector([state => state.theme, state => stat
 });
 
 module.exports = connect(
-    createSelector([state => state, searchFilterSelector], (state, searchFilter) => ({
+    createSelector([state => state, searchFilterSelector, displayCrsSelector], (state, searchFilter, displaycrs) => ({
         map: state.map,
         layers: state.layers.flat,
-        searchFilter: searchFilter
+        searchFilter: searchFilter,
+        displaycrs: displaycrs
     })
 ), {
     addThemeSublayer: addThemeSublayer,

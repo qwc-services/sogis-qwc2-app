@@ -219,6 +219,7 @@
       "loading": "Loading data..."
     },
     "searchbox": {
+      "coordinates": "Coordinates",
       "placeholder": "Search...",
       "recent": "Recent searches",
       "filter": "Refine search",
