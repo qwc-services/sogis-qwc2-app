@@ -29,6 +29,7 @@
         "oereb.fundations",
         "oereb.generalinfo",
         "plotinfotool.loading",
+        "searchbox.coordinates",
         "searchbox.placeholder",
         "searchbox.recent",
         "searchbox.filter",
