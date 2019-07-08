@@ -267,10 +267,10 @@ class SearchBox extends React.Component {
         axios.get(DATA_URL + "/" + result.dataproduct_id + "/?filter=" + filter)
         .then(response => this.showFeatureGeometry(result, response.data));
     }
-    showFeatureGeometry = (item, result) => {
+    showFeatureGeometry = (item, data) => {
         // Zoom to bbox
         let maxZoom = MapUtils.computeZoom(this.props.map.scales, this.props.searchOptions.minScale);
-        let bbox = CoordinatesUtils.reprojectBbox(result.bbox, result.crs.properties.name, this.props.map.projection);
+        let bbox = CoordinatesUtils.reprojectBbox(data.bbox, data.crs.properties.name, this.props.map.projection);
         let zoom = Math.max(0, MapUtils.getZoomForExtent(bbox, this.props.map.resolutions, this.props.map.size, 0, maxZoom) - 1);
         let x = 0.5 * (bbox[0] + bbox[2]);
         let y = 0.5 * (bbox[1] + bbox[3]);
@@ -281,7 +281,7 @@ class SearchBox extends React.Component {
             id: "searchselection",
             role: LayerRole.SELECTION
         };
-        this.props.addLayerFeatures(layer, result.features, true);
+        this.props.addLayerFeatures(layer, data.features, true);
 
     }
     selectLayerResult = (result) => {
