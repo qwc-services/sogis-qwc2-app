@@ -11,15 +11,24 @@ const PropTypes = require('prop-types');
 const {connect} = require('react-redux');
 const isEmpty = require('lodash.isempty');
 const axios = require('axios');
+const {zoomToPoint} = require('qwc2/actions/map');
+const {LayerRole, addLayerFeatures, removeLayer} = require('qwc2/actions/layers');
 const Icon = require('qwc2/components/Icon');
 const Message = require("qwc2/components/I18N/Message");
 const ConfigUtils = require("qwc2/utils/ConfigUtils");
 const LocaleUtils = require('qwc2/utils/LocaleUtils');
+const CoordinatesUtils = require('qwc2/utils/CoordinatesUtils');
+const MapUtils = require('qwc2/utils/MapUtils');
 require('./style/SearchBox.css');
 
 class SearchBox extends React.Component {
     static propTypes = {
-        resultLimit: PropTypes.number
+        map: PropTypes.object,
+        resultLimit: PropTypes.number,
+        addLayerFeatures: PropTypes.func,
+        removeLayer: PropTypes.func,
+        zoomToPoint: PropTypes.func,
+        searchOptions: PropTypes.object
     }
     static defaultProps = {
         resultLimit: 20
@@ -194,6 +203,7 @@ class SearchBox extends React.Component {
         );
     }
     searchTextChanged = (text) => {
+        this.props.removeLayer('searchselection');
         this.setState({searchText: text});
         clearTimeout(this.searchTimeout);
         this.searchTimeout = setTimeout(this.startSearch, 250);
@@ -242,7 +252,6 @@ class SearchBox extends React.Component {
         }
     }
     selectFeatureResult = (result) => {
-        console.log(result);
         this.updateRecentSearches(result);
         // URL example: /api/data/v1/ch.so.afu.fliessgewaesser.netz/?filter=[["gewissnr","=",1179]]
         let filter = `[["${result.id_field_name}","=",`;
@@ -255,8 +264,22 @@ class SearchBox extends React.Component {
         axios.get(DATA_URL + "/" + result.dataproduct_id + "/?filter=" + filter)
         .then(response => this.showFeatureGeometry(result, response.data));
     }
-    showFeatureGeometry = (item, featureCollection) => {
-        console.log(featureCollection);
+    showFeatureGeometry = (item, result) => {
+        // Zoom to bbox
+        let maxZoom = MapUtils.computeZoom(this.props.map.scales, this.props.searchOptions.minScale);
+        let bbox = CoordinatesUtils.reprojectBbox(result.bbox, result.crs.properties.name, this.props.map.projection);
+        let zoom = Math.max(0, MapUtils.getZoomForExtent(bbox, this.props.map.resolutions, this.props.map.size, 0, maxZoom) - 1);
+        let x = 0.5 * (bbox[0] + bbox[2]);
+        let y = 0.5 * (bbox[1] + bbox[3]);
+        this.props.zoomToPoint([x, y], zoom, this.props.map.projection);
+
+        // Add result geometry
+        let layer = {
+            id: "searchselection",
+            role: LayerRole.SELECTION
+        };
+        this.props.addLayerFeatures(layer, result.features, true);
+
     }
     selectLayerResult = (result) => {
         console.log(result);
@@ -268,5 +291,9 @@ class SearchBox extends React.Component {
 };
 
 module.exports = connect(state => ({
-
-}), {})(SearchBox);
+    map: state.map
+}), {
+    addLayerFeatures: addLayerFeatures,
+    removeLayer: removeLayer,
+    zoomToPoint: zoomToPoint
+})(SearchBox);
