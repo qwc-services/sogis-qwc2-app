@@ -12,7 +12,8 @@ const {connect} = require('react-redux');
 const isEmpty = require('lodash.isempty');
 const axios = require('axios');
 const {zoomToPoint} = require('qwc2/actions/map');
-const {LayerRole, addLayerFeatures, removeLayer} = require('qwc2/actions/layers');
+const {LayerRole, addLayerFeatures, addThemeSublayer, removeLayer} = require('qwc2/actions/layers');
+const {setCurrentTask} = require('qwc2/actions/task');
 const Icon = require('qwc2/components/Icon');
 const Message = require("qwc2/components/I18N/Message");
 const ConfigUtils = require("qwc2/utils/ConfigUtils");
@@ -25,8 +26,10 @@ class SearchBox extends React.Component {
     static propTypes = {
         map: PropTypes.object,
         resultLimit: PropTypes.number,
+        addThemeSublayer: PropTypes.func,
         addLayerFeatures: PropTypes.func,
         removeLayer: PropTypes.func,
+        setCurrentTask: PropTypes.func,
         zoomToPoint: PropTypes.func,
         searchOptions: PropTypes.object
     }
@@ -282,18 +285,28 @@ class SearchBox extends React.Component {
 
     }
     selectLayerResult = (result) => {
-        console.log(result);
         this.updateRecentSearches(result);
-        // this.props.addThemeSublayer(item.layer);
-        // Show layer tree to notify user that something has happened
-        // this.props.setCurrentTask('LayerTree');
+        const DATAPRODUCT_URL = ConfigUtils.getConfigProp("dataproductServiceUrl").replace(/\/$/g, "");
+        let params = {
+            filter: result.dataproduct_id
+        };
+        axios.get(DATAPRODUCT_URL + "/weblayers", {params}).then(response => this.addLayer(result, response.data));
+    }
+    addLayer = (item, data) => {
+        if(!isEmpty(data[item.dataproduct_id])) {
+            this.props.addThemeSublayer({sublayers: data[item.dataproduct_id]});
+            // Show layer tree to notify user that something has happened
+            this.props.setCurrentTask('LayerTree');
+        }
     }
 };
 
 module.exports = connect(state => ({
     map: state.map
 }), {
+    addThemeSublayer: addThemeSublayer,
     addLayerFeatures: addLayerFeatures,
     removeLayer: removeLayer,
+    setCurrentTask: setCurrentTask,
     zoomToPoint: zoomToPoint
 })(SearchBox);
