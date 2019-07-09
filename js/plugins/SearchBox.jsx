@@ -228,7 +228,7 @@ class SearchBox extends React.Component {
             </div>
         ),
         this.state.expandedLayerGroup === dataproduct.dataproduct_id ? (
-            <div className="searchbox-result-group">{dataproduct.sublayers.map(this.renderLayer)}</div>
+            <div key={"eg" + idx} className="searchbox-result-group">{dataproduct.sublayers.map(this.renderLayer)}</div>
         ) : null
     ];
     }
