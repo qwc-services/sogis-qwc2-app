@@ -16,10 +16,10 @@ function themeLayerRestorer(missingLayers, theme, callback) {
     let url = dataproductService.replace(/\/$/g, "") + "/weblayers";
     let params = {filter: missingLayers.join(",")};
     axios.get(url, {params: params}).then(response => {
-        let visibleLayers = Object.entries(response.data).reduce((res, [key, value]) => {
+        let layerNames = Object.entries(response.data).reduce((res, [key, value]) => {
             return {...res, [key]: LayerUtils.getSublayerNames({sublayers: value})};
         }, {});
-        callback([].concat(...Object.values(response.data)), visibleLayers);
+        callback([].concat(...Object.values(response.data)), layerNames);
     }).catch(e => {
         callback([], null);
     });
