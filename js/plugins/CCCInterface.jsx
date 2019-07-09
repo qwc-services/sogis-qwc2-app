@@ -95,7 +95,7 @@ class CCCInterface extends React.Component {
         let url = dataproductService.replace(/\/$/g, "") + "/weblayers";
         let params = {filter: CccAppConfig.initialLayers.join(",")};
         axios.get(url, {params: params}).then(response => {
-            let layers = [].concat(...Object.values(response.data));
+            let layers = CccAppConfig.initialLayers.reduce((res, layerName) => res.concat(...(response.data[layerName] || [])), []);
             if(!isEmpty(layers)) {
                 this.props.addThemeSublayer({
                     "sublayers": layers
