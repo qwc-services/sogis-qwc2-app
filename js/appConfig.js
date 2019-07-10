@@ -8,7 +8,6 @@
 
 const Proj4js = require('proj4').default;
 const assign = require('object-assign');
-const {SearchProviders, searchProviderFactory} = require('./SearchProviders');
 const EditingInterface = require('./EditingInterface');
 const CoordinatesUtils = require('qwc2/utils/CoordinatesUtils');
 const renderHelp = require('./Help');
@@ -51,7 +50,6 @@ module.exports = {
             BackgroundSwitcherPlugin: require('qwc2/plugins/BackgroundSwitcher'),
             TopBarPlugin: require('qwc2/plugins/TopBar')({
                  AppMenu: require("qwc2/components/AppMenu"),
-                 // Search: require("qwc2/components/Search")(SearchProviders, searchProviderFactory),
                  Search: require("./plugins/SearchBox"),
                  Toolbar: require("qwc2/components/Toolbar"),
                  FullscreenSwitcher: require("qwc2/components/FullscreenSwitcher")
@@ -100,8 +98,6 @@ module.exports = {
             'REMOVE_LAYER_FEATURES',
             'REPLACE_PLACEHOLDER_LAYER',
             'RESTORE_LAYER_STATE',
-            'SEARCH_ADD_RESULTS',
-            'SEARCH_CHANGE',
             'SET_LAYER_LOADING',
             'SET_CURRENT_TASK_BLOCKED',
             'SET_CURRENT_THEME',
@@ -109,15 +105,9 @@ module.exports = {
             'THEMES_LOADED',
             'TOGGLE_FULLSCREEN'
         ];
-        let alterations = {
-            'SEARCH_SET_REQUEST': (action) => ({...action, text: state.search.text})
-        };
         if(!blacklist.includes(action.type)) {
             let data = assign({}, action);
             delete data['type'];
-            if(alterations[action.type]) {
-                data = alterations[action.type](data);
-            }
             _paq.push(['trackEvent', 'Action', action.type, JSON.stringify(data)]);
         }
     },
