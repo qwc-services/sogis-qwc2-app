@@ -97,7 +97,6 @@ module.exports = {
             'REMOVE_ALL_LAYERS',
             'REMOVE_LAYER_FEATURES',
             'REPLACE_PLACEHOLDER_LAYER',
-            'RESTORE_LAYER_STATE',
             'SET_LAYER_LOADING',
             'SET_CURRENT_TASK_BLOCKED',
             'SET_CURRENT_THEME',
