@@ -63,6 +63,9 @@ class SearchBox extends React.Component {
         this.searchTimeout = null;
         this.preventBlur = false;
     }
+    componentDidMount() {
+        this.setState({searchText: UrlParams.getParam('st') || ""});
+    }
     componentWillReceiveProps = (newProps) => {
         // Restore highlight from URL as soon as theme is loaded
         if(newProps.theme && !this.props.theme) {
