@@ -291,7 +291,9 @@ class SearchBox extends React.Component {
         );
     }
     searchTextChanged = (text) => {
-        this.props.removeLayer('searchselection');
+        if(this.props.layers.find(layer => layer.id === 'searchselection')) {
+            this.props.removeLayer('searchselection');
+        }
         this.setState({searchText: text});
         clearTimeout(this.searchTimeout);
         this.searchTimeout = setTimeout(this.startSearch, 250);
