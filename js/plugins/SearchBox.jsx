@@ -240,7 +240,6 @@ class SearchBox extends React.Component {
         if(!this.state.resultsVisible) {
             return false;
         }
-        console.log(this.state.searchResults);
         let resultCount = this.state.searchResults.result_counts ?
             this.state.searchResults.result_counts.reduce((res, entry) => {
                 // dataproduct count is always null
