@@ -311,7 +311,11 @@ class SearchBox extends React.Component {
     }
     onKeyDown = (ev) => {
         if(ev.keyCode === 27 && this.searchBox) {
-            this.searchBox.setSelectionRange(this.searchBox.value.length, this.searchBox.value.length);
+            if(this.searchBox.selectionStart !== this.searchBox.selectionEnd) {
+                this.searchBox.setSelectionRange(this.searchBox.value.length, this.searchBox.value.length);
+            } else {
+                this.searchBox.blur();
+            }
         }
     }
     startSearch = () => {
