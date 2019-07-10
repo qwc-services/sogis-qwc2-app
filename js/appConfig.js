@@ -81,35 +81,35 @@ module.exports = {
             }
         }
     },
-    actionLogger: (action, state) => {
-        let blacklist = [
-            'ADD_LAYER_FEATURES',
-            'CHANGE_BROWSER_PROPERTIES',
-            'CHANGE_LOCALE',
-            'CHANGE_MAP_VIEW',
-            'CHANGE_MEASUREMENT_STATE',
-            'CHANGE_MOUSE_POSITION_STATE',
-            'CLICK_ON_MAP',
-            'IDENTIFY_EMPTY',
-            'IDENTIFY_RESPONSE',
-            'LOCAL_CONFIG_LOADED',
-            'PURGE_IDENTIFY_RESULTS',
-            'REMOVE_ALL_LAYERS',
-            'REMOVE_LAYER_FEATURES',
-            'REPLACE_PLACEHOLDER_LAYER',
-            'SET_LAYER_LOADING',
-            'SET_CURRENT_TASK_BLOCKED',
-            'SET_CURRENT_THEME',
-            'SET_IDENTIFY_ENABLED',
-            'THEMES_LOADED',
-            'TOGGLE_FULLSCREEN'
-        ];
-        if(!blacklist.includes(action.type)) {
-            let data = assign({}, action);
-            delete data['type'];
-            _paq.push(['trackEvent', 'Action', action.type, JSON.stringify(data)]);
-        }
-    },
+    // actionLogger: (action, state) => {
+    //     let blacklist = [
+    //         'ADD_LAYER_FEATURES',
+    //         'CHANGE_BROWSER_PROPERTIES',
+    //         'CHANGE_LOCALE',
+    //         'CHANGE_MAP_VIEW',
+    //         'CHANGE_MEASUREMENT_STATE',
+    //         'CHANGE_MOUSE_POSITION_STATE',
+    //         'CLICK_ON_MAP',
+    //         'IDENTIFY_EMPTY',
+    //         'IDENTIFY_RESPONSE',
+    //         'LOCAL_CONFIG_LOADED',
+    //         'PURGE_IDENTIFY_RESULTS',
+    //         'REMOVE_ALL_LAYERS',
+    //         'REMOVE_LAYER_FEATURES',
+    //         'REPLACE_PLACEHOLDER_LAYER',
+    //         'SET_LAYER_LOADING',
+    //         'SET_CURRENT_TASK_BLOCKED',
+    //         'SET_CURRENT_THEME',
+    //         'SET_IDENTIFY_ENABLED',
+    //         'THEMES_LOADED',
+    //         'TOGGLE_FULLSCREEN'
+    //     ];
+    //     if(!blacklist.includes(action.type)) {
+    //         let data = assign({}, action);
+    //         delete data['type'];
+    //         _paq.push(['trackEvent', 'Action', action.type, JSON.stringify(data)]);
+    //     }
+    // },
     themeLayerRestorer: require('./themeLayerRestorer'),
     supportedLocales: {
          "en": {
