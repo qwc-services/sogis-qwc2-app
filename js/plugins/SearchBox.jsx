@@ -75,7 +75,7 @@ class SearchBox extends React.Component {
             if(hp && hf) {
                 const DATA_URL = ConfigUtils.getConfigProp("editServiceUrl").replace(/\/$/g, "");
                 axios.get(DATA_URL + "/" + hp + "/?filter=" + hf)
-                .then(response => this.showFeatureGeometry(response.data));
+                .then(response => this.showFeatureGeometry(response.data, false));
             } else if(hc) {
                 let p = [];
                 try {
@@ -388,7 +388,7 @@ class SearchBox extends React.Component {
             this.searchBox.blur();
         }
     }
-    selectCoordinateResult = (result) => {
+    selectCoordinateResult = (result, zoom=true) => {
         this.updateRecentSearches();
         this.props.zoomToPoint([result.x, result.y], this.props.searchOptions.minScale, result.crs);
         let feature = {
@@ -418,14 +418,16 @@ class SearchBox extends React.Component {
         .then(response => this.showFeatureGeometry(response.data));
         UrlParams.updateParams({hp: result.dataproduct_id, hf: filter, hc: undefined});
     }
-    showFeatureGeometry = ( data) => {
-        // Zoom to bbox
-        let maxZoom = MapUtils.computeZoom(this.props.map.scales, this.props.searchOptions.minScale);
-        let bbox = CoordinatesUtils.reprojectBbox(data.bbox, data.crs.properties.name, this.props.map.projection);
-        let zoom = Math.max(0, MapUtils.getZoomForExtent(bbox, this.props.map.resolutions, this.props.map.size, 0, maxZoom) - 1);
-        let x = 0.5 * (bbox[0] + bbox[2]);
-        let y = 0.5 * (bbox[1] + bbox[3]);
-        this.props.zoomToPoint([x, y], zoom, this.props.map.projection);
+    showFeatureGeometry = (data, zoom=true) => {
+        if(zoom) {
+            // Zoom to bbox
+            let maxZoom = MapUtils.computeZoom(this.props.map.scales, this.props.searchOptions.minScale);
+            let bbox = CoordinatesUtils.reprojectBbox(data.bbox, data.crs.properties.name, this.props.map.projection);
+            let zoom = Math.max(0, MapUtils.getZoomForExtent(bbox, this.props.map.resolutions, this.props.map.size, 0, maxZoom) - 1);
+            let x = 0.5 * (bbox[0] + bbox[2]);
+            let y = 0.5 * (bbox[1] + bbox[3]);
+            this.props.zoomToPoint([x, y], zoom, this.props.map.projection);
+        }
 
         // Add result geometry
         let layer = {
