@@ -386,8 +386,7 @@ class SearchBox extends React.Component {
         let feature = {
             geometry: {type: 'Point', coordinates: [result.x, result.y]},
             styleName: 'marker',
-            crs: result.crs,
-            properties: { label: result.display }
+            crs: result.crs
         }
         let layer = {
             id: "searchselection",
