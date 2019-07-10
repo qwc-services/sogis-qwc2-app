@@ -284,10 +284,11 @@ class SearchBox extends React.Component {
             <div className="SearchBox">
                 <div className="searchbox-field">
                     <Icon icon="search" />
-                        <input type="text" ref={el => this.searchBox = el}
-                            placeholder={placeholder} value={this.state.searchText}
-                            onChange={ev => this.searchTextChanged(ev.target.value)} onKeyDown={this.onKeyDown}
-                            onFocus={this.onFocus} onBlur={this.onBlur} />
+                    <input type="text" ref={el => this.searchBox = el}
+                        placeholder={placeholder} value={this.state.searchText}
+                        onChange={ev => this.searchTextChanged(ev.target.value)} onKeyDown={this.onKeyDown}
+                        onFocus={this.onFocus} onBlur={this.onBlur} />
+                    <Icon icon="remove" onClick={this.clear} />
                 </div>
                 {this.renderSearchResults()}
             </div>
@@ -322,6 +323,13 @@ class SearchBox extends React.Component {
                 this.searchBox.blur();
             }
         }
+    }
+    clear = () => {
+        if(this.searchBox) {
+            this.searchBox.blur();
+        }
+        this.setState({searchText: ''});
+        this.props.removeLayer('searchselection');
     }
     startSearch = () => {
         const service = ConfigUtils.getConfigProp("searchServiceUrl").replace(/\/$/g, "") + '/';
