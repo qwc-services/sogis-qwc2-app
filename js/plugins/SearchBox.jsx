@@ -103,7 +103,7 @@ class SearchBox extends React.Component {
                 {!this.state.collapsedSections["recent"] ? (
                     <div className="searchbox-results-section-body">
                         {recentSearches.map((entry ,idx) => (
-                            <div key={"r" + idx} onMouseDown={this.killEvent} onClick={ev => this.searchTextChanged(entry)}>
+                            <div key={"r" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => this.searchTextChanged(entry)}>
                                 {entry}
                             </div>
                         ))}
@@ -183,7 +183,7 @@ class SearchBox extends React.Component {
                         ))}
                         {additionalResults > 0 && (
                             <div className="searchbox-more-results">
-                                {additionalResults} <Message msgId="searchbox.more" />
+                                {additionalResults}&nbsp;<Message msgId="searchbox.more" />
                             </div>
                         )}
                     </div>
