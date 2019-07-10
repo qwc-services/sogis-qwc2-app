@@ -341,7 +341,7 @@ class SearchBox extends React.Component {
     }
     addCoordinateResults = (text, results) => {
         let displaycrs = this.props.displaycrs || "EPSG:4326";
-        let matches = text.replace(/[^\d.-\s]/g, '').match(/^\s*([+-]?\d+\.?\d*)[,\s]\s*([+-]?\d+\.?\d*)\s*$/);
+        let matches = text.replace(',', ' ').replace(/[^\d.-\s]/g, '').match(/^\s*([+-]?\d+\.?\d*)[,\s]\s*([+-]?\d+\.?\d*)\s*$/);
         if(matches && matches.length >= 3) {
             let x = parseFloat(matches[1]);
             let y = parseFloat(matches[2]);
