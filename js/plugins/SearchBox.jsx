@@ -155,7 +155,7 @@ class SearchBox extends React.Component {
                 {!this.state.collapsedSections["coordinates"] ? (
                     <div className="searchbox-results-section-body">
                         {coordinates.map((entry ,idx) => (
-                            <div key={"c" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => this.selectCoordinateResult(entry.coordinate)}>
+                            <div key={"c" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => {this.selectCoordinateResult(entry.coordinate); this.blur(); }}>
                                 <span className="searchbox-result-label">{entry.coordinate.display}</span>
                             </div>
                         ))}
@@ -179,7 +179,7 @@ class SearchBox extends React.Component {
                 {!this.state.collapsedSections["places"] ? (
                     <div className="searchbox-results-section-body">
                         {features.map((entry ,idx) => (
-                            <div key={"p" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => this.selectFeatureResult(entry.feature)}>
+                            <div key={"p" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => { this.selectFeatureResult(entry.feature); this.blur(); }}>
                                 <img src={iconPath + entry.feature.dataproduct_id + ".svg"} onError={ev => { ev.target.src = iconPath + "feature.svg";}} />
                                 <span className="searchbox-result-label">{entry.feature.display}</span>
                             </div>
@@ -215,7 +215,7 @@ class SearchBox extends React.Component {
     renderLayer = (dataproduct, idx) => {
         let iconPath = ConfigUtils.getConfigProp("assetsPath").replace(/\/$/g, "") + '/img/search/';
         return (
-            <div key={"p" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => this.selectLayerResult(dataproduct)}>
+            <div key={"p" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => { this.selectLayerResult(dataproduct); this.blur(); }}>
                 <img src={iconPath + dataproduct.dataproduct_id + ".svg"} onError={ev => { ev.target.src = iconPath + "dataproduct.svg";}} />
                 <span className="searchbox-result-label">{dataproduct.display}</span>
                 {dataproduct.dset_info ? (<Icon icon="info-sign" onClick={ev => {this.killEvent(ev); this.selectLayerResult(dataproduct, true); }} />) : null}
@@ -224,7 +224,7 @@ class SearchBox extends React.Component {
     }
     renderLayerGroup = (dataproduct, idx) => {
         return [(
-            <div key={"g" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => this.selectLayerResult(dataproduct)}>
+            <div key={"g" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => { this.selectLayerResult(dataproduct); this.blur(); }}>
                 <Icon icon={this.state.expandedLayerGroup === dataproduct.dataproduct_id ? "minus" : "plus"} onClick={ev => this.toggleLayerGroup(ev, dataproduct.dataproduct_id)} />
                 <span className="searchbox-result-label">{dataproduct.display}</span>
                 {dataproduct.dset_info ? (<Icon icon="info-sign" onClick={ev => {this.killEvent(ev); this.selectLayerResult(dataproduct, true); }} />) : null}
@@ -343,6 +343,14 @@ class SearchBox extends React.Component {
             let searchResults = {...response.data, query_text: searchText};
             this.addCoordinateResults(searchText, searchResults.results);
             this.setState({searchResults: searchResults});
+            // If a single result is returned, select it immediately if it is a coordinate or feature result
+            if(searchResults.results.length === 1) {
+                if(searchResults.results[0].coordinate) {
+                    this.selectCoordinateResult(searchResults.results[0].coordinate);
+                } else if(searchResults.results[0].feature) {
+                    this.selectFeatureResult(searchResults.results[0].feature);
+                }
+            }
         }).catch(e => {
             console.warn("Search failed: " + e);
         })
@@ -392,6 +400,8 @@ class SearchBox extends React.Component {
         if(!this.state.recentSearches.includes(text)) {
             this.setState({recentSearches: [text, ...this.state.recentSearches.slice(0, 4)]});
         }
+    }
+    blur = () => {
         if(this.searchBox) {
             this.searchBox.blur();
         }
