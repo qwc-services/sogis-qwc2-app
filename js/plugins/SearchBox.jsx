@@ -328,7 +328,7 @@ class SearchBox extends React.Component {
         if(this.searchBox) {
             this.searchBox.blur();
         }
-        this.setState({searchText: ''});
+        this.setState({searchText: '', searchResults: {}});
         this.props.removeLayer('searchselection');
     }
     startSearch = () => {
