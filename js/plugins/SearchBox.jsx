@@ -327,9 +327,13 @@ class SearchBox extends React.Component {
     }
     startSearch = () => {
         const service = ConfigUtils.getConfigProp("searchServiceUrl").replace(/\/$/g, "") + '/';
-        let searchText = this.state.searchText;
+        let searchText = this.state.searchText.trim();
+        if(isEmpty(searchText)) {
+            this.setState({searchResults: {}});
+            return;
+        }
         let params = {
-            searchtext: searchText.trim(),
+            searchtext: searchText,
             filter: this.props.searchFilter,
             limit: this.props.resultLimit
         };
@@ -348,6 +352,7 @@ class SearchBox extends React.Component {
             }
         }).catch(e => {
             console.warn("Search failed: " + e);
+            this.setState({searchResults: {}});
         })
     }
     addCoordinateResults = (text, results) => {
