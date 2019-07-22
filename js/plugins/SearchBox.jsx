@@ -115,12 +115,12 @@ class SearchBox extends React.Component {
             </div>
         );
     }
-    renderFilters = (resultCount) => {
+    renderFilters = () => {
         if(isEmpty(this.state.searchResults.result_counts) || this.state.searchResults.result_counts.length < 2) {
             return null;
         }
         const minResultsExanded = ConfigUtils.getConfigProp("minResultsExanded");
-        let initialCollapsed = resultCount < minResultsExanded;
+        let initialCollapsed = this.state.searchResults.tot_result_count < minResultsExanded;
         let collapsed = (this.state.collapsedSections["filter"] === undefined) ? initialCollapsed : this.state.collapsedSections["filter"];
         return (
             <div key="filter">
@@ -164,12 +164,12 @@ class SearchBox extends React.Component {
             </div>
         );
     }
-    renderPlaces = (resultCount) => {
+    renderPlaces = () => {
         let features = (this.state.searchResults.results || []).filter(result => result.feature);
         if(isEmpty(features)) {
             return null;
         }
-        let additionalResults = resultCount - features.length;
+        let additionalResults = this.state.searchResults.tot_result_count - features.length;
         let iconPath = ConfigUtils.getConfigProp("assetsPath").replace(/\/$/g, "") + '/img/search/';
         return (
             <div key="places">
@@ -243,17 +243,11 @@ class SearchBox extends React.Component {
         if(!this.state.resultsVisible) {
             return false;
         }
-        let resultCount = this.state.searchResults.result_counts ?
-            this.state.searchResults.result_counts.reduce((res, entry) => {
-                // dataproduct count is always null
-                return entry.count ? res + entry.count : res;
-            }, 0)
-        : 0;
         let children = [
             this.renderRecentResults(),
-            this.renderFilters(resultCount),
+            this.renderFilters(),
             this.renderCoordinates(),
-            this.renderPlaces(resultCount),
+            this.renderPlaces(),
             this.renderLayers()
         ].filter(element => element);
         if(isEmpty(children)) {
@@ -342,9 +336,10 @@ class SearchBox extends React.Component {
         axios.get(service, {params}).then(response => {
             let searchResults = {...response.data, query_text: searchText};
             this.addCoordinateResults(searchText, searchResults.results);
+            searchResults.tot_result_count = (searchResults.result_counts || []).reduce((res, entry) => res + (entry.count || 0), 0);
             this.setState({searchResults: searchResults});
             // If a single result is returned, select it immediately if it is a coordinate or feature result
-            if(searchResults.results.length === 1) {
+            if(searchResults.results.length === 1 && searchResults.tot_result_count === 1) {
                 if(searchResults.results[0].coordinate) {
                     this.selectCoordinateResult(searchResults.results[0].coordinate);
                 } else if(searchResults.results[0].feature) {
