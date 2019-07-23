@@ -170,7 +170,7 @@ class SearchBox extends React.Component {
             return null;
         }
         let additionalResults = this.state.searchResults.tot_result_count - features.length;
-        let iconPath = ConfigUtils.getConfigProp("assetsPath").replace(/\/$/g, "") + '/img/search/';
+        let iconPath = ConfigUtils.getConfigProp("assetsPath").replace(/\/$/g, "") + '/img/search/place/';
         return (
             <div key="places">
                 <div className="searchbox-results-section-title" onMouseDown={this.killEvent} onClick={ev => this.toggleSection("places")}>
@@ -213,7 +213,7 @@ class SearchBox extends React.Component {
         );
     }
     renderLayer = (dataproduct, idx) => {
-        let iconPath = ConfigUtils.getConfigProp("assetsPath").replace(/\/$/g, "") + '/img/search/';
+        let iconPath = ConfigUtils.getConfigProp("assetsPath").replace(/\/$/g, "") + '/img/search/map/';
         return (
             <div key={"p" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => { this.selectLayerResult(dataproduct); this.blur(); }}>
                 <img src={iconPath + dataproduct.dataproduct_id + ".svg"} onError={ev => { ev.target.src = iconPath + "dataproduct.svg";}} />
