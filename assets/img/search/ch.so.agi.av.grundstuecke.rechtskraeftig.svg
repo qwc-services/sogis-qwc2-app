@@ -13,7 +13,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="ebene.svg">
+   sodipodi:docname="twotone-home-24px.svg">
   <metadata
      id="metadata14">
     <rdf:RDF>
@@ -40,9 +40,9 @@
      inkscape:window-height="1017"
      id="namedview10"
      showgrid="true"
-     inkscape:zoom="28.459613"
-     inkscape:cx="14.135593"
-     inkscape:cy="11.745763"
+     inkscape:zoom="1"
+     inkscape:cx="13"
+     inkscape:cy="14.5"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -52,18 +52,19 @@
        id="grid2991" />
   </sodipodi:namedview>
   <path
-     d="M 0,3 H 24 V 27 H 0 V 3 z"
-     id="path4"
-     inkscape:connector-curvature="0"
-     style="fill:none" />
+     fill="none"
+     d="M0 0h24v24H0V0z"
+     id="path4" />
   <path
-     d="M 6.26,12 12,16.47 17.74,12 12,7.53 z"
+     d="m 12,3 -10,9 3,0 0,6 6,0 0,-5 2,0 0,5 6,0 0,-6 3,0 z m 5,15 -2,0 0,-7 -6,0 0,7 -2,0 0,-7.81 5,-4.5 5,4.5 z"
      id="path6"
      inkscape:connector-curvature="0"
-     style="opacity:0.3" />
+     sodipodi:nodetypes="cccccccccccccccccccccc"
+     style="fill:#4d4d4d" />
   <path
-     d="M 12,5 3,12 4.63,13.27 12,19 19.36,13.27 21,12 z M 12,16.47 6.26,12 12,7.53 17.74,12 z"
-     id="path8"
+     style="fill:#aa0000;fill-opacity:1;stroke:none"
+     d="m 2,18 0,3 20,0 0,-3 z"
+     id="path2993"
      inkscape:connector-curvature="0"
-     sodipodi:nodetypes="cccccccccccc" />
+     sodipodi:nodetypes="ccccc" />
 </svg>
