@@ -223,9 +223,10 @@ class SearchBox extends React.Component {
         );
     }
     renderLayerGroup = (dataproduct, idx) => {
+        let iconPath = ConfigUtils.getConfigProp("assetsPath").replace(/\/$/g, "") + '/img/search/map/';
         return [(
             <div key={"g" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => { this.selectLayerResult(dataproduct); this.blur(); }}>
-                <Icon icon={this.state.expandedLayerGroup === dataproduct.dataproduct_id ? "minus" : "plus"} onClick={ev => this.toggleLayerGroup(ev, dataproduct.dataproduct_id)} />
+                <img src={iconPath + (this.state.expandedLayerGroup === dataproduct.dataproduct_id ? "minus" : "plus") + ".svg"} onClick={ev => this.toggleLayerGroup(ev, dataproduct.dataproduct_id)} />
                 <span className="searchbox-result-label">{dataproduct.display}</span>
                 {dataproduct.dset_info ? (<Icon icon="info-sign" onClick={ev => {this.killEvent(ev); this.selectLayerResult(dataproduct, true); }} />) : null}
             </div>
