@@ -170,7 +170,7 @@ class SearchBox extends React.Component {
             return null;
         }
         let additionalResults = this.state.searchResults.tot_result_count - features.length;
-        let iconPath = ConfigUtils.getConfigProp("assetsPath").replace(/\/$/g, "") + '/img/search/place/';
+        let iconPath = ConfigUtils.getConfigProp("assetsPath").replace(/\/$/g, "") + '/img/search/';
         return (
             <div key="places">
                 <div className="searchbox-results-section-title" onMouseDown={this.killEvent} onClick={ev => this.toggleSection("places")}>
@@ -213,7 +213,7 @@ class SearchBox extends React.Component {
         );
     }
     renderLayer = (dataproduct, idx) => {
-        let iconPath = ConfigUtils.getConfigProp("assetsPath").replace(/\/$/g, "") + '/img/search/map/';
+        let iconPath = ConfigUtils.getConfigProp("assetsPath").replace(/\/$/g, "") + '/img/search/';
         return (
             <div key={"p" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => { this.selectLayerResult(dataproduct); this.blur(); }}>
                 <img src={iconPath + dataproduct.dataproduct_id + ".svg"} onError={ev => { ev.target.src = iconPath + "dataproduct.svg";}} />
@@ -223,10 +223,10 @@ class SearchBox extends React.Component {
         );
     }
     renderLayerGroup = (dataproduct, idx) => {
-        let iconPath = ConfigUtils.getConfigProp("assetsPath").replace(/\/$/g, "") + '/img/search/map/';
+        let iconPath = ConfigUtils.getConfigProp("assetsPath").replace(/\/$/g, "") + '/img/search/';
         return [(
             <div key={"g" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => { this.selectLayerResult(dataproduct); this.blur(); }}>
-                <img src={iconPath + (this.state.expandedLayerGroup === dataproduct.dataproduct_id ? "minus" : "plus") + ".svg"} onClick={ev => this.toggleLayerGroup(ev, dataproduct.dataproduct_id)} />
+                <img src={iconPath + (this.state.expandedLayerGroup === dataproduct.dataproduct_id ? "layergroup_close" : "layergroup_open") + ".svg"} onClick={ev => this.toggleLayerGroup(ev, dataproduct.dataproduct_id)} />
                 <span className="searchbox-result-label">{dataproduct.display}</span>
                 {dataproduct.dset_info ? (<Icon icon="info-sign" onClick={ev => {this.killEvent(ev); this.selectLayerResult(dataproduct, true); }} />) : null}
             </div>
