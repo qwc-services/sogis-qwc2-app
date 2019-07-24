@@ -13,7 +13,7 @@ const {createSelector} = require('reselect');
 const isEmpty = require('lodash.isempty');
 const axios = require('axios');
 const {setActiveLayerInfo} = require('qwc2/actions/layerinfo');
-const {zoomToPoint} = require('qwc2/actions/map');
+const {zoomToPoint,panTo} = require('qwc2/actions/map');
 const {LayerRole, addLayerFeatures, addThemeSublayer, removeLayer} = require('qwc2/actions/layers');
 const {setCurrentTask} = require('qwc2/actions/task');
 const Icon = require('qwc2/components/Icon');
@@ -41,6 +41,7 @@ class SearchBox extends React.Component {
         setActiveLayerInfo: PropTypes.func,
         setCurrentTask: PropTypes.func,
         zoomToPoint: PropTypes.func,
+        panTo: PropTypes.func,
         searchOptions: PropTypes.object
     }
     static defaultProps = {
@@ -76,19 +77,13 @@ class SearchBox extends React.Component {
                 const DATA_URL = ConfigUtils.getConfigProp("editServiceUrl").replace(/\/$/g, "");
                 axios.get(DATA_URL + "/" + hp + "/?filter=" + hf)
                 .then(response => this.showFeatureGeometry(response.data, false));
-            } else if(hc) {
-                let p = [];
-                try {
-                    p = hc.split(",").map(x => parseFloat(x.trim())).slice(0, 2);
-                } catch(e) {};
-                if(p.length === 2) {
-                    this.selectCoordinateResult({
-                        display: p[0] + ", " + p[1] + " (EPSG:2056)",
-                        x: p[0],
-                        y: p[1],
-                        crs: "EPSG:2056"
-                    })
-                }
+            } else if(typeof(hc) === "string" && (hc.toLowerCase() === "true" || hc === "1")) {
+                this.selectCoordinateResult({
+                    display: newProps.map.center[0] + ", " + newProps.map.center[1] + " (EPSG:2056)",
+                    x: newProps.map.center[0],
+                    y: newProps.map.center[1],
+                    crs: "EPSG:2056"
+                }, false);
             }
             UrlParams.updateParams({hp: undefined, hf: undefined, hc: undefined});
         }
@@ -409,7 +404,11 @@ class SearchBox extends React.Component {
     }
     selectCoordinateResult = (result, zoom=true) => {
         this.updateRecentSearches();
-        this.props.zoomToPoint([result.x, result.y], this.props.searchOptions.minScale, result.crs);
+        if(zoom) {
+            this.props.zoomToPoint([result.x, result.y], this.props.searchOptions.minScale, result.crs);
+        } else {
+            this.props.panTo([result.x, result.y], result.crs);
+        }
         let feature = {
             geometry: {type: 'Point', coordinates: [result.x, result.y]},
             styleName: 'marker',
@@ -521,5 +520,6 @@ module.exports = connect(
     removeLayer: removeLayer,
     setActiveLayerInfo: setActiveLayerInfo,
     setCurrentTask: setCurrentTask,
-    zoomToPoint: zoomToPoint
+    zoomToPoint: zoomToPoint,
+    panTo: panTo
 })(SearchBox);
