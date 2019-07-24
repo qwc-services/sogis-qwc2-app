@@ -96,6 +96,7 @@
       "importlayer": "Kartenebene importieren",
       "maptip": "Kartentipps anzeigen",
       "printlegend": "Legende drucken",
+      "deletealllayers": "Alle Ebenen entfernen",
       "transparency": "Transparenz"
     },
     "locate": {
