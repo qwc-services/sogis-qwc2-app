@@ -98,8 +98,8 @@ class PlotInfoTool extends React.Component {
         let infoQueries = [...this.props.infoQueries, {
             key: "oereb",
             title: "ÖREB-Informationen",
-            query: "/oereb/xml/CH315904177797",
-            pdfQuery: "/oereb/pdf/CH315904177797",
+            query: "/oereb/xml/$egrid$",
+            pdfQuery: "/oereb/pdf/$egrid$",
             responseTransform: this.oerebXmlToJson
         }];
         return (
