@@ -1,3 +1,6 @@
 [submodule "qwc2"]
 	path = qwc2
 	url = https://github.com/qgis/qwc2.git
+[submodule "qwc2-extra"]
+	path = qwc2-extra
+	url = git@github.com:sourcepole/qwc2-extra.git
