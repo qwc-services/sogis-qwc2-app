@@ -3,6 +3,7 @@
   "messages": {
     "appmenu": {
       "items": {
+        "LandRegisterExtract": "Land Register Map Extract",
         "DxfExport": "DXF Export",
         "Help": "Help",
         "LayerTree": "Layers & Legend",
@@ -17,11 +18,29 @@
         "Editing": "Editing",
         "Login": "Login",
         "Logout": "Logout",
-        "LandRegisterExtract": "Land Register Map Extract",
         "PlotInfoTool": "Plot information",
         "PlotInfoTool_comment": "ÖREB cadastre"
       },
       "menulabel": "Map & Tools"
+    },
+    "ccc": {
+      "createObject": "Draw feature geometry",
+      "editObject": "Edit feature geometry",
+      "showObject": "Object(s) selected",
+      "configError": "CCC configuration error",
+      "connError": "CCC connection closed",
+      "commit": "Apply",
+      "cancel": "Cancel",
+      "deselect": "Clear selection"
+    },
+    "searchbox": {
+      "coordinates": "Coordinates",
+      "placeholder": "Search...",
+      "recent": "Recent searches",
+      "filter": "Refine search",
+      "places": "Places",
+      "layers": "Maps",
+      "more": "more results"
     },
     "bgswitcher": {
       "nobg": "No background"
@@ -174,8 +193,7 @@
       "all": "All",
       "themes": "Themes",
       "invisiblelayer": "The result lies on a layer which is not visible.",
-      "enablelayer": "Enable layer",
-      "coordinates": "Coordinates"
+      "enablelayer": "Enable layer"
     },
     "share": {
       "directLinkTitle": "Via a direct link",
@@ -192,16 +210,6 @@
     "themeswitcher": {
       "filter": "Filter...",
       "addtotheme": "Add to current theme"
-    },
-    "ccc": {
-      "createObject": "Draw feature geometry",
-      "editObject": "Edit feature geometry",
-      "showObject": "Object(s) selected",
-      "configError": "CCC configuration error",
-      "connError": "CCC connection closed",
-      "commit": "Apply",
-      "cancel": "Cancel",
-      "deselect": "Clear selection"
     },
     "oereb": {
       "concernedThemes": "Concerned themes",
@@ -220,15 +228,6 @@
     },
     "plotinfotool": {
       "loading": "Loading data..."
-    },
-    "searchbox": {
-      "coordinates": "Coordinates",
-      "placeholder": "Search...",
-      "recent": "Recent searches",
-      "filter": "Refine search",
-      "places": "Places",
-      "layers": "Maps",
-      "more": "more results"
     }
   }
 }

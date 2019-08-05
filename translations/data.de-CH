@@ -3,6 +3,7 @@
   "messages": {
     "appmenu": {
       "items": {
+        "LandRegisterExtract": "Auszug Plan für das Grundbuch",
         "DxfExport": "DXF-Export",
         "Help": "Hilfe",
         "LayerTree": "Kartenebenen und Legende",
@@ -17,11 +18,29 @@
         "Editing": "Editieren",
         "Login": "Anmelden",
         "Logout": "Abmelden",
-        "LandRegisterExtract": "Auszug Plan für das Grundbuch",
         "PlotInfoTool": "Grundstücksinformation",
         "PlotInfoTool_comment": "ÖREB-Kataster"
       },
       "menulabel": "Karte & Werkzeuge"
+    },
+    "ccc": {
+      "createObject": "Objektgeometrie erfassen",
+      "editObject": "Objektgeometrie editieren",
+      "showObject": "Objekt(e) selektiert",
+      "configError": "CCC Konfigurationsfehler",
+      "connError": "CCC-Verbindung wurde geschlossen",
+      "commit": "Übernehmen",
+      "cancel": "Abbrechen",
+      "deselect": "Selektion aufheben"
+    },
+    "searchbox": {
+      "coordinates": "Koordinaten",
+      "placeholder": "Suchen + Finden: Orte, Namen, Karten, Koordinaten, …",
+      "recent": "Zuletzt gesucht",
+      "filter": "Suche verfeinern",
+      "places": "Orte",
+      "layers": "Karten",
+      "more": "weitere Treffer"
     },
     "bgswitcher": {
       "nobg": "Kein Hintergrund"
@@ -174,8 +193,7 @@
       "all": "Alle",
       "themes": "Themen",
       "invisiblelayer": "Das Resultat liegt auf einer Ebene, die ausgeschaltet ist.",
-      "enablelayer": "Ebene einschalten",
-      "coordinates": "Koordinaten"
+      "enablelayer": "Ebene einschalten"
     },
     "share": {
       "directLinkTitle": "Über einen direkten Link",
@@ -192,16 +210,6 @@
     "themeswitcher": {
       "filter": "Filter",
       "addtotheme": "Dem aktuellen Thema hinzufügen"
-    },
-    "ccc": {
-      "createObject": "Objektgeometrie erfassen",
-      "editObject": "Objektgeometrie editieren",
-      "showObject": "Objekt(e) selektiert",
-      "configError": "CCC Konfigurationsfehler",
-      "connError": "CCC-Verbindung wurde geschlossen",
-      "commit": "Übernehmen",
-      "cancel": "Abbrechen",
-      "deselect": "Selektion aufheben"
     },
     "oereb": {
       "concernedThemes": "Betroffene Themen",
@@ -220,15 +228,6 @@
     },
     "plotinfotool": {
       "loading": "Daten werden geladen..."
-    },
-    "searchbox": {
-      "coordinates": "Koordinaten",
-      "placeholder": "Suchen + Finden: Orte, Namen, Karten, Koordinaten, …",
-      "recent": "Zuletzt gesucht",
-      "filter": "Suche verfeinern",
-      "places": "Orte",
-      "layers": "Karten",
-      "more": "weitere Treffer"
     }
   }
 }
