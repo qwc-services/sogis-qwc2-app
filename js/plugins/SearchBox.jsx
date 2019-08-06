@@ -342,8 +342,10 @@ class SearchBox extends React.Component {
             if(searchResults.results.length === 1 && searchResults.tot_result_count === 1) {
                 if(searchResults.results[0].coordinate) {
                     this.selectCoordinateResult(searchResults.results[0].coordinate);
+                    this.blur();
                 } else if(searchResults.results[0].feature) {
                     this.selectFeatureResult(searchResults.results[0].feature);
+                    this.blur();
                 }
             }
         }).catch(e => {
