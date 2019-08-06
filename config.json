@@ -59,7 +59,7 @@
         {
             "name": "TopBar",
             "cfg": {
-              "logoFormat": "png",
+              "logoFormat": "jpg",
               "menuItems": [
                 {"key": "ThemeSwitcher", "icon": "themes"},
                 {"key": "LayerTree", "icon": "layers", "identifyEnabled": true},
