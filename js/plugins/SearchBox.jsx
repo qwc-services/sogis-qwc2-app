@@ -164,7 +164,8 @@ class SearchBox extends React.Component {
         if(isEmpty(features)) {
             return null;
         }
-        let additionalResults = this.state.searchResults.tot_result_count - features.length;
+        let featureResultCount = (this.state.searchResults.result_counts || []).reduce((res, entry) => res + (entry.dataproduct_id !== 'dataproduct' ? (entry.count || 0) : 0), 0);
+        let additionalResults = featureResultCount - features.length;
         let iconPath = ConfigUtils.getConfigProp("assetsPath").replace(/\/$/g, "") + '/img/search/';
         return (
             <div key="places">
