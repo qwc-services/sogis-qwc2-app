@@ -195,6 +195,7 @@ class SearchBox extends React.Component {
         if(isEmpty(layers)) {
             return null;
         }
+        let additionalLayerResults = !isEmpty((this.state.searchResults.result_counts || []).filter(entry => entry.dataproduct_id == 'dataproduct'));
         return (
             <div key="layers">
                 <div className="searchbox-results-section-title" onMouseDown={this.killEvent} onClick={ev => this.toggleSection("layers")}>
@@ -203,6 +204,11 @@ class SearchBox extends React.Component {
                 {!this.state.collapsedSections["layers"] ? (
                     <div className="searchbox-results-section-body">
                         {layers.map((entry ,idx) => !isEmpty(entry.dataproduct.sublayers) ? this.renderLayerGroup(entry.dataproduct, idx) : this.renderLayer(entry.dataproduct, idx))}
+                        {additionalLayerResults ? (
+                            <div className="searchbox-more-results">
+                                <Message msgId="searchbox.morelayers" />
+                            </div>
+                        ) : null}
                     </div>
                 ) : null}
             </div>
