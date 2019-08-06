@@ -335,11 +335,11 @@ class SearchBox extends React.Component {
         };
         axios.get(service, {params}).then(response => {
             let searchResults = {...response.data, query_text: searchText};
-            this.addCoordinateResults(searchText, searchResults.results);
+            let nCoordinateResults = this.addCoordinateResults(searchText, searchResults.results);
             searchResults.tot_result_count = (searchResults.result_counts || []).reduce((res, entry) => res + (entry.count || 0), 0);
             this.setState({searchResults: searchResults});
             // If a single result is returned, select it immediately if it is a coordinate or feature result
-            if(searchResults.results.length === 1 && searchResults.tot_result_count === 1) {
+            if(searchResults.results.length === 1 && searchResults.tot_result_count + nCoordinateResults === 1) {
                 if(searchResults.results[0].coordinate) {
                     this.selectCoordinateResult(searchResults.results[0].coordinate);
                     this.blur();
@@ -354,6 +354,7 @@ class SearchBox extends React.Component {
         })
     }
     addCoordinateResults = (text, results) => {
+        let nResults = 0;
         let displaycrs = this.props.displaycrs || "EPSG:4326";
         let matches = text.replace(',', ' ').replace(/[^\w.-\s]/g, '').match(/^\s*([+-]?\d+\.?\d*)[,\s]\s*([+-]?\d+\.?\d*)\s*$/);
         if(matches && matches.length >= 3) {
@@ -367,6 +368,7 @@ class SearchBox extends React.Component {
                     y: coord[1],
                     crs: "EPSG:4326"
                 }});
+                ++nResults;
             }
             if(x >= -180 && x <= 180 && y >= -90 && y <= 90) {
                 let title = Math.abs(x) + (x >= 0 ? "°E" : "°W") + ", "
@@ -377,6 +379,7 @@ class SearchBox extends React.Component {
                     y: y,
                     crs: "EPSG:4326"
                 }});
+                ++nResults;
             }
             if(x >= -90 && x <= 90 && y >= -180 && y <= 180 && x != y) {
                 let title = Math.abs(y) + (y >= 0 ? "°E" : "°W") + ", "
@@ -387,8 +390,10 @@ class SearchBox extends React.Component {
                     y: x,
                     crs: "EPSG:4326"
                 }});
+                ++nResults;
             }
         }
+        return nResults;
     }
     updateRecentSearches = () => {
         if(!this.state.searchResults || !this.state.searchResults.query_text) {
