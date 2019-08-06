@@ -40,7 +40,8 @@
       "filter": "Suche verfeinern",
       "places": "Orte",
       "layers": "Karten",
-      "more": "weitere Treffer"
+      "more": "weitere Treffer",
+      "morelayers": "Weitere Treffer verfügbar"
     },
     "bgswitcher": {
       "nobg": "Kein Hintergrund"

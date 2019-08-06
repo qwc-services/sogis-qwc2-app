@@ -40,7 +40,8 @@
       "filter": "Refine search",
       "places": "Places",
       "layers": "Maps",
-      "more": "more results"
+      "more": "more results",
+      "morelayers": "More results available"
     },
     "bgswitcher": {
       "nobg": "No background"

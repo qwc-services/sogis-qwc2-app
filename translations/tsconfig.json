@@ -19,7 +19,8 @@
         "searchbox.filter",
         "searchbox.places",
         "searchbox.layers",
-        "searchbox.more"
+        "searchbox.more",
+        "searchbox.morelayers"
     ],
     "overrides": [
         "appmenu.items.LayerTree",
