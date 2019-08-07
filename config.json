@@ -14,6 +14,7 @@
   "assetsPath": "/assets",
   "urlPositionFormat": "centerAndZoom",
   "urlPositionCrs": "",
+  "urlReverseLayerOrder": true,
   "preserveExtentOnThemeSwitch": true,
   "preserveBackgroundOnThemeSwitch": true,
   "preserveNonThemeLayersOnThemeSwitch": true,
