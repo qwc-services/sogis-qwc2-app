@@ -41,7 +41,8 @@
       "places": "Orte",
       "layers": "Karten",
       "more": "weitere Treffer",
-      "morelayers": "Weitere Treffer verfügbar"
+      "morelayers": "Weitere Treffer verfügbar",
+      "nodescription": "No description available"
     },
     "bgswitcher": {
       "nobg": "Kein Hintergrund"
