@@ -41,7 +41,8 @@
       "places": "Places",
       "layers": "Maps",
       "more": "more results",
-      "morelayers": "More results available"
+      "morelayers": "More results available",
+      "nodescription": "Keine Beschreibung verfügbar"
     },
     "bgswitcher": {
       "nobg": "No background"

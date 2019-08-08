@@ -61,6 +61,10 @@ div.searchbox-result:hover {
     background-color: @button_hover_bg@;
 }
 
+div.searchbox-result-expandedinfo {
+    background-color: @button_hover_bg@;
+}
+
 div.searchbox-result > img {
     flex: 0 0 0.25em;
     height: 1.75em;
@@ -75,6 +79,15 @@ span.searchbox-result-label {
     overflow: hidden;
     text-overflow: ellipsis;
     margin: 0 0.25em;
+}
+
+div.searchbox-result-abstract {
+    padding: .5em;
+    border-bottom: 1px solid @button_hover_bg@;
+    white-space: pre-wrap;
+    max-height: 10em;
+    overflow-y: auto;
+    font-size: 95%;
 }
 
 div.searchbox-more-results {

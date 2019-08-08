@@ -20,7 +20,8 @@
         "searchbox.places",
         "searchbox.layers",
         "searchbox.more",
-        "searchbox.morelayers"
+        "searchbox.morelayers",
+        "searchbox.nodescription"
     ],
     "overrides": [
         "appmenu.items.LayerTree",

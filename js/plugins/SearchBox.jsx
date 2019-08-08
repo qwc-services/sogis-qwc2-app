@@ -12,7 +12,6 @@ const {connect} = require('react-redux');
 const {createSelector} = require('reselect');
 const isEmpty = require('lodash.isempty');
 const axios = require('axios');
-const {setActiveLayerInfo} = require('qwc2/actions/layerinfo');
 const {zoomToPoint,panTo} = require('qwc2/actions/map');
 const {LayerRole, addLayerFeatures, addThemeSublayer, removeLayer} = require('qwc2/actions/layers');
 const {setCurrentTask} = require('qwc2/actions/task');
@@ -39,7 +38,6 @@ class SearchBox extends React.Component {
         addThemeSublayer: PropTypes.func,
         addLayerFeatures: PropTypes.func,
         removeLayer: PropTypes.func,
-        setActiveLayerInfo: PropTypes.func,
         setCurrentTask: PropTypes.func,
         zoomToPoint: PropTypes.func,
         panTo: PropTypes.func,
@@ -54,7 +52,8 @@ class SearchBox extends React.Component {
         searchResults: {},
         resultsVisible: false,
         collapsedSections: {},
-        expandedLayerGroup: null
+        expandedLayerGroup: null,
+        activeLayerInfo: null
     }
     static contextTypes = {
         messages: PropTypes.object
@@ -217,27 +216,50 @@ class SearchBox extends React.Component {
     }
     renderLayer = (dataproduct, idx) => {
         let iconPath = ConfigUtils.getConfigProp("assetsPath").replace(/\/$/g, "") + '/img/search/';
+        let showAbstract = dataproduct.dataproduct_id in (this.state.activeLayerInfo || {});
         return (
-            <div key={"p" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => { this.selectLayerResult(dataproduct); this.blur(); }}>
-                <img src={iconPath + dataproduct.dataproduct_id + ".svg"} onError={ev => { ev.target.src = iconPath + "dataproduct.svg";}} />
-                <span className="searchbox-result-label">{dataproduct.display}</span>
-                {dataproduct.dset_info ? (<Icon icon="info-sign" onClick={ev => {this.killEvent(ev); this.selectLayerResult(dataproduct, true); }} />) : null}
+            <div key={"p" + idx}>
+                <div className={"searchbox-result " + (showAbstract ? "searchbox-result-expandedinfo" : "")} onMouseDown={this.killEvent} onClick={ev => { this.selectLayerResult(dataproduct); this.blur(); }}>
+                    <img src={iconPath + dataproduct.dataproduct_id + ".svg"} onError={ev => { ev.target.src = iconPath + "dataproduct.svg";}} />
+                    <span className="searchbox-result-label">{dataproduct.display}</span>
+                    {dataproduct.dset_info ? (<Icon icon="info-sign" onClick={ev => {this.killEvent(ev); this.selectLayerResult(dataproduct, true); }} />) : null}
+                </div>
+                {showAbstract ? (
+                    <div className="searchbox-result-abstract">
+                        {this.getLayerDescription(this.state.activeLayerInfo[dataproduct.dataproduct_id][0])}
+                    </div>
+                ) : null}
             </div>
         );
     }
     renderLayerGroup = (dataproduct, idx) => {
         let iconPath = ConfigUtils.getConfigProp("assetsPath").replace(/\/$/g, "") + '/img/search/';
+        let showAbstract = dataproduct.dataproduct_id in (this.state.activeLayerInfo || {});
         return [(
-            <div key={"g" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => { this.selectLayerResult(dataproduct); this.blur(); }}>
-                <img src={iconPath + (this.state.expandedLayerGroup === dataproduct.dataproduct_id ? "layergroup_close" : "layergroup_open") + ".svg"} onClick={ev => this.toggleLayerGroup(ev, dataproduct.dataproduct_id)} />
-                <span className="searchbox-result-label">{dataproduct.display}</span>
-                {dataproduct.dset_info ? (<Icon icon="info-sign" onClick={ev => {this.killEvent(ev); this.selectLayerResult(dataproduct, true); }} />) : null}
+            <div key={"g" + idx}>
+                <div className={"searchbox-result " + (showAbstract ? "searchbox-result-expandedinfo" : "")} onMouseDown={this.killEvent} onClick={ev => { this.selectLayerResult(dataproduct); this.blur(); }}>
+                    <img src={iconPath + (this.state.expandedLayerGroup === dataproduct.dataproduct_id ? "layergroup_close" : "layergroup_open") + ".svg"} onClick={ev => this.toggleLayerGroup(ev, dataproduct.dataproduct_id)} />
+                    <span className="searchbox-result-label">{dataproduct.display}</span>
+                    {dataproduct.dset_info ? (<Icon icon="info-sign" onClick={ev => {this.killEvent(ev); this.selectLayerResult(dataproduct, true); }} />) : null}
+                </div>
+                {showAbstract ? (
+                    <div className="searchbox-result-abstract">
+                        {this.getLayerDescription(this.state.activeLayerInfo[dataproduct.dataproduct_id][0])}
+                    </div>
+                ) : null}
             </div>
         ),
         this.state.expandedLayerGroup === dataproduct.dataproduct_id ? (
             <div key={"eg" + idx} className="searchbox-result-group">{dataproduct.sublayers.map(this.renderLayer)}</div>
         ) : null
     ];
+    }
+    getLayerDescription = (layer) => {
+        if(isEmpty(layer.abstract)) {
+            return LocaleUtils.getMessageById(this.context.messages, "searchbox.nodescription");
+        } else {
+            return layer.abstract;
+        }
     }
     toggleLayerGroup = (ev, dataproduct_id) => {
         this.killEvent(ev);
@@ -296,7 +318,7 @@ class SearchBox extends React.Component {
         if(this.props.layers.find(layer => layer.id === 'searchselection')) {
             this.props.removeLayer('searchselection');
         }
-        this.setState({searchText: text});
+        this.setState({searchText: text, expandedLayerGroup: null, activeLayerInfo: null});
         clearTimeout(this.searchTimeout);
         this.searchTimeout = setTimeout(this.startSearch, 250);
     }
@@ -310,7 +332,7 @@ class SearchBox extends React.Component {
         if(this.preventBlur && this.searchBox) {
             this.searchBox.focus();
         } else {
-            this.setState({resultsVisible: false, collapsedSections: {}, expandedLayerGroup: null});
+            this.setState({resultsVisible: false, collapsedSections: {}, expandedLayerGroup: null, activeLayerInfo: null});
         }
     }
     onKeyDown = (ev) => {
@@ -474,14 +496,19 @@ class SearchBox extends React.Component {
 
     }
     selectLayerResult = (result, info=false) => {
-        this.updateRecentSearches();
+        if(!info) {
+            this.updateRecentSearches();
+        } else if(result.dataproduct_id in (this.state.activeLayerInfo || {})) {
+            this.setState({activeLayerInfo: null});
+            return;
+        }
         const DATAPRODUCT_URL = ConfigUtils.getConfigProp("dataproductServiceUrl").replace(/\/$/g, "");
         let params = {
             filter: result.dataproduct_id
         };
         axios.get(DATAPRODUCT_URL + "/weblayers", {params}).then(response => {
             if(info) {
-                this.showLayerInfo(result, response.data);
+                this.setState({activeLayerInfo: response.data});
             } else {
                 this.addLayer(result, response.data);
             }
@@ -493,13 +520,6 @@ class SearchBox extends React.Component {
             this.props.addThemeSublayer({sublayers: data[item.dataproduct_id]});
             // Show layer tree to notify user that something has happened
             this.props.setCurrentTask('LayerTree');
-        }
-    }
-    showLayerInfo = (item, data) => {
-        let layer = this.props.layers.find(layer => layer.role === LayerRole.THEME);
-        if(layer && !isEmpty(data[item.dataproduct_id])) {
-            let sublayer = data[item.dataproduct_id][0];
-            this.props.setActiveLayerInfo(layer, sublayer);
         }
     }
 };
@@ -537,7 +557,6 @@ module.exports = connect(
     addThemeSublayer: addThemeSublayer,
     addLayerFeatures: addLayerFeatures,
     removeLayer: removeLayer,
-    setActiveLayerInfo: setActiveLayerInfo,
     setCurrentTask: setCurrentTask,
     zoomToPoint: zoomToPoint,
     panTo: panTo
