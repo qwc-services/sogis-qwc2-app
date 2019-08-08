@@ -35,7 +35,7 @@
     },
     "searchbox": {
       "coordinates": "Coordinates",
-      "placeholder": "Search...",
+      "placeholder": "Search place or add map...",
       "recent": "Recent searches",
       "filter": "Refine search",
       "places": "Places",
