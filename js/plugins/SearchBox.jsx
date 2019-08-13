@@ -23,6 +23,7 @@ const LayerUtils = require('qwc2/utils/LayerUtils');
 const LocaleUtils = require('qwc2/utils/LocaleUtils');
 const CoordinatesUtils = require('qwc2/utils/CoordinatesUtils');
 const MapUtils = require('qwc2/utils/MapUtils');
+const MiscUtils = require('qwc2/utils/MiscUtils');
 const {UrlParams} = require("qwc2/utils/PermaLinkUtils");
 require('./style/SearchBox.css');
 
@@ -225,9 +226,9 @@ class SearchBox extends React.Component {
                     {dataproduct.dset_info ? (<Icon icon="info-sign" onClick={ev => {this.killEvent(ev); this.selectLayerResult(dataproduct, true); }} />) : null}
                 </div>
                 {showAbstract ? (
-                    <div className="searchbox-result-abstract">
-                        {this.getLayerDescription(this.state.activeLayerInfo[dataproduct.dataproduct_id][0])}
-                    </div>
+                    <div className="searchbox-result-abstract"
+                        dangerouslySetInnerHTML={{__html: this.getLayerDescription(this.state.activeLayerInfo[dataproduct.dataproduct_id][0])}}
+                    />
                 ) : null}
             </div>
         );
@@ -243,9 +244,9 @@ class SearchBox extends React.Component {
                     {dataproduct.dset_info ? (<Icon icon="info-sign" onClick={ev => {this.killEvent(ev); this.selectLayerResult(dataproduct, true); }} />) : null}
                 </div>
                 {showAbstract ? (
-                    <div className="searchbox-result-abstract">
-                        {this.getLayerDescription(this.state.activeLayerInfo[dataproduct.dataproduct_id][0])}
-                    </div>
+                    <div className="searchbox-result-abstract"
+                        dangerouslySetInnerHTML={{__html: this.getLayerDescription(this.state.activeLayerInfo[dataproduct.dataproduct_id][0])}}
+                    />
                 ) : null}
             </div>
         ),
@@ -258,7 +259,7 @@ class SearchBox extends React.Component {
         if(isEmpty(layer.abstract)) {
             return LocaleUtils.getMessageById(this.context.messages, "searchbox.nodescription");
         } else {
-            return layer.abstract;
+            return MiscUtils.addLinkAnchors(layer.abstract);
         }
     }
     toggleLayerGroup = (ev, dataproduct_id) => {
