@@ -84,7 +84,6 @@ span.searchbox-result-label {
 div.searchbox-result-abstract {
     padding: .5em;
     border-bottom: 1px solid @button_hover_bg@;
-    white-space: pre-wrap;
     max-height: 10em;
     overflow-y: auto;
     font-size: 95%;
