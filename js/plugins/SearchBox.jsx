@@ -118,6 +118,8 @@ class SearchBox extends React.Component {
         const minResultsExanded = ConfigUtils.getConfigProp("minResultsExanded");
         let initialCollapsed = this.state.searchResults.tot_result_count < minResultsExanded;
         let collapsed = (this.state.collapsedSections["filter"] === undefined) ? initialCollapsed : this.state.collapsedSections["filter"];
+        let values = this.state.searchResults.result_counts.map(entry => entry.filterword + ": " + this.state.searchResults.query_text);
+        values.sort((a, b) => a.localeCompare(b));
         return (
             <div key="filter">
                 <div className="searchbox-results-section-title" onMouseDown={this.killEvent} onClick={ev => this.toggleSection("filter")}>
@@ -125,8 +127,7 @@ class SearchBox extends React.Component {
                 </div>
                 {!collapsed ? (
                     <div className="searchbox-results-section-body">
-                        {this.state.searchResults.result_counts.map((entry ,idx) => {
-                            let value = entry.filterword + ": " + this.state.searchResults.query_text;
+                        {values.map((value, idx) => {
                             return (
                                 <div key={"f" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => this.searchTextChanged(value)}>
                                     <span className="searchbox-result-label">{value}</span>
