@@ -18,8 +18,9 @@ const Message = require('qwc2/components/I18N/Message');
 const ConfigUtils = require("qwc2/utils/ConfigUtils");
 const CoordinatesUtils = require('qwc2/utils/CoordinatesUtils');
 const MapUtils = require('qwc2/utils/MapUtils');
-const {LayerRole, addThemeSublayer, addLayerFeatures, refreshLayer, removeLayer} = require('qwc2/actions/layers');
+const {LayerRole, addLayerFeatures, refreshLayer, removeLayer} = require('qwc2/actions/layers');
 const {zoomToPoint, zoomToExtent} = require('qwc2/actions/map');
+const {setCurrentTheme} = require('qwc2/actions/theme');
 const {setCurrentTask,setCurrentTaskBlocked} = require('qwc2/actions/task');
 const {TaskBar} = require('qwc2/components/TaskBar');
 const ButtonBar = require('qwc2/components/widgets/ButtonBar');
@@ -39,6 +40,7 @@ const CCCStatus = {
 class CCCInterface extends React.Component {
     static propTypes = {
         map: PropTypes.object,
+        themes: PropTypes.object,
         ccc: PropTypes.object,
         zoomToPoint: PropTypes.func,
         zoomToExtent: PropTypes.func,
@@ -47,7 +49,7 @@ class CCCInterface extends React.Component {
         setCurrentTaskBlocked: PropTypes.func,
         refreshLayer: PropTypes.func,
         addLayerFeatures: PropTypes.func,
-        addThemeSublayer: PropTypes.func,
+        setCurrentTheme: PropTypes.func,
         removeLayer: PropTypes.func,
         cccselection: PropTypes.bool
     }
@@ -66,6 +68,16 @@ class CCCInterface extends React.Component {
         this.currentContext = null;
     }
     componentDidMount() {
+        if(this.props.themes) {
+            this.initialize(this.props);
+        }
+    }
+    componentWillReceiveProps(newProps) {
+        if(!this.props.themes && newProps.themes) {
+            this.initialize(newProps);
+        }
+    }
+    initialize = (props) => {
         // If "session" and "appintegration" URL params are set, query configuration
         this.session = UrlParams.getParam('session');
         let appintegration = UrlParams.getParam('appintegration');
@@ -77,33 +89,26 @@ class CCCInterface extends React.Component {
                 CccAppConfig = response.data;
                 document.title = CccAppConfig.title;
 
-                // Load initial layers
-                this.loadInitialLayers();
+                // Load ccc theme
+                this.loadTheme(props);
 
                 // Start websocket session
                 this.createWebSocket();
             })
             .catch(error => {
-                console.log("Failed to query app configuration");
+                console.warn("Failed to query app configuration");
                 this.setState({status: CCCStatus.CONFIG_ERROR});
                 this.reset();
             });
         }
     }
-    loadInitialLayers = () => {
-        const dataproductService = ConfigUtils.getConfigProp("dataproductServiceUrl");
-        let url = dataproductService.replace(/\/$/g, "") + "/weblayers";
-        let params = {filter: CccAppConfig.initialLayers.join(",")};
-        axios.get(url, {params: params}).then(response => {
-            let layers = CccAppConfig.initialLayers.reduce((res, layerName) => res.concat(...(response.data[layerName] || [])), []);
-            if(!isEmpty(layers)) {
-                this.props.addThemeSublayer({
-                    "sublayers": layers
-                });
-            }
-        }).catch(error => {
-            console.log("Failed to load initial layers");
-        });
+    loadTheme = (props) => {
+        let theme = props.themes.items.find(theme => theme.name === CccAppConfig.map);
+        if(theme) {
+            props.setCurrentTheme(theme, props.themes, false);
+        } else {
+            console.warn("Could not find theme " + CccAppConfig.map);
+        }
     }
     createWebSocket = () => {
         CccConnection = new WebSocket(CccAppConfig.cccServer);
@@ -348,6 +353,7 @@ function CCCAttributeCalculator(layer, feature) {
 
 const selector = (state) => ({
     map: state.map,
+    themes: state.theme.themes,
     ccc: state.ccc,
     cccselection: !!(state.layers.flat || []).find(layer => layer.id === 'cccselection')
 });
@@ -361,7 +367,7 @@ module.exports = {
         setCurrentTaskBlocked: setCurrentTaskBlocked,
         refreshLayer: refreshLayer,
         addLayerFeatures: addLayerFeatures,
-        addThemeSublayer: addThemeSublayer,
+        setCurrentTheme: setCurrentTheme,
         removeLayer: removeLayer,
     })(CCCInterface),
     reducers: {
