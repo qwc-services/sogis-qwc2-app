@@ -308,7 +308,8 @@ class SearchBox extends React.Component {
                     <Icon icon="search" />
                     <input type="text" ref={el => this.searchBox = el}
                         placeholder={placeholder} value={this.state.searchText}
-                        onChange={ev => this.searchTextChanged(ev.target.value)} onKeyDown={this.onKeyDown}
+                        onPaste={ev => ev.target.setAttribute('__pasted', 1)}
+                        onChange={ev => this.searchTextChanged(ev.target, ev.target.value)} onKeyDown={this.onKeyDown}
                         onFocus={this.onFocus} onBlur={this.onBlur} />
                     <Icon icon="remove" onClick={this.clear} />
                 </div>
@@ -316,13 +317,15 @@ class SearchBox extends React.Component {
             </div>
         );
     }
-    searchTextChanged = (text) => {
+    searchTextChanged = (el, text) => {
+        let pasted = el.getAttribute('__pasted');
+        el.removeAttribute('__pasted');
         if(this.props.layers.find(layer => layer.id === 'searchselection')) {
             this.props.removeLayer('searchselection');
         }
         this.setState({searchText: text, expandedLayerGroup: null, activeLayerInfo: null});
         clearTimeout(this.searchTimeout);
-        this.searchTimeout = setTimeout(this.startSearch, 250);
+        this.searchTimeout = setTimeout((ev) => this.startSearch(pasted), 250);
     }
     onFocus = () => {
         this.setState({resultsVisible: true});
@@ -353,7 +356,8 @@ class SearchBox extends React.Component {
         this.setState({searchText: '', searchResults: {}});
         this.props.removeLayer('searchselection');
     }
-    startSearch = () => {
+    startSearch = (textWasPasted) => {
+        console.log(textWasPasted);
         const service = ConfigUtils.getConfigProp("searchServiceUrl").replace(/\/$/g, "") + '/';
         let searchText = this.state.searchText.trim();
         if(isEmpty(searchText)) {
@@ -371,7 +375,7 @@ class SearchBox extends React.Component {
             searchResults.tot_result_count = (searchResults.result_counts || []).reduce((res, entry) => res + (entry.count || 0), 0);
             this.setState({searchResults: searchResults});
             // If a single result is returned, select it immediately if it is a coordinate or feature result
-            if(searchResults.results.length === 1 && searchResults.tot_result_count + nCoordinateResults === 1) {
+            if(textWasPasted && searchResults.results.length === 1 && searchResults.tot_result_count + nCoordinateResults === 1) {
                 if(searchResults.results[0].coordinate) {
                     this.selectCoordinateResult(searchResults.results[0].coordinate);
                     this.blur();
