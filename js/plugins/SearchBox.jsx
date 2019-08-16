@@ -102,7 +102,7 @@ class SearchBox extends React.Component {
                 {!this.state.collapsedSections["recent"] ? (
                     <div className="searchbox-results-section-body">
                         {recentSearches.map((entry ,idx) => (
-                            <div key={"r" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => this.searchTextChanged(entry)}>
+                            <div key={"r" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => this.searchTextChanged(null, entry)}>
                                 {entry}
                             </div>
                         ))}
@@ -129,7 +129,7 @@ class SearchBox extends React.Component {
                     <div className="searchbox-results-section-body">
                         {values.map((value, idx) => {
                             return (
-                                <div key={"f" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => this.searchTextChanged(value)}>
+                                <div key={"f" + idx} className="searchbox-result" onMouseDown={this.killEvent} onClick={ev => this.searchTextChanged(null, value)}>
                                     <span className="searchbox-result-label">{value}</span>
                                 </div>
                             );
@@ -318,8 +318,11 @@ class SearchBox extends React.Component {
         );
     }
     searchTextChanged = (el, text) => {
-        let pasted = el.getAttribute('__pasted');
-        el.removeAttribute('__pasted');
+        let pasted = false;
+        if(el) {
+            pasted = el.getAttribute('__pasted');
+            el.removeAttribute('__pasted');
+        }
         if(this.props.layers.find(layer => layer.id === 'searchselection')) {
             this.props.removeLayer('searchselection');
         }
