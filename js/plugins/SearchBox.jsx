@@ -223,7 +223,7 @@ class SearchBox extends React.Component {
         return (
             <div key={"p" + idx}>
                 <div className={"searchbox-result " + (showAbstract ? "searchbox-result-expandedinfo" : "")} onMouseDown={this.killEvent} onClick={ev => { this.selectLayerResult(dataproduct); this.blur(); }}>
-                    <img src={iconPath + dataproduct.dataproduct_id + ".svg"} onError={ev => { ev.target.src = iconPath + "dataproduct.svg";}} />
+                    <img src={iconPath + "dataproduct.svg"} />
                     <span className="searchbox-result-label">{dataproduct.display}</span>
                     {dataproduct.dset_info ? (<Icon icon="info-sign" onClick={ev => {this.killEvent(ev); this.selectLayerResult(dataproduct, true); }} />) : null}
                 </div>
