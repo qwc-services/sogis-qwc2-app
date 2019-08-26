@@ -35,17 +35,16 @@ class SearchBox extends React.Component {
         localConfig: PropTypes.object,
         searchFilter: PropTypes.string,
         displaycrs: PropTypes.string,
-        resultLimit: PropTypes.number,
         addThemeSublayer: PropTypes.func,
         addLayerFeatures: PropTypes.func,
         removeLayer: PropTypes.func,
         setCurrentTask: PropTypes.func,
         zoomToPoint: PropTypes.func,
         panTo: PropTypes.func,
-        searchOptions: PropTypes.object
-    }
-    static defaultProps = {
-        resultLimit: 20
+        searchOptions: PropTypes.shape({
+            minScale: PropTypes.number,
+            resultLimit: PropTypes.number,
+        })
     }
     state = {
         searchText: "",
@@ -371,7 +370,7 @@ class SearchBox extends React.Component {
         let params = {
             searchtext: searchText,
             filter: this.props.searchFilter,
-            limit: this.props.resultLimit
+            limit: this.props.searchOptions.resultLimit
         };
         axios.get(service, {params}).then(response => {
             let searchResults = {...response.data, query_text: searchText};

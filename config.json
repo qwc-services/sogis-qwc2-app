@@ -79,9 +79,7 @@
               ],
               "searchOptions": {
                 "minScale": 1000,
-                "showProviderSelection": true,
-                "providerSelectionAllowAll": true,
-                "zoomToLayers": false
+                "resultLimit": 20
               },
               "appMenuClearsTask": true,
               "logoClickResetsTheme": true,
@@ -242,9 +240,7 @@
               ],
               "searchOptions": {
                 "minScale": 1000,
-                "showProviderSelection": true,
-                "providerSelectionAllowAll": true,
-                "zoomToLayers": false
+                "resultLimit": 20
               },
               "appMenuClearsTask": true,
               "logoClickResetsTheme": true,
