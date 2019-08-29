@@ -365,7 +365,6 @@ class SearchBox extends React.Component {
         this.props.removeLayer('searchselection');
     }
     startSearch = (textWasPasted) => {
-        console.log(textWasPasted);
         const service = ConfigUtils.getConfigProp("searchServiceUrl").replace(/\/$/g, "") + '/';
         let searchText = this.state.searchText.trim();
         if(isEmpty(searchText)) {
