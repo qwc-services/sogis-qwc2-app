@@ -282,7 +282,7 @@ class SearchBox extends React.Component {
             return null;
         }
         return (
-            <div className="searchbox-results" onMouseDown={this.setPreventBlur}>
+            <div className="searchbox-results" onMouseDown={this.setPreventBlur} ref={this.setupKillTouchEvents}>
                 {children}
             </div>
         );
@@ -290,6 +290,11 @@ class SearchBox extends React.Component {
     setPreventBlur = (ev) => {
         this.preventBlur = true;
         setTimeout(() => {this.preventBlur = false; return false;}, 100);
+    }
+    setupKillTouchEvents = (el) => {
+        if(el) {
+            el.addEventListener('touchmove', ev => ev.stopPropagation(), { passive: false });
+        }
     }
     killEvent = (ev) => {
         ev.stopPropagation();
