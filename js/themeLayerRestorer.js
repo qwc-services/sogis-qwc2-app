@@ -7,6 +7,7 @@
  */
 
 const axios = require('axios');
+const isEmpty = require('lodash.isempty');
 const ConfigUtils = require('qwc2/utils/ConfigUtils');
 const LayerUtils = require('qwc2/utils/LayerUtils');
 
@@ -19,7 +20,7 @@ function themeLayerRestorer(missingLayers, theme, callback) {
         let layerNames = Object.entries(response.data).reduce((res, [key, value]) => {
             return {...res, [key]: LayerUtils.getSublayerNames({sublayers: value})};
         }, {});
-        callback([].concat(...Object.values(response.data)), layerNames);
+        callback([].concat(...Object.values(response.data)).filter(entry => !isEmpty(entry)), layerNames);
     }).catch(e => {
         callback([], null);
     });
