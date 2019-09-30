@@ -214,6 +214,7 @@
       "addtotheme": "Dem aktuellen Thema hinzufügen"
     },
     "oereb": {
+      "title": "Öffentlich-rechtliche Eigentumsbeschränkungen",
       "concernedThemes": "Betroffene Themen",
       "notConcernedThemes": "Nicht betroffene Themen",
       "themeWithoutData": "Nicht verfügbare Themen",
@@ -225,11 +226,15 @@
       "legalbasis": "Gesetzliche Grundlagen",
       "responsibleoffice": "Zuständige Stelle",
       "responsibleauthority": "Katasterverantwortliche Stelle",
+      "requestPdf": "PDF-Katasterauszug anfordern",
       "fundations": "Grundlagedaten",
-      "generalinfo": "Allgemeine Informationen"
+      "generalinfo": "Allgemeine Informationen",
+      "hidefulllegend": "Vollständige Legende ausblenden",
+      "showfulllegend": "Vollständige Legende einblenden"
     },
     "plotinfotool": {
-      "loading": "Daten werden geladen..."
+      "loading": "Daten werden geladen...",
+      "failed": "Datenabfrage gescheitert"
     }
   }
 }

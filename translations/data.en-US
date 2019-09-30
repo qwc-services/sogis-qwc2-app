@@ -214,6 +214,7 @@
       "addtotheme": "Add to current theme"
     },
     "oereb": {
+      "title": "ÖREB cadastre",
       "concernedThemes": "Concerned themes",
       "notConcernedThemes": "Not concerned themes",
       "themeWithoutData": "Themes without data",
@@ -225,11 +226,15 @@
       "legalbasis": "Legal bases",
       "responsibleoffice": "Responsible office",
       "responsibleauthority": "Responsible authority",
+      "requestPdf": "Request PDF cadastre extract",
       "fundations": "Fundations",
-      "generalinfo": "General information"
+      "generalinfo": "General information",
+      "hidefulllegend": "Hide full legend",
+      "showfulllegend": "Show full legend"
     },
     "plotinfotool": {
-      "loading": "Loading data..."
+      "loading": "Loading data...",
+      "failed": "Failed to load data"
     }
   }
 }
