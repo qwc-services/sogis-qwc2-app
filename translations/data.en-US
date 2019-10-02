@@ -221,6 +221,7 @@
       "generalInformation": "General and legal information",
       "type": "Type",
       "area": "Area",
+      "length": "Length",
       "perc": "Fraction",
       "regulations": "Regulations",
       "legalbasis": "Legal bases",
