@@ -81,7 +81,9 @@ module.exports = {
             },
             PlotInfoToolPlugin: {
                 themeLayerRestorer: require('./themeLayerRestorer'),
-                oerebQueryFormat: 'xml'
+                customInfoComponents: {
+                    oereb: require('qwc2-extra/components/OerebDocument')
+                }
             }
         }
     },

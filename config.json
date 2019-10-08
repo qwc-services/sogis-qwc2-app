@@ -365,6 +365,13 @@
                 "title": "Grundstückbeschrieb",
                 "query": "/plot/$egrid$",
                 "pdfQuery": null
+              }, {
+                "key": "oereb",
+                "titleMsgId": "oereb.title",
+                "query": "/oereb/xml/$egrid$",
+                "pdfQuery": "/oereb/pdf/$egrid$",
+                "pdfTooltip": "oereb.requestPdf",
+                "urlKey": "oereb_egrid"
               }
             ]
           }
