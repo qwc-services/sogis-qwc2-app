@@ -82,7 +82,8 @@ module.exports = {
             PlotInfoToolPlugin: {
                 themeLayerRestorer: require('./themeLayerRestorer'),
                 customInfoComponents: {
-                    oereb: require('qwc2-extra/components/OerebDocument')
+                    oereb: require('qwc2-extra/components/OerebDocument'),
+                    plotowner: require('./plugins/PlotOwnerInfo')
                 }
             }
         }

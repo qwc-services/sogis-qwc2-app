@@ -1,0 +1,44 @@
+div.owner-info {
+    position: relative;
+    overflow-y: auto;
+    height: 100%;
+    background-color: white;
+    color: #595959;
+    font-size: small;
+}
+
+div.owner-info table {
+    position: absolute;
+    width: 100%;
+}
+
+div.owner-info table td {
+    padding: 0.125em 0.25em;
+}
+
+td.owner-info-first-column {
+    vertical-align: top;
+    padding-right: 16px;
+}
+
+div.owner-info-owners {
+}
+
+div.owner-info-plot-title {
+    font-weight: bold;
+    padding-bottom: 8px;
+}
+
+div.owner-info-owner-name, div.owner-info-plot-owner-desc {
+    padding-bottom: 8px;
+}
+
+div.owner-info-error {
+    padding: 0.5em;
+    font-style: italic;
+}
+
+/* use full height for bottom panel */
+div.plot-info-dialog-query-expanded:last-child {
+    flex: 1 1 auto;
+}
