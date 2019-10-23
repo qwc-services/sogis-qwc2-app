@@ -16,9 +16,6 @@ function renderHelp() {
                     </p>
                     <p>
                         <a href="https://geohelp.so.ch" target="_blank">Benutzerhilfe</a>
-                        <br/>
-                        <a href="https://www.so.ch/fileadmin/internet/bjd/bjd-agi/xls/Amtliche_Vermessung/Web_GIS_Client/Uebersicht_Karte.xlsx" target="_blank">Layerliste</a>
-                        <br/>
                     </p>
                     <p>
                         Daten: Kanton Solothurn / Gemeinden
