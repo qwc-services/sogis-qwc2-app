@@ -116,7 +116,7 @@ class PlotOwnerInfo extends React.Component {
                                     Fehler: Berechtigte nicht gefunden
                                 </div>
                             </div>
-                        )
+                        );
                     }
                 })}
                 {eigentuemer.beschreibung ? <div className="owner-info-plot-owner-desc">{eigentuemer.beschreibung}</div> : null}
