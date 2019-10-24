@@ -29,8 +29,26 @@ div.owner-info-plot-title {
     padding-bottom: 8px;
 }
 
+div.owner-info-plot-title.owner-info-collapsible {
+    cursor: pointer;
+}
+
+div.owner-info-plot-title.owner-info-collapsed {
+    text-decoration: underline;
+}
+
+div.owner-info-owner-details.owner-info-collapsed {
+    visibility: hidden;
+    height: 0;
+}
+
 div.owner-info-owner-name, div.owner-info-plot-owner-desc {
     padding-bottom: 8px;
+}
+
+div.owner-info-owner-error {
+    color: red;
+    font-style: italic;
 }
 
 div.owner-info-error {
