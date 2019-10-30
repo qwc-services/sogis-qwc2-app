@@ -19,7 +19,7 @@
         "Login": "Login",
         "Logout": "Logout",
         "PlotInfoTool": "Plot information",
-        "PlotInfoTool_comment": ""
+        "PlotInfoTool_comment": "ÖREB cadastre"
       },
       "menulabel": "Map & Tools"
     },
@@ -220,9 +220,8 @@
       "themeWithoutData": "Themes without data",
       "generalInformation": "General and legal information",
       "type": "Type",
-      "area": "Area",
-      "length": "Length",
-      "perc": "Fraction",
+      "share": "Share",
+      "perc": "Share in %",
       "regulations": "Regulations",
       "legalbasis": "Legal bases",
       "responsibleoffice": "Responsible office",

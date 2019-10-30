@@ -372,7 +372,11 @@
                 "query": "/oereb/xml/$egrid$",
                 "pdfQuery": "/oereb/pdf/$egrid$",
                 "pdfTooltip": "oereb.requestPdf",
-                "urlKey": "oereb_egrid"
+                "urlKey": "oereb_egrid",
+                "cfg": {
+                    "hideLogo": true,
+                    "themes": ["ch.SO.NutzungsplanungGrundnutzung", "ch.SO.NutzungsplanungUeberlagernd",  "ch.SO.NutzungsplanungSondernutzungsplaene", "NoiseSensitivityLevels", "ch.SO.Baulinien"]
+                }
               },
               {
                 "key": "plotowner",
