@@ -19,7 +19,7 @@
         "Login": "Anmelden",
         "Logout": "Abmelden",
         "PlotInfoTool": "Grundstücksinformation",
-        "PlotInfoTool_comment": "ÖREB-Kataster"
+        "PlotInfoTool_comment": ""
       },
       "menulabel": "Karte & Werkzeuge"
     },

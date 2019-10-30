@@ -19,7 +19,7 @@
         "Login": "Login",
         "Logout": "Logout",
         "PlotInfoTool": "Plot information",
-        "PlotInfoTool_comment": "ÖREB cadastre"
+        "PlotInfoTool_comment": ""
       },
       "menulabel": "Map & Tools"
     },
