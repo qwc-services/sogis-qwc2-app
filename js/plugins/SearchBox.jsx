@@ -340,6 +340,9 @@ class SearchBox extends React.Component {
         if(this.searchBox) {
             this.searchBox.select();
         }
+        if(isEmpty(this.state.searchResults)) {
+            this.startSearch(false);
+        }
     }
     onBlur = () => {
         if(this.preventBlur && this.searchBox) {
