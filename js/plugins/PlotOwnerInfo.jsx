@@ -8,20 +8,66 @@
 
 const React = require('react');
 const PropTypes = require('prop-types');
+const axios = require('axios');
+const ConfigUtils = require('qwc2/utils/ConfigUtils');
 
 require('./style/PlotOwnerInfo.css');
 
 class PlotOwnerInfo extends React.Component {
     static propTypes = {
-        data: PropTypes.object // PropType according to format of data returned by the specified query URL
+        data: PropTypes.string, // PropType according to format of data returned by the specified query URL
+        config: PropTypes.object
     }
     state = {
+        captchaReady: false,
+        ownerData: null,
         expandedPlot: null
     }
+    constructor(props) {
+        super(props);
+
+        // register global reference to this component
+        window.plotOwnerInfo = this;
+    }
+    setIframeContent = (iframe, html) => {
+        if(!iframe.getAttribute("identify-content-set")) {
+            iframe.setAttribute("identify-content-set", true);
+            let doc = iframe.contentDocument || iframe.contentWindow.document;
+            doc.open();
+            doc.write(html);
+            doc.close();
+        }
+    }
+    loadOwnerInfo(egrid, token) {
+        // send owner info request with captcha token
+        let queryUrl = this.props.config.queryUrl.replace('$egrid$', egrid);
+        if(!queryUrl.startsWith('http')) {
+            const plotServiceUrl = ConfigUtils.getConfigProp("plotInfoService").replace(/\/$/, '');
+            queryUrl = plotServiceUrl + queryUrl;
+        }
+        axios.get(queryUrl, {params: {token: token}}).then(response => {
+            this.setState({ownerData: response.data});
+        });
+    }
     render() {
-        if (this.props.data.eigentum) {
+        if (this.state.ownerData === null) {
+            // show captcha template in iframe
+            let html = this.props.data
+            let assetsPath = ConfigUtils.getConfigProp("assetsPath");
+            let src = assetsPath + "/templates/blank.html";
+            return (
+                <iframe className="plot-info-dialog-query-result" src={src} onLoad={ev => this.setIframeContent(ev.target, html)}></iframe>
+            );
+        }
+        else {
             // show owner info
-            const data = this.props.data.eigentum;
+            return this.renderOwnerInfo(this.state.ownerData);
+        }
+    }
+    renderOwnerInfo(ownerData) {
+        if (ownerData.eigentum) {
+            // show owner info
+            const data = ownerData.eigentum;
             let collapsible = (data.eigentumsform || '').includes("Stockwerk");
             return (
                 <div className="owner-info">
@@ -55,7 +101,6 @@ class PlotOwnerInfo extends React.Component {
             );
         }
     }
-
     renderOwner = (eigentuemer, collapsible=false) => {
         if (eigentuemer.grundstueck) {
             // owner is a plot
