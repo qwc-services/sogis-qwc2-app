@@ -381,9 +381,12 @@
               {
                 "key": "plotowner",
                 "title": "Eigentümerinformationen",
-                "query": "/plot_owner/$egrid$",
+                "query": "/plot_owner/captcha/$egrid$",
                 "pdfQuery": null,
-                "urlKey": "owner_egrid"
+                "urlKey": "owner_egrid",
+                "cfg": {
+                  "queryUrl": "/plot_owner/$egrid$"
+                }
               }
             ]
           }
