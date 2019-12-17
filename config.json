@@ -364,7 +364,8 @@
                 "key": "plotdescr",
                 "title": "Grundstückbeschrieb",
                 "query": "/plot/$egrid$",
-                "pdfQuery": null
+                "pdfQuery": null,
+                "urlKey": "cadastre_egrid"
               },
               {
                 "key": "oereb",
@@ -383,7 +384,7 @@
                 "title": "Eigentümerinformationen",
                 "query": "/plot_owner/captcha/$egrid$",
                 "pdfQuery": null,
-                "urlKey": "owner_egrid",
+                "urlKey": "property_egrid",
                 "cfg": {
                   "queryUrl": "/plot_owner/$egrid$"
                 }
