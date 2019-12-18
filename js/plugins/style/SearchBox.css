@@ -3,6 +3,7 @@ div.SearchBox {
     position: relative;
     height: 2em;
     max-width: 70ch;
+    background-color: white;
 }
 
 div.SearchBox > div.searchbox-field {
