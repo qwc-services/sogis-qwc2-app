@@ -179,7 +179,41 @@
           "name": "CCCInterface"
         },
         {
-          "name": "PlotInfoTool"
+          "name": "PlotInfoTool",
+          "cfg": {
+            "toolLayers": ["Grundstücke"],
+            "infoQueries": [
+              {
+                "key": "plotdescr",
+                "title": "Grundstückbeschrieb",
+                "query": "/plot/$egrid$",
+                "pdfQuery": null,
+                "urlKey": "cadastre_egrid"
+              },
+              {
+                "key": "oereb",
+                "titleMsgId": "oereb.title",
+                "query": "/oereb/xml/$egrid$",
+                "pdfQuery": "/oereb/pdf/$egrid$",
+                "pdfTooltip": "oereb.requestPdf",
+                "urlKey": "oereb_egrid",
+                "cfg": {
+                    "hideLogo": true,
+                    "themes": ["ch.SO.NutzungsplanungGrundnutzung", "ch.SO.NutzungsplanungUeberlagernd",  "ch.SO.NutzungsplanungSondernutzungsplaene", "NoiseSensitivityLevels", "ch.SO.Baulinien"]
+                }
+              },
+              {
+                "key": "plotowner",
+                "title": "Eigentümerinformationen",
+                "query": "/plot_owner/captcha/$egrid$",
+                "pdfQuery": null,
+                "urlKey": "property_egrid",
+                "cfg": {
+                  "queryUrl": "/plot_owner/$egrid$"
+                }
+              }
+            ]
+          }
         }
       ],
       "desktop": [
