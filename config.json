@@ -181,7 +181,7 @@
         {
           "name": "PlotInfoTool",
           "cfg": {
-            "toolLayers": ["Grundstücke"],
+            "toolLayers": ["ch.so.agi.av.grundstuecke"],
             "infoQueries": [
               {
                 "key": "plotdescr",
@@ -198,8 +198,8 @@
                 "pdfTooltip": "oereb.requestPdf",
                 "urlKey": "oereb_egrid",
                 "cfg": {
-                    "hideLogo": true,
-                    "themes": ["ch.SO.NutzungsplanungGrundnutzung", "ch.SO.NutzungsplanungUeberlagernd",  "ch.SO.NutzungsplanungSondernutzungsplaene", "NoiseSensitivityLevels", "ch.SO.Baulinien"]
+                  "hideLogo": true,
+                  "themes": ["ch.SO.NutzungsplanungGrundnutzung", "ch.SO.NutzungsplanungUeberlagernd", "ch.SO.NutzungsplanungSondernutzungsplaene","ch.SO.Baulinien", "MotorwaysProjectPlaningZones", "MotorwaysBuildingLines", "RailwaysProjectPlanningZones", "RailwaysBuildingLines", "AirportsProjectPlanningZones", "AirportsBuildingLines", "AirportsSecurityZonePlans", "ContaminatedSites", "ContaminatedMilitarySites", "ContaminatedCivilAviationSites", "ContaminatedPublicTransportSites", "GroundwaterProtectionZones", "GroundwaterProtectionSites", "NoiseSensitivityLevels", "ForestPerimeters", "ForestDistanceLines", "ch.SO.Einzelschutz"]
                 }
               },
               {
@@ -392,7 +392,7 @@
         {
           "name": "PlotInfoTool",
           "cfg": {
-            "toolLayers": ["Grundstücke"],
+            "toolLayers": ["ch.so.agi.av.grundstuecke"],
             "infoQueries": [
               {
                 "key": "plotdescr",
@@ -409,8 +409,8 @@
                 "pdfTooltip": "oereb.requestPdf",
                 "urlKey": "oereb_egrid",
                 "cfg": {
-                    "hideLogo": true,
-                    "themes": ["ch.SO.NutzungsplanungGrundnutzung", "ch.SO.NutzungsplanungUeberlagernd",  "ch.SO.NutzungsplanungSondernutzungsplaene", "NoiseSensitivityLevels", "ch.SO.Baulinien"]
+                  "hideLogo": true,
+                  "themes": ["ch.SO.NutzungsplanungGrundnutzung", "ch.SO.NutzungsplanungUeberlagernd", "ch.SO.NutzungsplanungSondernutzungsplaene","ch.SO.Baulinien", "MotorwaysProjectPlaningZones", "MotorwaysBuildingLines", "RailwaysProjectPlanningZones", "RailwaysBuildingLines", "AirportsProjectPlanningZones", "AirportsBuildingLines", "AirportsSecurityZonePlans", "ContaminatedSites", "ContaminatedMilitarySites", "ContaminatedCivilAviationSites", "ContaminatedPublicTransportSites", "GroundwaterProtectionZones", "GroundwaterProtectionSites", "NoiseSensitivityLevels", "ForestPerimeters", "ForestDistanceLines", "ch.SO.Einzelschutz"]
                 }
               },
               {
