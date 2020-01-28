@@ -197,6 +197,7 @@
                 "pdfQuery": "/oereb/pdf/$egrid$",
                 "pdfTooltip": "oereb.requestPdf",
                 "urlKey": "oereb_egrid",
+                "scrollmode": "parent",
                 "cfg": {
                   "hideLogo": true,
                   "themes": ["ch.SO.NutzungsplanungGrundnutzung", "ch.SO.NutzungsplanungUeberlagernd", "ch.SO.NutzungsplanungSondernutzungsplaene","ch.SO.Baulinien", "MotorwaysProjectPlaningZones", "MotorwaysBuildingLines", "RailwaysProjectPlanningZones", "RailwaysBuildingLines", "AirportsProjectPlanningZones", "AirportsBuildingLines", "AirportsSecurityZonePlans", "ContaminatedSites", "ContaminatedMilitarySites", "ContaminatedCivilAviationSites", "ContaminatedPublicTransportSites", "GroundwaterProtectionZones", "GroundwaterProtectionSites", "NoiseSensitivityLevels", "ForestPerimeters", "ForestDistanceLines", "ch.SO.Einzelschutz"]
@@ -408,6 +409,7 @@
                 "pdfQuery": "/oereb/pdf/$egrid$",
                 "pdfTooltip": "oereb.requestPdf",
                 "urlKey": "oereb_egrid",
+                "scrollmode": "parent",
                 "cfg": {
                   "hideLogo": true,
                   "themes": ["ch.SO.NutzungsplanungGrundnutzung", "ch.SO.NutzungsplanungUeberlagernd", "ch.SO.NutzungsplanungSondernutzungsplaene","ch.SO.Baulinien", "MotorwaysProjectPlaningZones", "MotorwaysBuildingLines", "RailwaysProjectPlanningZones", "RailwaysBuildingLines", "AirportsProjectPlanningZones", "AirportsBuildingLines", "AirportsSecurityZonePlans", "ContaminatedSites", "ContaminatedMilitarySites", "ContaminatedCivilAviationSites", "ContaminatedPublicTransportSites", "GroundwaterProtectionZones", "GroundwaterProtectionSites", "NoiseSensitivityLevels", "ForestPerimeters", "ForestDistanceLines", "ch.SO.Einzelschutz"]
