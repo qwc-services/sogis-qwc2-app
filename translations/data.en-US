@@ -42,7 +42,7 @@
       "layers": "Maps",
       "more": "more results",
       "morelayers": "More results available",
-      "nodescription": "Keine Beschreibung verfügbar"
+      "nodescription": "No description available"
     },
     "bgswitcher": {
       "nobg": "No background"
@@ -67,6 +67,7 @@
       "delete": "Delete",
       "discard": "Discard",
       "draw": "Draw",
+      "feature": "Feature",
       "fields": "Fields",
       "layer": "Layer",
       "noeditablelayers": "No editable layers.",
@@ -101,7 +102,7 @@
       "nofeatures": "No features could be imported.",
       "noresults": "No results or invalid URL",
       "url": "URL",
-      "urlplaceholder": "Enter URL to WMS, WFS, KML..."
+      "urlplaceholder": "Enter URL to WMS, WFS, KML, GeoJSON..."
     },
     "layerinfo": {
       "title": "Layer Info",
@@ -117,8 +118,7 @@
       "importlayer": "Import layer",
       "maptip": "Show layer map tips",
       "printlegend": "Print legend",
-      "deletealllayers": "Remove all layers",
-      "transparency": "Transparency"
+      "deletealllayers": "Remove all layers"
     },
     "locate": {
       "metersUnit": "meters",
