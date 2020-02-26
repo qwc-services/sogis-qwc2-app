@@ -42,7 +42,7 @@
       "layers": "Karten",
       "more": "weitere Treffer",
       "morelayers": "Weitere Treffer verfügbar",
-      "nodescription": "No description available"
+      "nodescription": "Keine Beschreibung verfügbar"
     },
     "bgswitcher": {
       "nobg": "Kein Hintergrund"
@@ -67,6 +67,7 @@
       "delete": "Löschen",
       "discard": "Abbrechen",
       "draw": "Zeichnen",
+      "feature": "Objekt",
       "fields": "Felder",
       "layer": "Kartenebene",
       "noeditablelayers": "Keine editierbare Kartenebenen.",
@@ -80,7 +81,8 @@
     "heightprofile": {
       "asl": "ü.M.",
       "distance": "Distanz",
-      "height": "Höhe"
+      "height": "Höhe",
+      "loading": "Höhenprofil wird berechnet..."
     },
     "identify": {
       "querying": "Objekte werden abgefragt...",
@@ -101,7 +103,7 @@
       "nofeatures": "Keine Objekte konnten importiert werden",
       "noresults": "Keine Resultate oder ungültige URL",
       "url": "URL",
-      "urlplaceholder": "WMS, WFS oder KML URL eingeben..."
+      "urlplaceholder": "WMS, WFS, KML oder GeoJSON URL eingeben..."
     },
     "layerinfo": {
       "title": "Kartenebeneninformationen",
@@ -117,8 +119,7 @@
       "importlayer": "Kartenebene importieren",
       "maptip": "Kartentipps anzeigen",
       "printlegend": "Legende drucken",
-      "deletealllayers": "Alle Ebenen entfernen",
-      "transparency": "Transparenz"
+      "deletealllayers": "Alle Ebenen entfernen"
     },
     "locate": {
       "metersUnit": "Meter",
@@ -129,7 +130,7 @@
         "LOCATING": "Position: wird bestimmt...",
         "ENABLED": "Position: aktiviert",
         "FOLLOWING": "Position: mit GPS bewegen",
-        "PERMISSION_DENIED": "Position: zugriff verweigert"
+        "PERMISSION_DENIED": "Position: Zugriff verweigert"
       }
     },
     "map": {
