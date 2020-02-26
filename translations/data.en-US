@@ -18,7 +18,7 @@
         "Editing": "Editing",
         "Login": "Login",
         "Logout": "Logout",
-        "PlotInfoTool": "Plot information",
+        "PlotInfoTool": "Real Estate Information",
         "PlotInfoTool_comment": " "
       },
       "menulabel": "Map & Tools"
@@ -81,7 +81,8 @@
     "heightprofile": {
       "asl": "a.s.l.",
       "distance": "Distance",
-      "height": "Height"
+      "height": "Height",
+      "loading": "Calculating height profile..."
     },
     "identify": {
       "querying": "Querying...",
