@@ -158,7 +158,7 @@ class CCCInterface extends React.Component {
         }
         else if(message.method == "createGeoObject") {
             this.stopEdit();
-            if(message.zoomTo !== undefined) {
+            if(message.zoomTo !== null) {
                 this.processZoomTo(message.zoomTo);
             }
             this.props.changeCCCState({action: 'Draw', geomType: CccAppConfig.editGeomType});
