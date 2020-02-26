@@ -158,7 +158,10 @@
           }
         },
         {
-          "name": "Editing"
+          "name": "Editing",
+          "cfg": {
+            "touchFriendly": false
+          }
         },
         {
           "name": "MapCompare"
@@ -367,7 +370,10 @@
           }
         },
         {
-          "name": "Editing"
+          "name": "Editing",
+          "cfg": {
+            "touchFriendly": false
+          }
         },
         {
           "name": "MapCompare"
