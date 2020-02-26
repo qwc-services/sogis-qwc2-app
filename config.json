@@ -4,6 +4,7 @@
   "editServiceUrl": "http://localhost:5012/",
   "dataproductServiceUrl": "http://localhost:5023/",
   "searchServiceUrl": "http://localhost:5011/",
+  "searchDataServiceUrl": "http://localhost:5012/",
   "authServiceUrl": "http://localhost:5017/",
   "mapInfoService":  "http://localhost:5016/",
   "featureReportService": "http://localhost:5011/",
