@@ -64,9 +64,9 @@
               "logoFormat": "jpg",
               "menuItems": [
                 {"key": "ThemeSwitcher", "icon": "themes"},
-                {"key": "LayerTree", "icon": "layers", "mapClickAction": "identify"},
+                {"key": "LayerTree", "icon": "layers"},
                 {"key": "PlotInfoTool", "icon": "plot_info", "comment": true},
-                {"key": "Share", "icon": "share", "mapClickAction": "identify"},
+                {"key": "Share", "icon": "share"},
                 {"key": "Tools", "icon": "tools", "subitems": [
                   {"key": "Measure", "icon": "measure"},
                   {"key": "Redlining", "icon": "draw"},
@@ -75,7 +75,7 @@
                 ]},
                 {"key": "Print", "icon": "print"},
                 {"key": "LandRegisterExtract", "icon": "print"},
-                {"key": "Help", "icon": "info", "mapClickAction": "identify"},
+                {"key": "Help", "icon": "info"},
                 {"key": "Login", "icon": "login"}
               ],
               "searchOptions": {
@@ -116,7 +116,8 @@
             "showSocials": true,
             "showLink": true,
             "showQRCode": true
-          }
+          },
+          "mapClickAction": "identify"
         },
         {
           "name": "Print",
@@ -125,7 +126,8 @@
           }
         },
         {
-          "name": "Help"
+          "name": "Help",
+          "mapClickAction": "identify"
         },
         {
           "name": "MapCopyright"
@@ -144,7 +146,8 @@
             "legendThumbnail": "legend_thumbnail.svg",
             "bboxDependentLegend": true,
             "layerInfoWindowSize": {"width": 480, "height": 400}
-          }
+          },
+          "mapClickAction": "identify"
         },
         {
           "name": "RasterExport",
@@ -263,9 +266,9 @@
               "logoFormat": "png",
               "menuItems": [
                 {"key": "ThemeSwitcher", "icon": "themes"},
-                {"key": "LayerTree", "icon": "layers", "mapClickAction": "identify"},
+                {"key": "LayerTree", "icon": "layers"},
                 {"key": "PlotInfoTool", "icon": "plot_info", "comment": true},
-                {"key": "Share", "icon": "share", "mapClickAction": "identify"},
+                {"key": "Share", "icon": "share"},
                 {"key": "Tools", "icon": "tools", "subitems": [
                   {"key": "Measure", "icon": "measure"},
                   {"key": "Redlining", "icon": "draw"},
@@ -274,7 +277,7 @@
                 ]},
                 {"key": "Print", "icon": "print"},
                 {"key": "LandRegisterExtract", "icon": "print"},
-                {"key": "Help", "icon": "info", "mapClickAction": "identify"},
+                {"key": "Help", "icon": "info"},
                 {"key": "Login", "icon": "login"}
               ],
               "searchOptions": {
@@ -317,7 +320,8 @@
             "legendThumbnail": "legend_thumbnail.svg",
             "bboxDependentLegend": true,
             "layerInfoWindowSize": {"width": 480, "height": 400}
-          }
+          },
+          "mapClickAction": "identify"
         },
         {
           "name": "Identify",
@@ -344,7 +348,8 @@
             "showSocials": true,
             "showLink": true,
             "showQRCode": true
-          }
+          },
+          "mapClickAction": "identify"
         },
         {
           "name": "Print",
@@ -353,7 +358,8 @@
           }
         },
         {
-          "name": "Help"
+          "name": "Help",
+          "mapClickAction": "identify"
         },
         {
           "name": "MapCopyright"
