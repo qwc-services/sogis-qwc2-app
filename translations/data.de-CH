@@ -103,6 +103,7 @@
       "localfile": "Lokale Datei",
       "nofeatures": "Keine Objekte konnten importiert werden",
       "noresults": "Keine Resultate oder ungültige URL",
+      "loading": "Laden...",
       "url": "URL",
       "urlplaceholder": "WMS, WFS, KML oder GeoJSON URL eingeben..."
     },
@@ -120,7 +121,9 @@
       "importlayer": "Kartenebene importieren",
       "maptip": "Kartentipps anzeigen",
       "printlegend": "Legende drucken",
-      "deletealllayers": "Alle Ebenen entfernen"
+      "deletealllayers": "Alle Ebenen entfernen",
+      "visiblefilter": "Unsichtbare Ebenen filtern",
+      "separator": "Separator"
     },
     "locate": {
       "metersUnit": "Meter",
@@ -213,7 +216,12 @@
     },
     "themeswitcher": {
       "filter": "Filter",
-      "addtotheme": "Dem aktuellen Thema hinzufügen"
+      "addtotheme": "Dem aktuellen Thema hinzufügen",
+      "match": {
+        "title": "Titel",
+        "keywords": "Schlüsselwörter",
+        "abstract": "Zusammenfassung"
+      }
     },
     "oereb": {
       "title": "Öffentlich-rechtliche Eigentumsbeschränkungen",

@@ -103,8 +103,9 @@
       "localfile": "Local file",
       "nofeatures": "No features could be imported.",
       "noresults": "No results or invalid URL",
+      "loading": "Loading...",
       "url": "URL",
-      "urlplaceholder": "Enter URL to WMS, WFS, KML, GeoJSON..."
+      "urlplaceholder": "Enter URL to WMS, WFS..."
     },
     "layerinfo": {
       "title": "Layer Info",
@@ -120,7 +121,9 @@
       "importlayer": "Import layer",
       "maptip": "Show layer map tips",
       "printlegend": "Print legend",
-      "deletealllayers": "Remove all layers"
+      "deletealllayers": "Remove all layers",
+      "visiblefilter": "Filter invisible layers",
+      "separator": "Separator"
     },
     "locate": {
       "metersUnit": "meters",
@@ -213,7 +216,12 @@
     },
     "themeswitcher": {
       "filter": "Filter...",
-      "addtotheme": "Add to current theme"
+      "addtotheme": "Add to current theme",
+      "match": {
+        "title": "Title",
+        "keywords": "Keywords",
+        "abstract": "Abstract"
+      }
     },
     "oereb": {
       "title": "ÖREB cadastre",
