@@ -234,6 +234,8 @@
       "perc": "Share in %",
       "regulations": "Regulations",
       "legalbasis": "Legal bases",
+      "hints": "Additional information and hints",
+      "nrpoints": "point(s)",
       "responsibleoffice": "Responsible office",
       "responsibleauthority": "Responsible authority",
       "requestPdf": "Request PDF cadastre extract",

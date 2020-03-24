@@ -207,6 +207,7 @@
                 "scrollmode": "parent",
                 "cfg": {
                   "hideLogo": true,
+                  "responsibleOfficeFromRestriction": true,
                   "themes": ["ch.SO.NutzungsplanungGrundnutzung", "ch.SO.NutzungsplanungUeberlagernd", "ch.SO.NutzungsplanungSondernutzungsplaene","ch.SO.Baulinien", "MotorwaysProjectPlaningZones", "MotorwaysBuildingLines", "RailwaysProjectPlanningZones", "RailwaysBuildingLines", "AirportsProjectPlanningZones", "AirportsBuildingLines", "AirportsSecurityZonePlans", "ContaminatedSites", "ContaminatedMilitarySites", "ContaminatedCivilAviationSites", "ContaminatedPublicTransportSites", "GroundwaterProtectionZones", "GroundwaterProtectionSites", "NoiseSensitivityLevels", "ForestPerimeters", "ForestDistanceLines", "ch.SO.Einzelschutz"]
                 }
               },
@@ -425,6 +426,7 @@
                 "scrollmode": "parent",
                 "cfg": {
                   "hideLogo": true,
+                  "responsibleOfficeFromRestriction": true,
                   "themes": ["ch.SO.NutzungsplanungGrundnutzung", "ch.SO.NutzungsplanungUeberlagernd", "ch.SO.NutzungsplanungSondernutzungsplaene","ch.SO.Baulinien", "MotorwaysProjectPlaningZones", "MotorwaysBuildingLines", "RailwaysProjectPlanningZones", "RailwaysBuildingLines", "AirportsProjectPlanningZones", "AirportsBuildingLines", "AirportsSecurityZonePlans", "ContaminatedSites", "ContaminatedMilitarySites", "ContaminatedCivilAviationSites", "ContaminatedPublicTransportSites", "GroundwaterProtectionZones", "GroundwaterProtectionSites", "NoiseSensitivityLevels", "ForestPerimeters", "ForestDistanceLines", "ch.SO.Einzelschutz"]
                 }
               },
