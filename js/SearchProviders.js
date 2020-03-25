@@ -72,7 +72,10 @@ Format of search results:
 const {addSearchResults} = require("qwc2/actions/search");
 
 function coordinatesSearch(text, requestId, searchOptions, dispatch) {
-    text = text.replace(/(\d),(\d)/g, "$1$2");
+    if((text.match(/,/g) || []).length >= 2) {
+        // Comma used as thousands separator
+        text = text.replace(/(\d),(\d)/g, "$1$2");
+    }
     let displaycrs = searchOptions.displaycrs || "EPSG:4326";
     let matches = text.match(/^\s*([+-]?\d+\.?\d*)[,\s]\s*([+-]?\d+\.?\d*)\s*$/);
     let items = [];
