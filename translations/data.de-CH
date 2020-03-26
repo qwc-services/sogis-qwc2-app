@@ -221,7 +221,8 @@
         "title": "Titel",
         "keywords": "Schlüsselwörter",
         "abstract": "Zusammenfassung"
-      }
+      },
+      "openintab": "In Tab öffnen"
     },
     "oereb": {
       "title": "Öffentlich-rechtliche Eigentumsbeschränkungen",
