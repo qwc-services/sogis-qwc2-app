@@ -226,6 +226,7 @@
     },
     "oereb": {
       "title": "ÖREB cadastre",
+      "failed": "Failed to load OEREB extract",
       "concernedThemes": "Concerned themes",
       "notConcernedThemes": "Not concerned themes",
       "themeWithoutData": "Themes without data",

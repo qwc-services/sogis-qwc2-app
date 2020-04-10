@@ -226,6 +226,7 @@
     },
     "oereb": {
       "title": "Öffentlich-rechtliche Eigentumsbeschränkungen",
+      "failed": "Der Auszug aus dem Kataster der öffentlich-rechtlichen Eigentumsbeschränkungen konnte nicht abgefragt werden. Bitte wenden Sie sich an die Katasterverantwortliche Stelle: Amt für Geoinformation, Rötistrasse 4, 4501 Solothurn, agi.so.ch",
       "concernedThemes": "Betroffene Themen",
       "notConcernedThemes": "Nicht betroffene Themen",
       "themeWithoutData": "Nicht verfügbare Themen",

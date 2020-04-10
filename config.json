@@ -200,6 +200,7 @@
               {
                 "key": "oereb",
                 "titleMsgId": "oereb.title",
+                "failMsgId": "oereb.failed",
                 "query": "/oereb/xml/$egrid$",
                 "pdfQuery": "/oereb/pdf/$egrid$",
                 "pdfTooltip": "oereb.requestPdf",
@@ -419,6 +420,7 @@
               {
                 "key": "oereb",
                 "titleMsgId": "oereb.title",
+                "failMsgId": "oereb.failed",
                 "query": "/oereb/xml/$egrid$",
                 "pdfQuery": "/oereb/pdf/$egrid$",
                 "pdfTooltip": "oereb.requestPdf",
