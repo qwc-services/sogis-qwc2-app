@@ -114,7 +114,9 @@
       "keywords": "Schlüsselwörter",
       "dataUrl": "Daten-URL",
       "metadataUrl": "Metadaten-URL",
-      "legend": "Legende"
+      "legend": "Legende",
+      "maxscale": "Max. Darstellungsmassstab",
+      "minscale": "Min. Darstellungsmassstab"
     },
     "layertree": {
       "compare": "Oberste Kartenebene vergleichen",
@@ -123,7 +125,8 @@
       "printlegend": "Legende drucken",
       "deletealllayers": "Alle Ebenen entfernen",
       "visiblefilter": "Unsichtbare Ebenen filtern",
-      "separator": "Separator"
+      "separator": "Separator",
+      "separatortooltip": "Separator hinzufügen"
     },
     "locate": {
       "metersUnit": "Meter",
@@ -182,6 +185,7 @@
       "draw": "Zeichnen",
       "edit": "Bearbeiten",
       "fill": "Füllung",
+      "freehand": "Freihand",
       "label": "Beschriftung",
       "layer": "Kartenebene",
       "line": "Linie",
@@ -200,7 +204,8 @@
       "all": "Alle",
       "themes": "Themen",
       "invisiblelayer": "Das Resultat liegt auf einer Ebene, die ausgeschaltet ist.",
-      "enablelayer": "Ebene einschalten"
+      "enablelayer": "Ebene einschalten",
+      "existinglayer": "Die Ebene existiert bereits in der Karte"
     },
     "share": {
       "directLinkTitle": "Über einen direkten Link",
