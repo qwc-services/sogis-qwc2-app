@@ -121,7 +121,7 @@ module.exports = {
                 (data.sublayerpath || []).forEach(idx => { layer = layer.sublayers[idx]; });
                 return {layername: layer.name, [data.property]: data.newvalue};
             },
-            SET_ACTIVE_LAYERINFO: data => ({layername: data.sublayer.name})
+            SET_ACTIVE_LAYERINFO: data => { return data.sublayer ? {layername: data.sublayer.name} : null; }
         }
         if(!blacklist.includes(action.type)) {
             let data = assign({}, action);
@@ -135,7 +135,9 @@ module.exports = {
             if(transforms[actionType]) {
                 data = transforms[actionType](data);
             }
-            _paq.push(['trackEvent', 'Action', actionType, JSON.stringify(data)]);
+            if(data) {
+                _paq.push(['trackEvent', 'Action', actionType, JSON.stringify(data)]);
+            }
         }
     },
     themeLayerRestorer: require('./themeLayerRestorer'),
