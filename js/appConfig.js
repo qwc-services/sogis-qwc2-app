@@ -11,6 +11,7 @@ const assign = require('object-assign');
 const {SearchProviders, searchProviderFactory} = require('./SearchProviders');
 const EditingInterface = require('./EditingInterface');
 const CoordinatesUtils = require('qwc2/utils/CoordinatesUtils');
+const LayerUtils = require('qwc2/utils/LayerUtils');
 const renderHelp = require('./Help');
 
 Proj4js.defs("EPSG:21781", "+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +towgs84=674.4,15.1,405.3,0,0,0,0 +units=m +no_defs");
@@ -112,10 +113,28 @@ module.exports = {
             'THEMES_LOADED',
             'TOGGLE_FULLSCREEN'
         ];
+        let transforms = {
+            ADD_LAYER: data => ({layername: data.layer.name}),
+            ADD_THEME_SUBLAYER: data => ({layername: LayerUtils.getSublayerNames(data.layer).filter(x => x).join(",")}),
+            CHANGE_LAYER_PROPERTY: data => {
+                let layer = state.layers.flat.find(layer => layer.uuid === data.layerUuid);
+                (data.sublayerpath || []).forEach(idx => { layer = layer.sublayers[idx]; });
+                return {layername: layer.name, [data.property]: data.newvalue};
+            }
+        }
         if(!blacklist.includes(action.type)) {
             let data = assign({}, action);
             delete data['type'];
-            _paq.push(['trackEvent', 'Action', action.type, JSON.stringify(data)]);
+            let actionType = action.type;
+            if(action.type === "LOG_ACTION") {
+                delete data['actionType'];
+                actionType = action.actionType;
+                data = data.data;
+            }
+            if(transforms[actionType]) {
+                data = transforms[actionType](data);
+            }
+            _paq.push(['trackEvent', 'Action', actionType, JSON.stringify(data)]);
         }
     },
     themeLayerRestorer: require('./themeLayerRestorer'),
