@@ -335,8 +335,8 @@ function CCCAttributeCalculator(layer, feature) {
             "apiVersion": "1.0",
             "method": "notifyGeoObjectSelected",
             "context_list": [
-                Object.entries(notifyEntry.mapping).reduce((res, [attr, cccattr]) => {
-                    return assign(res, {[cccattr]: mappedProps[attr] || null});
+                notifyEntry.mapping.reduce((res, entry) => {
+                    return assign(res, {[entry.ccc_attr_name]: mappedProps[entry.agdi_attr_name] || null});
                 }, {})
             ]
         }));
