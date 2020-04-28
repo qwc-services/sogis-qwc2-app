@@ -120,7 +120,8 @@ module.exports = {
                 let layer = state.layers.flat.find(layer => layer.uuid === data.layerUuid);
                 (data.sublayerpath || []).forEach(idx => { layer = layer.sublayers[idx]; });
                 return {layername: layer.name, [data.property]: data.newvalue};
-            }
+            },
+            SET_ACTIVE_LAYERINFO: data => ({layername: data.sublayer.name})
         }
         if(!blacklist.includes(action.type)) {
             let data = assign({}, action);
