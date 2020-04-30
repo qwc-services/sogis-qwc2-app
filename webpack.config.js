@@ -1,8 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
 const os = require('os');
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 const styleConfig = require("./styleConfig");
 
 const nodeEnv = process.env.NODE_ENV || 'development';
@@ -27,19 +25,7 @@ const plugins = [
   })
 ];
 
-if (isProd) {
-  plugins.push(new LodashModuleReplacementPlugin());
-  plugins.push(new TerserPlugin({
-    parallel: true,
-    sourceMap: true,
-    terserOptions: {
-      ecma: 8,
-      output: {
-        comments: false
-      }
-    }
-  }));
-} else {
+if (!isProd) {
   plugins.push(new webpack.HotModuleReplacementPlugin());
 }
 
@@ -58,7 +44,7 @@ module.exports = {
   },
   plugins,
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: [".mjs", ".js", ".jsx"],
     symlinks: false
   },
   module: {
@@ -82,8 +68,25 @@ module.exports = {
           {loader: 'string-replace-loader', options: {multiple: styleReplacements}}
         ]
       },
-      { test: /\.(ttf|eot|svg)(\?v=[0-9].[0-9].[0-9])?$/, loader: 'file-loader', query: {name: '[name].[ext]'} },
-      { test: /\.(png|jpg|gif)$/, loader: 'url-loader', query: {name: '[path][name].[ext]', limit: 8192} }, // inline base64 URLs for <=8k images, direct URLs for the rest
+      {
+        test: /\.(ttf|eot|svg)(\?v=[0-9].[0-9].[0-9])?$/, use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            esModule: false
+          }
+        }
+      },
+      {
+        test: /\.(png|jpg|gif)$/, use: {
+          loader: 'url-loader',
+          options: {
+            name: '[path][name].[ext]',
+            limit: 8192,
+            esModule: false
+          }
+        }
+      },
       {
         test: /\.jsx?$/,
         exclude: os.platform() === 'win32' ? /node_modules\\(?!(qwc2.*)\\).*/ : /node_modules\/(?!(qwc2.*)\/).*/,
@@ -91,6 +94,10 @@ module.exports = {
             loader: 'babel-loader',
             options: { babelrcRoots: ['.', path.resolve(__dirname, 'node_modules', 'qwc2'), path.resolve(__dirname, 'node_modules', 'qwc2-extra')] }
         }
+      },
+      {
+        test: /\.mjs$/,
+        type: 'javascript/auto',
       }
     ]
   },
