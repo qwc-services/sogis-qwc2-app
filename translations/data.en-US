@@ -230,6 +230,11 @@
       },
       "openintab": "Open in Tab"
     },
+    "window": {
+      "close": "Close",
+      "dock": "Dock",
+      "undock": "Undock"
+    },
     "oereb": {
       "title": "ÖREB cadastre",
       "failed": "Failed to load OEREB extract",
