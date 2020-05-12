@@ -6,13 +6,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+/**
+ * NOTE: This sample editing interface is designed to work with the counterpart at
+ *       https://github.com/qwc-services/qwc-data-service
+ *
+ * You can use any other editing backend by implementing the getFeature, addFeature,
+ * editFeature and deleteFeature methods as necessary.
+ */
 const axios = require('axios');
 const assign = require('object-assign');
-const isEmpty = require('lodash.isempty');
+const {isEmpty} = require('lodash');
 const CoordinatesUtils = require('qwc2/utils/CoordinatesUtils');
 const ConfigUtils = require('qwc2/utils/ConfigUtils');
 const ProxyUtils = require('qwc2/utils/ProxyUtils');
-const VectorLayerUtils = require('qwc2/utils/VectorLayerUtils');
 
 
 function buildErrMsg(err) {
@@ -27,19 +33,17 @@ function buildErrMsg(err) {
     return message;
 }
 
-function somap_getFeature(layerId, mapPos, mapCrs, mapScale, dpi, callback) {
+function getFeature(layerId, mapPos, mapCrs, mapScale, dpi, callback) {
     const SERVICE_URL = ConfigUtils.getConfigProp("editServiceUrl");
-    let coo = CoordinatesUtils.reproject(mapPos, mapCrs, "EPSG:2056");
-    // 5px tolerance
-    let tol = (5. / dpi) * 0.0254 * mapScale;
-    let bbox = (coo[0] - tol) + "," + (coo[1] - tol) + "," + (coo[0] + tol) + "," + (coo[1] + tol);
 
-    let req = SERVICE_URL + layerId + '?bbox=' + bbox;
+    // 5px tolerance
+    let tol = (5.0 / dpi) * 0.0254 * mapScale;
+    let bbox = (mapPos[0] - tol) + "," + (mapPos[1] - tol) + "," + (mapPos[0] + tol) + "," + (mapPos[1] + tol);
+
+    let req = SERVICE_URL + layerId + '?bbox=' + bbox + '&crs=' + mapCrs;
     axios.get(ProxyUtils.addProxyIfNeeded(req)).then(response => {
         if(response.data && !isEmpty(response.data.features)) {
-            let feature = response.data.features[0];
-            // feature.geometry = VectorLayerUtils.reprojectGeometry(feature.geometry, srcCrs, mapCrs);
-
+            let feature = response.data;
             callback(feature);
         } else {
             callback(null);
@@ -47,13 +51,14 @@ function somap_getFeature(layerId, mapPos, mapCrs, mapScale, dpi, callback) {
     }).catch(err => callback(null));
 }
 
-function somap_addFeature(layerId, feature, mapCrs, callback) {
+function addFeature(layerId, feature, mapCrs, callback) {
     const SERVICE_URL = ConfigUtils.getConfigProp("editServiceUrl");
     let req = SERVICE_URL + layerId + '/';
     // Add CRS
+    let epsgCode = mapCrs.split(':')[1];
     feature = assign({}, feature, {crs: {
         type: "name",
-        properties: {name: "urn:ogc:def:crs:EPSG::2056"}
+        properties: {name: "urn:ogc:def:crs:EPSG::" + epsgCode}
     }});
 
     axios.post(ProxyUtils.addProxyIfNeeded(req), feature).then(response => {
@@ -61,13 +66,14 @@ function somap_addFeature(layerId, feature, mapCrs, callback) {
     }).catch(err => callback(false, buildErrMsg(err)));
 }
 
-function somap_editFeature(layerId, feature, mapCrs, callback) {
+function editFeature(layerId, feature, mapCrs, callback) {
     const SERVICE_URL = ConfigUtils.getConfigProp("editServiceUrl");
     let req = SERVICE_URL + layerId + '/' + feature.id;
     // Add CRS
+    let epsgCode = mapCrs.split(':')[1];
     feature = assign({}, feature, {crs: {
         type: "name",
-        properties: {name: "urn:ogc:def:crs:EPSG::2056"}
+        properties: {name: "urn:ogc:def:crs:EPSG::" + epsgCode}
     }});
 
     axios.put(ProxyUtils.addProxyIfNeeded(req), feature).then(response => {
@@ -75,7 +81,7 @@ function somap_editFeature(layerId, feature, mapCrs, callback) {
     }).catch(err => callback(false, buildErrMsg(err)));
 }
 
-function somap_deleteFeature(layerId, featureId, callback) {
+function deleteFeature(layerId, featureId, callback) {
     const SERVICE_URL = ConfigUtils.getConfigProp("editServiceUrl");
     let req = SERVICE_URL + layerId + '/' + featureId;
 
@@ -85,8 +91,8 @@ function somap_deleteFeature(layerId, featureId, callback) {
 }
 
 module.exports = {
-    getFeature: somap_getFeature,
-    addFeature: somap_addFeature,
-    editFeature: somap_editFeature,
-    deleteFeature: somap_deleteFeature
-}
+    getFeature,
+    addFeature,
+    editFeature,
+    deleteFeature
+};
