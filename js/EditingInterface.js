@@ -90,9 +90,15 @@ function deleteFeature(layerId, featureId, callback) {
     }).catch(err => callback(false, buildErrMsg(err)));
 }
 
+// dummy method for getting relation values of picked feature
+function getRelations(layerId, featureId, relTables, callback) {
+    // do nothing
+}
+
 module.exports = {
     getFeature,
     addFeature,
     editFeature,
-    deleteFeature
+    deleteFeature,
+    getRelations
 };
