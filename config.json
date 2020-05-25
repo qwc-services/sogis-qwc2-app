@@ -444,6 +444,12 @@
               }
             ]
           }
+        },
+        {
+            "name": "Autologin",
+            "cfg": {
+                "autologinUrl": "https://idp-t.so.ch/login/sls/auth"
+            }
         }
       ]
   }

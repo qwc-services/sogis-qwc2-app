@@ -75,7 +75,8 @@ module.exports = {
             AuthenticationPlugin: require('qwc2/plugins/Authentication'),
             LandRegisterExtractPlugin: require('./plugins/LandRegisterExtract'),
             CCCInterfacePlugin: require('./plugins/CCCInterface'),
-            PlotInfoToolPlugin: require('qwc2-extra/plugins/PlotInfoTool')
+            PlotInfoToolPlugin: require('qwc2-extra/plugins/PlotInfoTool'),
+            AutologinPlugin: require('./Autologin')
         },
         cfg: {
             IdentifyPlugin: {
