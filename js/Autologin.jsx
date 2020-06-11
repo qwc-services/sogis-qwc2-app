@@ -12,7 +12,6 @@ const {connect} = require('react-redux');
 const axios = require('axios');
 const ConfigUtils = require('qwc2/utils/ConfigUtils');
 
-console.log("HUUU")
 class Autologin extends React.Component {
     static propTypes = {
         autologinUrl: PropTypes.string
