@@ -414,7 +414,7 @@
                 "key": "plotdescr",
                 "title": "Grundstückbeschrieb",
                 "query": "/plot/$egrid$",
-                "pdfQuery": null,
+                "pdfQuery": "/landreg/$egrid$",
                 "urlKey": "cadastre_egrid"
               },
               {
@@ -436,7 +436,7 @@
                 "key": "plotowner",
                 "title": "Eigentümerinformationen",
                 "query": "/plot_owner/captcha/$egrid$",
-                "pdfQuery": null,
+                "pdfQuery": "/landreg/$egrid$",
                 "urlKey": "property_egrid",
                 "cfg": {
                   "queryUrl": "/plot_owner/$egrid$"
