@@ -88,6 +88,7 @@
       "querying": "Objekte werden abgefragt...",
       "noresults": "Keine Resultate an der ausgewählten Position",
       "export": "Exportieren",
+      "exportformat": "Exportformat",
       "featureReport": "Objektblatt",
       "noattributes": "Keine Attribute",
       "title": "Objektinformationen",
