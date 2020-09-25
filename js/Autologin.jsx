@@ -20,8 +20,14 @@ class Autologin extends React.Component {
         let authServiceUrl = ConfigUtils.getConfigProp('authServiceUrl');
         axios.get(authServiceUrl + '/info').then(res => {
             if(!res.data.username) {
-                axios.post(this.props.autologinUrl).then(res => {
-                    window.location.href = authServiceUrl + '/login';
+                fetch(this.props.autologinUrl, {
+                    // we don't need a real fetch
+                    // just checking whether Intranet URL resolves
+                    mode: 'no-cors',
+                })
+                .then(res => {
+                    // automatic login
+                    window.location.href = authServiceUrl + "login?url=" + encodeURIComponent(window.location.href);
                 }).catch(e => {});
             }
         }).catch(e => {});
