@@ -62,6 +62,8 @@
       "symbologyscale": "Darstellungsmassstab"
     },
     "editing": {
+      "maximize": "Maximieren",
+      "minimize": "Minimieren",
       "canceldelete": "Abbrechen",
       "commit": "Speichern",
       "delete": "Löschen",
@@ -221,15 +223,24 @@
       "zoomout": "Hinauszoomen",
       "background": "Hintergrundkarte wechseln"
     },
+    "themelayerslist": {
+      "addlayer": "",
+      "addlayerstotheme": "",
+      "addselectedlayers": ""
+    },
     "themeswitcher": {
       "filter": "Filter",
       "addtotheme": "Dem aktuellen Thema hinzufügen",
+      "addlayerstotheme": "",
       "match": {
         "title": "Titel",
         "keywords": "Schlüsselwörter",
         "abstract": "Zusammenfassung"
       },
       "openintab": "In Tab öffnen"
+    },
+    "vectorlayerpicker": {
+      "prompt": "Ebenenname eingeben"
     },
     "window": {
       "close": "Schliessen",
