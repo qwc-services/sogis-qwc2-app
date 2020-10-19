@@ -212,6 +212,17 @@
       "enablelayer": "Ebene einschalten",
       "existinglayer": "Die Ebene existiert bereits in der Karte"
     },
+    "serviceinfo": {
+      "title": "Informationen zum Thema",
+      "abstract": "Zusammenfassung",
+      "keywords": "Schlüsselwörter",
+      "onlineResource": "Online Ressource",
+      "contactPerson": "Kontaktperson",
+      "contactOrganization": "Organisation",
+      "contactPosition": "Stelle",
+      "contactPhone": "Telefon",
+      "contactEmail": "Email"
+    },
     "share": {
       "directLinkTitle": "Über einen direkten Link",
       "generatingpermalink": "Permalink wird erzeugt",

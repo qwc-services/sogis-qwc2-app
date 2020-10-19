@@ -212,6 +212,17 @@
       "enablelayer": "Enable layer",
       "existinglayer": "The layer already exists in the map"
     },
+    "serviceinfo": {
+      "title": "Theme Information",
+      "abstract": "Abstract",
+      "keywords": "Keywords",
+      "onlineResource": "Online resource",
+      "contactPerson": "Contact person",
+      "contactOrganization": "Organization",
+      "contactPosition": "Position",
+      "contactPhone": "Phone",
+      "contactEmail": "Email"
+    },
     "share": {
       "directLinkTitle": "Via a direct link",
       "generatingpermalink": "Generating permalink...",
