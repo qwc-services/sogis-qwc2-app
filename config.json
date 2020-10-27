@@ -21,6 +21,7 @@
   "preserveNonThemeLayersOnThemeSwitch": true,
   "allowReorderingLayers": true,
   "allowRemovingThemeLayers": true,
+  "globallyDisableDockableDialogs": false,
   "localeAwareNumbers": true,
   "wmsDpi": 96,
   "minResultsExanded": 100,
