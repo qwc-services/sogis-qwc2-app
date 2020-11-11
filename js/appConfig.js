@@ -91,7 +91,7 @@ module.exports = {
             }
         }
     },
-    actionLogger: (action, state) => {
+    actionLogger: (action, state, oldState) => {
         let blacklist = [
             'ADD_LAYER_FEATURES',
             'CHANGE_BROWSER_PROPERTIES',
@@ -114,16 +114,13 @@ module.exports = {
             'THEMES_LOADED',
             'TOGGLE_FULLSCREEN'
         ];
-        let transforms = {
-            ADD_LAYER: data => ({layername: data.layer.name}),
-            ADD_THEME_SUBLAYER: data => ({layername: LayerUtils.getSublayerNames(data.layer).filter(x => x).join(",")}),
-            CHANGE_LAYER_PROPERTY: data => {
-                let layer = state.layers.flat.find(layer => layer.uuid === data.layerUuid);
-                (data.sublayerpath || []).forEach(idx => { layer = layer.sublayers[idx]; });
-                return {layername: layer.name, [data.property]: data.newvalue};
-            },
-            SET_ACTIVE_LAYERINFO: data => { return data.sublayer ? {layername: data.sublayer.name} : null; }
+
+        let pushAction = (actionType, data) => {
+            // console.log(actionType);
+            // console.log(data);
+            _paq.push(['trackEvent', 'Action', actionType, JSON.stringify(data)]);
         }
+
         if(!blacklist.includes(action.type)) {
             let data = assign({}, action);
             delete data['type'];
@@ -133,11 +130,42 @@ module.exports = {
                 actionType = action.actionType;
                 data = data.data;
             }
-            if(transforms[actionType]) {
-                data = transforms[actionType](data);
+
+            if(actionType === "ADD_THEME_SUBLAYER" || actionType == "ADD_LAYER")
+            {
+                let layernames = LayerUtils.getSublayerNames(data.layer).filter(x => x);
+                for(let layername of layernames) {
+                    pushAction("ADD_LAYER", {layername: layername});
+                    let sublayer = LayerUtils.searchSubLayer(data.layer, 'name', layername);
+                    if(sublayer) {
+                        pushAction("CHANGE_LAYER_PROPERTY", {layername: sublayer.name, 'visibility': sublayer.visibility});
+                        pushAction("CHANGE_LAYER_PROPERTY", {layername: sublayer.name, 'opacity': sublayer.opacity || 255});
+                    }
+                }
             }
-            if(data) {
-                _paq.push(['trackEvent', 'Action', actionType, JSON.stringify(data)]);
+            else if(actionType === "CHANGE_LAYER_PROPERTY")
+            {
+                let layer = state.layers.flat.find(layer => layer.uuid === data.layerUuid);
+                (data.sublayerpath || []).forEach(idx => { layer = layer.sublayers[idx]; });
+                let payload = {layername: layer.name, [data.property]: data.newvalue};
+                pushAction("CHANGE_LAYER_PROPERTY", payload);
+            }
+            else if(actionType === "SET_ACTIVE_LAYERINFO")
+            {
+                let payload = data.sublayer ? {layername: data.sublayer.name} : null;
+                pushAction("SET_ACTIVE_LAYERINFO", payload);
+            }
+            else if(actionType === "REMOVE_LAYER")
+            {
+                let layer = oldState.layers.flat.find(layer => layer.id === data.layerId);
+                if(layer) {
+                    (data.sublayerpath || []).forEach(idx => { layer = layer.sublayers[idx]; });
+                    pushAction("REMOVE_LAYER", {"layername": layer.name});
+                }
+            }
+            else
+            {
+                pushAction(actionType, data);
             }
         }
     },
