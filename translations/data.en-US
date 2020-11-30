@@ -108,7 +108,7 @@
       "noresults": "No results or invalid URL",
       "loading": "Loading...",
       "url": "URL",
-      "urlplaceholder": "Enter URL to WMS, WFS..."
+      "urlplaceholder": "Enter URL to WMS, WMTS, WFS..."
     },
     "layerinfo": {
       "title": "Layer Info",
@@ -186,6 +186,7 @@
       "bufferlayer": "Destination",
       "buffercompute": "Compute",
       "bufferselectfeature": "Select a feature to buffer...",
+      "circle": "Circle",
       "delete": "Delete",
       "draw": "Draw",
       "edit": "Edit",
@@ -201,6 +202,9 @@
       "size": "Size",
       "text": "Text",
       "width": "Width"
+    },
+    "scratchdrawing": {
+      "finish": "Finish"
     },
     "search": {
       "more": "More...",

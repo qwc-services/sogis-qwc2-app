@@ -108,7 +108,7 @@
       "noresults": "Keine Resultate oder ungültige URL",
       "loading": "Laden...",
       "url": "URL",
-      "urlplaceholder": "WMS, WFS, KML oder GeoJSON URL eingeben..."
+      "urlplaceholder": "WMS, WMTS oder WFS URL eingeben..."
     },
     "layerinfo": {
       "title": "Kartenebeneninformationen",
@@ -186,6 +186,7 @@
       "bufferlayer": "Zielebene",
       "buffercompute": "Berechnen",
       "bufferselectfeature": "Zu pufferndes Objekt auswählen...",
+      "circle": "Kreis",
       "delete": "Löschen",
       "draw": "Zeichnen",
       "edit": "Bearbeiten",
@@ -201,6 +202,9 @@
       "size": "Grösse",
       "text": "Text",
       "width": "Breite"
+    },
+    "scratchdrawing": {
+      "finish": "Abschliessen"
     },
     "search": {
       "more": "Mehr...",
