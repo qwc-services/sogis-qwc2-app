@@ -285,6 +285,10 @@
       "hidefulllegend": "Vollständige Legende ausblenden",
       "showfulllegend": "Vollständige Legende einblenden"
     },
+    "plotdescr": {
+      "title": "Grundstücksbeschrieb",
+      "requestPdf": "Grundbuchplan (PDF) erstellen"
+    },
     "plotinfotool": {
       "loading": "Daten werden geladen...",
       "failed": "Datenabfrage gescheitert"

@@ -285,6 +285,10 @@
       "hidefulllegend": "Hide full legend",
       "showfulllegend": "Show full legend"
     },
+    "plotdescr": {
+      "title": "Plot description",
+      "requestPdf": "Create land register plan (PDF)"
+    },
     "plotinfotool": {
       "loading": "Loading data...",
       "failed": "Failed to load data"

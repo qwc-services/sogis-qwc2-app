@@ -35,6 +35,9 @@
     "textFill": "black",
     "textStroke": "white"
   },
+  "externalLayerFeatureInfoFormats": {
+      "wms.geo.admin.ch": "application/vnd.ogc.gml"
+  },
   "plugins": {
       "mobile": [
         {
@@ -194,7 +197,7 @@
             "infoQueries": [
               {
                 "key": "plotdescr",
-                "title": "Grundstückbeschrieb",
+                "titleMsgId": "plotdescr.title",
                 "query": "/plot/$egrid$",
                 "pdfQuery": null,
                 "urlKey": "cadastre_egrid"
@@ -415,7 +418,7 @@
             "infoQueries": [
               {
                 "key": "plotdescr",
-                "title": "Grundstückbeschrieb",
+                "titleMsgId": "plotdescr.title",
                 "query": "/plot/$egrid$",
                 "pdfQuery": "/landreg/$egrid$",
                 "urlKey": "cadastre_egrid"
