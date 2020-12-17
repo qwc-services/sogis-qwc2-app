@@ -12,6 +12,7 @@ const {connect} = require('react-redux');
 const axios = require('axios');
 const url = require('url');
 const ConfigUtils = require('qwc2/utils/ConfigUtils');
+const {UrlParams} = require("qwc2/utils/PermaLinkUtils");
 
 class Autologin extends React.Component {
     static propTypes = {
@@ -19,6 +20,12 @@ class Autologin extends React.Component {
         startupParams: PropTypes.object
     }
     componentDidMount() {
+        // No action, if redirected from auth service
+        if (UrlParams.getParam('config:autologin') !== undefined) {
+            UrlParams.updateParams({"config:autologin": undefined});
+            return;
+        }
+
         let authServiceUrl = ConfigUtils.getConfigProp('authServiceUrl');
 
         axios.get(authServiceUrl + '/info').then(res => {
