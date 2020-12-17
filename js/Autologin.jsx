@@ -10,14 +10,17 @@ const React = require('react');
 const PropTypes = require('prop-types');
 const {connect} = require('react-redux');
 const axios = require('axios');
+const url = require('url');
 const ConfigUtils = require('qwc2/utils/ConfigUtils');
 
 class Autologin extends React.Component {
     static propTypes = {
-        autologinUrl: PropTypes.string
+        autologinUrl: PropTypes.string,
+        startupParams: PropTypes.object
     }
     componentDidMount() {
         let authServiceUrl = ConfigUtils.getConfigProp('authServiceUrl');
+
         axios.get(authServiceUrl + '/info').then(res => {
             if(!res.data.username) {
                 fetch(this.props.autologinUrl, {
@@ -27,7 +30,10 @@ class Autologin extends React.Component {
                 })
                 .then(res => {
                     // automatic login
-                    window.location.href = authServiceUrl + "login?url=" + encodeURIComponent(window.location.href);
+                    let urlObj = url.parse(window.location.href);
+                    urlObj.query = this.props.startupParams;
+                    urlObj.search = undefined;
+                    window.location.href = authServiceUrl + "login?url=" + encodeURIComponent(url.format(urlObj));
                 }).catch(e => {});
             }
         }).catch(e => {});
@@ -38,7 +44,9 @@ class Autologin extends React.Component {
 };
 
 module.exports = {
-    AutologinPlugin: Autologin,
+    AutologinPlugin: connect((state) => ({
+        startupParams: state.localConfig.startupParams
+    }), {})(Autologin),
     reducers: {
     }
 };
