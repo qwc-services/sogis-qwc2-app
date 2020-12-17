@@ -229,6 +229,15 @@
               }
             ]
           }
+        },
+        {
+            "name": "Autologin",
+            "cfg": {
+                "autologinUrl": "https://idp-t.so.ch/login/sls/auth"
+            }
+        },
+        {
+            "name": "LoginUser"
         }
       ],
       "desktop": [
@@ -456,6 +465,9 @@
             "cfg": {
                 "autologinUrl": "https://idp-t.so.ch/login/sls/auth"
             }
+        },
+        {
+            "name": "LoginUser"
         }
       ]
   }
