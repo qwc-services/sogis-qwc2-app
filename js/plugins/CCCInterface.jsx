@@ -6,52 +6,51 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const React = require('react');
-const PropTypes = require('prop-types');
-const {connect} = require('react-redux');
-const assign = require('object-assign');
-const axios = require('axios');
-const uuid = require('uuid');
-const ol = require('openlayers');
-const isEmpty = require('lodash.isempty');
-const Message = require('qwc2/components/I18N/Message');
-const ConfigUtils = require("qwc2/utils/ConfigUtils");
-const CoordinatesUtils = require('qwc2/utils/CoordinatesUtils');
-const MapUtils = require('qwc2/utils/MapUtils');
-const {LayerRole, addLayerFeatures, refreshLayer, removeLayer} = require('qwc2/actions/layers');
-const {zoomToPoint, zoomToExtent} = require('qwc2/actions/map');
-const {setCurrentTheme} = require('qwc2/actions/theme');
-const {setCurrentTask,setCurrentTaskBlocked} = require('qwc2/actions/task');
-const {TaskBar} = require('qwc2/components/TaskBar');
-const ButtonBar = require('qwc2/components/widgets/ButtonBar');
-const {UrlParams} = require("qwc2/utils/PermaLinkUtils");
-const {changeCCCState} = require('./actions/ccc');
-require('./style/CCCInterface.css');
+import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import assign from 'object-assign';
+import axios from 'axios';
+import uuid from 'uuid';
+import ol from 'openlayers';
+import ConfigUtils from 'qwc2/utils/ConfigUtils';
+import CoordinatesUtils from 'qwc2/utils/CoordinatesUtils';
+import MapUtils from 'qwc2/utils/MapUtils';
+import {LayerRole, addLayerFeatures, refreshLayer, removeLayer} from 'qwc2/actions/layers';
+import {zoomToPoint, zoomToExtent} from 'qwc2/actions/map';
+import {setCurrentTheme} from 'qwc2/actions/theme';
+import {setCurrentTask, setCurrentTaskBlocked} from 'qwc2/actions/task';
+import TaskBar from 'qwc2/components/TaskBar';
+import ButtonBar from 'qwc2/components/widgets/ButtonBar';
+import LocaleUtils from 'qwc2/utils/LocaleUtils';
+import {UrlParams} from 'qwc2/utils/PermaLinkUtils';
+import {changeCCCState} from './actions/ccc';
+import './style/CCCInterface.css';
 
 let CccAppConfig = null;
 let CccConnection = null;
 
 const CCCStatus = {
     NORMAL: {msgId: ""},
-    CONFIG_ERROR: {msgId: "ccc.configError"},
-    CONNECTION_ERROR: {msgId: "ccc.connError"}
+    CONFIG_ERROR: {msgId: LocaleUtils.trmsg("ccc.configError")},
+    CONNECTION_ERROR: {msgId: LocaleUtils.trmsg("ccc.connError")}
 };
 
 class CCCInterface extends React.Component {
     static propTypes = {
-        map: PropTypes.object,
-        themes: PropTypes.object,
+        addLayerFeatures: PropTypes.func,
         ccc: PropTypes.object,
-        zoomToPoint: PropTypes.func,
-        zoomToExtent: PropTypes.func,
+        cccselection: PropTypes.bool,
         changeCCCState: PropTypes.func,
+        map: PropTypes.object,
+        refreshLayer: PropTypes.func,
+        removeLayer: PropTypes.func,
         setCurrentTask: PropTypes.func,
         setCurrentTaskBlocked: PropTypes.func,
-        refreshLayer: PropTypes.func,
-        addLayerFeatures: PropTypes.func,
         setCurrentTheme: PropTypes.func,
-        removeLayer: PropTypes.func,
-        cccselection: PropTypes.bool
+        themes: PropTypes.object,
+        zoomToExtent: PropTypes.func,
+        zoomToPoint: PropTypes.func
     }
     constructor(props) {
         super(props);
@@ -68,24 +67,23 @@ class CCCInterface extends React.Component {
         this.currentContext = null;
     }
     componentDidMount() {
-        if(this.props.themes) {
+        if (this.props.themes) {
             this.initialize(this.props);
         }
     }
-    componentWillReceiveProps(newProps) {
-        if(!this.props.themes && newProps.themes) {
-            this.initialize(newProps);
+    componentDidUpdate(prevProps) {
+        if (!prevProps.themes && this.props.themes) {
+            this.initialize(this.props);
         }
     }
     initialize = (props) => {
         // If "session" and "appintegration" URL params are set, query configuration
         this.session = UrlParams.getParam('session');
-        let appintegration = UrlParams.getParam('appintegration');
-        if(this.session && appintegration) {
+        const appintegration = UrlParams.getParam('appintegration');
+        if (this.session && appintegration) {
             this.session = '{' + this.session + '}';
             const cccConfigService = ConfigUtils.getConfigProp("cccConfigService");
-            axios.get(cccConfigService + "?app=" + encodeURIComponent(appintegration))
-            .then(response => {
+            axios.get(cccConfigService + "?app=" + encodeURIComponent(appintegration)).then(response => {
                 CccAppConfig = response.data;
                 document.title = CccAppConfig.title;
 
@@ -94,8 +92,7 @@ class CCCInterface extends React.Component {
 
                 // Start websocket session
                 this.createWebSocket();
-            })
-            .catch(error => {
+            }).catch(() => {
                 console.warn("Failed to query app configuration");
                 this.setState({status: CCCStatus.CONFIG_ERROR});
                 this.reset();
@@ -103,8 +100,8 @@ class CCCInterface extends React.Component {
         }
     }
     loadTheme = (props) => {
-        let theme = props.themes.items.find(theme => theme.name === CccAppConfig.map);
-        if(theme) {
+        const theme = props.themes.items.find(t => t.name === CccAppConfig.map);
+        if (theme) {
             props.setCurrentTheme(theme, props.themes, false);
         } else {
             console.warn("Could not find theme " + CccAppConfig.map);
@@ -113,85 +110,79 @@ class CCCInterface extends React.Component {
     createWebSocket = () => {
         CccConnection = new WebSocket(CccAppConfig.cccServer);
         CccConnection.onopen = () => {
-            if(this.session) {
-                let msg = {
-                    "apiVersion": "1.0",
-                    "method": "connectGis",
-                    "session": this.session,
-                    "clientName": "Web GIS Client"
+            if (this.session) {
+                const msg = {
+                    apiVersion: "1.0",
+                    method: "connectGis",
+                    session: this.session,
+                    clientName: "Web GIS Client"
                 };
                 CccConnection.send(JSON.stringify(msg));
             }
-        }
+        };
         CccConnection.onclose = () => {
             console.log("Connection closed");
             this.setState({status: CCCStatus.CONNECTION_ERROR});
             this.reset();
-        }
+        };
         CccConnection.onerror = (err) => {
             console.log("Connection error: " + err);
             this.setState({status: CCCStatus.CONNECTION_ERROR});
             this.reset();
-        }
+        };
         CccConnection.onmessage = this.processWebSocketMessage;
     }
     processWebSocketMessage = (ev) => {
         let message = {};
         try {
             message = JSON.parse(ev.data);
-        } catch(e) {
+        } catch (e) {
             console.log("Invalid message: " + ev.data);
         }
-        if(/*message.apiVersion !== "1.0" || */!message.method) {
+        if (/* message.apiVersion !== "1.0" || */!message.method) {
             console.log("Invalid message: " + ev.data);
         }
 
-        if(message.context) {
+        if (message.context) {
             this.currentContext = message.context;
         }
 
-        if(message.method == "notifySessionReady") {
+        if (message.method === "notifySessionReady") {
             this.ready = true;
-        }
-        else if(message.method == "notifyError") {
+        } else if (message.method === "notifyError") {
             alert(message.message);
-        }
-        else if(message.method == "createGeoObject") {
+        } else if (message.method === "createGeoObject") {
             this.stopEdit();
-            if(message.zoomTo !== null) {
+            if (message.zoomTo !== null) {
                 this.processZoomTo(message.zoomTo);
             }
             this.props.changeCCCState({action: 'Draw', geomType: CccAppConfig.editGeomType});
             this.props.setCurrentTask('CccEdit');
             this.props.setCurrentTaskBlocked(true);
-        }
-        else if(message.method == "editGeoObject") {
+        } else if (message.method === "editGeoObject") {
             this.stopEdit();
-            let feature = {
-                "type": "Feature",
-                "id": uuid.v4(),
-                "geometry": message.data
+            const feature = {
+                type: "Feature",
+                id: uuid.v4(),
+                geometry: message.data
             };
             this.zoomToFeature(feature);
             this.props.changeCCCState({action: 'Edit', geomType: message.data.type, feature: feature});
             this.props.setCurrentTask('CccEdit');
             this.props.setCurrentTaskBlocked(true);
-        }
-        else if(message.method === "cancelEditGeoObject") {
+        } else if (message.method === "cancelEditGeoObject") {
             this.stopEdit();
-        }
-        else if(message.method === "notifyObjectUpdated") {
+        } else if (message.method === "notifyObjectUpdated") {
             this.props.refreshLayer(layer => layer.role === LayerRole.THEME);
-        }
-        else if(message.method === "showGeoObject") {
+        } else if (message.method === "showGeoObject") {
             this.stopEdit();
-            let feature = {
-                "type": "Feature",
-                "id": uuid.v4(),
-                "geometry": message.data
+            const feature = {
+                type: "Feature",
+                id: uuid.v4(),
+                geometry: message.data
             };
             this.zoomToFeature(feature);
-            let layer = {
+            const layer = {
                 id: "cccselection",
                 role: LayerRole.SELECTION
             };
@@ -203,15 +194,15 @@ class CCCInterface extends React.Component {
     processZoomTo = (zoomTo) => {
         const cccConfigService = ConfigUtils.getConfigProp("cccConfigService");
         axios.post(cccConfigService.replace(/\/$/g, "") + '/zoomTo', zoomTo).then(response => {
-            if(response.data && response.data.result) {
-                let result = response.data.result;
-                let maxZoom = this.getMaxZoomForMinScale(result.minScale);
+            if (response.data && response.data.result) {
+                const result = response.data.result;
+                const maxZoom = this.getMaxZoomForMinScale(result.minScale);
 
                 const newZoom = MapUtils.getZoomForExtent(CoordinatesUtils.reprojectBbox(result.bbox, result.crs, this.props.map.projection), this.props.map.resolutions, this.props.map.size, 0, maxZoom) - 1;
-                let center = [0.5 * (result.bbox[0] + result.bbox[2]), 0.5 * (result.bbox[1] + result.bbox[3])]
+                const center = [0.5 * (result.bbox[0] + result.bbox[2]), 0.5 * (result.bbox[1] + result.bbox[3])];
                 this.props.zoomToPoint(center, Math.min(maxZoom, newZoom), result.crs);
-                if(result.features) {
-                    let layer = {
+                if (result.features) {
+                    const layer = {
                         id: "cccselection",
                         role: LayerRole.SELECTION
                     };
@@ -221,11 +212,11 @@ class CCCInterface extends React.Component {
         });
     }
     zoomToFeature = (feature) => {
-        let extent = new ol.format.GeoJSON().readFeature(feature).getGeometry().getExtent();
-        if(extent[0] == extent[2] || extent[1] == extent[3]) {
-            let x = 0.5 * (extent[0] + extent[2]);
-            let y = 0.5 * (extent[1] + extent[3]);
-            let maxZoom = this.getMaxZoomForMinScale(CccAppConfig.minEditScale);
+        const extent = new ol.format.GeoJSON().readFeature(feature).getGeometry().getExtent();
+        if (extent[0] === extent[2] || extent[1] === extent[3]) {
+            const x = 0.5 * (extent[0] + extent[2]);
+            const y = 0.5 * (extent[1] + extent[3]);
+            const maxZoom = this.getMaxZoomForMinScale(CccAppConfig.minEditScale);
             this.props.zoomToPoint([x, y], maxZoom, "EPSG:2056");
         } else {
             this.props.zoomToExtent(extent, "EPSG:2056");
@@ -245,40 +236,40 @@ class CCCInterface extends React.Component {
         return maxZoom;
     }
     renderBody = () => {
-        let msgId = "";
-        if(this.props.ccc.action === "Draw") {
-            msgId = "ccc.createObject";
-        } else if(this.props.ccc.action === "Edit") {
-            msgId = "ccc.editObject";
+        let label = "";
+        if (this.props.ccc.action === "Draw") {
+            label = LocaleUtils.tr("ccc.createObject");
+        } else if (this.props.ccc.action === "Edit") {
+            label = LocaleUtils.tr("ccc.editObject");
         } else {
-            msgId = "ccc.showObject";
+            label = LocaleUtils.tr("ccc.showObject");
         }
-        let buttons = [];
-        if(this.props.ccc.action === "Draw" || this.props.ccc.action === "Edit") {
-            buttons.push({key: 'Commit', icon: 'ok', label: "ccc.commit", extraClasses: "edit-commit", disabled: !this.props.ccc.changed});
-            buttons.push({key: 'Cancel', icon: 'remove', label: "ccc.cancel", extraClasses: "edit-discard"});
+        const buttons = [];
+        if (this.props.ccc.action === "Draw" || this.props.ccc.action === "Edit") {
+            buttons.push({key: 'Commit', icon: 'ok', label: LocaleUtils.trmsg("ccc.commit"), extraClasses: "edit-commit", disabled: !this.props.ccc.changed});
+            buttons.push({key: 'Cancel', icon: 'remove', label: LocaleUtils.trmsg("ccc.cancel"), extraClasses: "edit-discard"});
         }
-        if(this.props.ccc.action !== "Edit") {
-            buttons.push({key: 'Deselect', label: "ccc.deselect", disabled: !this.props.cccselection});
+        if (this.props.ccc.action !== "Edit") {
+            buttons.push({key: 'Deselect', label: LocaleUtils.trmsg("ccc.deselect"), disabled: !this.props.cccselection});
         }
         return (
             <span>
-                <div><b><Message msgId={msgId} /></b></div>
+                <div><b>{label}</b></div>
                 <ButtonBar buttons={buttons} onClick={this.buttonClicked} />
             </span>
         );
     }
     render() {
-        if(this.state.status && this.state.status !== CCCStatus.NORMAL) {
+        if (this.state.status && this.state.status !== CCCStatus.NORMAL) {
             return (
                 <div className="ccc-error-overlay">
-                    <Message msgId={this.state.status.msgId} />
+                    {LocaleUtils.tr(this.state.status.msgId)}
                 </div>
             );
         }
-        if(this.props.ccc.action) {
+        if (this.props.ccc.action) {
             return (
-                <TaskBar task="CccEdit" onHide={this.stopEdit} unblockOnClose={true}>
+                <TaskBar onHide={this.stopEdit} task="CccEdit" unblockOnClose>
                     {() => ({
                         body: this.renderBody()
                     })}
@@ -288,17 +279,17 @@ class CCCInterface extends React.Component {
         return null;
     }
     buttonClicked = (action) => {
-        if(action === 'Commit') {
+        if (action === 'Commit') {
             CccConnection.send(JSON.stringify({
-                "apiVersion": "1.0",
-                "method": "notifyEditGeoObjectDone",
-                "context": this.currentContext,
-                "data": this.props.ccc.feature.geometry
+                apiVersion: "1.0",
+                method: "notifyEditGeoObjectDone",
+                context: this.currentContext,
+                data: this.props.ccc.feature.geometry
             }));
             this.stopEdit();
-        } else if(action === 'Cancel' || (action === 'Deselect' && this.props.ccc.action === 'Show')) {
+        } else if (action === 'Cancel' || (action === 'Deselect' && this.props.ccc.action === 'Show')) {
             this.stopEdit();
-        } else if(action === 'Deselect') {
+        } else if (action === 'Deselect') {
             this.props.removeLayer('cccselection');
         }
     }
@@ -308,23 +299,23 @@ class CCCInterface extends React.Component {
         this.props.setCurrentTaskBlocked(false);
         this.props.setCurrentTask(null);
     }
-};
+}
 
-function CCCAttributeCalculator(layer, feature) {
-    if(!CccConnection || !CccAppConfig || !CccAppConfig.notifyLayers) {
+export function CCCAttributeCalculator(layer, feature) {
+    if (!CccConnection || !CccAppConfig || !CccAppConfig.notifyLayers) {
         return [];
     }
-    let layername = feature.layername || layer;
-    let notifyEntry = CccAppConfig.notifyLayers.find(entry => entry.layer === layername);
-    if(!notifyEntry) {
+    const layername = feature.layername || layer;
+    const notifyEntry = CccAppConfig.notifyLayers.find(entry => entry.layer === layername);
+    if (!notifyEntry) {
         return [];
     }
-    let clickHandler = (ev) => {
-        if(!CccConnection) {
+    const clickHandler = () => {
+        if (!CccConnection) {
             return;
         }
         let mappedProps = {};
-        if(feature.attribnames) {
+        if (feature.attribnames) {
             mappedProps = Object.entries(feature.attribnames).reduce((res, [attrtitle, attrname]) => {
                 return assign(res, {[attrname]: feature.properties[attrtitle]});
             }, {});
@@ -332,15 +323,15 @@ function CCCAttributeCalculator(layer, feature) {
             mappedProps = feature.properties;
         }
         CccConnection.send(JSON.stringify({
-            "apiVersion": "1.0",
-            "method": "notifyGeoObjectSelected",
-            "context_list": [
+            apiVersion: "1.0",
+            method: "notifyGeoObjectSelected",
+            context_list: [
                 notifyEntry.mapping.reduce((res, entry) => {
                     return assign(res, {[entry.ccc_attr_name]: mappedProps[entry.agdi_attr_name] || null});
                 }, {})
             ]
         }));
-    }
+    };
     return [(
         <tr key="ccc-link">
             <td colSpan="2">
@@ -358,20 +349,14 @@ const selector = (state) => ({
     cccselection: !!(state.layers.flat || []).find(layer => layer.id === 'cccselection')
 });
 
-module.exports = {
-    CCCInterfacePlugin: connect(selector, {
-        zoomToPoint: zoomToPoint,
-        zoomToExtent: zoomToExtent,
-        changeCCCState: changeCCCState,
-        setCurrentTask: setCurrentTask,
-        setCurrentTaskBlocked: setCurrentTaskBlocked,
-        refreshLayer: refreshLayer,
-        addLayerFeatures: addLayerFeatures,
-        setCurrentTheme: setCurrentTheme,
-        removeLayer: removeLayer,
-    })(CCCInterface),
-    reducers: {
-        ccc: require('./reducers/ccc')
-    },
-    CCCAttributeCalculator: CCCAttributeCalculator
-}
+export const CCCInterfacePlugin = connect(selector, {
+    zoomToPoint: zoomToPoint,
+    zoomToExtent: zoomToExtent,
+    changeCCCState: changeCCCState,
+    setCurrentTask: setCurrentTask,
+    setCurrentTaskBlocked: setCurrentTaskBlocked,
+    refreshLayer: refreshLayer,
+    addLayerFeatures: addLayerFeatures,
+    setCurrentTheme: setCurrentTheme,
+    removeLayer: removeLayer
+})(CCCInterface);

@@ -69,20 +69,20 @@ Format of search results:
 
 */
 
-const {addSearchResults} = require("qwc2/actions/search");
+import {addSearchResults} from 'qwc2/actions/search';
 
 function coordinatesSearch(text, requestId, searchOptions, dispatch) {
-    if((text.match(/,/g) || []).length >= 2) {
+    if ((text.match(/,/g) || []).length >= 2) {
         // Comma used as thousands separator
         text = text.replace(/(\d),(\d)/g, "$1$2");
     }
-    let displaycrs = searchOptions.displaycrs || "EPSG:4326";
-    let matches = text.match(/^\s*([+-]?\d+\.?\d*)[,\s]\s*([+-]?\d+\.?\d*)\s*$/);
-    let items = [];
-    if(matches && matches.length >= 3) {
-        let x = parseFloat(matches[1]);
-        let y = parseFloat(matches[2]);
-        if(displaycrs !== "EPSG:4326") {
+    const displaycrs = searchOptions.displaycrs || "EPSG:4326";
+    const matches = text.match(/^\s*([+-]?\d+\.?\d*)[,\s]\s*([+-]?\d+\.?\d*)\s*$/);
+    const items = [];
+    if (matches && matches.length >= 3) {
+        const x = parseFloat(matches[1]);
+        const y = parseFloat(matches[2]);
+        if (displaycrs !== "EPSG:4326") {
             items.push({
                 id: "coord0",
                 text: x + ", " + y + " (" + displaycrs + ")",
@@ -93,8 +93,8 @@ function coordinatesSearch(text, requestId, searchOptions, dispatch) {
                 bbox: [x, y, x, y]
             });
         }
-        if(x >= -180 && x <= 180 && y >= -90 && y <= 90) {
-            let title = Math.abs(x) + (x >= 0 ? "°E" : "°W") + ", "
+        if (x >= -180 && x <= 180 && y >= -90 && y <= 90) {
+            const title = Math.abs(x) + (x >= 0 ? "°E" : "°W") + ", "
                       + Math.abs(y) + (y >= 0 ? "°N" : "°S");
             items.push({
                 id: "coord" + items.length,
@@ -106,8 +106,8 @@ function coordinatesSearch(text, requestId, searchOptions, dispatch) {
                 bbox: [x, y, x, y]
             });
         }
-        if(x >= -90 && x <= 90 && y >= -180 && y <= 180 && x != y) {
-            let title = Math.abs(y) + (y >= 0 ? "°E" : "°W") + ", "
+        if (x >= -90 && x <= 90 && y >= -180 && y <= 180 && x !== y) {
+            const title = Math.abs(y) + (y >= 0 ? "°E" : "°W") + ", "
                       + Math.abs(x) + (x >= 0 ? "°N" : "°S");
             items.push({
                 id: "coord" + items.length,
@@ -120,8 +120,8 @@ function coordinatesSearch(text, requestId, searchOptions, dispatch) {
             });
         }
     }
-    let results = [];
-    if(items.length > 0) {
+    const results = [];
+    if (items.length > 0) {
         results.push(
             {
                 id: "coords",
@@ -133,16 +133,13 @@ function coordinatesSearch(text, requestId, searchOptions, dispatch) {
     dispatch(addSearchResults({data: results, provider: "coordinates", reqId: requestId}, true));
 }
 
-////////////////////////////////////////////////////////////////////////////////
-
-module.exports = {
-    SearchProviders: {
-        "coordinates": {
-            label: "Coordinates",
-            onSearch: coordinatesSearch
-        }
-    },
-    searchProviderFactory: (cfg) => {
-        return null;
+export const SearchProviders = {
+    coordinates: {
+        label: "Coordinates",
+        onSearch: coordinatesSearch
     }
 };
+
+export function searchProviderFactory() {
+    return null;
+}

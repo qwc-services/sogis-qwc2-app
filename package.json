@@ -2,6 +2,8 @@
     "name": "QWC2Solothurn",
     "version": "2017.12.14",
     "description": "QGIS Web Client 2",
+    "author": "Sourcepole",
+    "license": "BSD-2-Clause",
     "repository": "git@git.sourcepole.ch:ktso/qwc2-solothurn.git",
     "private": true,
     "workspaces": [
@@ -9,33 +11,31 @@
         "qwc2-extra"
     ],
     "devDependencies": {
-        "@babel/core": "^7.2.2",
-        "@babel/plugin-proposal-class-properties": "^7.3.0",
-        "@babel/plugin-proposal-object-rest-spread": "^7.3.2",
-        "@babel/preset-env": "^7.3.1",
-        "@babel/preset-react": "^7.0.0",
-        "babel-eslint": "^10.0.1",
-        "babel-loader": "^8.0.5",
-        "css-loader": "^2.1.0",
-        "eslint": "^5.13.0",
-        "eslint-plugin-react": "^7.12.4",
-        "file-loader": "^3.0.1",
-        "lodash-webpack-plugin": "^0.11.5",
-        "mkdirp": "^0.5.1",
-        "rimraf": "^2.6.3",
-        "string-replace-loader": "^2.1.1",
-        "style-loader": "^0.23.1",
-        "terser-webpack-plugin": "^2.3.6",
-        "url-loader": "^1.1.2",
-        "webpack": "^4.43.0",
-        "webpack-bundle-size-analyzer": "^3.0.0",
-        "webpack-cli": "^3.2.3",
-        "webpack-dev-server": "^3.1.14"
+        "@babel/core": "7.12.10",
+        "@babel/plugin-proposal-class-properties": "7.12.1",
+        "@babel/plugin-proposal-object-rest-spread": "7.12.1",
+        "@babel/preset-env": "7.12.11",
+        "@babel/preset-react": "7.12.10",
+        "babel-eslint": "10.1.0",
+        "babel-loader": "8.2.2",
+        "css-loader": "5.0.1",
+        "eslint": "7.16.0",
+        "eslint-plugin-react": "7.22.0",
+        "file-loader": "6.2.0",
+        "mkdirp": "1.0.4",
+        "rimraf": "3.0.2",
+        "string-replace-loader": "2.3.0",
+        "style-loader": "2.0.0",
+        "url-loader": "4.1.1",
+        "webpack": "4.44.2",
+        "webpack-bundle-size-analyzer": "3.1.0",
+        "webpack-cli": "4.3.1",
+        "webpack-dev-server": "3.11.1"
     },
     "scripts": {
         "clean": "rimraf dist",
         "build": "node -e \"process.exit(require('os').platform() === 'win32' ? 0 : 1)\" && qwc2\\scripts\\package-commands.bat build || ./qwc2/scripts/package-commands.sh build",
-        "start": "npm run tsupdate && npm run iconfont && webpack-dev-server --progress --colors --host 0.0.0.0 --port 8082",
+        "start": "npm run tsupdate && npm run iconfont && webpack serve --progress --host 0.0.0.0 --port 8082",
         "iconfont": "node qwc2/scripts/makeIconkit.js",
         "themesconfig": "node qwc2/scripts/themesConfig.js || touch themes.json",
         "prod": "node -e \"process.exit(require('os').platform() === 'win32' ? 0 : 1)\" && qwc2\\scripts\\package-commands.bat prod || ./qwc2/scripts/package-commands.sh prod",
@@ -57,10 +57,5 @@
             ],
             "@babel/preset-react"
         ]
-    },
-    "author": "Sourcepole",
-    "license": "BSD-2-Clause",
-    "dependencies": {
-        "react-intl": "^2.8.0"
     }
 }

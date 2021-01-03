@@ -2,38 +2,31 @@
   "languages": [
     "de-CH",
     "en-US"
-    ],
-    "strings": [
-        "appmenu.items.LandRegisterExtract",
-        "ccc.createObject",
-        "ccc.editObject",
-        "ccc.showObject",
-        "ccc.configError",
-        "ccc.connError",
-        "ccc.commit",
-        "ccc.cancel",
-        "ccc.deselect",
-        "searchbox.coordinates",
-        "searchbox.placeholder",
-        "searchbox.recent",
-        "searchbox.filter",
-        "searchbox.places",
-        "searchbox.layers",
-        "searchbox.more",
-        "searchbox.morelayers",
-        "searchbox.nodescription"
-    ],
-    "overrides": [
-        "appmenu.items.LayerTree",
-        "appmenu.items.PlotInfoTool_comment",
-        "oereb.failed",
-        "bottombar.viewertitle_label",
-        "editing.layer",
-        "editing.noeditablelayers",
-        "importlayer.addlayer",
-        "layerinfo.title",
-        "layertree.compare",
-        "layertree.importlayer",
-        "redlining.layer"
-   ]
+  ],
+  "strings": [
+    "ccc.cancel",
+    "ccc.commit",
+    "ccc.configError",
+    "ccc.connError",
+    "ccc.createObject",
+    "ccc.deselect",
+    "ccc.editObject",
+    "ccc.showObject"
+  ],
+  "extra_strings": [
+    "appmenu.items.LandRegisterExtract"
+  ],
+  "overrides": [
+    "appmenu.items.LayerTree",
+    "appmenu.items.PlotInfoTool_comment",
+    "oereb.failed",
+    "bottombar.viewertitle_label",
+    "editing.layer",
+    "editing.noeditablelayers",
+    "importlayer.addlayer",
+    "layerinfo.title",
+    "layertree.compare",
+    "layertree.importlayer",
+    "redlining.layer"
+  ]
 }

@@ -6,19 +6,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const React = require('react');
-const PropTypes = require('prop-types');
-const {connect} = require('react-redux');
-const assign = require('object-assign');
-const uuid = require('uuid');
-var ol = require('openlayers');
-const {changeCCCState} = require('./actions/ccc');
+import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import uuid from 'uuid';
+import ol from 'openlayers';
+
+import {changeCCCState} from './actions/ccc';
 
 class CCCEditSupport extends React.Component {
     static propTypes = {
-        map: PropTypes.object,
         ccc: PropTypes.object,
-        changeCCCState: PropTypes.func
+        changeCCCState: PropTypes.func,
+        map: PropTypes.object
     }
     static defaultProps = {
         editing: {}
@@ -36,7 +36,7 @@ class CCCEditSupport extends React.Component {
                 radius: 8,
                 fill: new ol.style.Fill({ color: [255, 0, 0, 0.5] }),
                 stroke: new ol.style.Stroke({ color: 'red', width: 2})
-            }),
+            })
         });
         this.interactionStyle = [
             new ol.style.Style({
@@ -52,9 +52,9 @@ class CCCEditSupport extends React.Component {
                     angle: Math.PI / 4
                 }),
                 geometry: (feature) => {
-                    if(feature.getGeometry().getType() === "Point") {
+                    if (feature.getGeometry().getType() === "Point") {
                         return new ol.geom.MultiPoint([feature.getGeometry().getCoordinates()]);
-                    } else if(feature.getGeometry().getType() === "LineString") {
+                    } else if (feature.getGeometry().getType() === "LineString") {
                         return new ol.geom.MultiPoint(feature.getGeometry().getCoordinates());
                     } else {
                         return new ol.geom.MultiPoint(feature.getGeometry().getCoordinates()[0]);
@@ -63,14 +63,14 @@ class CCCEditSupport extends React.Component {
             })
         ];
     }
-    componentWillReceiveProps(newProps) {
-        if(newProps.ccc === this.props.ccc) {
+    componentDidUpdate(prevProps) {
+        if (prevProps.ccc === this.props.ccc) {
             // pass
-        } else if(newProps.ccc.action === 'Edit' && newProps.ccc.feature) {
-            this.addEditInteraction(newProps);
-        } else if(newProps.ccc.action === 'Draw' && newProps.ccc.geomType) {
-            if(!newProps.ccc.feature || this.props.ccc.geomType !== newProps.ccc.geomType) {
-                this.addDrawInteraction(newProps);
+        } else if (this.props.ccc.action === 'Edit' && this.props.ccc.feature) {
+            this.addEditInteraction(this.props);
+        } else if (this.props.ccc.action === 'Draw' && this.props.ccc.geomType) {
+            if (!this.props.ccc.feature || prevProps.ccc.geomType !== this.props.ccc.geomType) {
+                this.addDrawInteraction(this.props);
             }
         } else {
             this.reset();
@@ -80,7 +80,7 @@ class CCCEditSupport extends React.Component {
         return null;
     }
     createLayer = () => {
-        let source = new ol.source.Vector();
+        const source = new ol.source.Vector();
         this.layer = new ol.layer.Vector({
             source: source,
             zIndex: 1000000,
@@ -91,25 +91,25 @@ class CCCEditSupport extends React.Component {
     addDrawInteraction = (newProps) => {
         this.reset();
         this.createLayer();
-        let drawInteraction = new ol.interaction.Draw({
+        const drawInteraction = new ol.interaction.Draw({
             type: newProps.ccc.geomType,
             source: this.layer.getSource(),
-            condition: (event) => {  return event.pointerEvent.buttons === 1 },
+            condition: (event) => {  return event.originalEvent.buttons === 1; },
             style: this.interactionStyle
         });
         drawInteraction.on('drawstart', (evt) => {
             this.currentFeature = evt.feature;
             this.currentFeature.setId(uuid.v4());
         }, this);
-        drawInteraction.on('drawend', (evt) => {
-            let feature = this.currentFeature;
+        drawInteraction.on('drawend', () => {
+            const feature = this.currentFeature;
             this.commitCurrentFeature();
 
             setTimeout(() => {
                 this.currentFeature = feature;
-                let modifyInteraction = new ol.interaction.Modify({
+                const modifyInteraction = new ol.interaction.Modify({
                     features: new ol.Collection([this.currentFeature]),
-                    condition: (event) => {  return event.pointerEvent.buttons === 1 },
+                    condition: (event) => {  return event.originalEvent.buttons === 1; },
                     deleteCondition: (event) => {
                         // delete vertices on SHIFT + click
                         return ol.events.condition.shiftKeyOnly(event) && ol.events.condition.singleClick(event);
@@ -118,9 +118,9 @@ class CCCEditSupport extends React.Component {
                 });
                 this.props.map.addInteraction(modifyInteraction);
                 this.interaction = modifyInteraction;
-                modifyInteraction.on('modifyend', (evt) => {
+                modifyInteraction.on('modifyend', () => {
                     this.commitCurrentFeature();
-                }, this)
+                }, this);
 
                 this.props.map.removeInteraction(drawInteraction);
             }, 100);
@@ -131,47 +131,47 @@ class CCCEditSupport extends React.Component {
     addEditInteraction = (newProps) => {
         this.reset();
         this.createLayer();
-        let format = new ol.format.GeoJSON();
+        const format = new ol.format.GeoJSON();
         this.currentFeature = format.readFeature(newProps.ccc.feature);
         this.layer.getSource().addFeature(this.currentFeature);
 
-        let modifyInteraction = new ol.interaction.Modify({
+        const modifyInteraction = new ol.interaction.Modify({
             features: new ol.Collection([this.currentFeature]),
-            condition: (event) => {  return event.pointerEvent.buttons === 1 },
+            condition: (event) => {  return event.originalEvent.buttons === 1; },
             deleteCondition: (event) => {
                 // delete vertices on SHIFT + click
                 return ol.events.condition.shiftKeyOnly(event) && ol.events.condition.singleClick(event);
             },
             style: this.interactionStyle
         });
-        modifyInteraction.on('modifyend', (evt) => {
+        modifyInteraction.on('modifyend', () => {
             this.commitCurrentFeature();
         }, this);
         this.props.map.addInteraction(modifyInteraction);
         this.interaction = modifyInteraction;
     }
     commitCurrentFeature = () => {
-        if(!this.currentFeature) {
+        if (!this.currentFeature) {
             return;
         }
-        let format = new ol.format.GeoJSON();
-        let feature = format.writeFeatureObject(this.currentFeature);
+        const format = new ol.format.GeoJSON();
+        const feature = format.writeFeatureObject(this.currentFeature);
         this.props.changeCCCState({feature: feature, changed: true});
     }
     reset = () => {
-        if(this.interaction) {
+        if (this.interaction) {
             this.props.map.removeInteraction(this.interaction);
         }
         this.interaction = null;
         this.currentFeature = null;
-        if(this.layer) {
+        if (this.layer) {
             this.props.map.removeLayer(this.layer);
         }
         this.layer = null;
     }
-};
+}
 
-module.exports = connect((state) => ({
+export default connect((state) => ({
     ccc: state.ccc || {}
 }), {
     changeCCCState: changeCCCState
