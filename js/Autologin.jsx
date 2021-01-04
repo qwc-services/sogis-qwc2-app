@@ -39,6 +39,7 @@ class Autologin extends React.Component {
                     // automatic login
                     let urlObj = url.parse(window.location.href);
                     urlObj.query = this.props.startupParams;
+                    urlObj.query["config:autologin"] = 1;
                     urlObj.search = undefined;
                     window.location.href = authServiceUrl + "login?url=" + encodeURIComponent(url.format(urlObj));
                 }).catch(e => {});
