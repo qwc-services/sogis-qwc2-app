@@ -53,7 +53,7 @@ export default class PlotOwnerInfo extends React.Component {
         if (this.state.ownerData === null) {
             // show captcha template in iframe
             const html = this.props.data;
-            const assetsPath = ConfigUtils.getConfigProp("assetsPath");
+            const assetsPath = ConfigUtils.getAssetsPath();
             const src = assetsPath + "/templates/blank.html";
             return (
                 <iframe className="plot-info-dialog-query-result" onLoad={ev => this.setIframeContent(ev.target, html)} src={src} />
