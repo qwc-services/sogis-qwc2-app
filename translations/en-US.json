@@ -80,7 +80,7 @@
       "featureReport": "Feature report",
       "link": "Link",
       "noattributes": "No attributes",
-      "noresults": "No information available for the selected point",
+      "noresults": "No results",
       "querying": "Querying...",
       "title": "Feature Info"
     },
@@ -247,7 +247,8 @@
         "keywords": "Keywords",
         "title": "Title"
       },
-      "openintab": "Open in Tab"
+      "openintab": "Open in Tab",
+      "restrictedthemeinfo": "You are not permitted to view the theme or not logged in"
     },
     "tooltip": {
       "background": "Switch background",
