@@ -233,7 +233,7 @@
         {
             "name": "Autologin",
             "cfg": {
-                "autologinUrl": "https://idp-t.so.ch/login/sls/auth"
+                "autologinUrl": "https://intraso.rootso.org"
             }
         },
         {
@@ -463,7 +463,7 @@
         {
             "name": "Autologin",
             "cfg": {
-                "autologinUrl": "https://idp-t.so.ch/login/sls/auth"
+                "autologinUrl": "https://intraso.rootso.org"
             }
         },
         {
