@@ -20,6 +20,31 @@ class Autologin extends React.Component {
         startupParams: PropTypes.object
     }
     componentDidMount() {
+        // Autologin flow:
+        // GET /map/
+        // Autologin.jsx:
+        //   if param config:autologin is undefined:
+        //     if GET /auth/info has no identity:
+        //       if GET $autologinUrl is OK:
+        //         Redirect to /auth/login?url=/map/?config:autologin=1
+        // /auth/acs:
+        //   Write username + autologin into JWT cookie
+        //   Redirect to /map/?config:autologin=1
+        // StandardApp.jsx:
+        //   if param config:xxx passed:
+        //      load config.json with param xxx
+        //      remove config:xxx param from URL
+        // qwc2_viewer.qwc2_config:
+        //   if param config:autologin passed or autologin in identity:
+        //      remove login/logout menu entries
+        //
+        // Manual login flow:
+        // ...
+        //         Redirect to /auth/login?url=/map/
+        // /auth/acs:
+        //   Write username (without autologin) into JWT cookie
+        //   Redirect to /map/
+
         // No action, if redirected from auth service
         if (UrlParams.getParam('config:autologin') !== undefined) {
             UrlParams.updateParams({"config:autologin": undefined});
@@ -30,6 +55,7 @@ class Autologin extends React.Component {
 
         axios.get(authServiceUrl + '/info').then(res => {
             if(!res.data.username) {
+                // Check Intranet URL
                 fetch(this.props.autologinUrl, {
                     // we don't need a real fetch
                     // just checking whether Intranet URL resolves
