@@ -20,7 +20,7 @@ function themeLayerRestorer(missingLayers, theme, callback) {
         let layerNames = Object.entries(response.data).reduce((res, [key, value]) => {
             return {...res, [key]: LayerUtils.getSublayerNames({sublayers: value})};
         }, {});
-        callback([].concat(...Object.values(response.data)).filter(entry => !isEmpty(entry)), layerNames);
+        callback(Object.values(response.data).filter(entry => !isEmpty(entry)), layerNames);
     }).catch(e => {
         callback([], null);
     });
