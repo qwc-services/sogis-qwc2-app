@@ -150,6 +150,7 @@
             "flattenGroups": true,
             "legendThumbnail": "legend_thumbnail.svg",
             "bboxDependentLegend": true,
+            "scaleDependentLegend": "theme",
             "layerInfoWindowSize": {"width": 480, "height": 400}
           },
           "mapClickAction": "identify"
@@ -336,6 +337,7 @@
             "flattenGroups": true,
             "legendThumbnail": "legend_thumbnail.svg",
             "bboxDependentLegend": true,
+            "scaleDependentLegend": "theme",
             "layerInfoWindowSize": {"width": 480, "height": 400}
           },
           "mapClickAction": "identify"
