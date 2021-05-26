@@ -28,6 +28,7 @@
         "Share": "Share Link",
         "ThemeSwitcher": "Theme",
         "Tools": "Map Tools",
+        "Bookmark": "Bookmarks",
         "PlotInfoTool": "Real Estate Information",
         "PlotInfoTool_comment": " "
       },
@@ -35,6 +36,14 @@
     },
     "bgswitcher": {
       "nobg": "No background"
+    },
+    "bookmark": {
+      "add": "Add bookmark for current map",
+      "description": "Description",
+      "manage": "Manage your bookmarks",
+      "openintab": "Open bookmark in a new tab",
+      "remove": "Remove bookmark",
+      "update": "Update bookmark"
     },
     "bottombar": {
       "mousepos_label": "Coordinates",
@@ -47,8 +56,9 @@
       "copied": "Copied"
     },
     "dxfexport": {
+      "layers": "Layers",
       "selectinfo": "Drag a rectangle around the region to export...",
-      "symbologyscale": "Symbology scale:"
+      "symbologyscale": "Symbology scale"
     },
     "editing": {
       "canceldelete": "Don't delete",
@@ -80,12 +90,9 @@
       "featureReport": "Feature report",
       "link": "Link",
       "noattributes": "No attributes",
-      "noresults": "No results",
+      "noresults": "No information available for the selected point",
       "querying": "Querying...",
       "title": "Feature Info"
-    },
-    "identifyregion": {
-      "info": "Draw a polygon around the features to identify..."
     },
     "importlayer": {
       "addlayer": "Add layer",
@@ -99,7 +106,8 @@
       "urlplaceholder": "Enter URL to WMS, WMTS, WFS..."
     },
     "infotool": {
-      "clickhelpPoint": "Click a location to identify in the map..."
+      "clickhelpPoint": "Click a location to identify in the map...",
+      "clickhelpPolygon": "Draw a polygon around the features to identify..."
     },
     "layerinfo": {
       "abstract": "Abstract",

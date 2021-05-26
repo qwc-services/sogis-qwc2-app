@@ -28,6 +28,7 @@
         "Share": "Teilen",
         "ThemeSwitcher": "Themen",
         "Tools": "Werkzeuge",
+        "Bookmark": "",
         "PlotInfoTool": "Grundstücksinformation",
         "PlotInfoTool_comment": " "
       },
@@ -35,6 +36,14 @@
     },
     "bgswitcher": {
       "nobg": "Kein Hintergrund"
+    },
+    "bookmark": {
+      "add": "",
+      "description": "",
+      "manage": "",
+      "openintab": "",
+      "remove": "",
+      "update": ""
     },
     "bottombar": {
       "mousepos_label": "Koordinaten",
@@ -47,6 +56,7 @@
       "copied": "Kopiert"
     },
     "dxfexport": {
+      "layers": "Ebenen",
       "selectinfo": "Rechteck aufziehen um die zu exportierende Region",
       "symbologyscale": "Darstellungsmassstab"
     },
@@ -84,9 +94,6 @@
       "querying": "Objekte werden abgefragt...",
       "title": "Objektinformationen"
     },
-    "identifyregion": {
-      "info": "Polygon um die zu identifizierende Objekte zeichnen"
-    },
     "importlayer": {
       "addlayer": "Kartenebene hinzufügen",
       "connect": "Verbinden",
@@ -99,7 +106,8 @@
       "urlplaceholder": "WMS, WMTS oder WFS URL eingeben..."
     },
     "infotool": {
-      "clickhelpPoint": "Zu identifizierende Position in der Karte auswählen..."
+      "clickhelpPoint": "Zu identifizierende Position in der Karte auswählen...",
+      "clickhelpPolygon": "Polygon um die zu identifizierende Objekte zeichnen"
     },
     "layerinfo": {
       "abstract": "Zusammenfassung",
