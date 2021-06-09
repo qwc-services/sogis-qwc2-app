@@ -60,6 +60,9 @@ class Autologin extends React.Component {
                     // we don't need a real fetch
                     // just checking whether Intranet URL resolves
                     mode: 'no-cors',
+                    validateStatus: function (status) {
+                        return status >= 200 && status < 400;
+                    }
                 })
                 .then(res => {
                     // automatic login
