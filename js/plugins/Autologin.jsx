@@ -30,7 +30,7 @@ class Autologin extends React.Component {
 
         axios.get(authServiceUrl + '/info').then(res => {
             if (!res.data.username) {
-                fetch(this.props.autologinUrl, {
+                axios.head(this.props.autologinUrl, {
                     // we don't need a real fetch
                     // just checking whether Intranet URL resolves
                     mode: 'no-cors'
