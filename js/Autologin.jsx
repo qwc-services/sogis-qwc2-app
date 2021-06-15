@@ -56,21 +56,21 @@ class Autologin extends React.Component {
         axios.get(authServiceUrl + '/info').then(res => {
             if(!res.data.username) {
                 // Check Intranet URL
-                axios.head(this.props.autologinUrl, {
+                fetch(this.props.autologinUrl, {
+                    method: 'GET',
                     // we don't need a real fetch
                     // just checking whether Intranet URL resolves
-                    mode: 'no-cors',
-                    validateStatus: function (status) {
-                        return status >= 200 && status < 400;
-                    }
+                    mode: 'no-cors'
                 })
                 .then(res => {
-                    // automatic login
-                    let urlObj = url.parse(window.location.href);
-                    urlObj.query = this.props.startupParams;
-                    urlObj.query["config:autologin"] = 1;
-                    urlObj.search = undefined;
-                    window.location.href = authServiceUrl + "login?url=" + encodeURIComponent(url.format(urlObj));
+                    if(res.status >= 200 && res.status < 400) {
+                        // automatic login
+                        let urlObj = url.parse(window.location.href);
+                        urlObj.query = this.props.startupParams;
+                        urlObj.query["config:autologin"] = 1;
+                        urlObj.search = undefined;
+                        window.location.href = authServiceUrl + "login?url=" + encodeURIComponent(url.format(urlObj));
+                    }
                 }).catch(e => {});
             }
         }).catch(e => {});
