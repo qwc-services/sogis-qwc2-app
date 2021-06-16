@@ -3,14 +3,14 @@
     "items": [
       {
         "title": "Solothurn",
-        "url": "http://localhost:8088/ows/somap",
+        "url": "https://geo.so.ch/ows/somap",
         "attribution": "Kt. Solothurn",
         "attributionUrl": "https://www.so.ch/verwaltung/bau-und-justizdepartement/amt-fuer-geoinformation/geoportal/",
         "tiled": true,
         "backgroundLayers": [
           {
             "name": "pixelkarte",
-            "visibility": true
+            "visibility": false
           }
         ],
         "searchProviders": [

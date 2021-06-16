@@ -2,15 +2,15 @@
   "permalinkServiceUrl": "http://localhost:5001/",
   "elevationServiceUrl": "http://localhost:5002/",
   "editServiceUrl": "http://localhost:5012/",
-  "dataproductServiceUrl": "http://localhost:5023/",
-  "searchServiceUrl": "http://localhost:5011/",
+  "dataproductServiceUrl": "https://geo.so.ch/api/dataproduct/v1/",
+  "searchServiceUrl": "https://geo.so.ch/api/search/v2/",
   "searchDataServiceUrl": "http://localhost:5012/",
-  "authServiceUrl": "http://localhost:5017/",
+  "authServiceUrl": "https://geo.so.ch/auth/",
   "mapInfoService":  "http://localhost:5016/",
-  "featureReportService": "http://localhost:5011/",
-  "landRegisterService": "http://localhost:5020/",
+  "featureReportService": "https://geo.so.ch/api/search/v2/",
+  "landRegisterService": "https://geo.so.ch/api/v1/landreg/",
   "cccConfigService": "http://localhost:5021/",
-  "plotInfoService": "http://localhost:5022/",
+  "plotInfoService": "https://geo.so.ch/api/v1/plotinfo/",
   "translationsPath": "/translations",
   "assetsPath": "/assets",
   "urlPositionFormat": "centerAndZoom",
@@ -101,20 +101,6 @@
           }
         },
         {
-          "name": "Identify",
-          "cfg": {
-            "params": {
-              "FI_POINT_TOLERANCE": 32,
-              "FI_LINE_TOLERANCE": 16,
-              "FI_POLYGON_TOLERANCE": 8,
-              "feature_count": 20
-            },
-            "exportFormat": null,
-            "longAttributesDisplay": "wrap",
-            "displayResultTree": false
-          }
-        },
-        {
           "name": "Share",
           "cfg": {
             "showSocials": true,
@@ -194,6 +180,15 @@
         {
           "name": "PlotInfoTool",
           "cfg": {
+            "params": {
+              "FI_POINT_TOLERANCE": 32,
+              "FI_LINE_TOLERANCE": 16,
+              "FI_POLYGON_TOLERANCE": 8,
+              "feature_count": 20
+            },
+            "exportFormat": null,
+            "longAttributesDisplay": "wrap",
+            "displayResultTree": false,
             "toolLayers": ["ch.so.agi.av.grundstuecke"],
             "infoQueries": [
               {
@@ -343,22 +338,6 @@
           "mapClickAction": "identify"
         },
         {
-          "name": "Identify",
-          "cfg": {
-            "params": {
-              "FI_POINT_TOLERANCE": 16,
-              "FI_LINE_TOLERANCE": 8,
-              "FI_POLYGON_TOLERANCE": 4,
-              "feature_count": 20
-            },
-            "exportFormat": null,
-            "longAttributesDisplay": "wrap",
-            "displayResultTree": false,
-            "initialWidth": 480,
-            "initialHeight": 550
-          }
-        },
-        {
           "name": "MapTip"
         },
         {
@@ -425,6 +404,17 @@
         {
           "name": "PlotInfoTool",
           "cfg": {
+            "params": {
+              "FI_POINT_TOLERANCE": 16,
+              "FI_LINE_TOLERANCE": 8,
+              "FI_POLYGON_TOLERANCE": 4,
+              "feature_count": 20
+            },
+            "exportFormat": null,
+            "longAttributesDisplay": "wrap",
+            "displayResultTree": false,
+            "initialWidth": 480,
+            "initialHeight": 550,
             "toolLayers": ["ch.so.agi.av.grundstuecke"],
             "infoQueries": [
               {
