@@ -6,27 +6,26 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const React = require('react');
-const PropTypes = require('prop-types');
-const {connect} = require('react-redux');
-const assign = require('object-assign');
-const axios = require('axios');
-const uuid = require('uuid');
-const ol = require('openlayers');
-const isEmpty = require('lodash.isempty');
-const Message = require('qwc2/components/I18N/Message');
-const ConfigUtils = require("qwc2/utils/ConfigUtils");
-const CoordinatesUtils = require('qwc2/utils/CoordinatesUtils');
-const MapUtils = require('qwc2/utils/MapUtils');
-const {LayerRole, addLayerFeatures, refreshLayer, removeLayer} = require('qwc2/actions/layers');
-const {zoomToPoint, zoomToExtent} = require('qwc2/actions/map');
-const {setCurrentTheme} = require('qwc2/actions/theme');
-const {setCurrentTask,setCurrentTaskBlocked} = require('qwc2/actions/task');
-const {TaskBar} = require('qwc2/components/TaskBar');
-const ButtonBar = require('qwc2/components/widgets/ButtonBar');
-const {UrlParams} = require("qwc2/utils/PermaLinkUtils");
-const {changeCCCState} = require('./actions/ccc');
-require('./style/CCCInterface.css');
+import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import assign from 'object-assign';
+import axios from 'axios';
+import uuid from 'uuid';
+import {GeoJSON} from 'ol/format';
+import LocaleUtils from 'qwc2/utils/LocaleUtils';
+import ConfigUtils from 'qwc2/utils/ConfigUtils';
+import CoordinatesUtils from 'qwc2/utils/CoordinatesUtils';
+import MapUtils from 'qwc2/utils/MapUtils';
+import {LayerRole, addLayerFeatures, refreshLayer, removeLayer} from 'qwc2/actions/layers';
+import {zoomToPoint, zoomToExtent} from 'qwc2/actions/map';
+import {setCurrentTheme} from 'qwc2/actions/theme';
+import {setCurrentTask,setCurrentTaskBlocked} from 'qwc2/actions/task';
+import TaskBar from 'qwc2/components/TaskBar';
+import ButtonBar from 'qwc2/components/widgets/ButtonBar';
+import {UrlParams} from "qwc2/utils/PermaLinkUtils";
+import {changeCCCState} from './actions/ccc';
+import './style/CCCInterface.css';
 
 let CccAppConfig = null;
 let CccConnection = null;
@@ -221,7 +220,7 @@ class CCCInterface extends React.Component {
         });
     }
     zoomToFeature = (feature) => {
-        let extent = new ol.format.GeoJSON().readFeature(feature).getGeometry().getExtent();
+        let extent = new GeoJSON().readFeature(feature).getGeometry().getExtent();
         if(extent[0] == extent[2] || extent[1] == extent[3]) {
             let x = 0.5 * (extent[0] + extent[2]);
             let y = 0.5 * (extent[1] + extent[3]);
@@ -263,7 +262,7 @@ class CCCInterface extends React.Component {
         }
         return (
             <span>
-                <div><b><Message msgId={msgId} /></b></div>
+                <div><b>{LocaleUtils.tr(msgId)}</b></div>
                 <ButtonBar buttons={buttons} onClick={this.buttonClicked} />
             </span>
         );
@@ -272,7 +271,7 @@ class CCCInterface extends React.Component {
         if(this.state.status && this.state.status !== CCCStatus.NORMAL) {
             return (
                 <div className="ccc-error-overlay">
-                    <Message msgId={this.state.status.msgId} />
+                    {LocaleUtils.tr(this.state.status.msgId)}
                 </div>
             );
         }
@@ -310,7 +309,7 @@ class CCCInterface extends React.Component {
     }
 };
 
-function CCCAttributeCalculator(layer, feature) {
+export function CCCAttributeCalculator(layer, feature) {
     if(!CccConnection || !CccAppConfig || !CccAppConfig.notifyLayers) {
         return [];
     }
@@ -358,20 +357,14 @@ const selector = (state) => ({
     cccselection: !!(state.layers.flat || []).find(layer => layer.id === 'cccselection')
 });
 
-module.exports = {
-    CCCInterfacePlugin: connect(selector, {
-        zoomToPoint: zoomToPoint,
-        zoomToExtent: zoomToExtent,
-        changeCCCState: changeCCCState,
-        setCurrentTask: setCurrentTask,
-        setCurrentTaskBlocked: setCurrentTaskBlocked,
-        refreshLayer: refreshLayer,
-        addLayerFeatures: addLayerFeatures,
-        setCurrentTheme: setCurrentTheme,
-        removeLayer: removeLayer,
-    })(CCCInterface),
-    reducers: {
-        ccc: require('./reducers/ccc')
-    },
-    CCCAttributeCalculator: CCCAttributeCalculator
-}
+export default connect(selector, {
+    zoomToPoint: zoomToPoint,
+    zoomToExtent: zoomToExtent,
+    changeCCCState: changeCCCState,
+    setCurrentTask: setCurrentTask,
+    setCurrentTaskBlocked: setCurrentTaskBlocked,
+    refreshLayer: refreshLayer,
+    addLayerFeatures: addLayerFeatures,
+    setCurrentTheme: setCurrentTheme,
+    removeLayer: removeLayer,
+})(CCCInterface);

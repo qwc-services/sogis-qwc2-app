@@ -6,12 +6,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const axios = require('axios');
-const isEmpty = require('lodash.isempty');
-const ConfigUtils = require('qwc2/utils/ConfigUtils');
-const LayerUtils = require('qwc2/utils/LayerUtils');
+import axios from 'axios';
+import isEmpty from 'lodash.isempty';
+import ConfigUtils from 'qwc2/utils/ConfigUtils';
+import LayerUtils from 'qwc2/utils/LayerUtils';
 
-function themeLayerRestorer(missingLayers, theme, callback) {
+export function themeLayerRestorer(missingLayers, theme, callback) {
     // Invoked for layers specified in the l url parameter which are missing in the specified theme
     const dataproductService = ConfigUtils.getConfigProp("dataproductServiceUrl");
     let url = dataproductService.replace(/\/$/g, "") + "/weblayers";
@@ -25,5 +25,3 @@ function themeLayerRestorer(missingLayers, theme, callback) {
         callback([], null);
     });
 }
-
-module.exports = themeLayerRestorer;

@@ -6,12 +6,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const React = require('react');
-const PropTypes = require('prop-types');
-const axios = require('axios');
-const ConfigUtils = require('qwc2/utils/ConfigUtils');
+import React from 'react';
+import PropTypes from 'prop-types';
+import axios from 'axios';
+import ConfigUtils from 'qwc2/utils/ConfigUtils';
 
-require('./style/PlotOwnerInfo.css');
+import './style/PlotOwnerInfo.css';
 
 class PlotOwnerInfo extends React.Component {
     static propTypes = {
@@ -175,4 +175,4 @@ class PlotOwnerInfo extends React.Component {
     }
 };
 
-module.exports = PlotOwnerInfo;
+export default PlotOwnerInfo;

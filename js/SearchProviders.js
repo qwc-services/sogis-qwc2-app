@@ -69,7 +69,7 @@ Format of search results:
 
 */
 
-const {addSearchResults} = require("qwc2/actions/search");
+import {addSearchResults} from "qwc2/actions/search";
 
 function coordinatesSearch(text, requestId, searchOptions, dispatch) {
     if((text.match(/,/g) || []).length >= 2) {
@@ -135,14 +135,13 @@ function coordinatesSearch(text, requestId, searchOptions, dispatch) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-module.exports = {
-    SearchProviders: {
-        "coordinates": {
-            label: "Coordinates",
-            onSearch: coordinatesSearch
-        }
-    },
-    searchProviderFactory: (cfg) => {
-        return null;
+export const SearchProviders = {
+    "coordinates": {
+        label: "Coordinates",
+        onSearch: coordinatesSearch
     }
+};
+
+export function searchProviderFactory(cfg) {
+    return null;
 };

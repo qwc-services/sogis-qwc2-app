@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const TerserPlugin = require('terser-webpack-plugin');
 const os = require('os');
 const styleConfig = require("./styleConfig");
 
@@ -31,7 +32,7 @@ if (!isProd) {
 
 module.exports = {
   devtool: isProd ? 'source-map' : 'eval',
-  mode: nodeEnv === "production" ? "production" : "development",
+  mode: isProd ? "production" : "development",
   entry: {
     'webpack-dev-server': 'webpack-dev-server/client?http://0.0.0.0:8081',
     'webpack': 'webpack/hot/only-dev-server',
@@ -98,11 +99,23 @@ module.exports = {
       {
         test: /\.mjs$/,
         type: 'javascript/auto',
+      },
+      {
+        test: /\.js$/,
+        enforce: "pre",
+        use: ["source-map-loader"]
       }
     ]
   },
   devServer: {
     hot: true,
-    contentBase: './'
+    contentBase: './',
+    publicPath: '/dist'
+  },
+  optimization: {
+    minimize: isProd,
+    minimizer: [
+      new TerserPlugin({parallel: true})
+    ]
   }
 };

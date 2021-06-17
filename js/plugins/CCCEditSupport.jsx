@@ -6,13 +6,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const React = require('react');
-const PropTypes = require('prop-types');
-const {connect} = require('react-redux');
-const assign = require('object-assign');
-const uuid = require('uuid');
-var ol = require('openlayers');
-const {changeCCCState} = require('./actions/ccc');
+import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import uuid from 'uuid';
+
+import {Style, Fill, Stroke, Circle, RegularShape} from 'ol/style';
+import {MultiPoint} from 'ol/geom';
+import {Vector as VectorSource} from 'ol/source';
+import {Vector as VectorLayer} from 'ol/layer';
+import {Draw, Modify} from 'ol/interaction'
+import { Collection } from 'ol';
+import { GeoJSON } from 'ol/format';
+import { shiftKeyOnly, singleClick } from 'ol/events/condition';
+
+import {changeCCCState} from './actions/ccc';
 
 class CCCEditSupport extends React.Component {
     static propTypes = {
@@ -29,35 +37,35 @@ class CCCEditSupport extends React.Component {
         this.interaction = null;
         this.layer = null;
         this.currentFeature = null;
-        this.baseStyle = new ol.style.Style({
-            fill: new ol.style.Fill({ color: [255, 0, 0, 0.5] }),
-            stroke: new ol.style.Stroke({ color: 'red', width: 2}),
-            image: new ol.style.Circle({
+        this.baseStyle = new Style({
+            fill: new Fill({ color: [255, 0, 0, 0.5] }),
+            stroke: new Stroke({ color: 'red', width: 2}),
+            image: new Circle({
                 radius: 8,
-                fill: new ol.style.Fill({ color: [255, 0, 0, 0.5] }),
-                stroke: new ol.style.Stroke({ color: 'red', width: 2})
+                fill: new Fill({ color: [255, 0, 0, 0.5] }),
+                stroke: new Stroke({ color: 'red', width: 2})
             }),
         });
         this.interactionStyle = [
-            new ol.style.Style({
-                fill: new ol.style.Fill({ color: [255, 0, 0, 0.5] }),
-                stroke: new ol.style.Stroke({ color: 'red', width: 2})
+            new Style({
+                fill: new Fill({ color: [255, 0, 0, 0.5] }),
+                stroke: new Stroke({ color: 'red', width: 2})
             }),
-            new ol.style.Style({
-                image: new ol.style.RegularShape({
-                    fill: new ol.style.Fill({color: 'white'}),
-                    stroke: new ol.style.Stroke({color: 'red', width: 2}),
+            new Style({
+                image: new RegularShape({
+                    fill: new Fill({color: 'white'}),
+                    stroke: new Stroke({color: 'red', width: 2}),
                     points: 4,
                     radius: 5,
                     angle: Math.PI / 4
                 }),
                 geometry: (feature) => {
                     if(feature.getGeometry().getType() === "Point") {
-                        return new ol.geom.MultiPoint([feature.getGeometry().getCoordinates()]);
+                        return new MultiPoint([feature.getGeometry().getCoordinates()]);
                     } else if(feature.getGeometry().getType() === "LineString") {
-                        return new ol.geom.MultiPoint(feature.getGeometry().getCoordinates());
+                        return new MultiPoint(feature.getGeometry().getCoordinates());
                     } else {
-                        return new ol.geom.MultiPoint(feature.getGeometry().getCoordinates()[0]);
+                        return new MultiPoint(feature.getGeometry().getCoordinates()[0]);
                     }
                 }
             })
@@ -80,8 +88,8 @@ class CCCEditSupport extends React.Component {
         return null;
     }
     createLayer = () => {
-        let source = new ol.source.Vector();
-        this.layer = new ol.layer.Vector({
+        let source = new VectorSource();
+        this.layer = new VectorLayer({
             source: source,
             zIndex: 1000000,
             style: this.baseStyle
@@ -91,7 +99,7 @@ class CCCEditSupport extends React.Component {
     addDrawInteraction = (newProps) => {
         this.reset();
         this.createLayer();
-        let drawInteraction = new ol.interaction.Draw({
+        let drawInteraction = new Draw({
             type: newProps.ccc.geomType,
             source: this.layer.getSource(),
             condition: (event) => {  return event.pointerEvent.buttons === 1 },
@@ -107,12 +115,12 @@ class CCCEditSupport extends React.Component {
 
             setTimeout(() => {
                 this.currentFeature = feature;
-                let modifyInteraction = new ol.interaction.Modify({
-                    features: new ol.Collection([this.currentFeature]),
+                let modifyInteraction = new Modify({
+                    features: new Collection([this.currentFeature]),
                     condition: (event) => {  return event.pointerEvent.buttons === 1 },
                     deleteCondition: (event) => {
                         // delete vertices on SHIFT + click
-                        return ol.events.condition.shiftKeyOnly(event) && ol.events.condition.singleClick(event);
+                        return shiftKeyOnly(event) && singleClick(event);
                     },
                     style: this.interactionStyle
                 });
@@ -131,16 +139,16 @@ class CCCEditSupport extends React.Component {
     addEditInteraction = (newProps) => {
         this.reset();
         this.createLayer();
-        let format = new ol.format.GeoJSON();
+        let format = new GeoJSON();
         this.currentFeature = format.readFeature(newProps.ccc.feature);
         this.layer.getSource().addFeature(this.currentFeature);
 
-        let modifyInteraction = new ol.interaction.Modify({
-            features: new ol.Collection([this.currentFeature]),
+        let modifyInteraction = new Modify({
+            features: new Collection([this.currentFeature]),
             condition: (event) => {  return event.pointerEvent.buttons === 1 },
             deleteCondition: (event) => {
                 // delete vertices on SHIFT + click
-                return ol.events.condition.shiftKeyOnly(event) && ol.events.condition.singleClick(event);
+                return shiftKeyOnly(event) && singleClick(event);
             },
             style: this.interactionStyle
         });
@@ -154,7 +162,7 @@ class CCCEditSupport extends React.Component {
         if(!this.currentFeature) {
             return;
         }
-        let format = new ol.format.GeoJSON();
+        let format = new GeoJSON();
         let feature = format.writeFeatureObject(this.currentFeature);
         this.props.changeCCCState({feature: feature, changed: true});
     }
@@ -171,7 +179,7 @@ class CCCEditSupport extends React.Component {
     }
 };
 
-module.exports = connect((state) => ({
+export default connect((state) => ({
     ccc: state.ccc || {}
 }), {
     changeCCCState: changeCCCState

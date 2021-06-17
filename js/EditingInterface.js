@@ -13,12 +13,11 @@
  * You can use any other editing backend by implementing the getFeature, addFeature,
  * editFeature and deleteFeature methods as necessary.
  */
-const axios = require('axios');
-const assign = require('object-assign');
-const {isEmpty} = require('lodash');
-const CoordinatesUtils = require('qwc2/utils/CoordinatesUtils');
-const ConfigUtils = require('qwc2/utils/ConfigUtils');
-const VectorLayerUtils = require('qwc2/utils/VectorLayerUtils');
+
+import axios from 'axios';
+import assign from 'object-assign';
+import {isEmpty} from 'lodash';
+import ConfigUtils from 'qwc2/utils/ConfigUtils';
 
 
 function buildErrMsg(err) {
@@ -95,7 +94,7 @@ function getRelations(layerId, featureId, relTables, callback) {
     // do nothing
 }
 
-module.exports = {
+export default {
     getFeature,
     addFeature,
     editFeature,

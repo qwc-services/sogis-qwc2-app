@@ -6,13 +6,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const React = require('react');
-const PropTypes = require('prop-types');
-const {connect} = require('react-redux');
-const axios = require('axios');
-const url = require('url');
-const ConfigUtils = require('qwc2/utils/ConfigUtils');
-const {UrlParams} = require("qwc2/utils/PermaLinkUtils");
+import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import axios from 'axios';
+import url from 'url';
+import ConfigUtils from 'qwc2/utils/ConfigUtils';
+import {UrlParams} from 'qwc2/utils/PermaLinkUtils';
 
 class Autologin extends React.Component {
     static propTypes = {
@@ -77,10 +77,6 @@ class Autologin extends React.Component {
     }
 };
 
-module.exports = {
-    AutologinPlugin: connect((state) => ({
-        startupParams: state.localConfig.startupParams
-    }), {})(Autologin),
-    reducers: {
-    }
-};
+export default connect((state) => ({
+    startupParams: state.localConfig.startupParams
+}), {})(Autologin)

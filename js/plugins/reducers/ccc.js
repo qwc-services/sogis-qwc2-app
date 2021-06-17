@@ -6,13 +6,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const {
-    CHANGE_CCC_STATE
-} = require('../actions/ccc');
+import {CHANGE_CCC_STATE} from '../actions/ccc';
 
-const assign = require('object-assign');
+import assign from 'object-assign';
 
-function ccc(state = {
+export default function ccc(state = {
     action: null,
     geomType: null,
     feature: null
@@ -25,5 +23,3 @@ function ccc(state = {
             return state;
     }
 }
-
-module.exports = ccc;

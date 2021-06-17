@@ -6,9 +6,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const React = require('react');
+import React from 'react';
 
-function renderHelp() {
+export function renderHelp() {
     return (<div role="body">
                 <div style={{margin: "0.5em"}}>
                     <p>
@@ -29,5 +29,3 @@ function renderHelp() {
                  </div>
              </div>);
 }
-
-module.exports = renderHelp;

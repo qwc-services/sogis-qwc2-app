@@ -6,22 +6,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const React = require('react');
-const PropTypes = require('prop-types');
-const {connect} = require('react-redux');
-const assign = require('object-assign');
-const isEmpty = require('lodash.isempty');
-const axios = require('axios');
-const Message = require('qwc2/components/I18N/Message');
-const MapUtils = require('qwc2/utils/MapUtils');
-const CoordinatesUtils = require('qwc2/utils/CoordinatesUtils');
-const ConfigUtils = require("qwc2/utils/ConfigUtils");
-const {changeRotation} = require('qwc2/actions/map');
-const {SideBar} = require('qwc2/components/SideBar');
-const PrintFrame = require('qwc2/components/PrintFrame');
-const ToggleSwitch = require('qwc2/components/widgets/ToggleSwitch');
+import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import isEmpty from 'lodash.isempty';
+import axios from 'axios';
+import LocaleUtils from 'qwc2/utils/LocaleUtils';
+import MapUtils from 'qwc2/utils/MapUtils';
+import CoordinatesUtils from 'qwc2/utils/CoordinatesUtils';
+import ConfigUtils from 'qwc2/utils/ConfigUtils';
+import {changeRotation} from 'qwc2/actions/map';
+import SideBar from 'qwc2/components/SideBar';
+import PrintFrame from 'qwc2/components/PrintFrame';
+import ToggleSwitch from 'qwc2/components/widgets/ToggleSwitch';
 
-require('./style/LandRegisterExtract.css');
+import './style/LandRegisterExtract.css';
 
 class LandRegisterExtract extends React.Component {
     static propTypes = {
@@ -71,7 +70,7 @@ class LandRegisterExtract extends React.Component {
             return null;
         }
         if(!this.state.currentLayout) {
-            return (<div role="body" className="print-body"><Message msgId="print.nolayouts" /></div>);
+            return (<div role="body" className="print-body">{LocaleUtils.tr("print.nolayouts")}</div>);
         }
         let currentLayoutname = this.state.currentLayout ? this.state.currentLayout.name : "";
 
@@ -122,7 +121,7 @@ class LandRegisterExtract extends React.Component {
                 <form action={action} method="POST" target="_blank">
                     <table className="options-table"><tbody>
                         <tr>
-                            <td><Message msgId="print.layout" /></td>
+                            <td>{LocaleUtils.tr("print.layout")}</td>
                             <td>
                                 <select name="TEMPLATE" onChange={this.changeLayout} value={currentLayoutname}>
                                     {this.state.layouts.map(item => {
@@ -134,7 +133,7 @@ class LandRegisterExtract extends React.Component {
                             </td>
                         </tr>
                         <tr>
-                            <td><Message msgId="print.scale" /></td>
+                            <td>{LocaleUtils.tr("print.scale")}</td>
                             <td>
                                 <span className="input-frame">
                                     <span>1&nbsp;:&nbsp;</span>
@@ -144,7 +143,7 @@ class LandRegisterExtract extends React.Component {
                         </tr>
                         {resolutionChooser ? (
                             <tr>
-                                <td><Message msgId="print.resolution" /></td>
+                                <td>{LocaleUtils.tr("print.resolution")}</td>
                                 <td>
                                     <span className="input-frame">
                                         {resolutionChooser}
@@ -154,7 +153,7 @@ class LandRegisterExtract extends React.Component {
                             </tr>
                         ) : null}
                         <tr>
-                            <td><Message msgId="print.rotation" /></td>
+                            <td>{LocaleUtils.tr("print.rotation")}</td>
                             <td>
                                 <span className="input-frame">
                                     <input name="rotation" type="number" value={Math.round(rotation / Math.PI * 180.)} onChange={this.changeRotation}/>
@@ -163,7 +162,7 @@ class LandRegisterExtract extends React.Component {
                         </tr>
                         {printGrid ? (
                             <tr>
-                                <td><Message msgId="print.grid" /></td>
+                                <td>{LocaleUtils.tr("print.grid")}</td>
                                 <td>
                                     <ToggleSwitch onChange={(newstate) => this.setState({grid: newstate})} active={this.state.grid} />
                                 </td>
@@ -178,7 +177,7 @@ class LandRegisterExtract extends React.Component {
                         {resolutionInput}
                     </div>
                     <div className="button-bar">
-                        <button className="button" type="submit"><Message msgId="print.submit" /></button>
+                        <button className="button" type="submit">{LocaleUtils.tr("print.submit")}</button>
                     </div>
                 </form>
             </div>
@@ -248,11 +247,6 @@ const selector = (state) => ({
     search: state.search
 });
 
-module.exports = {
-    LandRegisterExtractPlugin: connect(selector, {
-        changeRotation: changeRotation
-    })(LandRegisterExtract),
-    reducers: {
-        task: require('qwc2/reducers/task')
-    }
-}
+export default connect(selector, {
+    changeRotation: changeRotation
+})(LandRegisterExtract);
