@@ -25,7 +25,7 @@ class Autologin extends React.Component {
         // Autologin.jsx:
         //   if param config:autologin is undefined:
         //     if GET /auth/info has no identity:
-        //       if GET $autologinUrl is OK:
+        //       if in_net is True (intranet network match):
         //         Redirect to /auth/login?url=/map/?config:autologin=1
         // /auth/acs:
         //   Write username + autologin into JWT cookie
@@ -55,22 +55,14 @@ class Autologin extends React.Component {
 
         axios.get(authServiceUrl + '/info').then(res => {
             if(!res.data.username) {
-                // Check Intranet URL
-                axios.head(this.props.autologinUrl, {
-                    // we don't need a real fetch
-                    // just checking whether Intranet URL resolves
-                    validateStatus: function (status) {
-                        return status >= 200 && status < 400;
-                    }
-                })
-                .then(res => {
+                if (res.data.in_net) {
                     // automatic login
                     let urlObj = url.parse(window.location.href);
                     urlObj.query = this.props.startupParams;
                     urlObj.query["config:autologin"] = 1;
                     urlObj.search = undefined;
                     window.location.href = authServiceUrl + "login?url=" + encodeURIComponent(url.format(urlObj));
-                }).catch(e => {});
+                }
             }
         }).catch(e => {});
     }
