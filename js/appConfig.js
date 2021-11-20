@@ -56,7 +56,7 @@ import PlotOwnerInfo from './plugins/PlotOwnerInfo';
 
 import {themeLayerRestorer} from './themeLayerRestorer';
 
-import defaultLocaleData from '../translations/de-CH.json';
+import defaultLocaleData from '../static/translations/de-CH.json';
 
 export default {
     defaultLocaleData: defaultLocaleData,
