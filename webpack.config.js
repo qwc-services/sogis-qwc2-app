@@ -38,6 +38,7 @@ module.exports = {
     'QWC2App': path.join(__dirname, "js", "app")
   },
   output: {
+    hashFunction: 'sha256',
     path: path.join(__dirname, './dist'),
     publicPath: "/dist/",
     filename: '[name].js'
