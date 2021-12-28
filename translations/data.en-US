@@ -161,6 +161,7 @@
     },
     "print": {
       "layout": "Layout:",
+      "legend": "Legend:",
       "grid": "Grid:",
       "maximize": "Maximize",
       "minimize": "Minimize",
