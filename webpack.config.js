@@ -14,12 +14,12 @@ module.exports = (env, argv) => {
 
     return {
         entry: {
-            App: path.resolve(__dirname, 'js', 'app.jsx')
+            QWC2App: path.resolve(__dirname, 'js', 'app.jsx')
         },
         output: {
             hashFunction: 'sha256',
             path: path.resolve(__dirname, 'prod'),
-            filename: 'dist/App.js',
+            filename: 'dist/QWC2App.js',
             assetModuleFilename: 'dist/[hash][ext][query]'
         },
         watchOptions: {
@@ -63,7 +63,8 @@ module.exports = (env, argv) => {
             new webpack.NormalModuleReplacementPlugin(/openlayers$/, path.join(__dirname, "qwc2", "libs", "openlayers")),
             new HtmlWebpackPlugin({
                 template: path.resolve(__dirname, "index.html"),
-                build: buildDate
+                build: buildDate,
+                hash: true
             }),
             new CopyWebpackPlugin({
                 patterns: [
@@ -83,7 +84,7 @@ module.exports = (env, argv) => {
                 },
                 {
                     test: /(.woff|.woff2|.png|.jpg|.gif)/,
-                    type: 'asset/resource'
+                    type: 'asset/inline'
                 },
                 {
                     test: /\.jsx?$/,

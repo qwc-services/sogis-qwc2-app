@@ -14,10 +14,12 @@
     "appmenu": {
       "items": {
         "LandRegisterExtract": "Land Register Map Extract",
+        "AttributeTable": "Attribute Table",
         "DxfExport": "DXF Export",
         "Editing": "Editing",
         "Help": "Help",
         "IdentifyRegion": "Identify Region",
+        "LayerCatalog": "Layer catalog",
         "LayerTree": "Layers & Legend",
         "Login": "Login",
         "Logout": "Logout",
@@ -32,17 +34,43 @@
         "PlotInfoTool": "Real Estate Information",
         "PlotInfoTool_comment": " "
       },
+      "filter": "Filter menu...",
       "menulabel": "Map & Tools"
+    },
+    "attribtable": {
+      "addfeature": "Add feature",
+      "commit": "Commit changed row",
+      "delete": "Delete",
+      "deletefailed": "One or more features could not be deleted",
+      "deletefeatures": "Delete selected features",
+      "deleting": "Deleting features...",
+      "discard": "Discard changed row",
+      "formeditmode": "Open the edit form for the selected feature",
+      "layer": "Layer",
+      "loadfailed": "Failed to load the feature data",
+      "loading": "Loading...",
+      "nodelete": "Don't delete",
+      "pleasereload": "Press 'Reload' to load the attribute table...",
+      "reload": "Reload",
+      "selectlayer": "Select layer...",
+      "title": "Attribute Table",
+      "zoomtoselection": "Zoom to selected features"
     },
     "bgswitcher": {
       "nobg": "No background"
     },
     "bookmark": {
-      "add": "Add bookmark for current map",
+      "add": "Create new bookmark",
+      "addfailed": "Failed to create bookmark",
       "description": "Description",
-      "manage": "Manage your bookmarks",
-      "openintab": "Open bookmark in a new tab",
+      "lastUpdate": "Last saved",
+      "manage": "Manage bookmarks",
+      "notloggedin": "You need to be logged in to store bookmarks",
+      "open": "Open bookmark in current tab",
+      "openTab": "Open bookmark in tab",
       "remove": "Remove bookmark",
+      "removefailed": "Failed to remove bookmark",
+      "savefailed": "Failed to update bookmark",
       "update": "Update bookmark"
     },
     "bottombar": {
@@ -61,7 +89,9 @@
       "symbologyscale": "Symbology scale"
     },
     "editing": {
+      "attrtable": "Table",
       "canceldelete": "Don't delete",
+      "clearpicture": "Clear",
       "commit": "Commit",
       "delete": "Delete",
       "discard": "Discard",
@@ -72,7 +102,9 @@
       "noeditablelayers": "No editable layers.",
       "pick": "Pick",
       "reallydelete": "Delete",
+      "relationcommitfailed": "Some relation values could not be committed, check the icon tooltips for details",
       "select": "Select",
+      "takepicture": "Take picture",
       "layer": "Layer"
     },
     "fileselector": {
@@ -81,6 +113,7 @@
     "heightprofile": {
       "asl": "a.s.l.",
       "distance": "Distance",
+      "export": "Export profile",
       "height": "Height",
       "loading": "Calculating height profile..."
     },
@@ -108,6 +141,9 @@
     "infotool": {
       "clickhelpPoint": "Click a location to identify in the map...",
       "clickhelpPolygon": "Draw a polygon around the features to identify..."
+    },
+    "layercatalog": {
+      "windowtitle": "Layer catalog"
     },
     "layerinfo": {
       "abstract": "Abstract",
@@ -145,7 +181,8 @@
       }
     },
     "map": {
-      "loading": "Loading..."
+      "loading": "Loading...",
+      "resetrotation": "Reset rotation"
     },
     "mapinfotooltip": {
       "elevation": "Elevation",
@@ -157,17 +194,21 @@
       "lengthLabel": "Length",
       "pointLabel": "Position"
     },
+    "navbar": {
+      "perpage": "per page"
+    },
     "print": {
-      "grid": "Grid:",
-      "layout": "Layout:",
+      "grid": "Grid",
+      "layout": "Layout",
+      "legend": "Legend",
       "maximize": "Maximize",
       "minimize": "Minimize",
       "nolayouts": "The selected theme does not support printing",
       "notheme": "No theme selected",
       "output": "Print output",
       "resolution": "Resolution:",
-      "rotation": "Rotation:",
-      "scale": "Scale:",
+      "rotation": "Rotation",
+      "scale": "Scale",
       "submit": "Print",
       "wait": "Please wait..."
     },
@@ -210,8 +251,11 @@
       "existinglayer": "The layer already exists in the map",
       "invisiblelayer": "The result lies on a layer which is not visible.",
       "more": "More...",
+      "providerselection": "Search providers",
       "search": "Search",
       "searchall": "Search places or add maps...",
+      "searchinprogress": "Search in progress",
+      "searchreset": "Reset search",
       "themes": "Themes"
     },
     "searchbox": {
@@ -238,7 +282,8 @@
     "share": {
       "QRCodeLinkTitle": "QR Code",
       "directLinkTitle": "Via a direct link",
-      "generatingpermalink": "Generating permalink...",
+      "refresh": "Generate permalink",
+      "showpin": "Show pin",
       "socialIntro": "In your favourite social network"
     },
     "themelayerslist": {
@@ -249,6 +294,7 @@
     "themeswitcher": {
       "addlayerstotheme": "Add layers to current map",
       "addtotheme": "Add to current theme",
+      "confirmswitch": "Non-theme layers will be lost when switching theme. Proceed?",
       "filter": "Filter...",
       "match": {
         "abstract": "Abstract",
@@ -260,6 +306,8 @@
     },
     "tooltip": {
       "background": "Switch background",
+      "fullscreendisable": "Disable full screen mode",
+      "fullscreenenable": "Enable full screen mode",
       "home": "Show entire map",
       "zoomin": "Zoom in",
       "zoomout": "Zoom out"
@@ -270,7 +318,9 @@
     "window": {
       "close": "Close",
       "dock": "Dock",
-      "undock": "Undock"
+      "maximize": "Maximize",
+      "undock": "Undock",
+      "unmaximize": "Restore"
     },
     "oereb": {
       "concernedThemes": "Concerned themes",

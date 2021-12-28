@@ -14,10 +14,12 @@
     "appmenu": {
       "items": {
         "LandRegisterExtract": "Auszug Plan für das Grundbuch",
+        "AttributeTable": "Attributtabelle",
         "DxfExport": "DXF-Export",
         "Editing": "Editieren",
         "Help": "Hilfe",
         "IdentifyRegion": "Region abfragen",
+        "LayerCatalog": "Ebenenkatalog",
         "LayerTree": "Kartenebenen und Legende",
         "Login": "Anmelden",
         "Logout": "Abmelden",
@@ -28,22 +30,48 @@
         "Share": "Teilen",
         "ThemeSwitcher": "Themen",
         "Tools": "Werkzeuge",
-        "Bookmark": "",
+        "Bookmark": "Lesezeichen",
         "PlotInfoTool": "Grundstücksinformation",
         "PlotInfoTool_comment": " "
       },
+      "filter": "Menü filtern...",
       "menulabel": "Karte & Werkzeuge"
+    },
+    "attribtable": {
+      "addfeature": "Objekt hinzufügen",
+      "commit": "Geänderte Zeile speichern",
+      "delete": "Löschen",
+      "deletefailed": "Ein oder mehrere Objekte konnten nicht gelöscht werden",
+      "deletefeatures": "Ausgewählte Objekte löschen",
+      "deleting": "Objekte werden gelöscht",
+      "discard": "Geänderte Zeile zurücksetzen",
+      "formeditmode": "Ausgewähltes Objekt in der Formularansicht editieren",
+      "layer": "Ebene",
+      "loadfailed": "Die Objektdaten konnten nicht geladen werden",
+      "loading": "Laden...",
+      "nodelete": "Nicht löschen",
+      "pleasereload": "Auf 'Neu laden' drücken, um die Attributtabelle zu laden...",
+      "reload": " Neu laden",
+      "selectlayer": "Ebene auswählen...",
+      "title": "Attributtabelle",
+      "zoomtoselection": "Auf ausgewählte Objekte zoomen"
     },
     "bgswitcher": {
       "nobg": "Kein Hintergrund"
     },
     "bookmark": {
-      "add": "",
-      "description": "",
-      "manage": "",
-      "openintab": "",
-      "remove": "",
-      "update": ""
+      "add": "Neues Lesezeichen anlegen",
+      "addfailed": "Lesezeichen konnte nicht angelegt werden",
+      "description": "Beschreibung",
+      "lastUpdate": "Zuletzt gespeichert",
+      "manage": "Lesezeichen verwalten",
+      "notloggedin": "Sie müssen angemeldet sein, um Lesezeichen zu verwenden",
+      "open": "In aktuellem Fenster Öffnen",
+      "openTab": "In neuem Fenster öffnen",
+      "remove": "Lesezeichen entfernen",
+      "removefailed": "Lesezeichen konnte nicht entfernt werden",
+      "savefailed": "Lesezeichen konnte nicht aktualisiert werden",
+      "update": "Lesezeichen aktualisieren"
     },
     "bottombar": {
       "mousepos_label": "Koordinaten",
@@ -61,7 +89,9 @@
       "symbologyscale": "Darstellungsmassstab"
     },
     "editing": {
+      "attrtable": "Tabelle",
       "canceldelete": "Abbrechen",
+      "clearpicture": "Zurücksetzen",
       "commit": "Speichern",
       "delete": "Löschen",
       "discard": "Abbrechen",
@@ -72,7 +102,9 @@
       "noeditablelayers": "Keine editierbare Kartenebenen.",
       "pick": "Auswählen",
       "reallydelete": "Löschen",
+      "relationcommitfailed": "Einige Relationen konnten nicht gespeichert werden, siehe Tooltips der Ikonen für mehr Details.",
       "select": "Auswählen",
+      "takepicture": "Bild schiessen",
       "layer": "Kartenebene"
     },
     "fileselector": {
@@ -81,6 +113,7 @@
     "heightprofile": {
       "asl": "ü.M.",
       "distance": "Distanz",
+      "export": "Exportieren",
       "height": "Höhe",
       "loading": "Höhenprofil wird berechnet..."
     },
@@ -108,6 +141,9 @@
     "infotool": {
       "clickhelpPoint": "Zu identifizierende Position in der Karte auswählen...",
       "clickhelpPolygon": "Polygon um die zu identifizierende Objekte zeichnen"
+    },
+    "layercatalog": {
+      "windowtitle": "Ebenenkatalog"
     },
     "layerinfo": {
       "abstract": "Zusammenfassung",
@@ -145,7 +181,8 @@
       }
     },
     "map": {
-      "loading": "Karte wird geladen..."
+      "loading": "Karte wird geladen...",
+      "resetrotation": "Drehung zurücksetzen"
     },
     "mapinfotooltip": {
       "elevation": "Höhe",
@@ -157,9 +194,13 @@
       "lengthLabel": "Länge",
       "pointLabel": "Position"
     },
+    "navbar": {
+      "perpage": "pro Seite"
+    },
     "print": {
       "grid": "Gitter",
       "layout": "Format",
+      "legend": "Legende",
       "maximize": "Maximieren",
       "minimize": "Minimieren",
       "nolayouts": "Das gewählte Thema stellt keine Druck-Vorlagen zur Verfügung.",
@@ -210,8 +251,11 @@
       "existinglayer": "Die Ebene existiert bereits in der Karte",
       "invisiblelayer": "Das Resultat liegt auf einer Ebene, die ausgeschaltet ist.",
       "more": "Mehr...",
+      "providerselection": "Suchdienste",
       "search": "Suchen",
       "searchall": "Ort suchen oder Karte hinzufügen...",
+      "searchinprogress": "Suche läuft",
+      "searchreset": "Suche zurücksetzen",
       "themes": "Themen"
     },
     "searchbox": {
@@ -238,7 +282,8 @@
     "share": {
       "QRCodeLinkTitle": "QR Code (Smartphone)",
       "directLinkTitle": "Über einen direkten Link",
-      "generatingpermalink": "Permalink wird erzeugt",
+      "refresh": "Permalink generieren",
+      "showpin": "Pin anzeigen",
       "socialIntro": "In den sozialen Medien"
     },
     "themelayerslist": {
@@ -249,6 +294,7 @@
     "themeswitcher": {
       "addlayerstotheme": "Ebenen der Karte hinzufügen",
       "addtotheme": "Dem aktuellen Thema hinzufügen",
+      "confirmswitch": "Ebenen, die nicht Teil des Themas sind, werden entfernt werden. Fortsetzen?",
       "filter": "Filter",
       "match": {
         "abstract": "Zusammenfassung",
@@ -260,6 +306,8 @@
     },
     "tooltip": {
       "background": "Hintergrundkarte wechseln",
+      "fullscreendisable": "Vollbildmodus deaktivieren",
+      "fullscreenenable": "Vollbildmodus aktivieren",
       "home": "Ganze Karte anzeigen",
       "zoomin": "Hineinzoomen",
       "zoomout": "Hinauszoomen"
@@ -270,7 +318,9 @@
     "window": {
       "close": "Schliessen",
       "dock": "Andocken",
-      "undock": "Abdocken"
+      "maximize": "Maximieren",
+      "undock": "Abdocken",
+      "unmaximize": "Wiederherstellen"
     },
     "oereb": {
       "concernedThemes": "Betroffene Themen",
