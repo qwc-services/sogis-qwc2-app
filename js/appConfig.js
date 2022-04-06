@@ -87,6 +87,7 @@ module.exports = {
                 themeLayerRestorer: require('./themeLayerRestorer'),
                 customInfoComponents: {
                     oereb: require('qwc2-extra/components/OerebDocument'),
+                    oereb2: require('qwc2-extra/components/Oereb2Document'),
                     plotowner: require('./plugins/PlotOwnerInfo')
                 }
             }
