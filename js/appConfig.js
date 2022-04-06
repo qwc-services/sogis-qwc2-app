@@ -46,7 +46,7 @@ import AuthenticationPlugin from 'qwc2/plugins/Authentication';
 import LoginUserPlugin from 'qwc2/plugins/LoginUser';
 
 import PlotInfoToolPlugin from 'qwc2-extra/plugins/PlotInfoTool';
-import OerebDocument from 'qwc2-extra/components/OerebDocument';
+import Oereb2Document from 'qwc2-extra/components/Oereb2Document';
 
 import AutologinPlugin from './plugins/Autologin';
 import CCCEditSupport from './plugins/CCCEditSupport';
@@ -120,7 +120,7 @@ export default {
             PlotInfoToolPlugin: {
                 themeLayerRestorer: themeLayerRestorer,
                 customInfoComponents: {
-                    oereb: OerebDocument,
+                    oereb2: Oereb2Document,
                     plotowner: PlotOwnerInfo
                 }
             }
