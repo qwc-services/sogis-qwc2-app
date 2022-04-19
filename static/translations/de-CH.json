@@ -352,6 +352,7 @@
     },
     "oereb": {
       "concernedThemes": "Betroffene Themen",
+      "fundationdatastate": "Daten der amtlichen Vermessung. Stand der amtlichen Vermessung:",
       "fundations": "Grundlagedaten",
       "generalInformation": "Allgemeine und rechtliche Informationen",
       "generalinfo": "Allgemeine Informationen",
