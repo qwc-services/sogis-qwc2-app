@@ -283,6 +283,7 @@
       "responsibleauthority": "Responsible authority",
       "requestPdf": "Request PDF cadastre extract",
       "fundations": "Fundations",
+      "fundationdatastate": "Cadastral surveying data. Status of the cadastral survey:",
       "generalinfo": "General information",
       "hidefulllegend": "Hide full legend",
       "showfulllegend": "Show full legend"

@@ -283,6 +283,7 @@
       "responsibleauthority": "Katasterverantwortliche Stelle",
       "requestPdf": "PDF-Katasterauszug anfordern",
       "fundations": "Grundlagedaten",
+      "fundationdatastate": "Daten der amtlichen Vermessung. Stand der amtlichen Vermessung:",
       "generalinfo": "Allgemeine Informationen",
       "hidefulllegend": "Vollständige Legende ausblenden",
       "showfulllegend": "Vollständige Legende einblenden"
