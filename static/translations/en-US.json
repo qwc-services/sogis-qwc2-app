@@ -17,6 +17,7 @@
         "AttributeTable": "Attribute Table",
         "DxfExport": "DXF Export",
         "Editing": "Editing",
+        "FeatureForm": "Feature Form",
         "Help": "Help",
         "IdentifyRegion": "Identify Region",
         "LayerCatalog": "Layer catalog",
@@ -94,26 +95,39 @@
       "symbologyscale": "Symbology scale"
     },
     "editing": {
+      "add": "Add",
       "attrtable": "Table",
       "canceldelete": "Don't delete",
-      "capturedpicture": "Captured picture",
       "clearpicture": "Clear",
       "commit": "Commit",
+      "commitfailed": "Commit failed",
+      "create": "Create",
       "delete": "Delete",
       "discard": "Discard",
       "draw": "Draw",
       "feature": "Feature",
+      "geomreadonly": "The geometry contains non-zero Z values and is therefore read only.",
+      "invalidform": "Invalid form",
       "maximize": "Maximize",
       "minimize": "Minimize",
       "nocompatpick": "No compatible geometry found",
       "noeditablelayers": "No editable layers.",
+      "paint": "Modify",
       "pick": "Pick",
       "pickdrawfeature": "Clone existing geometry",
       "reallydelete": "Delete",
       "relationcommitfailed": "Some relation values could not be committed, check the icon tooltips for details",
       "select": "Select",
+      "selectedpicture": "Selected picture",
       "takepicture": "Take picture",
+      "unsavedchanged": "There are unsaved changes. Do you want to leave the page anyway?",
       "layer": "Layer"
+    },
+    "featureform": {
+      "feature": "Feature",
+      "noresults": "No results",
+      "querying": "Querying...",
+      "title": "Feature form"
     },
     "fileselector": {
       "placeholder": "Select file..."
@@ -135,7 +149,12 @@
       "querying": "Querying...",
       "title": "Feature Info"
     },
+    "imageeditor": {
+      "confirmclose": "Close without saving?",
+      "title": "Image editor"
+    },
     "importlayer": {
+      "addfailed": "Failed to add layer.",
       "addlayer": "Add layer",
       "connect": "Connect",
       "filter": "Filter...",
@@ -175,6 +194,12 @@
       "transparency": "Trasparency",
       "visiblefilter": "Filter invisible layers",
       "zoomtolayer": "Zoom to layer"
+    },
+    "linkfeatureform": {
+      "cancel": "Cancel",
+      "close": "Close",
+      "drawhint": "Draw the feature on the map...",
+      "pickhint": "Pick a feature on the map..."
     },
     "locate": {
       "feetUnit": "feet",
@@ -220,6 +245,9 @@
       "submit": "Print",
       "wait": "Please wait..."
     },
+    "qtdesignerform": {
+      "loading": "Loading form..."
+    },
     "rasterexport": {
       "format": "Format:",
       "resolution": "Resolution:",
@@ -259,6 +287,7 @@
       "existinglayer": "The layer already exists in the map",
       "invisiblelayer": "The result lies on a layer which is not visible.",
       "more": "More...",
+      "noresults": "No results",
       "providerselection": "Search providers",
       "search": "Search",
       "searchall": "Search places or add maps...",
@@ -291,8 +320,13 @@
       "QRCodeLinkTitle": "QR Code",
       "directLinkTitle": "Via a direct link",
       "refresh": "Generate permalink",
+      "shareTitle": "QWC2",
       "showpin": "Show pin",
       "socialIntro": "In your favourite social network"
+    },
+    "snapping": {
+      "loading": "Loading snapping geometries...",
+      "snappingenabled": "Snapping"
     },
     "themelayerslist": {
       "addlayer": "Add layer",
@@ -314,8 +348,11 @@
     },
     "timemanager": {
       "animationinterval": "Animation interval",
+      "loop": "Loop",
+      "markers": "Markers",
       "notemporaldata": "No temporal layers are visible in the map.",
       "play": "Play",
+      "playrev": "Play backwards",
       "rewind": "Rewind",
       "stepback": "Step back",
       "stepfwd": "Step forward",
@@ -324,8 +361,11 @@
       "title": "Time manager",
       "toggle": "Temporal navigation",
       "unit": {
+        "century": "centuries",
         "days": "days",
+        "decade": "decades",
         "hours": "hours",
+        "milliseconds": "milliseconds",
         "minutes": "minutes",
         "months": "months",
         "seconds": "seconds",
@@ -347,8 +387,10 @@
       "close": "Close",
       "dock": "Dock",
       "maximize": "Maximize",
+      "minimize": "Minimize",
       "undock": "Undock",
-      "unmaximize": "Restore"
+      "unmaximize": "Restore",
+      "unminimize": "Unminimize"
     },
     "oereb": {
       "concernedThemes": "Concerned themes",
