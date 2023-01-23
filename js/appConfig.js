@@ -6,9 +6,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {SearchProviders, searchProviderFactory}  from './SearchProviders';
+import {SearchProviders}  from './SearchProviders';
 import LayerUtils from 'qwc2/utils/LayerUtils';
-import renderHelp from './Help';
 
 import MapPlugin from 'qwc2/plugins/Map';
 import EditingSupport from 'qwc2/plugins/map/EditingSupport';
@@ -86,7 +85,7 @@ export default {
             BackgroundSwitcherPlugin: BackgroundSwitcherPlugin,
             TopBarPlugin: TopBarPlugin({
                 AppMenu: AppMenu,
-                Search: SearchBox(SearchProviders, searchProviderFactory),
+                Search: SearchBox(SearchProviders),
                 Toolbar: Toolbar,
                 FullscreenSwitcher: FullscreenSwitcher
             }),
@@ -99,7 +98,7 @@ export default {
             SharePlugin: SharePlugin,
             MapCopyrightPlugin: MapCopyrightPlugin,
             PrintPlugin: PrintPlugin,
-            HelpPlugin: HelpPlugin(renderHelp),
+            HelpPlugin: HelpPlugin(),
             RasterExportPlugin: RasterExportPlugin,
             RedliningPlugin: RedliningPlugin({}),
             EditingPlugin: EditingPlugin(),

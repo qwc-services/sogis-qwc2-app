@@ -24,6 +24,7 @@
         "LayerTree": "Kartenebenen und Legende",
         "Login": "Anmelden",
         "Logout": "Abmelden",
+        "MapLegend": "Legende",
         "Measure": "Messen",
         "MeasureLineString": "Messen linie",
         "MeasurePolygon": "Messen polygon",
@@ -35,11 +36,27 @@
         "Tools": "Werkzeuge",
         "Bookmark": "Lesezeichen",
         "TimeManager": "Zeitleiste",
+        "Settings": "Einstellungen",
         "PlotInfoTool": "Grundstücksinformation",
         "PlotInfoTool_comment": " "
       },
       "filter": "Menü filtern...",
       "menulabel": "Karte & Werkzeuge"
+    },
+    "search": {
+      "coordinates": "Koordinaten",
+      "all": "Alle",
+      "enablelayer": "Ebene einschalten",
+      "existinglayer": "Die Ebene existiert bereits in der Karte",
+      "invisiblelayer": "Das Resultat liegt auf einer Ebene, die ausgeschaltet ist.",
+      "more": "Mehr...",
+      "noresults": "Keine Ergebnisse",
+      "providerselection": "Suchdienste",
+      "search": "Suchen",
+      "searchall": "Ort suchen oder Karte hinzufügen...",
+      "searchinprogress": "Suche läuft",
+      "searchreset": "Suche zurücksetzen",
+      "themes": "Themen"
     },
     "attribtable": {
       "addfeature": "Objekt hinzufügen",
@@ -68,9 +85,10 @@
     "bookmark": {
       "add": "Neues Lesezeichen anlegen",
       "addfailed": "Lesezeichen konnte nicht angelegt werden",
-      "description": "Beschreibung",
+      "description": "Beschreibung eingeben...",
       "lastUpdate": "Zuletzt gespeichert",
       "manage": "Lesezeichen verwalten",
+      "nobookmarks": "Keine Lesezeichen",
       "notloggedin": "Sie müssen angemeldet sein, um Lesezeichen zu verwenden",
       "open": "In aktuellem Fenster öffnen",
       "openTab": "In neuem Fenster öffnen",
@@ -140,6 +158,7 @@
       "loading": "Höhenprofil wird berechnet..."
     },
     "identify": {
+      "clipboard": "Nach Zwischenablage kopieren",
       "export": "Exportieren",
       "exportformat": "Exportformat",
       "featureReport": "Objektblatt",
@@ -167,7 +186,9 @@
     },
     "infotool": {
       "clickhelpPoint": "Zu identifizierende Position in der Karte auswählen...",
-      "clickhelpPolygon": "Polygon um die zu identifizierende Objekte zeichnen"
+      "clickhelpPolygon": "Polygon um die zu identifizierende Objekte zeichnen",
+      "clickhelpRadius": "Einen Radius setzten und in die Karte clicken um Objekte um den Punkt zu identifizieren...",
+      "radius": "Radius"
     },
     "layercatalog": {
       "windowtitle": "Ebenenkatalog"
@@ -221,6 +242,12 @@
       "elevation": "Höhe",
       "title": "Position"
     },
+    "maplegend": {
+      "bboxdependent": "Legende abhängig vom Kartenausschnitt",
+      "onlyvisible": "Legende abhängig von der Ebenensichtbarkeit",
+      "scaledependent": "Legende abhängig vom Kartenmassstab",
+      "windowtitle": "Legende"
+    },
     "measureComponent": {
       "areaLabel": "Fläche",
       "bearingLabel": "Richtung",
@@ -250,7 +277,7 @@
     },
     "rasterexport": {
       "format": "Format:",
-      "resolution": "Auflösung",
+      "resolution": "Auflösung:",
       "selectinfo": "Rechteck um die zu exportierende Region aufziehen"
     },
     "redlining": {
@@ -281,20 +308,6 @@
     "scratchdrawing": {
       "finish": "Abschliessen"
     },
-    "search": {
-      "all": "Alle",
-      "enablelayer": "Ebene einschalten",
-      "existinglayer": "Die Ebene existiert bereits in der Karte",
-      "invisiblelayer": "Das Resultat liegt auf einer Ebene, die ausgeschaltet ist.",
-      "more": "Mehr...",
-      "noresults": "Keine Ergebnisse",
-      "providerselection": "Suchdienste",
-      "search": "Suchen",
-      "searchall": "Ort suchen oder Karte hinzufügen...",
-      "searchinprogress": "Suche läuft",
-      "searchreset": "Suche zurücksetzen",
-      "themes": "Themen"
-    },
     "searchbox": {
       "filter": "Suche verfeinern",
       "layers": "Karten",
@@ -315,6 +328,12 @@
       "keywords": "Schlüsselwörter",
       "onlineResource": "Online Ressource",
       "title": "Informationen zum Thema"
+    },
+    "settings": {
+      "colorscheme": "Farbschema",
+      "confirmlang": "Die Anwendung wird neugeladen, um die Sprache zu wechseln. Fortsetzen?",
+      "language": "Sprache",
+      "systemlang": "Systemsprache"
     },
     "share": {
       "QRCodeLinkTitle": "QR Code (Smartphone)",
@@ -348,16 +367,35 @@
     },
     "timemanager": {
       "animationinterval": "Animationsintervall",
+      "classify": "Klassifizierungsattribut",
+      "classifynone": "Keins",
+      "displayfeatures": "Zeitleiste und Objekte",
+      "displaylayers": "Zeitleiste und Ebenen",
+      "displayminimal": "Nur Zeitleiste",
+      "endtime": "Ende",
+      "future": "Zukunft",
+      "group": "Gruppierungsattribut",
+      "groupnone": "Keins",
+      "home": "Zeitleiste zurücksetzten",
+      "loading": "Laden...",
       "loop": "Schleife",
       "markers": "Marker",
-      "notemporaldata": "Keine sichtbaren Ebenen in der Karte sind mit Zeitinformationen versehen.",
+      "notemporaldata": "Keine sichtbare Ebenen in der Karte sind mit Zeitinformationen versehen.",
+      "now": "Jetzt",
+      "past": "Vergangenheit",
       "play": "Abspielen",
       "playrev": "Zurück abspielen",
       "rewind": "Zurücksetzten",
+      "starttime": "Beginn",
       "stepback": "Schritt zurück",
       "stepfwd": "Schritt vorwärts",
       "stepsize": "Schritt",
       "stop": "Stoppen",
+      "timeline": "Zeitstrahl",
+      "timeline_fixed": "Fix",
+      "timeline_infinite": "Unendlich",
+      "timelinedisplay": "Anzeige",
+      "timelinescale": "Zeitskala (nichtlinearität)",
       "title": "Zeitleiste",
       "toggle": "Zeitsteuerung aktivieren",
       "unit": {
@@ -370,7 +408,9 @@
         "months": "Monate",
         "seconds": "Sekunden",
         "years": "Jahre"
-      }
+      },
+      "zoomin": "Vergrössern",
+      "zoomout": "Verkleinern"
     },
     "tooltip": {
       "background": "Hintergrundkarte wechseln",

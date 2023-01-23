@@ -14,7 +14,8 @@
     "ccc.showObject"
   ],
   "extra_strings": [
-    "appmenu.items.LandRegisterExtract"
+    "appmenu.items.LandRegisterExtract",
+    "search.coordinates"
   ],
   "overrides": [
     "appmenu.items.LayerTree",

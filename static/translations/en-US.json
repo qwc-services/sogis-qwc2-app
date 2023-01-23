@@ -24,6 +24,7 @@
         "LayerTree": "Layers & Legend",
         "Login": "Login",
         "Logout": "Logout",
+        "MapLegend": "Legend",
         "Measure": "Measure",
         "MeasureLineString": "Measure a line",
         "MeasurePolygon": "Measure a polygon",
@@ -35,11 +36,27 @@
         "Tools": "Map Tools",
         "Bookmark": "Bookmarks",
         "TimeManager": "Time Manager",
+        "Settings": "Settings",
         "PlotInfoTool": "Real Estate Information",
         "PlotInfoTool_comment": " "
       },
       "filter": "Filter menu...",
       "menulabel": "Map & Tools"
+    },
+    "search": {
+      "coordinates": "Coordinates",
+      "all": "All",
+      "enablelayer": "Enable layer",
+      "existinglayer": "The layer already exists in the map",
+      "invisiblelayer": "The result lies on a layer which is not visible.",
+      "more": "More...",
+      "noresults": "No results",
+      "providerselection": "Search providers",
+      "search": "Search",
+      "searchall": "Search places or add maps...",
+      "searchinprogress": "Search in progress",
+      "searchreset": "Reset search",
+      "themes": "Themes"
     },
     "attribtable": {
       "addfeature": "Add feature",
@@ -68,9 +85,10 @@
     "bookmark": {
       "add": "Create new bookmark",
       "addfailed": "Failed to create bookmark",
-      "description": "Description",
+      "description": "Enter description...",
       "lastUpdate": "Last saved",
       "manage": "Manage bookmarks",
+      "nobookmarks": "No bookmarks",
       "notloggedin": "You need to be logged in to store bookmarks",
       "open": "Open bookmark in current tab",
       "openTab": "Open bookmark in tab",
@@ -140,6 +158,7 @@
       "loading": "Calculating height profile..."
     },
     "identify": {
+      "clipboard": "Copy to clipboard",
       "export": "Export",
       "exportformat": "Export format:",
       "featureReport": "Feature report",
@@ -167,7 +186,9 @@
     },
     "infotool": {
       "clickhelpPoint": "Click a location to identify in the map...",
-      "clickhelpPolygon": "Draw a polygon around the features to identify..."
+      "clickhelpPolygon": "Draw a polygon around the features to identify...",
+      "clickhelpRadius": "Set a radius and click a location to identify features around the point...",
+      "radius": "Radius"
     },
     "layercatalog": {
       "windowtitle": "Layer catalog"
@@ -221,6 +242,12 @@
       "elevation": "Elevation",
       "title": "Position"
     },
+    "maplegend": {
+      "bboxdependent": "Map extent dependent legend",
+      "onlyvisible": "Only visibile layers",
+      "scaledependent": "Map scale depdendent legend",
+      "windowtitle": "Legend"
+    },
     "measureComponent": {
       "areaLabel": "Area",
       "bearingLabel": "Bearing",
@@ -239,7 +266,7 @@
       "nolayouts": "The selected theme does not support printing",
       "notheme": "No theme selected",
       "output": "Print output",
-      "resolution": "Resolution:",
+      "resolution": "Resolution",
       "rotation": "Rotation",
       "scale": "Scale",
       "submit": "Print",
@@ -281,20 +308,6 @@
     "scratchdrawing": {
       "finish": "Finish"
     },
-    "search": {
-      "all": "All",
-      "enablelayer": "Enable layer",
-      "existinglayer": "The layer already exists in the map",
-      "invisiblelayer": "The result lies on a layer which is not visible.",
-      "more": "More...",
-      "noresults": "No results",
-      "providerselection": "Search providers",
-      "search": "Search",
-      "searchall": "Search places or add maps...",
-      "searchinprogress": "Search in progress",
-      "searchreset": "Reset search",
-      "themes": "Themes"
-    },
     "searchbox": {
       "filter": "Refine search",
       "layers": "Maps",
@@ -315,6 +328,12 @@
       "keywords": "Keywords",
       "onlineResource": "Online resource",
       "title": "Theme Information"
+    },
+    "settings": {
+      "colorscheme": "Color scheme",
+      "confirmlang": "The application will be reloaded to change the language. Proceed?",
+      "language": "Language",
+      "systemlang": "System language"
     },
     "share": {
       "QRCodeLinkTitle": "QR Code",
@@ -348,16 +367,35 @@
     },
     "timemanager": {
       "animationinterval": "Animation interval",
+      "classify": "Classification attribute",
+      "classifynone": "None",
+      "displayfeatures": "Timeline with features",
+      "displaylayers": "Timeline with layers",
+      "displayminimal": "Timeline only",
+      "endtime": "End",
+      "future": "Future",
+      "group": "Grouping attribute",
+      "groupnone": "None",
+      "home": "Reset timeline",
+      "loading": "Loading...",
       "loop": "Loop",
       "markers": "Markers",
       "notemporaldata": "No temporal layers are visible in the map.",
+      "now": "Now",
+      "past": "Past",
       "play": "Play",
       "playrev": "Play backwards",
       "rewind": "Rewind",
+      "starttime": "Start",
       "stepback": "Step back",
       "stepfwd": "Step forward",
       "stepsize": "Step size",
       "stop": "Stop",
+      "timeline": "Timeline",
+      "timeline_fixed": "Fixed",
+      "timeline_infinite": "Infinite",
+      "timelinedisplay": "Display",
+      "timelinescale": "Timescale (non-linearity)",
       "title": "Time manager",
       "toggle": "Temporal navigation",
       "unit": {
@@ -370,7 +408,9 @@
         "months": "months",
         "seconds": "seconds",
         "years": "years"
-      }
+      },
+      "zoomin": "Zoom in",
+      "zoomout": "Zoom out"
     },
     "tooltip": {
       "background": "Switch background",

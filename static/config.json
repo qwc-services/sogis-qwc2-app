@@ -146,6 +146,9 @@
         },
         {
           "name": "Help",
+          "cfg": {
+            "bodyContentsFragmentUrl": "assets/help.html"
+          },
           "mapClickAction": "identify"
         },
         {
@@ -391,6 +394,9 @@
         },
         {
           "name": "Help",
+          "cfg": {
+            "bodyContentsFragmentUrl": "assets/help.html"
+          },
           "mapClickAction": "identify"
         },
         {
