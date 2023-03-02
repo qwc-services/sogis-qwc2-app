@@ -2,18 +2,18 @@
   "locale": "de-DE",
   "messages": {
     "ccc": {
-      "cancel": "",
-      "commit": "",
-      "configError": "",
-      "connError": "",
-      "createObject": "",
-      "deselect": "",
-      "editObject": "",
-      "showObject": ""
+      "cancel": "Abbrechen",
+      "commit": "Übernehmen",
+      "configError": "CCC Konfigurationsfehler",
+      "connError": "CCC-Verbindung wurde geschlossen",
+      "createObject": "Objektgeometrie erfassen",
+      "deselect": "Selektion aufheben",
+      "editObject": "Objektgeometrie editieren",
+      "showObject": "Objekt(e) selektiert"
     },
     "appmenu": {
       "items": {
-        "LandRegisterExtract": "",
+        "LandRegisterExtract": "Auszug Plan für das Grundbuch",
         "AttributeTable": "Attributtabelle",
         "DxfExport": "DXF-Export",
         "Editing": "Editieren",
@@ -21,7 +21,7 @@
         "Help": "Hilfe",
         "IdentifyRegion": "Region abfragen",
         "LayerCatalog": "Ebenenkatalog",
-        "LayerTree": "Ebenen und Legende",
+        "LayerTree": "Kartenebenen und Legende",
         "Login": "Anmelden",
         "Logout": "Abmelden",
         "MapLegend": "Legende",
@@ -36,13 +36,15 @@
         "Tools": "Werkzeuge",
         "Bookmark": "Lesezeichen",
         "TimeManager": "Zeitleiste",
-        "Settings": "Einstellungen"
+        "Settings": "Einstellungen",
+        "PlotInfoTool": "Grundstücksinformation",
+        "PlotInfoTool_comment": " "
       },
       "filter": "Menü filtern...",
       "menulabel": "Karte & Werkzeuge"
     },
     "search": {
-      "coordinates": "",
+      "coordinates": "Koordinaten",
       "all": "Alle",
       "enablelayer": "Ebene einschalten",
       "existinglayer": "Die Ebene existiert bereits in der Karte",
@@ -97,9 +99,9 @@
     },
     "bottombar": {
       "mousepos_label": "Koordinaten",
-      "scale_label": "Maßstab",
+      "scale_label": "Massstab",
       "terms_label": "Nutzungsbedingungen",
-      "viewertitle_label": ""
+      "viewertitle_label": "Geoportal Kt. Solothurn"
     },
     "copybtn": {
       "click_to_copy": "In Zwischenablage kopieren",
@@ -108,7 +110,7 @@
     "dxfexport": {
       "layers": "Ebenen",
       "selectinfo": "Rechteck um die zu exportierende Region aufziehen",
-      "symbologyscale": "Darstellungsmaßstab"
+      "symbologyscale": "Darstellungsmassstab"
     },
     "editing": {
       "add": "Hinzufügen",
@@ -123,11 +125,11 @@
       "draw": "Zeichnen",
       "feature": "Objekt",
       "geomreadonly": "Die Geometrie enthält Z-Werte ungleich Null und kann daher nicht veränderbar.",
-      "invalidform": "Ungültiges Formular",
+      "invalidform": "Formular umgültig",
       "maximize": "Maximieren",
       "minimize": "Minimieren",
       "nocompatpick": "Keine kompatible Geometrie",
-      "noeditablelayers": "Keine editierbare Ebenen.",
+      "noeditablelayers": "Keine editierbare Kartenebenen.",
       "paint": "Bearb.",
       "pick": "Auswählen",
       "pickdrawfeature": "Existierende Geometrie kopieren",
@@ -135,8 +137,9 @@
       "relationcommitfailed": "Einige Relationen konnten nicht gespeichert werden, siehe Tooltips der Icons für mehr Details.",
       "select": "Auswählen",
       "selectedpicture": "Ausgewähltes Bild",
-      "takepicture": "Bild schießen",
-      "unsavedchanged": "Es gibt nicht gespeicherte Änderungen. Soll die Seite trotzdem verlassen werden?"
+      "takepicture": "Bild schiessen",
+      "unsavedchanged": "Es gibt nicht gespeicherte Änderungen. Soll die Seite trotzdem verlassen werden?",
+      "layer": "Kartenebene"
     },
     "featureform": {
       "feature": "Objekt",
@@ -148,7 +151,7 @@
       "placeholder": "Datei auswählen"
     },
     "heightprofile": {
-      "asl": "ü. NHN",
+      "asl": "ü.M.",
       "distance": "Distanz",
       "export": "Exportieren",
       "height": "Höhe",
@@ -171,7 +174,7 @@
     },
     "importlayer": {
       "addfailed": "Die Ebene konnte nicht hinzugefügt werden",
-      "addlayer": "Ebene hinzufügen",
+      "addlayer": "Kartenebene hinzufügen",
       "connect": "Verbinden",
       "filter": "Filter...",
       "loading": "Laden...",
@@ -196,15 +199,15 @@
       "dataUrl": "Daten-URL",
       "keywords": "Schlüsselwörter",
       "legend": "Legende",
-      "maxscale": "Max. Darstellungsmaßstab",
+      "maxscale": "Max. Darstellungsmassstab",
       "metadataUrl": "Metadaten-URL",
-      "minscale": "Min. Darstellungsmaßstab",
-      "title": "Ebeneninformationen"
+      "minscale": "Min. Darstellungsmassstab",
+      "title": "Kartenebeneninformationen"
     },
     "layertree": {
-      "compare": "Oberste Ebene vergleichen",
+      "compare": "Oberste Kartenebene vergleichen",
       "deletealllayers": "Alle Ebenen entfernen",
-      "importlayer": "Ebene importieren",
+      "importlayer": "Kartenebene importieren",
       "maptip": "Kartentipps anzeigen",
       "printlegend": "Legende drucken",
       "separator": "Separator",
@@ -215,12 +218,12 @@
     },
     "linkfeatureform": {
       "cancel": "Abbrechen",
-      "close": "Schließen",
+      "close": "Schliessen",
       "drawhint": "Objekt auf der Karte zeichnen...",
       "pickhint": "Objekt auf der Karte auswählen..."
     },
     "locate": {
-      "feetUnit": "Fuß",
+      "feetUnit": "Fuss",
       "metersUnit": "Meter",
       "popup": "Im Umkreis von {distance} {unit} von diesem Punkt",
       "statustooltip": {
@@ -242,7 +245,7 @@
     "maplegend": {
       "bboxdependent": "Legende abhängig vom Kartenausschnitt",
       "onlyvisible": "Legende abhängig von der Ebenensichtbarkeit",
-      "scaledependent": "Legende abhängig vom Kartenmaßstab",
+      "scaledependent": "Legende abhängig vom Kartenmassstab",
       "windowtitle": "Legende"
     },
     "measureComponent": {
@@ -265,7 +268,7 @@
       "output": "Druckausgabe",
       "resolution": "Auflösung",
       "rotation": "Rotation",
-      "scale": "Maßstab",
+      "scale": "Massstab",
       "submit": "PDF erzeugen",
       "wait": "Bitte warten..."
     },
@@ -292,18 +295,18 @@
       "fill": "Füllung",
       "freehand": "Freihand",
       "label": "Beschriftung",
-      "layer": "Ebene",
+      "layer": "Kartenebene",
       "line": "Linie",
       "outline": "Rand",
       "pick": "Auswählen",
       "point": "Punkt",
       "polygon": "Polygon",
-      "size": "Größe",
+      "size": "Grösse",
       "text": "Text",
       "width": "Breite"
     },
     "scratchdrawing": {
-      "finish": "Abschließen"
+      "finish": "Abschliessen"
     },
     "searchbox": {
       "filter": "Suche verfeinern",
@@ -406,7 +409,7 @@
         "seconds": "Sekunden",
         "years": "Jahre"
       },
-      "zoomin": "Vergrößern",
+      "zoomin": "Vergrössern",
       "zoomout": "Verkleinern"
     },
     "tooltip": {
@@ -421,13 +424,43 @@
       "prompt": "Ebenenname eingeben"
     },
     "window": {
-      "close": "Schließen",
+      "close": "Schliessen",
       "dock": "Andocken",
       "maximize": "Maximieren",
       "minimize": "Minimieren",
       "undock": "Abdocken",
       "unmaximize": "Wiederherstellen",
-      "unminimize": "Vergrößern"
+      "unminimize": "Vergrössern"
+    },
+    "oereb": {
+      "concernedThemes": "Betroffene Themen",
+      "fundationdatastate": "Daten der amtlichen Vermessung. Stand der amtlichen Vermessung:",
+      "fundations": "Grundlagedaten",
+      "generalInformation": "Allgemeine und rechtliche Informationen",
+      "generalinfo": "Allgemeine Informationen",
+      "hidefulllegend": "Vollständige Legende ausblenden",
+      "hints": "Weitere Informationen und Hinweise",
+      "legalbasis": "Gesetzliche Grundlagen",
+      "notConcernedThemes": "Nicht betroffene Themen",
+      "nrpoints": "Punkt(e)",
+      "perc": "Anteil in %",
+      "regulations": "Rechtsvorschriften",
+      "responsibleauthority": "Katasterverantwortliche Stelle",
+      "responsibleoffice": "Zuständige Stelle",
+      "share": "Anteil",
+      "showfulllegend": "Vollständige Legende einblenden",
+      "themeWithoutData": "Nicht verfügbare Themen",
+      "type": "Typ",
+      "title": "Öffentlich-rechtliche Eigentumsbeschränkungen",
+      "failed": "Der Auszug aus dem Kataster der öffentlich-rechtlichen Eigentumsbeschränkungen konnte nicht abgefragt werden. Bitte wenden Sie sich an die Katasterverantwortliche Stelle: Amt für Geoinformation, Rötistrasse 4, 4501 Solothurn, agi.so.ch"
+    },
+    "plotinfotool": {
+      "failed": "Datenabfrage gescheitert",
+      "loading": "Daten werden geladen..."
+    },
+    "plotdescr": {
+      "title": "Grundstücksbeschrieb",
+      "requestPdf": "Grundbuchplan (PDF) erstellen"
     }
   }
 }
