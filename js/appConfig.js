@@ -43,6 +43,8 @@ import HeightProfilePlugin from 'qwc2/plugins/HeightProfile';
 import MapInfoTooltipPlugin from 'qwc2/plugins/MapInfoTooltip';
 import AuthenticationPlugin from 'qwc2/plugins/Authentication';
 import LoginUserPlugin from 'qwc2/plugins/LoginUser';
+import BookmarkPlugin from 'qwc2/plugins/Bookmark';
+import AttributeTablePlugin from 'qwc2/plugins/AttributeTable';
 
 import PlotInfoToolPlugin from 'qwc2-extra/plugins/PlotInfoTool';
 import Oereb2Document from 'qwc2-extra/components/Oereb2Document';
@@ -83,6 +85,8 @@ export default {
             ZoomInPlugin: ZoomInPlugin,
             ZoomOutPlugin: ZoomOutPlugin,
             BackgroundSwitcherPlugin: BackgroundSwitcherPlugin,
+	    BookmarkPlugin: BookmarkPlugin,
+	    AttributeTablePlugin: AttributeTablePlugin(/* CustomEditingInterface */),
             TopBarPlugin: TopBarPlugin({
                 AppMenu: AppMenu,
                 Search: SearchBox(SearchProviders),
