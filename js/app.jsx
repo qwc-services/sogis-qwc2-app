@@ -9,6 +9,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import url from 'url';
 import StandardApp from 'qwc2/components/StandardApp';
 import {UrlParams} from 'qwc2/utils/PermaLinkUtils';
 import appConfig from './appConfig';
@@ -45,7 +46,8 @@ if (UrlParams.getParam('config:autologin') !== undefined) {
     UrlParams.updateParams({"config:autologin": undefined});
     renderApp();
 } else {
-    axios.get('/auth/info').then(res => {
+    const authServiceUrl = "/auth/";
+    axios.get(authServiceUrl + 'info').then(res => {
         if(!res.data.username && res.data.in_net) {
             // automatic login
             let urlObj = url.parse(window.location.href);
