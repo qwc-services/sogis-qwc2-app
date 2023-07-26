@@ -8,6 +8,7 @@
 
 import {SearchProviders}  from './SearchProviders';
 import LayerUtils from 'qwc2/utils/LayerUtils';
+import {renderHelp} from './Help';
 
 import MapPlugin from 'qwc2/plugins/Map';
 import EditingSupport from 'qwc2/plugins/map/EditingSupport';
@@ -49,7 +50,6 @@ import AttributeTablePlugin from 'qwc2/plugins/AttributeTable';
 import PlotInfoToolPlugin from 'qwc2-extra/plugins/PlotInfoTool';
 import Oereb2Document from 'qwc2-extra/components/Oereb2Document';
 
-import AutologinPlugin from './plugins/Autologin';
 import CCCEditSupport from './plugins/CCCEditSupport';
 import {CCCInterfacePlugin, CCCAttributeCalculator} from './plugins/CCCInterface';
 import LandRegisterExtractPlugin from './plugins/LandRegisterExtract';
@@ -102,7 +102,7 @@ export default {
             SharePlugin: SharePlugin,
             MapCopyrightPlugin: MapCopyrightPlugin,
             PrintPlugin: PrintPlugin,
-            HelpPlugin: HelpPlugin(),
+            HelpPlugin: HelpPlugin(renderHelp),
             RasterExportPlugin: RasterExportPlugin,
             RedliningPlugin: RedliningPlugin({}),
             EditingPlugin: EditingPlugin(),
@@ -113,7 +113,6 @@ export default {
             PlotInfoToolPlugin: PlotInfoToolPlugin,
             LandRegisterExtractPlugin: LandRegisterExtractPlugin,
             CCCInterfacePlugin: CCCInterfacePlugin,
-            AutologinPlugin: AutologinPlugin,
             LoginUserPlugin: LoginUserPlugin
         },
         cfg: {
