@@ -46,6 +46,7 @@ import AuthenticationPlugin from 'qwc2/plugins/Authentication';
 import LoginUserPlugin from 'qwc2/plugins/LoginUser';
 import BookmarkPlugin from 'qwc2/plugins/Bookmark';
 import AttributeTablePlugin from 'qwc2/plugins/AttributeTable';
+import StartupMarkerPlugin from 'qwc2/plugins/StartupMarker';
 
 import PlotInfoToolPlugin from 'qwc2-extra/plugins/PlotInfoTool';
 import Oereb2Document from 'qwc2-extra/components/Oereb2Document';
@@ -100,6 +101,7 @@ export default {
             IdentifyPlugin: IdentifyPlugin,
             MapTipPlugin: MapTipPlugin,
             SharePlugin: SharePlugin,
+            StartupMarkerPlugin: StartupMarkerPlugin,
             MapCopyrightPlugin: MapCopyrightPlugin,
             PrintPlugin: PrintPlugin,
             HelpPlugin: HelpPlugin(renderHelp),
