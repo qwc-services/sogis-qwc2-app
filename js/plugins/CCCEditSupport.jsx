@@ -9,7 +9,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import uuid from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 import ol from 'openlayers';
 
 import {changeCCCState} from './actions/ccc';
@@ -99,7 +99,7 @@ class CCCEditSupport extends React.Component {
         });
         drawInteraction.on('drawstart', (evt) => {
             this.currentFeature = evt.feature;
-            this.currentFeature.setId(uuid.v4());
+            this.currentFeature.setId(uuidv4());
         }, this);
         drawInteraction.on('drawend', () => {
             const feature = this.currentFeature;

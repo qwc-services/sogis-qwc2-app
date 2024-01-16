@@ -110,7 +110,7 @@ export default {
             EditingPlugin: EditingPlugin(),
             MapComparePlugin: MapComparePlugin,
             HeightProfilePlugin: HeightProfilePlugin,
-            MapInfoTooltipPlugin: MapInfoTooltipPlugin,
+            MapInfoTooltipPlugin: MapInfoTooltipPlugin(),
             AuthenticationPlugin: AuthenticationPlugin,
             PlotInfoToolPlugin: PlotInfoToolPlugin,
             LandRegisterExtractPlugin: LandRegisterExtractPlugin,

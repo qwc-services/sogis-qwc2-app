@@ -83,7 +83,7 @@ module.exports = (env, argv) => {
                     ]
                 },
                 {
-                    test: /(.woff|.woff2|.png|.jpg|.gif)/,
+                    test: /(.woff|.woff2|.png|.jpg|.gif|.svg)/,
                     type: 'asset/inline'
                 },
                 {
@@ -95,7 +95,7 @@ module.exports = (env, argv) => {
                     }
                 },
                 {
-                    test: /\.mjs$/,
+                    test: /(.mjs|.js)$/,
                     type: 'javascript/auto'
                 },
                 {

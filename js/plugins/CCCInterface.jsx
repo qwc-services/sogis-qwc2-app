@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import assign from 'object-assign';
 import axios from 'axios';
-import uuid from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 import ol from 'openlayers';
 import ConfigUtils from 'qwc2/utils/ConfigUtils';
 import CoordinatesUtils from 'qwc2/utils/CoordinatesUtils';
@@ -163,7 +163,7 @@ class CCCInterface extends React.Component {
             this.stopEdit();
             const feature = {
                 type: "Feature",
-                id: uuid.v4(),
+                id: uuidv4(),
                 geometry: message.data
             };
             this.zoomToFeature(feature);
@@ -178,7 +178,7 @@ class CCCInterface extends React.Component {
             this.stopEdit();
             const feature = {
                 type: "Feature",
-                id: uuid.v4(),
+                id: uuidv4(),
                 geometry: message.data
             };
             this.zoomToFeature(feature);

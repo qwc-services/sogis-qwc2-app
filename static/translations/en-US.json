@@ -15,10 +15,13 @@
       "items": {
         "LandRegisterExtract": "Land Register Map Extract",
         "AttributeTable": "Attribute Table",
+        "Cyclomedia": "Cyclomedia",
         "DxfExport": "DXF Export",
         "Editing": "Editing",
         "FeatureForm": "Feature Form",
+        "FeatureSearch": "Feature Search",
         "Help": "Help",
+        "IdentifyPoint": "Identify Point",
         "IdentifyRegion": "Identify Region",
         "LayerCatalog": "Layer catalog",
         "LayerTree": "Layers & Legend",
@@ -30,7 +33,9 @@
         "MeasurePolygon": "Measure a polygon",
         "Print": "Print",
         "RasterExport": "Raster Export",
+        "MapExport": "Export map",
         "Redlining": "Redlining",
+        "Routing": "Routing",
         "Share": "Share Link",
         "ThemeSwitcher": "Theme",
         "Tools": "Map Tools",
@@ -46,17 +51,29 @@
     "search": {
       "coordinates": "Coordinates",
       "all": "All",
+      "clearfilter": "Clear",
       "enablelayer": "Enable layer",
       "existinglayer": "The layer already exists in the map",
+      "filter": "Filter",
       "invisiblelayer": "The result lies on a layer which is not visible.",
+      "limittoarea": "Limit to area",
       "more": "More...",
+      "none": "None",
       "noresults": "No results",
       "providerselection": "Search providers",
       "search": "Search",
       "searchall": "Search places or add maps...",
       "searchinprogress": "Search in progress",
       "searchreset": "Reset search",
+      "solr": "Fulltext search",
+      "themelayers": "Theme layers",
       "themes": "Themes"
+    },
+    "app": {
+      "missingbg": "Unable to find the background \"{0}\", displaying the default background.",
+      "missinglayers": "Unable to find the following layers: {0}.",
+      "missingpermalink": "The specified permalink or bookmark is invalid or expired.",
+      "missingtheme": "Unable to find the theme \"{0}\", loading the default theme."
     },
     "attribtable": {
       "addfeature": "Add feature",
@@ -105,7 +122,17 @@
     },
     "copybtn": {
       "click_to_copy": "Click to copy",
-      "copied": "Copied"
+      "copied": "Copied",
+      "copyfailed": "Copy failed"
+    },
+    "cyclomedia": {
+      "clickonmap": "Click on a recording on the map",
+      "initializing": "Initializing Cyclomedia...",
+      "loaderror": "Failed to initialize Cyclomedia",
+      "loading": "Loading view...",
+      "login": "Login",
+      "scalehint": "The recordings are only visible on the map below scale 1:{0}.",
+      "title": "Cyclomedia Viewer"
     },
     "dxfexport": {
       "layers": "Layers",
@@ -147,15 +174,26 @@
       "querying": "Querying...",
       "title": "Feature form"
     },
+    "featuresearch": {
+      "noresults": "No results",
+      "query": "Query",
+      "select": "Select...",
+      "title": "Feature search"
+    },
     "fileselector": {
+      "files": "files",
       "placeholder": "Select file..."
     },
     "heightprofile": {
       "asl": "a.s.l.",
       "distance": "Distance",
+      "drawnodes": "Draw nodes",
+      "error": "Failed to compute height profile",
       "export": "Export profile",
       "height": "Height",
-      "loading": "Calculating height profile..."
+      "loading": "Calculating height profile...",
+      "print": "Print height profile",
+      "title": "Height profile"
     },
     "identify": {
       "clipboard": "Copy to clipboard",
@@ -181,6 +219,8 @@
       "localfile": "Local file",
       "nofeatures": "No features could be imported.",
       "noresults": "No results or invalid URL",
+      "notgeopdf": "The selected file does not seem to be a GeoPDF.",
+      "unknownproj": "The selected GeoPDF uses an unknown projection: {0}.",
       "url": "URL",
       "urlplaceholder": "Enter URL to WMS, WMTS, WFS..."
     },
@@ -238,6 +278,16 @@
       "loading": "Loading...",
       "resetrotation": "Reset rotation"
     },
+    "mapexport": {
+      "configuration": "Configuration",
+      "format": "Format",
+      "resolution": "Resolution",
+      "scale": "Scale",
+      "size": "Size",
+      "submit": "Export",
+      "usersize": "Select on map...",
+      "wait": "Please wait..."
+    },
     "mapinfotooltip": {
       "elevation": "Elevation",
       "title": "Position"
@@ -251,13 +301,34 @@
     "measureComponent": {
       "areaLabel": "Area",
       "bearingLabel": "Bearing",
+      "imperial": "Imperial",
       "lengthLabel": "Length",
+      "metric": "Metric",
       "pointLabel": "Position"
+    },
+    "misc": {
+      "ctrlclickhint": "Open with Ctrl+Click"
     },
     "navbar": {
       "perpage": "per page"
     },
+    "newspopup": {
+      "dialogclose": "Close",
+      "dontshowagain": "Don't show again",
+      "title": "News"
+    },
+    "numericinput": {
+      "angle": "Angle",
+      "featureunsupported": "Numeric input unavailable for this geometry",
+      "height": "Height",
+      "nofeature": "No active feature",
+      "side": "Side",
+      "width": "Width",
+      "windowtitle": "Numeric input"
+    },
     "print": {
+      "atlasfeature": "Atlas feature",
+      "format": "Format",
       "grid": "Grid",
       "layout": "Layout",
       "legend": "Legend",
@@ -266,6 +337,7 @@
       "nolayouts": "The selected theme does not support printing",
       "notheme": "No theme selected",
       "output": "Print output",
+      "pickatlasfeature": "Pick in layer {0}...",
       "resolution": "Resolution",
       "rotation": "Rotation",
       "scale": "Scale",
@@ -276,9 +348,13 @@
       "loading": "Loading form..."
     },
     "rasterexport": {
-      "format": "Format:",
-      "resolution": "Resolution:",
-      "selectinfo": "Drag a rectangle around the region to export..."
+      "format": "Format",
+      "resolution": "Resolution",
+      "scale": "Scale",
+      "size": "Size",
+      "submit": "Export",
+      "usersize": "Select on map...",
+      "wait": "Please wait..."
     },
     "redlining": {
       "border": "Border",
@@ -292,18 +368,63 @@
       "delete": "Delete",
       "draw": "Draw",
       "edit": "Edit",
-      "fill": "Fill",
+      "ellipse": "Ellipse",
       "freehand": "Freehand drawing",
       "label": "Label",
       "layer": "Layer",
       "line": "Line",
-      "outline": "Outline",
+      "markers": "Markers",
+      "measurements": "Show measurements",
+      "numericinput": "Show numeric input panel",
       "pick": "Pick",
       "point": "Point",
       "polygon": "Polygon",
+      "rectangle": "Rectangle",
       "size": "Size",
+      "square": "Square",
       "text": "Text",
+      "transform": "Transform",
       "width": "Width"
+    },
+    "routing": {
+      "add": "Add point",
+      "addviapoint": "Via here",
+      "arriveat": "Arrive at",
+      "clear": "Clear",
+      "computefailed": "Failed to compute",
+      "computing": "Computing...",
+      "excludepolygons": "Exclude areas",
+      "export": "Export",
+      "fastest": "Fastest",
+      "fromhere": "From here",
+      "importerror": "Import failed. The file contents must be a GeoJSON FeatureCollection of Point features.",
+      "importhint": "File with a GeoJSON FeatureCollection of Point features",
+      "importpoints": "Import",
+      "iso_intervals": "Intervals",
+      "iso_mode": "Mode",
+      "iso_mode_distance": "Distance",
+      "iso_mode_time": "Time",
+      "isocenter": "Center",
+      "isoextracenter": "Additional center",
+      "leaveat": "Leave at",
+      "leavenow": "Leave now",
+      "maxspeed": "Max speed",
+      "method": "Method",
+      "mode_auto": "Car",
+      "mode_bicycle": "Bicycle",
+      "mode_heavyvehicle": "Heavy vehicle",
+      "mode_transit": "Transit",
+      "mode_walking": "Walking",
+      "optimized_route": "Optimized route",
+      "reachability": "Reachability",
+      "roundtrip": "Roundtrip",
+      "route": "Route",
+      "shortest": "Shortest",
+      "tohere": "To here",
+      "useferries": "Use ferries",
+      "usehighways": "Use highways",
+      "usetollways": "Use tollways",
+      "windowtitle": "Routing"
     },
     "scratchdrawing": {
       "finish": "Finish"
@@ -330,22 +451,30 @@
       "title": "Theme Information"
     },
     "settings": {
+      "bookmarks": "Bookmarks",
       "colorscheme": "Color scheme",
       "confirmlang": "The application will be reloaded to change the language. Proceed?",
+      "default": "Default",
+      "defaulttheme": "Default theme",
+      "defaultthemefailed": "Failed to set the default theme: {0}",
       "language": "Language",
-      "systemlang": "System language"
+      "systemlang": "System language",
+      "themes": "Themes"
     },
     "share": {
       "QRCodeLinkTitle": "QR Code",
       "directLinkTitle": "Via a direct link",
+      "expires": "This permalink is valid until {0}.",
       "refresh": "Generate permalink",
       "shareTitle": "QWC2",
       "showpin": "Show pin",
       "socialIntro": "In your favourite social network"
     },
     "snapping": {
+      "edge": "Snap to edges",
       "loading": "Loading snapping geometries...",
-      "snappingenabled": "Snapping"
+      "snappingenabled": "Snapping",
+      "vertex": "Snap to vertices"
     },
     "themelayerslist": {
       "addlayer": "Add layer",
@@ -421,6 +550,7 @@
       "zoomout": "Zoom out"
     },
     "vectorlayerpicker": {
+      "none": "None",
       "prompt": "Enter layer name"
     },
     "window": {
