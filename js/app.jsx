@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client';
 import axios from 'axios';
 import url from 'url';
 import StandardApp from 'qwc2/components/StandardApp';
@@ -64,8 +64,7 @@ if (UrlParams.getParam('config:autologin') !== undefined) {
 }
 
 function renderApp() {
-    ReactDOM.render(
-        <StandardApp appConfig={appConfig}/>,
-        document.getElementById('container')
-    );
+    const container = document.getElementById('container');
+    const root = createRoot(container);
+    root.render(<StandardApp appConfig={appConfig}/>);
 }
