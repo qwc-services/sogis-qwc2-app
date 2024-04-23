@@ -47,6 +47,7 @@ import LoginUserPlugin from 'qwc2/plugins/LoginUser';
 import BookmarkPlugin from 'qwc2/plugins/Bookmark';
 import AttributeTablePlugin from 'qwc2/plugins/AttributeTable';
 import StartupMarkerPlugin from 'qwc2/plugins/StartupMarker';
+import SnappingSupport from 'qwc2/plugins/map/SnappingSupport';
 
 import PlotInfoToolPlugin from 'qwc2-extra/plugins/PlotInfoTool';
 import Oereb2Document from 'qwc2-extra/components/Oereb2Document';
