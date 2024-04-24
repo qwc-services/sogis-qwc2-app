@@ -80,7 +80,8 @@ export default {
                 RedliningSupport: RedliningSupport,
                 ScaleBarSupport: ScaleBarSupport,
                 SelectionSupport: SelectionSupport,
-                CCCEditSupport: CCCEditSupport
+                CCCEditSupport: CCCEditSupport,
+	        SnappingSupport: SnappingSupport
             }),
             HomeButtonPlugin: HomeButtonPlugin,
             LocateButtonPlugin: LocateButtonPlugin,
