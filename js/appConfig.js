@@ -48,6 +48,7 @@ import BookmarkPlugin from 'qwc2/plugins/Bookmark';
 import AttributeTablePlugin from 'qwc2/plugins/AttributeTable';
 import StartupMarkerPlugin from 'qwc2/plugins/StartupMarker';
 import SnappingSupport from 'qwc2/plugins/map/SnappingSupport';
+import NewsPopupPlugin from 'qwc2/plugins/NewsPopup';
 
 import PlotInfoToolPlugin from 'qwc2-extra/plugins/PlotInfoTool';
 import Oereb2Document from 'qwc2-extra/components/Oereb2Document';
@@ -98,6 +99,7 @@ export default {
             }),
             BottomBarPlugin: BottomBarPlugin,
             MeasurePlugin: MeasurePlugin,
+	    NewsPopupPlugin: NewsPopupPlugin,
             ThemeSwitcherPlugin: ThemeSwitcherPlugin,
             LayerTreePlugin: LayerTreePlugin,
             IdentifyPlugin: IdentifyPlugin,
