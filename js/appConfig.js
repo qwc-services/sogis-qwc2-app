@@ -135,6 +135,9 @@ export default {
         }
     },
     actionLogger: (action, state, oldState) => {
+        if (typeof _paq === 'undefined') {
+            return;
+        }
         const blacklist = [
             'ADD_LAYER_FEATURES',
             'CHANGE_BROWSER_PROPERTIES',
