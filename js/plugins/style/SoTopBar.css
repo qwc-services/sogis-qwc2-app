@@ -1,0 +1,129 @@
+#SoTopBar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    color: white;
+    box-shadow: 0px 2px 4px rgba(136, 136, 136, 0.5);
+    z-index: 102;
+}
+
+#SoTopBar div.sotopbar-banner {
+    background-color: white;
+    position: relative;
+}
+
+#SoTopBar div.sotopbar-banner-image {
+    padding: 0.5em 1em 0.5em 1em;
+}
+
+#SoTopBar div.sotopbar-banner-image > img {
+    max-width: 100%;
+}
+
+#SoTopBar div.sotopbar-banner-toggle {
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    width: 5em;
+    display: flex;
+    justify-content: center;
+    transform: translateX(-50%);
+    color: white;
+    z-index: 103;
+}
+
+#SoTopBar div.sotopbar-banner-toggle:hover {
+    color: white!important;
+    background-color: #990000!important;
+}
+
+#SoTopBar div.sotopbar-taskbar {
+    height: 3.5em;
+    background-color: #cc0000;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#SoTopBar div.AppMenu {
+    height: 3.5em;
+    flex: 0 0 auto;
+    margin-right: 1em;
+}
+
+#SoTopBar div.AppMenu.appmenu-visible {
+    background-color: #990000;
+}
+
+#SoTopBar div.AppMenu span.appmenu-icon {
+    color: white;
+    border-color: white;
+}
+
+#SoTopBar div.AppMenu span.appmenu-button {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: left;
+    padding-right: 1em;
+    width: 20em;
+}
+
+#SoTopBar div.sotopbar-taskbar-mobile div.AppMenu span.appmenu-button {
+    width: auto;
+}
+
+#SoTopBar div.AppMenu div.appmenu-menu-container {
+    left: 0;
+    right: initial;
+}
+
+#SoTopBar div.sotopbar-mobile-searchfield {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background-color: #cc0000;
+    padding: 0.25em;
+}
+
+#SoTopBar div.SearchBox, 
+#SoTopBar div.SearchBox div.input-container {
+    height: 2.5em;
+    border-radius: 5px;
+}
+
+#SoTopBar div.sotopbar-taskbar > span.sotopbar-spacer {
+    flex: 1 1 auto;
+}
+
+#SoTopBar div.sotopbar-taskbar > button {
+    border-width: 0 2px;
+    border-style: solid;
+    background-color: transparent;
+    border-color: #990000;
+    margin-left: -2px;
+    height: 100%;
+    padding: 0 1em;
+    outline: none;
+    font-weight: bold;
+}
+
+#SoTopBar div.sotopbar-taskbar > button:hover {
+    background-color: #990000;
+}
+
+#SoTopBar div.sotopbar-taskbar > button.sotopbar-search-button-active {
+    background-color: #990000;
+}
+
+#SoTopBar div.sotopbar-taskbar > span.sotopbar-userinfo {
+    display: flex;
+    align-items: center;
+    margin: 0 1em;
+}
+
+#SoTopBar div.sotopbar-taskbar > span.sotopbar-userinfo > span.icon {
+    margin-right: 0.5em;
+}

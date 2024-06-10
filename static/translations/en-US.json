@@ -11,6 +11,14 @@
       "editObject": "Edit feature geometry",
       "showObject": "Object(s) selected"
     },
+    "sobottombar": {
+      "contact": "Contact",
+      "help": "Help"
+    },
+    "sotopbar": {
+      "leave": "Leave SOMAP!",
+      "unknownidentity": "No SOMAP! user exists for your my.so.ch identity"
+    },
     "appmenu": {
       "items": {
         "LandRegisterExtract": "Land Register Map Extract",

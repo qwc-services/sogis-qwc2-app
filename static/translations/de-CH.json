@@ -11,6 +11,14 @@
       "editObject": "Objektgeometrie editieren",
       "showObject": "Objekt(e) selektiert"
     },
+    "sobottombar": {
+      "contact": "Kontakt",
+      "help": "Online-Hilfe"
+    },
+    "sotopbar": {
+      "leave": "SOMAP! verlassen",
+      "unknownidentity": "Für Ihre my.so.ch Identität existiert kein SOMAP! Benutzer"
+    },
     "appmenu": {
       "items": {
         "LandRegisterExtract": "Auszug Plan für das Grundbuch",

@@ -21,12 +21,10 @@ import HomeButtonPlugin from 'qwc2/plugins/HomeButton';
 import LocateButtonPlugin from 'qwc2/plugins/LocateButton';
 import {ZoomInPlugin, ZoomOutPlugin} from 'qwc2/plugins/ZoomButtons';
 import BackgroundSwitcherPlugin from 'qwc2/plugins/BackgroundSwitcher';
-import TopBarPlugin from 'qwc2/plugins/TopBar';
 import AppMenu from 'qwc2/components/AppMenu';
 import SearchBox from 'qwc2/components/SearchBox';
 import Toolbar from 'qwc2/components/Toolbar';
 import FullscreenSwitcher from 'qwc2/components/FullscreenSwitcher';
-import BottomBarPlugin from 'qwc2/plugins/BottomBar';
 import MeasurePlugin from 'qwc2/plugins/Measure';
 import ThemeSwitcherPlugin from 'qwc2/plugins/ThemeSwitcher';
 import LayerTreePlugin from 'qwc2/plugins/LayerTree';
@@ -53,6 +51,8 @@ import NewsPopupPlugin from 'qwc2/plugins/NewsPopup';
 import PlotInfoToolPlugin from 'qwc2-extra/plugins/PlotInfoTool';
 import Oereb2Document from 'qwc2-extra/components/Oereb2Document';
 
+import SoTopBarPlugin from './plugins/SoTopBar';
+import SoBottomBarPlugin from './plugins/SoBottomBar';
 import CCCEditSupport from './plugins/CCCEditSupport';
 import {CCCInterfacePlugin, CCCAttributeCalculator} from './plugins/CCCInterface';
 import LandRegisterExtractPlugin from './plugins/LandRegisterExtract';
@@ -91,15 +91,15 @@ export default {
             BackgroundSwitcherPlugin: BackgroundSwitcherPlugin,
 	    BookmarkPlugin: BookmarkPlugin,
 	    AttributeTablePlugin: AttributeTablePlugin(/* CustomEditingInterface */),
-            TopBarPlugin: TopBarPlugin({
+            TopBarPlugin: SoTopBarPlugin({
                 AppMenu: AppMenu,
                 Search: SearchBox(SearchProviders),
                 Toolbar: Toolbar,
                 FullscreenSwitcher: FullscreenSwitcher
             }),
-            BottomBarPlugin: BottomBarPlugin,
+            BottomBarPlugin: SoBottomBarPlugin,
             MeasurePlugin: MeasurePlugin,
-	    NewsPopupPlugin: NewsPopupPlugin,
+	        NewsPopupPlugin: NewsPopupPlugin,
             ThemeSwitcherPlugin: ThemeSwitcherPlugin,
             LayerTreePlugin: LayerTreePlugin,
             IdentifyPlugin: IdentifyPlugin,

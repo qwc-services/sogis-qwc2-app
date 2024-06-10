@@ -11,7 +11,11 @@
     "ccc.createObject",
     "ccc.deselect",
     "ccc.editObject",
-    "ccc.showObject"
+    "ccc.showObject",
+    "sobottombar.contact",
+    "sobottombar.help",
+    "sotopbar.leave",
+    "sotopbar.unknownidentity"
   ],
   "extra_strings": [
     "appmenu.items.LandRegisterExtract",

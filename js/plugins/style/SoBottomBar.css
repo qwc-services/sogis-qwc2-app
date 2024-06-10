@@ -1,0 +1,35 @@
+#SoBottomBar img.sobottombar-logo {
+    position: absolute;
+    left: 0.5em;
+    bottom: 0.5em;
+    height: 2.5em;
+    z-index: 101;
+}
+
+#SoBottomBar > #BottomBar {
+    background-color: #1f2f37;
+    color: white;
+    border-top: 4px solid #cc0000;
+    height: 4em;
+    font-size: 90%;
+}
+
+#SoBottomBar > #BottomBar > span.bottombar-links > a {
+    color: white;
+    text-decoration: underline;
+    border-color: transparent;
+}
+
+#SoBottomBar > #BottomBar input.bottombar-mousepos {
+    color: var(--text-color);
+}
+
+div.mysoch-scaleline {
+    left: 4em;
+    bottom: 1em;
+}
+
+div.mysoch-scaleline > div.ol-scale-line-inner {
+    color: white;
+    border-color: white;
+}
