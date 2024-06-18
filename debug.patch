@@ -1,0 +1,12 @@
+diff -rupN a/srv/qwc_service/server.py b/srv/qwc_service/server.py
+--- a/srv/qwc_service/server.py	2024-06-18 17:40:20.463527587 +0200
++++ b/srv/qwc_service/server.py	2024-06-18 17:40:45.022453691 +0200
+@@ -84,6 +84,8 @@ def assert_user_is_logged():
+ @app.route('/')
+ @optional_auth
+ def index():
++    print("XXXXXX")
++    print(get_identity())
+     qwc2_viewer = qwc2_viewer_handler()
+     return qwc2_viewer.qwc2_index(get_identity(), request.args, request.url)
+ 
