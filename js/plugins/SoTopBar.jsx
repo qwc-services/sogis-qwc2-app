@@ -81,6 +81,10 @@ class SoTopBar extends React.Component {
         });
         let searchComponent = null;
         if (this.props.components.Search) {
+            // Convert legacy minScale option to minScaleDenom
+            const searchOptions = {...this.props.searchOptions};
+            searchOptions.minScaleDenom = searchOptions.minScaleDenom || searchOptions.minScale;
+            delete searchOptions.minScale;
             if (this.props.mobile) {
                 const buttonClasses = classnames({
                     "sotopbar-search-button-active": this.state.mobileSearchVisible
@@ -88,11 +92,11 @@ class SoTopBar extends React.Component {
                 searchComponent = [
                     (<button className={buttonClasses} key="SearchButton" onClick={() => this.toggleSearch()} type="button"><Icon icon="search" size="large" /></button>),
                     this.state.mobileSearchVisible ? (<div key="SearchField" className="sotopbar-mobile-searchfield">
-                        <this.props.components.Search searchOptions={this.props.searchOptions}/>
+                        <this.props.components.Search searchOptions={searchOptions}/>
                     </div>) : null
                 ];
             } else {
-                searchComponent = (<this.props.components.Search searchOptions={this.props.searchOptions}/>);
+                searchComponent = (<this.props.components.Search searchOptions={searchOptions}/>);
             }
         }
         const bannerClasses = classnames({
