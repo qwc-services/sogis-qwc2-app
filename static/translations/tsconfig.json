@@ -28,10 +28,12 @@
     "bottombar.viewertitle_label",
     "editing.layer",
     "editing.noeditablelayers",
+    "editing.draw",
     "importlayer.addlayer",
     "layerinfo.title",
     "layertree.compare",
     "layertree.importlayer",
-    "redlining.layer"
+    "redlining.layer",
+    "redlining.markers"
   ]
 }
