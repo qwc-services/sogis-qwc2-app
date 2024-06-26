@@ -28,6 +28,7 @@ class SoTopBar extends React.Component {
     static propTypes = {
         ...TopBarPlugin().propTypes,
         leaveUrl: PropTypes.string,
+        logoutUrl: PropTypes.string,
         helpUrl: PropTypes.string,
         showNotification: PropTypes.func
     };
@@ -131,7 +132,7 @@ class SoTopBar extends React.Component {
                     <span className="sotopbar-userinfo">
                         <Icon icon="login" size="large" /> {userInfos?.displayname ?? ""}
                     </span>
-                    <button className="sotopbar-button" onClick={this.leave}><Icon icon="poweroff" size="large" /></button>
+                    <button className="sotopbar-button" onClick={this.logout}><Icon icon="poweroff" size="large" /></button>
                 </div>
             </div>
         );
@@ -153,6 +154,11 @@ class SoTopBar extends React.Component {
     leave = () => {
         if (this.props.leaveUrl) {
             location.href = this.props.leaveUrl;
+        }
+    }
+    logout = () => {
+        if (this.props.logoutUrl) {
+            location.href = this.props.logoutUrl;
         }
     }
     showHelp = () => {
