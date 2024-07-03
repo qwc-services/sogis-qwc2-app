@@ -35,6 +35,7 @@ import MapCopyrightPlugin from 'qwc2/plugins/MapCopyright';
 import PrintPlugin from 'qwc2/plugins/Print';
 import HelpPlugin from 'qwc2/plugins/Help';
 import RasterExportPlugin from 'qwc2/plugins/RasterExport';
+import MapExportPlugin from 'qwc2/plugins/MapExport';
 import RedliningPlugin from 'qwc2/plugins/Redlining';
 import EditingPlugin from 'qwc2/plugins/Editing';
 import MapComparePlugin from 'qwc2/plugins/MapCompare';
@@ -110,6 +111,7 @@ export default {
             PrintPlugin: PrintPlugin,
             HelpPlugin: HelpPlugin(renderHelp),
             RasterExportPlugin: RasterExportPlugin,
+	    MapExportPlugin: MapExportPlugin,
             RedliningPlugin: RedliningPlugin({}),
             EditingPlugin: EditingPlugin(),
             MapComparePlugin: MapComparePlugin,
