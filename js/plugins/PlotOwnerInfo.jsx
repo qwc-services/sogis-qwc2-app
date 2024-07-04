@@ -88,7 +88,7 @@ export default class PlotOwnerInfo extends React.Component {
                                 <td colSpan="2"></td>
                             </tr>
                             <tr>
-                                <td>
+                                <td colSpan="2">
                                     <i>Grundbuchauszug bestellen unter <a href="https://my.so.ch/ExternalServices/Prestations/Grundbuch-Auszug/Form.aspx" target="_blank">my.so.ch</a></i>
                                 </td>
                             </tr>
