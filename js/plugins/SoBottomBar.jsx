@@ -19,8 +19,12 @@ import './style/SoBottomBar.css';
 export default class SoBottomBar extends React.Component {
     static propTypes = {
         ...BottomBar.propTypes,
-        helpUrl: PropTypes.string,
-        contactUrl: PropTypes.string
+        /** The contact URL. */
+        contactUrl: PropTypes.string,
+        /** The URL to return to the my.so.ch portal. */
+        leaveUrl: PropTypes.string,
+        /** The my.so.ch help URL. */
+        helpUrl: PropTypes.string
     };
     static defaultProps = BottomBar.defaultProps;
     componentDidMount() {
@@ -43,7 +47,7 @@ export default class SoBottomBar extends React.Component {
             }];
             return (
                 <div id="SoBottomBar">
-                    <img className="sobottombar-logo" src={assetsPath + "/img/mysoch_bottom.png"} />
+                    <a href={this.props.leaveUrl ?? '#'}><img className="sobottombar-logo" src={assetsPath + "/img/mysoch_bottom.png"} /></a>
                     <BottomBar additionalBottomBarLinks={additionalBottomBarLinks} {...this.props} />;
                 </div>
             )

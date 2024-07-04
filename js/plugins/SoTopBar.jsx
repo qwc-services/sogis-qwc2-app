@@ -27,8 +27,11 @@ import './style/SoTopBar.css';
 class SoTopBar extends React.Component {
     static propTypes = {
         ...TopBarPlugin().propTypes,
+        /** The URL to return to the my.so.ch portal. */
         leaveUrl: PropTypes.string,
+        /** The URL to logout from my.so.ch. */
         logoutUrl: PropTypes.string,
+        /** The my.so.ch help URL. */
         helpUrl: PropTypes.string,
         showNotification: PropTypes.func
     };
@@ -108,7 +111,7 @@ class SoTopBar extends React.Component {
         return (
             <div id="SoTopBar" ref={this.storeHeight}>
                 <div className={bannerClasses}>
-                    {this.state.bannerExpanded ? (<div className="sotopbar-banner-image"><img alt="" src={assetsPath + "/img/mysoch.png"} /></div>) : null}
+                    {this.state.bannerExpanded ? (<div className="sotopbar-banner-image"><a href={this.props.leaveUrl ?? '#'}><img alt="" src={assetsPath + "/img/mysoch.png"} /></a></div>) : null}
                     <div className="sotopbar-banner-toggle" onClick={() => this.toggleBanner()}><Icon icon={this.state.bannerExpanded ? "chevron-up" : "chevron-down"} /></div>
                 </div>
                 <div className={taskbarClasses}>
