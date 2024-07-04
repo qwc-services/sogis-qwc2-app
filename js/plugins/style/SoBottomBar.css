@@ -1,3 +1,7 @@
+#SoBottomBar {
+    font-family: 'Frutiger-Regular',sans-serif;
+}
+
 #SoBottomBar img.sobottombar-logo {
     position: absolute;
     left: 0.5em;

@@ -65,14 +65,14 @@ class SoTopBar extends React.Component {
         if (this.props.mobile) {
             buttonContents = (
                 <span className="appmenu-button">
-                    <Icon className="appmenu-icon" icon="menu-hamburger" title={tooltip}/>
+                    <Icon className="mysoch-menu-icon" icon="mysoch-hamburger" title={tooltip}/>
                 </span>
             );
         } else {
             buttonContents = (
                 <span className="appmenu-button">
                     <span className="appmenu-label">{LocaleUtils.tr("appmenu.menulabel")}</span>
-                    <Icon className="appmenu-icon" icon="menu-hamburger" title={tooltip}/>
+                    <Icon className="mysoch-menu-icon" icon="mysoch-hamburger" title={tooltip}/>
                 </span>
             );
         }
@@ -130,7 +130,7 @@ class SoTopBar extends React.Component {
                     ) : null}
                     <button className="sotopbar-button" onClick={this.showHelp}><Icon icon="question-sign" size="large" /></button>
                     <span className="sotopbar-userinfo">
-                        <Icon icon="login" size="large" /> {userInfos?.displayname ?? ""}
+                        <Icon icon="identity" size="large" /> {userInfos?.displayname ?? ""}
                     </span>
                     <button className="sotopbar-button" onClick={this.logout}><Icon icon="poweroff" size="large" /></button>
                 </div>

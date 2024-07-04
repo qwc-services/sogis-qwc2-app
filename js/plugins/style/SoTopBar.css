@@ -6,6 +6,7 @@
     color: white;
     box-shadow: 0px 2px 4px rgba(136, 136, 136, 0.5);
     z-index: 102;
+    font-family: 'Frutiger-Regular',sans-serif;
 }
 
 #SoTopBar div.sotopbar-banner {
@@ -50,15 +51,17 @@
     height: 3.5em;
     flex: 0 0 auto;
     margin-right: 1em;
+    cursor: pointer;
 }
 
 #SoTopBar div.AppMenu.appmenu-visible {
     background-color: #990000;
 }
 
-#SoTopBar div.AppMenu span.appmenu-icon {
+#SoTopBar div.AppMenu span.mysoch-menu-icon {
     color: white;
-    border-color: white;
+    font-size: 250%;
+    padding: 0 0.3em;
 }
 
 #SoTopBar div.AppMenu span.appmenu-button {
@@ -90,8 +93,13 @@
 
 #SoTopBar div.SearchBox, 
 #SoTopBar div.SearchBox div.input-container {
-    height: 2.5em;
+    height: 3em;
     border-radius: 5px;
+    border-color: transparent;
+}
+
+#SoTopBar div.SearchBox div.input-container span.icon-search {
+    color: #cc0000;
 }
 
 #SoTopBar div.sotopbar-taskbar > span.sotopbar-spacer {
@@ -99,15 +107,16 @@
 }
 
 #SoTopBar div.sotopbar-taskbar > button {
-    border-width: 0 2px;
+    border-width: 0 1px;
     border-style: solid;
     background-color: transparent;
     border-color: #990000;
-    margin-left: -2px;
+    margin-left: -1px;
     height: 100%;
-    padding: 0 1em;
+    padding: 0 1.25em;
     outline: none;
     font-weight: bold;
+    cursor: pointer;
 }
 
 #SoTopBar div.sotopbar-taskbar > button:hover {
@@ -121,9 +130,11 @@
 #SoTopBar div.sotopbar-taskbar > span.sotopbar-userinfo {
     display: flex;
     align-items: center;
-    margin: 0 1em;
+    margin: 0 0.75em;
+    font-weight: bold;
 }
 
 #SoTopBar div.sotopbar-taskbar > span.sotopbar-userinfo > span.icon {
     margin-right: 0.5em;
+    font-size: 200%;
 }

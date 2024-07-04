@@ -1,3 +1,17 @@
+@font-face {
+    font-family: "Frutiger-Bold";
+    src: url("FrutigerRomanBold.woff") format("woff"), url("FrutigerRomanBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Frutiger-Regular";
+    src: url("FrutigerRomanRegular.woff") format("woff"), url("FrutigerRomanRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
 div.sidebar-body,
 #TaskBar div.body {
     font-size: small;
