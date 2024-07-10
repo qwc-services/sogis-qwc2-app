@@ -17,12 +17,13 @@ div.owner-info table td {
     padding: 0.125em 0.25em;
 }
 
+div.owner-info table td:first-child {
+    width: 33%;
+}
+
 td.owner-info-first-column {
     vertical-align: top;
     padding-right: 16px;
-}
-
-div.owner-info-owners {
 }
 
 div.owner-info-plot-title {
