@@ -38,7 +38,15 @@ class SoTopBar extends React.Component {
     static defaultProps = TopBarPlugin().defaultProps;
     state = {
         bannerExpanded: true,
-        mobileSearchVisible: false
+        mobileSearchVisible: false,
+        qwc2TopBar: null
+    }
+    constructor(props) {
+        super(props);
+        const userInfos = ConfigUtils.getConfigProp("user_infos");
+        if (!userInfos?.mysoch) {
+            this.state.qwc2TopBar = TopBarPlugin(this.props.components);
+        }
     }
     componentDidMount() {
         this.collapseBannerTimeout = setTimeout(() => {
@@ -53,15 +61,15 @@ class SoTopBar extends React.Component {
         clearTimeout(this.collapseBannerTimeout);
     }
     render() {
-        const userInfos = ConfigUtils.getConfigProp("user_infos");
-        if (userInfos?.mysoch) {
-            return this.renderTopBar(userInfos);
-        } else {
-            const TopBar = TopBarPlugin(this.props.components);
+        if (this.state.qwc2TopBar) {
+            const TopBar = this.state.qwc2TopBar;
             return (<TopBar {...this.props} />);
+        } else {
+            return this.renderTopBar();
         }
     }
-    renderTopBar(userInfos) {
+    renderTopBar() {
+        const userInfos = ConfigUtils.getConfigProp("user_infos");
         const assetsPath = ConfigUtils.getAssetsPath();
         const tooltip = LocaleUtils.tr("appmenu.menulabel");
         let buttonContents = null;
