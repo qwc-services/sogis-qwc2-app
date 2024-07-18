@@ -66,10 +66,10 @@ if (UrlParams.getParam('config:autologin') !== undefined) {
 function renderApp() {
 
     if (UrlParams.getParam('config:tenant') !== undefined) {
+        const pair = UrlParams.getParam('config:tenant').split("=");
+        UrlParams.updateParams({'config:tenant': undefined});
         // Add tenant header request interceptor
         axios.interceptors.request.use((reqconfig) => {
-            const pair = UrlParams.getParam('config:tenant').split("=");
-            UrlParams.updateParams({'config:tenant': undefined});
             reqconfig.headers[pair[0]] =  pair[1];
             return reqconfig;
         });
