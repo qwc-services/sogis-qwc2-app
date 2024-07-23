@@ -70,7 +70,11 @@ function renderApp() {
         UrlParams.updateParams({'config:tenant': undefined});
         // Add tenant header request interceptor
         axios.interceptors.request.use((reqconfig) => {
-            reqconfig.headers[pair[0]] =  pair[1];
+            const reqOrigin = (new URL(reqconfig.url, location.href)).origin;
+            const tenantOrigins = ["https://geo-t.so.ch", "https://geo-i.so.ch", "https://geo.so.ch"];
+            if (tenantOrigins.includes(reqOrigin)) {
+                reqconfig.headers[pair[0]] =  pair[1];
+            }
             return reqconfig;
         });
     }
