@@ -11,6 +11,7 @@ import {createRoot} from 'react-dom/client';
 import axios from 'axios';
 import url from 'url';
 import StandardApp from 'qwc2/components/StandardApp';
+import ConfigUtils from 'qwc2/utils/ConfigUtils';
 import {UrlParams} from 'qwc2/utils/PermaLinkUtils';
 import appConfig from './appConfig';
 import '../icons/build/qwc2-icons.css';
@@ -56,10 +57,23 @@ if (UrlParams.getParam('config:autologin') !== undefined) {
             urlObj.search = undefined;
             window.location.href = authServiceUrl + "login?url=" + encodeURIComponent(url.format(urlObj));
         } else {
-            renderApp();
+            checkMySoCh();
         }
     }).catch(e => {
-        renderApp();
+        checkMySoCh();
+    });
+}
+
+function checkMySoCh() {
+    // If user_infos in config contains mysoch=true, redirect to mysochauth to check login,
+    // which will redirect to viewer with the correct tenant header set identity is valid
+    ConfigUtils.loadConfiguration().then(config => {
+        if (config.user_infos?.mysoch && !UrlParams.getParam('config:tenant')) {
+            const authServiceUrl = "/mysochauth/";
+            window.location.href = authServiceUrl + "checklogin?url=" + encodeURIComponent(window.location.href);
+        } else {
+            renderApp();
+        }
     });
 }
 
