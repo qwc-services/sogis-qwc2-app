@@ -25,6 +25,10 @@ div.sidebar-body,
     width: 100%;
 }
 
+#IdentifyViewer table.identify-attr-subtable > tbody > tr:nth-child(even) {
+    background-color: #F0F0F0;
+}
+
 #IdentifyViewer td.identify-attr-spacer {
     height: 8px;
 }
