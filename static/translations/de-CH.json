@@ -16,8 +16,8 @@
       "help": "Online-Hilfe"
     },
     "sotopbar": {
-      "leave": "SOMAP! verlassen",
-      "unknownidentity": "Für Ihre my.so.ch Identität existiert kein SOMAP! Benutzer"
+      "leave": "Karte verlassen",
+      "unknownidentity": "Für Ihre my.so.ch Identität existiert kein Web GIS Client Benutzer"
     },
     "appmenu": {
       "items": {
