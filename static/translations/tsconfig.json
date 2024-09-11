@@ -23,6 +23,7 @@
   ],
   "overrides": [
     "appmenu.items.LayerTree",
+    "appmenu.items.MeasureLineString",
     "appmenu.items.PlotInfoTool_comment",
     "oereb.failed",
     "bottombar.viewertitle_label",
