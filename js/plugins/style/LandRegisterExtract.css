@@ -12,51 +12,31 @@
 }
 
 #LandRegisterExtract table.options-table td {
-    padding: 0.25em;
+    padding: 0.125em 0;
+}
+
+#LandRegisterExtract table.options-table td:first-child {
+    max-width: 10em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 0.25em;
+    white-space: nowrap;
 }
 
 #LandRegisterExtract table.options-table td:nth-child(2) {
     width: 99%;
 }
 
-#LandRegisterExtract table.options-table select {
+#LandRegisterExtract table.options-table td:nth-child(2) > * {
     width: 100%;
-    border: 1px solid @item_border@;
-    background-color: white;
-    padding: 0.25em;
-}
-
-#LandRegisterExtract table.options-table input {
-    outline: none;
-}
-
-#LandRegisterExtract table.options-table span.input-frame {
-    border: 1px solid @item_border@;
-    padding: 0.25em;
-    background-color: white;
-    display: flex;
-    align-items: center;
-}
-
-#LandRegisterExtract table.options-table span.input-frame input,
-#LandRegisterExtract table.options-table span.input-frame select {
-    border: 0;
-    flex: 1;
-    min-width: 0;
-    width: 0;
 }
 
 #LandRegisterExtract table.options-table textarea {
-    border: 1px solid @item_border@;
-    padding: 0.25em;
-    background-color: white;
-    width: 100%;
     resize: vertical;
 }
 
 #LandRegisterExtract div.button-bar {
-    margin: 1em 0.25em 0.25em 0.25em;
-    text-align: center;
+    margin-top: 0.5em;
 }
 #LandRegisterExtract div.button-bar > button {
     width: 100%;

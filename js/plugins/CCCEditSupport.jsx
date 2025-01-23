@@ -7,10 +7,11 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {v4 as uuidv4} from 'uuid';
+
 import ol from 'openlayers';
+import PropTypes from 'prop-types';
+import {v4 as uuidv4} from 'uuid';
 
 import {changeCCCState} from './actions/ccc';
 
@@ -19,10 +20,10 @@ class CCCEditSupport extends React.Component {
         ccc: PropTypes.object,
         changeCCCState: PropTypes.func,
         map: PropTypes.object
-    }
+    };
     static defaultProps = {
         editing: {}
-    }
+    };
     constructor(props) {
         super(props);
 
@@ -87,7 +88,7 @@ class CCCEditSupport extends React.Component {
             style: this.baseStyle
         });
         this.props.map.addLayer(this.layer);
-    }
+    };
     addDrawInteraction = (newProps) => {
         this.reset();
         this.createLayer();
@@ -127,7 +128,7 @@ class CCCEditSupport extends React.Component {
         }, this);
         this.props.map.addInteraction(drawInteraction);
         this.interaction = drawInteraction;
-    }
+    };
     addEditInteraction = (newProps) => {
         this.reset();
         this.createLayer();
@@ -149,7 +150,7 @@ class CCCEditSupport extends React.Component {
         }, this);
         this.props.map.addInteraction(modifyInteraction);
         this.interaction = modifyInteraction;
-    }
+    };
     commitCurrentFeature = () => {
         if (!this.currentFeature) {
             return;
@@ -157,7 +158,7 @@ class CCCEditSupport extends React.Component {
         const format = new ol.format.GeoJSON();
         const feature = format.writeFeatureObject(this.currentFeature);
         this.props.changeCCCState({feature: feature, changed: true});
-    }
+    };
     reset = () => {
         if (this.interaction) {
             this.props.map.removeInteraction(this.interaction);
@@ -168,7 +169,7 @@ class CCCEditSupport extends React.Component {
             this.props.map.removeLayer(this.layer);
         }
         this.layer = null;
-    }
+    };
 }
 
 export default connect((state) => ({

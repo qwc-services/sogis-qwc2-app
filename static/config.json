@@ -1,13 +1,13 @@
 {
-  "permalinkServiceUrl": "http://localhost:5001/",
-  "elevationServiceUrl": "http://localhost:5002/",
-  "editServiceUrl": "http://localhost:5012/",
-  "dataproductServiceUrl": "http://localhost:5023/",
-  "searchServiceUrl": "http://localhost:5011/",
-  "searchDataServiceUrl": "http://localhost:5012/",
-  "authServiceUrl": "http://localhost:5017/",
-  "mapInfoService":  "http://localhost:5016/",
-  "featureReportService": "http://localhost:5011/",
+  "searchServiceUrl": "http://localhost:8088/mily/api/v2/search/",
+  "searchDataServiceUrl": "http://localhost:8088/mily/api/v2/search/geom/",
+  "dataproductServiceUrl": "https://geo.so.ch/api/dataproduct/v1/",
+  "editServiceUrl": "http://localhost:8088/mily/api/v1/data/",
+  "elevationServiceUrl": "http://localhost:8088/mily/elevation/",
+  "mapInfoService": "http://localhost:8088/mily/api/v1/mapinfo/",
+  "permalinkServiceUrl": "http://localhost:8088/mily/api/v1/permalink/",
+  "featureReportService": "http://localhost:8088/mily/api/v1/document/",
+  "authServiceUrl": "http://localhost:8088/mily/api/v1/auth/",
   "landRegisterService": "http://localhost:5020/",
   "cccConfigService": "http://localhost:5021/",
   "plotInfoService": "http://localhost:5022/",
@@ -249,12 +249,6 @@
           }
         },
         {
-            "name": "Autologin",
-            "cfg": {
-                "autologinUrl": "https://intraso.rootso.org"
-            }
-        },
-        {
             "name": "LoginUser"
         },
         {
@@ -486,12 +480,6 @@
               }
             ]
           }
-        },
-        {
-            "name": "Autologin",
-            "cfg": {
-                "autologinUrl": "https://intraso.rootso.org"
-            }
         },
         {
             "name": "LoginUser"

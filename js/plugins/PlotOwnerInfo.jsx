@@ -7,8 +7,9 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import ConfigUtils from 'qwc2/utils/ConfigUtils';
 
 import './style/PlotOwnerInfo.css';
@@ -17,12 +18,12 @@ export default class PlotOwnerInfo extends React.Component {
     static propTypes = {
         config: PropTypes.object, // PropType according to format of data returned by the specified query URL
         data: PropTypes.string
-    }
+    };
     state = {
         captchaReady: false,
         ownerData: null,
         expandedPlot: null
-    }
+    };
     constructor(props) {
         super(props);
 
@@ -37,7 +38,7 @@ export default class PlotOwnerInfo extends React.Component {
             doc.write(html);
             doc.close();
         }
-    }
+    };
     loadOwnerInfo(egrid, token) {
         // send owner info request with captcha token
         let queryUrl = this.props.config.queryUrl.replace('$egrid$', egrid);
@@ -85,11 +86,11 @@ export default class PlotOwnerInfo extends React.Component {
                                 </td>
                             </tr>
                             <tr>
-                                <td colSpan="2"></td>
+                                <td colSpan="2" />
                             </tr>
                             <tr>
                                 <td colSpan="2">
-                                    <i>Grundbuchauszug bestellen unter <a href="https://my.so.ch/ExternalServices/Prestations/Grundbuch-Auszug/Form.aspx" target="_blank">my.so.ch</a></i>
+                                    <i>Grundbuchauszug bestellen unter <a href="https://my.so.ch/ExternalServices/Prestations/Grundbuch-Auszug/Form.aspx"  rel="noreferrer" target="_blank">my.so.ch</a></i>
                                 </td>
                             </tr>
                         </tbody>
@@ -141,7 +142,7 @@ export default class PlotOwnerInfo extends React.Component {
             // owner is a person
             return this.renderOwnerDetails(eigentuemer);
         }
-    }
+    };
     renderOwnerDetails = (eigentuemer, collapsed = false) => {
         let className = 'owner-info-owner-details';
         if (collapsed) {
@@ -150,16 +151,16 @@ export default class PlotOwnerInfo extends React.Component {
         }
         return (
             <div className={className}>
-                {eigentuemer.berechtigte.map(berechtigte => {
+                {eigentuemer.berechtigte.map((berechtigte, idx) => {
                     if (berechtigte !== "ERROR") {
                         return (
-                            <div className="owner-info-owner-name">
+                            <div className="owner-info-owner-name" key={"b" + idx}>
                                 {berechtigte}
                             </div>
                         );
                     } else {
                         return (
-                            <div className="owner-info-owner-name">
+                            <div className="owner-info-owner-name" key={"b" + idx}>
                                 <div className="owner-info-owner-error">
                                     Fehler: Berechtigte nicht gefunden
                                 </div>
@@ -170,10 +171,10 @@ export default class PlotOwnerInfo extends React.Component {
                 {eigentuemer.beschreibung ? <div className="owner-info-plot-owner-desc">{eigentuemer.beschreibung}</div> : null}
             </div>
         );
-    }
+    };
     togglePlot = (name) => {
-        this.setState({
-            expandedPlot: this.state.expandedPlot === name ? null : name
-        });
-    }
+        this.setState(state => ({
+            expandedPlot: state.expandedPlot === name ? null : name
+        }));
+    };
 }

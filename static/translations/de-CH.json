@@ -22,34 +22,45 @@
     "appmenu": {
       "items": {
         "LandRegisterExtract": "Auszug Plan für das Grundbuch",
+        "Bookmark": "Lesezeichen",
+        "Compare3D": "Vergleichen",
+        "DateTime3D": "Datum und Zeit",
+        "Editing": "Editieren",
+        "Help": "Hilfe",
+        "LayerTree": "Kartenebenen und Legende",
+        "LayerTree3D": "Ebenen",
+        "MapExport": "Karte exportieren",
+        "MapExport3D": "Karte exportieren",
+        "MapFilter": "Kartenfilter",
+        "Print": "Drucken",
+        "Reports": "Berichte",
+        "Settings": "Einstellungen",
+        "Share": "Teilen",
+        "ThemeSwitcher": "Themen",
         "AttributeTable": "Attributtabelle",
         "Cyclomedia": "Cyclomedia",
-        "DxfExport": "DXF-Export",
-        "Editing": "Editieren",
+        "Draw3D": "Zeichnen",
         "FeatureForm": "Objektformular",
         "FeatureSearch": "Objektsuche",
-        "Help": "Hilfe",
+        "GeometryDigitizer": "Geometriedigitalisierung",
         "IdentifyPoint": "Punkt abfragen",
         "IdentifyRegion": "Region abfragen",
         "LayerCatalog": "Ebenenkatalog",
-        "LayerTree": "Kartenebenen und Legende",
         "Login": "Anmelden",
         "Logout": "Abmelden",
         "MapLegend": "Legende",
         "Measure": "Messen",
+        "Measure3D": "Messen",
         "MeasureLineString": "Messen",
         "MeasurePolygon": "Messen Polygon",
-        "Print": "Drucken",
-        "RasterExport": "Raster-Export",
-        "MapExport": "Karte exportieren",
+        "NewsPopup": "Aktuelles",
+        "Portal": "Portal",
+        "PrintScreen3D": "Raster Export",
         "Redlining": "Zeichnen",
         "Routing": "Routing",
-        "Share": "Teilen",
-        "ThemeSwitcher": "Themen",
         "Tools": "Werkzeuge",
-        "Bookmark": "Lesezeichen",
         "TimeManager": "Zeitleiste",
-        "Settings": "Einstellungen",
+        "View3D": "3D Ansicht",
         "PlotInfoTool": "Grundstücksinformation",
         "PlotInfoTool_comment": " "
       },
@@ -59,21 +70,21 @@
     "search": {
       "coordinates": "Koordinaten",
       "all": "Alle",
+      "circleradius": "Kreis radius",
       "clearfilter": "Zurücksetzen",
-      "enablelayer": "Ebene einschalten",
       "existinglayer": "Die Ebene existiert bereits in der Karte",
-      "filter": "Filter",
-      "invisiblelayer": "Das Resultat liegt auf einer Ebene, die ausgeschaltet ist.",
+      "filter": "Suche verfeinern",
+      "layers": "Ebenen",
       "limittoarea": "Auf Fläche begrenzen",
-      "more": "Mehr...",
+      "more": "{0} weitere Treffer",
+      "nodescription": "Keine Beschreibung verfügbar",
       "none": "Keine",
       "noresults": "Keine Ergebnisse",
+      "placeholder": "Ort suchen oder Karte hinzufügen...",
+      "places": "Orte",
       "providerselection": "Suchdienste",
+      "recent": "Zuletzt gesucht",
       "search": "Suchen",
-      "searchall": "Ort suchen oder Karte hinzufügen...",
-      "searchinprogress": "Suche läuft",
-      "searchreset": "Suche zurücksetzen",
-      "solr": "Volltextsuche",
       "themelayers": "Themenebenen",
       "themes": "Themen"
     },
@@ -87,6 +98,7 @@
     "attribtable": {
       "addfeature": "Objekt hinzufügen",
       "commit": "Geänderte Zeile speichern",
+      "csvexport": "CSV Export",
       "delete": "Löschen",
       "deletefailed": "Ein oder mehrere Objekte konnten nicht gelöscht werden",
       "deletefeatures": "Ausgewählte Objekte löschen",
@@ -94,7 +106,7 @@
       "discard": "Geänderte Zeile zurücksetzen",
       "formeditmode": "Ausgewähltes Objekt in der Formularansicht editieren",
       "geomnoadd": "Bitte die Formularansicht verwenden, um neue Objekte für diese Ebene zu erstellen",
-      "layer": "Ebene",
+      "limittoextent": "In Kartenausschnitt",
       "loadfailed": "Die Objektdaten konnten nicht geladen werden",
       "loading": "Laden...",
       "nodelete": "Nicht löschen",
@@ -121,13 +133,23 @@
       "remove": "Lesezeichen entfernen",
       "removefailed": "Lesezeichen konnte nicht entfernt werden",
       "savefailed": "Lesezeichen konnte nicht aktualisiert werden",
-      "update": "Lesezeichen aktualisieren"
+      "update": "Lesezeichen aktualisieren",
+      "zoomToExtent": "Auf Ausschnitt zoomen"
     },
     "bottombar": {
       "mousepos_label": "Koordinaten",
       "scale_label": "Massstab",
       "terms_label": "Nutzungsbedingungen",
       "viewertitle_label": "Geoportal Kt. Solothurn"
+    },
+    "compare3d": {
+      "clipplane": "Schnittebene",
+      "compare_objects": "Objekte vergleichen",
+      "toggleall": "Alle"
+    },
+    "cookiepopup": {
+      "accept": "Akzeptieren",
+      "message": "Diese Seite verwendet Cookies."
     },
     "copybtn": {
       "click_to_copy": "In Zwischenablage kopieren",
@@ -143,10 +165,24 @@
       "scalehint": "Die Aufnahmen sind nur ab Massstab 1:{0} auf der Karte sichtbar.",
       "title": "Cyclomedia Viewer"
     },
-    "dxfexport": {
-      "layers": "Ebenen",
-      "selectinfo": "Rechteck um die zu exportierende Region aufziehen",
-      "symbologyscale": "Darstellungsmassstab"
+    "draw3d": {
+      "cone": "Kegel",
+      "cuboid": "Quader",
+      "cylinder": "Zylinder",
+      "delete": "Löschen",
+      "drawings": "Zeichnungen",
+      "newgroupprompt": "Zeichungsgruppe hinzufügen",
+      "numericinput": "Numerische Eingabe",
+      "pick": "Auswählen",
+      "position": "Position",
+      "pyramid": "Pyramide",
+      "rotate": "Rotieren",
+      "rotation": "Rotation",
+      "scale": "Skalieren",
+      "sphere": "Kugel",
+      "thescale": "Skalierung",
+      "translate": "Verschieben",
+      "wedge": "Kegel"
     },
     "editing": {
       "add": "Hinzufügen",
@@ -155,6 +191,7 @@
       "clearpicture": "Zurücksetzen",
       "commit": "Speichern",
       "commitfailed": "Fehler beim Speichern",
+      "contraintviolation": "Verletzung einer Bedingung",
       "create": "Erstellen",
       "delete": "Löschen",
       "discard": "Abbrechen",
@@ -164,7 +201,6 @@
       "invalidform": "Formular ungültig",
       "maximize": "Maximieren",
       "minimize": "Minimieren",
-      "nocompatpick": "Keine kompatible Geometrie",
       "noeditablelayers": "Keine editierbare Kartenebenen.",
       "paint": "Bearb.",
       "pick": "Auswählen",
@@ -172,7 +208,6 @@
       "reallydelete": "Löschen",
       "relationcommitfailed": "Einige Relationen konnten nicht gespeichert werden, siehe Tooltips der Icons für mehr Details.",
       "select": "Auswählen",
-      "selectedpicture": "Ausgewähltes Bild",
       "takepicture": "Bild schiessen",
       "unsavedchanged": "Es gibt nicht gespeicherte Änderungen. Soll die Seite trotzdem verlassen werden?",
       "layer": "Kartenebene"
@@ -193,6 +228,20 @@
       "files": "Dateien",
       "placeholder": "Datei auswählen"
     },
+    "geomdigitizer": {
+      "applink": "Anwendung",
+      "bufferlayername": "Digitalisierung Puffer",
+      "chooselink": "Auswählen",
+      "clear": "Digitalisierungsebene zurücksetzen",
+      "identifypick": "Objekt auswählen",
+      "identifypickregion": "Region auswählen...",
+      "layername": "Digitalisierung",
+      "line_buffer": "Linie (zu puffern)",
+      "point_buffer": "Punkt (zu puffern)",
+      "selfinter": "Eins oder mehrere Polygone sind selbst schneidend",
+      "send": "Senden",
+      "wait": "Laden..."
+    },
     "heightprofile": {
       "asl": "ü. NHN",
       "distance": "Distanz",
@@ -206,14 +255,19 @@
       "title": "Höhenprofil"
     },
     "identify": {
+      "aggregatedreport": "Aggregierter Bericht",
       "clipboard": "Nach Zwischenablage kopieren",
+      "download": "Herunterladen",
       "export": "Exportieren",
-      "exportformat": "Exportformat",
       "featureReport": "Objektblatt",
+      "featurecount": "Anzahl Objekte",
+      "layerall": "Alle Ebenen",
       "link": "Link",
       "noattributes": "Keine Attribute",
       "noresults": "Keine Resultate an der ausgewählten Position",
       "querying": "Objekte werden abgefragt...",
+      "reportfail": "Bericht konnt nicht erstellt werden",
+      "selectlayer": "Ebene auswählen",
       "title": "Objektinformationen"
     },
     "imageeditor": {
@@ -230,6 +284,7 @@
       "nofeatures": "Keine Objekte konnten importiert werden",
       "noresults": "Keine Resultate oder ungültige URL",
       "notgeopdf": "Die ausgewählte Datei scheint kein GeoPDF zu sein.",
+      "supportedformats": "Unterstützte Formate",
       "unknownproj": "Das ausgewählte GeoPDF verwendet eine unbekannte Projektion: {0}.",
       "url": "URL",
       "urlplaceholder": "WMS, WMTS oder WFS URL eingeben..."
@@ -266,6 +321,10 @@
       "visiblefilter": "Unsichtbare Ebenen filtern",
       "zoomtolayer": "Auf den Layer zoomen"
     },
+    "layertree3d": {
+      "layers": "Ebenen",
+      "objects": "Objekte"
+    },
     "linkfeatureform": {
       "cancel": "Abbrechen",
       "close": "Schliessen",
@@ -288,6 +347,11 @@
       "loading": "Karte wird geladen...",
       "resetrotation": "Drehung zurücksetzen"
     },
+    "map3d": {
+      "syncview": "Ansicht synchronisieren",
+      "terrain": "Gelände",
+      "title": "3D Ansicht"
+    },
     "mapexport": {
       "configuration": "Konfiguration",
       "format": "Format",
@@ -297,6 +361,20 @@
       "submit": "Exportieren",
       "usersize": "Auf Karte auswählen...",
       "wait": "Bitte warten..."
+    },
+    "mapfilter": {
+      "addcustomfilter": "Benutzerdef. filter hinzufügen",
+      "brokenrendering": "Die Kartendarstellung könnte aufgrund eines ungültigen Filterausdrucks fehlerhaft sein",
+      "cancel": "Abbrechen",
+      "geomfilter": "Geometrie",
+      "hidefiltergeom": "Filtergeometrie ausblenden",
+      "invalidfilter": "Ungültiger Filterausdruck",
+      "save": "Speichern",
+      "select": "Auswählen...",
+      "selectlayer": "Ebene auswählen",
+      "timefilter": "Zeit",
+      "timefrom": "Von",
+      "timeto": "Bis"
     },
     "mapinfotooltip": {
       "elevation": "Höhe",
@@ -309,8 +387,10 @@
       "windowtitle": "Legende"
     },
     "measureComponent": {
+      "absolute": "m ü.M.",
       "areaLabel": "Fläche",
       "bearingLabel": "Richtung",
+      "ground": "m ü.B.",
       "imperial": "Imperial",
       "lengthLabel": "Länge",
       "metric": "Metrisch",
@@ -336,8 +416,19 @@
       "width": "Breite",
       "windowtitle": "Numerische Eingabe"
     },
+    "pickfeature": {
+      "querying": "Abfragen..."
+    },
+    "portal": {
+      "filter": "Themen filtern...",
+      "menulabel": "Menu"
+    },
     "print": {
       "atlasfeature": "Atlasobjekt",
+      "download": "Herunterladen",
+      "download_as_onepdf": "als ein PDF-Dokument",
+      "download_as_onezip": "als ein ZIP-Archiv",
+      "download_as_single": "als einzelne Dateien",
       "format": "Format",
       "grid": "Gitter",
       "layout": "Format",
@@ -347,24 +438,18 @@
       "nolayouts": "Das gewählte Thema stellt keine Druck-Vorlagen zur Verfügung.",
       "notheme": "Kein Thema selektiert",
       "output": "Druckausgabe",
+      "overlap": "Überlappung",
       "pickatlasfeature": "In Ebene {0} auswählen...",
       "resolution": "Auflösung",
       "rotation": "Rotation",
+      "save": "Speichern",
       "scale": "Massstab",
+      "series": "Seriendruck",
       "submit": "Erzeugen",
       "wait": "Bitte warten..."
     },
     "qtdesignerform": {
       "loading": "Formular wird geladen..."
-    },
-    "rasterexport": {
-      "format": "Format",
-      "resolution": "Auflösung",
-      "scale": "Massstab",
-      "size": "Dimensionen",
-      "submit": "Exportieren",
-      "usersize": "Auf Karte auswählen...",
-      "wait": "Bitte warten..."
     },
     "redlining": {
       "border": "Rand",
@@ -379,9 +464,11 @@
       "draw": "Zeichnen",
       "edit": "Bearbeiten",
       "ellipse": "Ellipse",
+      "export": "Exportieren",
       "freehand": "Freihand",
       "label": "Beschriftung",
       "layer": "Kartenebene",
+      "layertitle": "Zeichnung",
       "line": "Linie",
       "markers": "Pfeile",
       "measurements": "Messungen anzeigen",
@@ -395,6 +482,13 @@
       "text": "Text",
       "transform": "Transformieren",
       "width": "Breite"
+    },
+    "reports": {
+      "all": "Alle",
+      "download": "Herunterladen",
+      "pick": "Auswählen",
+      "region": "Region auswählen",
+      "selectlayer": "Berichtebene auswählen..."
     },
     "routing": {
       "add": "Hinzufügen",
@@ -439,16 +533,6 @@
     "scratchdrawing": {
       "finish": "Abschliessen"
     },
-    "searchbox": {
-      "filter": "Suche verfeinern",
-      "layers": "Karten",
-      "more": "weitere Treffer",
-      "morelayers": "Weitere Treffer verfügbar",
-      "nodescription": "Keine Beschreibung verfügbar",
-      "placeholder": "Ort suchen oder Karte hinzufügen...",
-      "places": "Orte",
-      "recent": "Zuletzt gesucht"
-    },
     "serviceinfo": {
       "abstract": "Zusammenfassung",
       "contactEmail": "Email",
@@ -489,11 +573,13 @@
     "themelayerslist": {
       "addlayer": "Layer hinzufügen",
       "addlayerstotheme": "Ebenen der Karte hinzufügen",
-      "addselectedlayers": "Selektierte Ebenen hinzufügen"
+      "addselectedlayers": "Selektierte Ebenen hinzufügen",
+      "existinglayers": "Folgende Ebenen sind bereits vorhanden"
     },
     "themeswitcher": {
       "addlayerstotheme": "Ebenen der Karte hinzufügen",
       "addtotheme": "Dem aktuellen Thema hinzufügen",
+      "changedefaulttheme": "Als Standardthema setzen",
       "confirmswitch": "Ebenen, die nicht Teil des Themas sind, werden entfernt. Fortsetzen?",
       "filter": "Filter",
       "match": {
@@ -511,7 +597,9 @@
       "displayfeatures": "Zeitleiste und Objekte",
       "displaylayers": "Zeitleiste und Ebenen",
       "displayminimal": "Nur Zeitleiste",
+      "edit": "Anpassen",
       "endtime": "Ende",
+      "filterwarning": "Kartenfilter sind aktiv",
       "future": "Zukunft",
       "group": "Gruppierungsattribut",
       "groupnone": "Keins",
@@ -565,7 +653,9 @@
     },
     "window": {
       "close": "Schliessen",
+      "detach": "Abkoppeln",
       "dock": "Andocken",
+      "embed": "Einbetten",
       "maximize": "Maximieren",
       "minimize": "Minimieren",
       "undock": "Abdocken",

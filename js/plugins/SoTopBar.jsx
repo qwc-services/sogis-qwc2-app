@@ -7,13 +7,13 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import classnames from 'classnames';
 
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
 import {toggleFullscreen} from 'qwc2/actions/display';
 import {setTopbarHeight} from 'qwc2/actions/map';
-import {openExternalUrl} from 'qwc2/actions/task';
+import {openExternalUrl} from 'qwc2/actions/windows';
 import {showNotification, NotificationType} from 'qwc2/actions/windows';
 import Icon from 'qwc2/components/Icon';
 import TopBarPlugin from 'qwc2/plugins/TopBar';
@@ -27,12 +27,12 @@ import './style/SoTopBar.css';
 class SoTopBar extends React.Component {
     static propTypes = {
         ...TopBarPlugin().propTypes,
+        /** The my.so.ch help URL. */
+        helpUrl: PropTypes.string,
         /** The URL to return to the my.so.ch portal. */
         leaveUrl: PropTypes.string,
         /** The URL to logout from my.so.ch. */
         logoutUrl: PropTypes.string,
-        /** The my.so.ch help URL. */
-        helpUrl: PropTypes.string,
         showNotification: PropTypes.func
     };
     static defaultProps = TopBarPlugin().defaultProps;
@@ -40,7 +40,7 @@ class SoTopBar extends React.Component {
         bannerExpanded: true,
         mobileSearchVisible: false,
         qwc2TopBar: null
-    }
+    };
     constructor(props) {
         super(props);
         const userInfos = ConfigUtils.getConfigProp("user_infos");
@@ -54,7 +54,7 @@ class SoTopBar extends React.Component {
         }, 3000);
         if (UrlParams.getParam("mysoch:unknownidentity") === "1") {
             UrlParams.updateParams({"mysoch:unknownidentity": undefined});
-            this.props.showNotification("unknownidentity", LocaleUtils.tr("sotopbar.unknownidentity"), NotificationType.WARN, true)
+            this.props.showNotification("unknownidentity", LocaleUtils.tr("sotopbar.unknownidentity"), NotificationType.WARN, true);
         }
     }
     componentWillUnmount() {
@@ -73,7 +73,8 @@ class SoTopBar extends React.Component {
         const assetsPath = ConfigUtils.getAssetsPath();
         const tooltip = LocaleUtils.tr("appmenu.menulabel");
         let buttonContents = null;
-        if (this.props.mobile) {
+        const isMobile = ConfigUtils.isMobile();
+        if (isMobile) {
             buttonContents = (
                 <span className="appmenu-button">
                     <Icon className="mysoch-menu-icon" icon="mysoch-hamburger" title={tooltip}/>
@@ -89,7 +90,7 @@ class SoTopBar extends React.Component {
         }
         const taskbarClasses = classnames({
             "sotopbar-taskbar": true,
-            "sotopbar-taskbar-mobile": this.props.mobile
+            "sotopbar-taskbar-mobile": isMobile
         });
         let searchComponent = null;
         if (this.props.components.Search) {
@@ -97,13 +98,13 @@ class SoTopBar extends React.Component {
             const searchOptions = {...this.props.searchOptions};
             searchOptions.minScaleDenom = searchOptions.minScaleDenom || searchOptions.minScale;
             delete searchOptions.minScale;
-            if (this.props.mobile) {
+            if (isMobile) {
                 const buttonClasses = classnames({
                     "sotopbar-search-button-active": this.state.mobileSearchVisible
                 });
                 searchComponent = [
                     (<button className={buttonClasses} key="SearchButton" onClick={() => this.toggleSearch()} type="button"><Icon icon="search" size="large" /></button>),
-                    this.state.mobileSearchVisible ? (<div key="SearchField" className="sotopbar-mobile-searchfield">
+                    this.state.mobileSearchVisible ? (<div className="sotopbar-mobile-searchfield" key="SearchField">
                         <this.props.components.Search searchOptions={searchOptions}/>
                     </div>) : null
                 ];
@@ -136,7 +137,7 @@ class SoTopBar extends React.Component {
                     ) : null}
                     {searchComponent}
                     <span className="sotopbar-spacer" />
-                    {!this.props.mobile ? (
+                    {!isMobile ? (
                         <button className="sotopbar-button" onClick={this.leave} type="button">{LocaleUtils.tr("sotopbar.leave")}</button>
                     ) : null}
                     <button className="sotopbar-button" onClick={this.showHelp}><Icon icon="question-sign" size="large" /></button>
@@ -153,7 +154,7 @@ class SoTopBar extends React.Component {
             this.props.setTopbarHeight(el.clientHeight);
             new ResizeObserver(() => {
                 this.props.setTopbarHeight(el.clientHeight);
-            }).observe(el)
+            }).observe(el);
         }
     };
     openUrl = (url, target, title, icon) => {
@@ -166,28 +167,27 @@ class SoTopBar extends React.Component {
         if (this.props.leaveUrl) {
             location.href = this.props.leaveUrl;
         }
-    }
+    };
     logout = () => {
         if (this.props.logoutUrl) {
             location.href = this.props.logoutUrl;
         }
-    }
+    };
     showHelp = () => {
         if (this.props.helpUrl) {
             window.open(this.props.helpUrl, "_blank");
         }
-    }
+    };
     toggleBanner = (forceHide = false) => {
         this.setState(state => ({bannerExpanded: forceHide ? false : !state.bannerExpanded}));
-    }
+    };
     toggleSearch = (forceHide = false) => {
         this.setState(state => ({mobileSearchVisible: forceHide ? false : !state.mobileSearchVisible}));
-    }
+    };
 }
 
 export default (components) => {
     return connect((state) => ({
-        mobile: state.browser.mobile,
         fullscreen: state.display.fullscreen,
         components: components
     }), {

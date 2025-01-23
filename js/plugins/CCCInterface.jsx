@@ -7,24 +7,27 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import assign from 'object-assign';
+
 import axios from 'axios';
-import {v4 as uuidv4} from 'uuid';
+import assign from 'object-assign';
 import ol from 'openlayers';
-import ConfigUtils from 'qwc2/utils/ConfigUtils';
-import CoordinatesUtils from 'qwc2/utils/CoordinatesUtils';
-import MapUtils from 'qwc2/utils/MapUtils';
+import PropTypes from 'prop-types';
 import {LayerRole, addLayerFeatures, refreshLayer, removeLayer} from 'qwc2/actions/layers';
 import {zoomToPoint, zoomToExtent} from 'qwc2/actions/map';
-import {setCurrentTheme} from 'qwc2/actions/theme';
 import {setCurrentTask, setCurrentTaskBlocked} from 'qwc2/actions/task';
+import {setCurrentTheme} from 'qwc2/actions/theme';
 import TaskBar from 'qwc2/components/TaskBar';
 import ButtonBar from 'qwc2/components/widgets/ButtonBar';
+import ConfigUtils from 'qwc2/utils/ConfigUtils';
+import CoordinatesUtils from 'qwc2/utils/CoordinatesUtils';
 import LocaleUtils from 'qwc2/utils/LocaleUtils';
+import MapUtils from 'qwc2/utils/MapUtils';
 import {UrlParams} from 'qwc2/utils/PermaLinkUtils';
+import {v4 as uuidv4} from 'uuid';
+
 import {changeCCCState} from './actions/ccc';
+
 import './style/CCCInterface.css';
 
 let CccAppConfig = null;
@@ -51,14 +54,14 @@ class CCCInterface extends React.Component {
         themes: PropTypes.object,
         zoomToExtent: PropTypes.func,
         zoomToPoint: PropTypes.func
-    }
+    };
     constructor(props) {
         super(props);
         this.reset();
     }
     state = {
         status: CCCStatus.NORMAL
-    }
+    };
     reset() {
         CccConnection = null;
         CccAppConfig = null;
@@ -93,20 +96,22 @@ class CCCInterface extends React.Component {
                 // Start websocket session
                 this.createWebSocket();
             }).catch(() => {
+                /* eslint-disable-next-line */
                 console.warn("Failed to query app configuration");
                 this.setState({status: CCCStatus.CONFIG_ERROR});
                 this.reset();
             });
         }
-    }
+    };
     loadTheme = (props) => {
         const theme = props.themes.items.find(t => t.name === CccAppConfig.map);
         if (theme) {
             props.setCurrentTheme(theme, props.themes, false);
         } else {
+            /* eslint-disable-next-line */
             console.warn("Could not find theme " + CccAppConfig.map);
         }
-    }
+    };
     createWebSocket = () => {
         CccConnection = new WebSocket(CccAppConfig.cccServer);
         CccConnection.onopen = () => {
@@ -121,25 +126,29 @@ class CCCInterface extends React.Component {
             }
         };
         CccConnection.onclose = () => {
+            /* eslint-disable-next-line */
             console.log("Connection closed");
             this.setState({status: CCCStatus.CONNECTION_ERROR});
             this.reset();
         };
         CccConnection.onerror = (err) => {
+            /* eslint-disable-next-line */
             console.log("Connection error: " + err);
             this.setState({status: CCCStatus.CONNECTION_ERROR});
             this.reset();
         };
         CccConnection.onmessage = this.processWebSocketMessage;
-    }
+    };
     processWebSocketMessage = (ev) => {
         let message = {};
         try {
             message = JSON.parse(ev.data);
         } catch (e) {
+            /* eslint-disable-next-line */
             console.log("Invalid message: " + ev.data);
         }
         if (/* message.apiVersion !== "1.0" || */!message.method) {
+            /* eslint-disable-next-line */
             console.log("Invalid message: " + ev.data);
         }
 
@@ -150,6 +159,7 @@ class CCCInterface extends React.Component {
         if (message.method === "notifySessionReady") {
             this.ready = true;
         } else if (message.method === "notifyError") {
+            /* eslint-disable-next-line */
             alert(message.message);
         } else if (message.method === "createGeoObject") {
             this.stopEdit();
@@ -190,7 +200,7 @@ class CCCInterface extends React.Component {
             this.props.changeCCCState({action: 'Show'});
             this.props.setCurrentTask('CccEdit', null, 'identify');
         }
-    }
+    };
     processZoomTo = (zoomTo) => {
         const cccConfigService = ConfigUtils.getConfigProp("cccConfigService");
         axios.post(cccConfigService.replace(/\/$/g, "") + '/zoomTo', zoomTo).then(response => {
@@ -210,7 +220,7 @@ class CCCInterface extends React.Component {
                 }
             }
         });
-    }
+    };
     zoomToFeature = (feature) => {
         const extent = new ol.format.GeoJSON().readFeature(feature).getGeometry().getExtent();
         if (extent[0] === extent[2] || extent[1] === extent[3]) {
@@ -221,7 +231,7 @@ class CCCInterface extends React.Component {
         } else {
             this.props.zoomToExtent(extent, "EPSG:2056");
         }
-    }
+    };
     getMaxZoomForMinScale = (minScale) => {
         // find max zoom level greater than min scale
         let maxZoom = 0;
@@ -234,7 +244,7 @@ class CCCInterface extends React.Component {
             }
         }
         return maxZoom;
-    }
+    };
     renderBody = () => {
         let label = "";
         if (this.props.ccc.action === "Draw") {
@@ -258,7 +268,7 @@ class CCCInterface extends React.Component {
                 <ButtonBar buttons={buttons} onClick={this.buttonClicked} />
             </span>
         );
-    }
+    };
     render() {
         if (this.state.status && this.state.status !== CCCStatus.NORMAL) {
             return (
@@ -292,13 +302,13 @@ class CCCInterface extends React.Component {
         } else if (action === 'Deselect') {
             this.props.removeLayer('cccselection');
         }
-    }
+    };
     stopEdit = () => {
         this.props.changeCCCState({action: null, geomType: null});
         this.props.removeLayer('cccselection');
         this.props.setCurrentTaskBlocked(false);
         this.props.setCurrentTask(null);
-    }
+    };
 }
 
 export function CCCAttributeCalculator(layer, feature) {

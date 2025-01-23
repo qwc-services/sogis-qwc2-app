@@ -7,6 +7,7 @@
  */
 
 import ReducerIndex from 'qwc2/reducers/index';
+
 import cccReducer from '../reducers/ccc';
 ReducerIndex.register("ccc", cccReducer);
 

@@ -3,8 +3,8 @@ div.owner-info {
     overflow-y: auto;
     height: 100%;
     min-height: 200px;
-    background-color: white;
-    color: #595959;
+    background-color: var(--list-bg-color);
+    color: var(--text-color);
     font-size: small;
 }
 

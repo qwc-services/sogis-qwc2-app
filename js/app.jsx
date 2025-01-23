@@ -7,15 +7,52 @@
  */
 
 import React from 'react';
-import {createRoot} from 'react-dom/client';
+
 import axios from 'axios';
-import url from 'url';
 import StandardApp from 'qwc2/components/StandardApp';
 import ConfigUtils from 'qwc2/utils/ConfigUtils';
 import {UrlParams} from 'qwc2/utils/PermaLinkUtils';
+import {createRoot} from 'react-dom/client';
+import url from 'url';
+
 import appConfig from './appConfig';
+
 import '../icons/build/qwc2-icons.css';
 
+
+function renderApp() {
+
+    if (UrlParams.getParam('config:tenant') !== undefined) {
+        const pair = UrlParams.getParam('config:tenant').split("=");
+        UrlParams.updateParams({'config:tenant': undefined});
+        // Add tenant header request interceptor
+        axios.interceptors.request.use((reqconfig) => {
+            const reqOrigin = (new URL(reqconfig.url, location.href)).origin;
+            const tenantOrigins = ["https://geo-t.so.ch", "https://geo-i.so.ch", "https://geo.so.ch"];
+            if (tenantOrigins.includes(reqOrigin)) {
+                reqconfig.headers[pair[0]] =  pair[1];
+            }
+            return reqconfig;
+        });
+    }
+
+    const container = document.getElementById('container');
+    const root = createRoot(container);
+    root.render(<StandardApp appConfig={appConfig}/>);
+}
+
+function checkMySoCh() {
+    // If user_infos in config contains mysoch=true, redirect to mysochauth to check login,
+    // which will redirect to viewer with the correct tenant header set identity is valid
+    ConfigUtils.loadConfiguration().then(config => {
+        if (config.user_infos?.mysoch && !UrlParams.getParam('config:tenant')) {
+            const authServiceUrl = "/mysochauth/";
+            window.location.href = authServiceUrl + "checklogin?url=" + encodeURIComponent(window.location.href);
+        } else {
+            renderApp();
+        }
+    });
+}
 
 // Autologin flow:
 // GET /map/
@@ -49,9 +86,9 @@ if (UrlParams.getParam('config:autologin') !== undefined) {
 } else {
     const authServiceUrl = "/auth/";
     axios.get(authServiceUrl + 'info').then(res => {
-        if(!res.data.username && res.data.in_net) {
+        if (!res.data.username && res.data.in_net) {
             // automatic login
-            let urlObj = url.parse(window.location.href);
+            const urlObj = url.parse(window.location.href);
             urlObj.query = {...UrlParams.getParams()};
             urlObj.query["config:autologin"] = 1;
             urlObj.search = undefined;
@@ -62,38 +99,4 @@ if (UrlParams.getParam('config:autologin') !== undefined) {
     }).catch(e => {
         checkMySoCh();
     });
-}
-
-function checkMySoCh() {
-    // If user_infos in config contains mysoch=true, redirect to mysochauth to check login,
-    // which will redirect to viewer with the correct tenant header set identity is valid
-    ConfigUtils.loadConfiguration().then(config => {
-        if (config.user_infos?.mysoch && !UrlParams.getParam('config:tenant')) {
-            const authServiceUrl = "/mysochauth/";
-            window.location.href = authServiceUrl + "checklogin?url=" + encodeURIComponent(window.location.href);
-        } else {
-            renderApp();
-        }
-    });
-}
-
-function renderApp() {
-
-    if (UrlParams.getParam('config:tenant') !== undefined) {
-        const pair = UrlParams.getParam('config:tenant').split("=");
-        UrlParams.updateParams({'config:tenant': undefined});
-        // Add tenant header request interceptor
-        axios.interceptors.request.use((reqconfig) => {
-            const reqOrigin = (new URL(reqconfig.url, location.href)).origin;
-            const tenantOrigins = ["https://geo-t.so.ch", "https://geo-i.so.ch", "https://geo.so.ch"];
-            if (tenantOrigins.includes(reqOrigin)) {
-                reqconfig.headers[pair[0]] =  pair[1];
-            }
-            return reqconfig;
-        });
-    }
-
-    const container = document.getElementById('container');
-    const root = createRoot(container);
-    root.render(<StandardApp appConfig={appConfig}/>);
 }

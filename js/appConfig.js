@@ -6,71 +6,60 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {SearchProviders}  from './SearchProviders';
-import LayerUtils from 'qwc2/utils/LayerUtils';
-import {renderHelp} from './Help';
-
-import MapPlugin from 'qwc2/plugins/Map';
-import EditingSupport from 'qwc2/plugins/map/EditingSupport';
-import MeasurementSupport from 'qwc2/plugins/map/MeasurementSupport';
-import LocateSupport from 'qwc2/plugins/map/LocateSupport';
-import RedliningSupport from 'qwc2/plugins/map/RedliningSupport';
-import ScaleBarSupport from 'qwc2/plugins/map/ScaleBarSupport';
-import SelectionSupport from 'qwc2/plugins/map/SelectionSupport';
-import HomeButtonPlugin from 'qwc2/plugins/HomeButton';
-import LocateButtonPlugin from 'qwc2/plugins/LocateButton';
-import {ZoomInPlugin, ZoomOutPlugin} from 'qwc2/plugins/ZoomButtons';
-import BackgroundSwitcherPlugin from 'qwc2/plugins/BackgroundSwitcher';
 import AppMenu from 'qwc2/components/AppMenu';
+import FullscreenSwitcher from 'qwc2/components/FullscreenSwitcher';
 import SearchBox from 'qwc2/components/SearchBox';
 import Toolbar from 'qwc2/components/Toolbar';
-import FullscreenSwitcher from 'qwc2/components/FullscreenSwitcher';
-import MeasurePlugin from 'qwc2/plugins/Measure';
-import ThemeSwitcherPlugin from 'qwc2/plugins/ThemeSwitcher';
-import LayerTreePlugin from 'qwc2/plugins/LayerTree';
-import IdentifyPlugin from 'qwc2/plugins/Identify';
-import MapTipPlugin from 'qwc2/plugins/MapTip';
-import SharePlugin from 'qwc2/plugins/Share';
-import MapCopyrightPlugin from 'qwc2/plugins/MapCopyright';
-import PrintPlugin from 'qwc2/plugins/Print';
-import HelpPlugin from 'qwc2/plugins/Help';
-import RasterExportPlugin from 'qwc2/plugins/RasterExport';
-import MapExportPlugin from 'qwc2/plugins/MapExport';
-import RedliningPlugin from 'qwc2/plugins/Redlining';
-import EditingPlugin from 'qwc2/plugins/Editing';
-import MapComparePlugin from 'qwc2/plugins/MapCompare';
-import HeightProfilePlugin from 'qwc2/plugins/HeightProfile';
-import MapInfoTooltipPlugin from 'qwc2/plugins/MapInfoTooltip';
-import AuthenticationPlugin from 'qwc2/plugins/Authentication';
-import LoginUserPlugin from 'qwc2/plugins/LoginUser';
-import BookmarkPlugin from 'qwc2/plugins/Bookmark';
 import AttributeTablePlugin from 'qwc2/plugins/AttributeTable';
-import StartupMarkerPlugin from 'qwc2/plugins/StartupMarker';
-import SnappingSupport from 'qwc2/plugins/map/SnappingSupport';
+import AuthenticationPlugin from 'qwc2/plugins/Authentication';
+import BackgroundSwitcherPlugin from 'qwc2/plugins/BackgroundSwitcher';
+import BookmarkPlugin from 'qwc2/plugins/Bookmark';
+import EditingPlugin from 'qwc2/plugins/Editing';
+import HeightProfilePlugin from 'qwc2/plugins/HeightProfile';
+import HelpPlugin from 'qwc2/plugins/Help';
+import HomeButtonPlugin from 'qwc2/plugins/HomeButton';
+import IdentifyPlugin from 'qwc2/plugins/Identify';
+import LayerTreePlugin from 'qwc2/plugins/LayerTree';
+import LocateButtonPlugin from 'qwc2/plugins/LocateButton';
+import LoginUserPlugin from 'qwc2/plugins/LoginUser';
+import MapPlugin from 'qwc2/plugins/Map';
+import MapComparePlugin from 'qwc2/plugins/MapCompare';
+import MapCopyrightPlugin from 'qwc2/plugins/MapCopyright';
+import MapExportPlugin from 'qwc2/plugins/MapExport';
+import MapInfoTooltipPlugin from 'qwc2/plugins/MapInfoTooltip';
+import MapTipPlugin from 'qwc2/plugins/MapTip';
+import MeasurePlugin from 'qwc2/plugins/Measure';
 import NewsPopupPlugin from 'qwc2/plugins/NewsPopup';
-
-import PlotInfoToolPlugin from 'qwc2-extra/plugins/PlotInfoTool';
+import PrintPlugin from 'qwc2/plugins/Print';
+import RedliningPlugin from 'qwc2/plugins/Redlining';
+import SharePlugin from 'qwc2/plugins/Share';
+import StartupMarkerPlugin from 'qwc2/plugins/StartupMarker';
+import ThemeSwitcherPlugin from 'qwc2/plugins/ThemeSwitcher';
+import {ZoomInPlugin, ZoomOutPlugin} from 'qwc2/plugins/ZoomButtons';
+import EditingSupport from 'qwc2/plugins/map/EditingSupport';
+import LocateSupport from 'qwc2/plugins/map/LocateSupport';
+import MeasurementSupport from 'qwc2/plugins/map/MeasurementSupport';
+import RedliningSupport from 'qwc2/plugins/map/RedliningSupport';
+import ScaleBarSupport from 'qwc2/plugins/map/ScaleBarSupport';
+import SnappingSupport from 'qwc2/plugins/map/SnappingSupport';
+import LayerUtils from 'qwc2/utils/LayerUtils';
 import Oereb2Document from 'qwc2-extra/components/Oereb2Document';
+import PlotInfoToolPlugin from 'qwc2-extra/plugins/PlotInfoTool';
 
-import SoTopBarPlugin from './plugins/SoTopBar';
-import SoBottomBarPlugin from './plugins/SoBottomBar';
+import defaultLocaleData from '../static/translations/de-CH.json';
+import {renderHelp} from './Help';
 import CCCEditSupport from './plugins/CCCEditSupport';
 import {CCCInterfacePlugin, CCCAttributeCalculator} from './plugins/CCCInterface';
 import LandRegisterExtractPlugin from './plugins/LandRegisterExtract';
 import PlotOwnerInfo from './plugins/PlotOwnerInfo';
-
+import SoBottomBarPlugin from './plugins/SoBottomBar';
+import SoTopBarPlugin from './plugins/SoTopBar';
 import {themeLayerRestorer} from './themeLayerRestorer';
-
-import defaultLocaleData from '../static/translations/de-CH.json';
 
 export default {
     defaultLocaleData: defaultLocaleData,
     initialState: {
-        defaultState: {
-            mousePosition: {
-                enabled: true
-            }
-        },
+        defaultState: {},
         mobile: {}
     },
     pluginsDef: {
@@ -81,26 +70,25 @@ export default {
                 LocateSupport: LocateSupport,
                 RedliningSupport: RedliningSupport,
                 ScaleBarSupport: ScaleBarSupport,
-                SelectionSupport: SelectionSupport,
                 CCCEditSupport: CCCEditSupport,
-	        SnappingSupport: SnappingSupport
+                SnappingSupport: SnappingSupport
             }),
             HomeButtonPlugin: HomeButtonPlugin,
             LocateButtonPlugin: LocateButtonPlugin,
             ZoomInPlugin: ZoomInPlugin,
             ZoomOutPlugin: ZoomOutPlugin,
             BackgroundSwitcherPlugin: BackgroundSwitcherPlugin,
-	    BookmarkPlugin: BookmarkPlugin,
-	    AttributeTablePlugin: AttributeTablePlugin(/* CustomEditingInterface */),
+            BookmarkPlugin: BookmarkPlugin,
+            AttributeTablePlugin: AttributeTablePlugin(/* CustomEditingInterface */),
             TopBarPlugin: SoTopBarPlugin({
                 AppMenu: AppMenu,
-                Search: SearchBox(SearchProviders),
+                Search: SearchBox,
                 Toolbar: Toolbar,
                 FullscreenSwitcher: FullscreenSwitcher
             }),
             BottomBarPlugin: SoBottomBarPlugin,
             MeasurePlugin: MeasurePlugin,
-	        NewsPopupPlugin: NewsPopupPlugin,
+            NewsPopupPlugin: NewsPopupPlugin,
             ThemeSwitcherPlugin: ThemeSwitcherPlugin,
             LayerTreePlugin: LayerTreePlugin,
             IdentifyPlugin: IdentifyPlugin,
@@ -110,8 +98,7 @@ export default {
             MapCopyrightPlugin: MapCopyrightPlugin,
             PrintPlugin: PrintPlugin,
             HelpPlugin: HelpPlugin(renderHelp),
-            RasterExportPlugin: RasterExportPlugin,
-	    MapExportPlugin: MapExportPlugin,
+            MapExportPlugin: MapExportPlugin,
             RedliningPlugin: RedliningPlugin({}),
             EditingPlugin: EditingPlugin(),
             MapComparePlugin: MapComparePlugin,
