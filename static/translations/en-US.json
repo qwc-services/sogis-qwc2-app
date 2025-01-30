@@ -4,6 +4,7 @@
     "appmenu": {
       "items": {
         "LandRegisterExtract": "Land Register Map Extract",
+        "LegendPrint": "Print legend",
         "Bookmark": "Bookmarks",
         "Compare3D": "Compare",
         "DateTime3D": "Date and Time",

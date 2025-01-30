@@ -93,6 +93,7 @@
                   {"key": "RasterExport", "icon": "rasterexport"}
                 ]},
                 {"key": "Print", "icon": "print"},
+                {"key": "LegendPrint", "icon": "print"},
                 {"key": "LandRegisterExtract", "icon": "print"},
                 {"key": "Help", "icon": "info"},
                 {"key": "Login", "icon": "login"}
@@ -203,6 +204,9 @@
           "name": "Authentication"
         },
         {
+          "name": "LegendPrint"
+        },
+        {
           "name": "LandRegisterExtract"
         },
         {
@@ -310,6 +314,7 @@
                   {"key": "RasterExport", "icon": "rasterexport"}
                 ]},
                 {"key": "Print", "icon": "print"},
+                {"key": "LegendPrint", "icon": "print"},
                 {"key": "LandRegisterExtract", "icon": "print"},
                 {"key": "Help", "icon": "info"},
                 {"key": "Login", "icon": "login"}
@@ -434,6 +439,9 @@
         },
         {
           "name": "Authentication"
+        },
+        {
+          "name": "LegendPrint"
         },
         {
           "name": "LandRegisterExtract"

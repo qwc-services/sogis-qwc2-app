@@ -27,6 +27,7 @@ import MapComparePlugin from 'qwc2/plugins/MapCompare';
 import MapCopyrightPlugin from 'qwc2/plugins/MapCopyright';
 import MapExportPlugin from 'qwc2/plugins/MapExport';
 import MapInfoTooltipPlugin from 'qwc2/plugins/MapInfoTooltip';
+import MapLegendPlugin from 'qwc2/plugins/MapLegend';
 import MapTipPlugin from 'qwc2/plugins/MapTip';
 import MeasurePlugin from 'qwc2/plugins/Measure';
 import NewsPopupPlugin from 'qwc2/plugins/NewsPopup';
@@ -51,6 +52,7 @@ import {renderHelp} from './Help';
 import CCCEditSupport from './plugins/CCCEditSupport';
 import {CCCInterfacePlugin, CCCAttributeCalculator} from './plugins/CCCInterface';
 import LandRegisterExtractPlugin from './plugins/LandRegisterExtract';
+import LegendPrintPlugin from './plugins/LegendPrint';
 import PlotOwnerInfo from './plugins/PlotOwnerInfo';
 import SoBottomBarPlugin from './plugins/SoBottomBar';
 import SoTopBarPlugin from './plugins/SoTopBar';
@@ -104,11 +106,13 @@ export default {
             MapComparePlugin: MapComparePlugin,
             HeightProfilePlugin: HeightProfilePlugin,
             MapInfoTooltipPlugin: MapInfoTooltipPlugin(),
+            MapLegendPlugin: MapLegendPlugin,
             AuthenticationPlugin: AuthenticationPlugin,
             PlotInfoToolPlugin: PlotInfoToolPlugin,
             LandRegisterExtractPlugin: LandRegisterExtractPlugin,
             CCCInterfacePlugin: CCCInterfacePlugin,
-            LoginUserPlugin: LoginUserPlugin
+            LoginUserPlugin: LoginUserPlugin,
+            LegendPrintPlugin: LegendPrintPlugin
         },
         cfg: {
             IdentifyPlugin: {

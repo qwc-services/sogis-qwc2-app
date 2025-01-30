@@ -20,6 +20,7 @@
   ],
   "extra_strings": [
     "appmenu.items.LandRegisterExtract",
+    "appmenu.items.LegendPrint",
     "search.coordinates"
   ],
   "overrides": [

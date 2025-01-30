@@ -4,6 +4,7 @@
     "appmenu": {
       "items": {
         "LandRegisterExtract": "Auszug Plan für das Grundbuch",
+        "LegendPrint": "Legende drucken",
         "Bookmark": "Lesezeichen",
         "Compare3D": "Vergleichen",
         "DateTime3D": "Datum und Zeit",
