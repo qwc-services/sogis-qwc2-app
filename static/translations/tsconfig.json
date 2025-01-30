@@ -4,6 +4,7 @@
     "en-US"
   ],
   "strings": [
+    "appmenu.items.LandRegisterExtract",
     "ccc.cancel",
     "ccc.commit",
     "ccc.configError",

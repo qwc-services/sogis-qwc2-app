@@ -1,24 +1,6 @@
 {
   "locale": "de-DE",
   "messages": {
-    "ccc": {
-      "cancel": "Abbrechen",
-      "commit": "Übernehmen",
-      "configError": "CCC Konfigurationsfehler",
-      "connError": "CCC-Verbindung wurde geschlossen",
-      "createObject": "Objektgeometrie erfassen",
-      "deselect": "Selektion aufheben",
-      "editObject": "Objektgeometrie editieren",
-      "showObject": "Objekt(e) selektiert"
-    },
-    "sobottombar": {
-      "contact": "Kontakt",
-      "help": "Online-Hilfe"
-    },
-    "sotopbar": {
-      "leave": "Karte verlassen",
-      "unknownidentity": "Für Ihre my.so.ch Identität existiert kein Web GIS Client Benutzer"
-    },
     "appmenu": {
       "items": {
         "LandRegisterExtract": "Auszug Plan für das Grundbuch",
@@ -66,6 +48,24 @@
       },
       "filter": "Menü filtern...",
       "menulabel": "Karte & Werkzeuge"
+    },
+    "ccc": {
+      "cancel": "Abbrechen",
+      "commit": "Übernehmen",
+      "configError": "CCC Konfigurationsfehler",
+      "connError": "CCC-Verbindung wurde geschlossen",
+      "createObject": "Objektgeometrie erfassen",
+      "deselect": "Selektion aufheben",
+      "editObject": "Objektgeometrie editieren",
+      "showObject": "Objekt(e) selektiert"
+    },
+    "sobottombar": {
+      "contact": "Kontakt",
+      "help": "Online-Hilfe"
+    },
+    "sotopbar": {
+      "leave": "Karte verlassen",
+      "unknownidentity": "Für Ihre my.so.ch Identität existiert kein Web GIS Client Benutzer"
     },
     "search": {
       "coordinates": "Koordinaten",
@@ -277,6 +277,7 @@
     "importlayer": {
       "addfailed": "Die Ebene konnte nicht hinzugefügt werden",
       "addlayer": "Kartenebene hinzufügen",
+      "asgroup": "Als Gruppe hinzufügen",
       "connect": "Verbinden",
       "filter": "Filter...",
       "loading": "Laden...",

@@ -1,24 +1,6 @@
 {
   "locale": "en-US",
   "messages": {
-    "ccc": {
-      "cancel": "Cancel",
-      "commit": "Apply",
-      "configError": "CCC configuration error",
-      "connError": "CCC connection closed",
-      "createObject": "Draw feature geometry",
-      "deselect": "Clear selection",
-      "editObject": "Edit feature geometry",
-      "showObject": "Object(s) selected"
-    },
-    "sobottombar": {
-      "contact": "Contact",
-      "help": "Help"
-    },
-    "sotopbar": {
-      "leave": "Leave SOMAP!",
-      "unknownidentity": "No SOMAP! user exists for your my.so.ch identity"
-    },
     "appmenu": {
       "items": {
         "LandRegisterExtract": "Land Register Map Extract",
@@ -66,6 +48,24 @@
       },
       "filter": "Filter menu...",
       "menulabel": "Map & Tools"
+    },
+    "ccc": {
+      "cancel": "Cancel",
+      "commit": "Apply",
+      "configError": "CCC configuration error",
+      "connError": "CCC connection closed",
+      "createObject": "Draw feature geometry",
+      "deselect": "Clear selection",
+      "editObject": "Edit feature geometry",
+      "showObject": "Object(s) selected"
+    },
+    "sobottombar": {
+      "contact": "Contact",
+      "help": "Help"
+    },
+    "sotopbar": {
+      "leave": "Leave SOMAP!",
+      "unknownidentity": "No SOMAP! user exists for your my.so.ch identity"
     },
     "search": {
       "coordinates": "Coordinates",
@@ -277,6 +277,7 @@
     "importlayer": {
       "addfailed": "Failed to add layer.",
       "addlayer": "Add layer",
+      "asgroup": "Add as group",
       "connect": "Connect",
       "filter": "Filter...",
       "loading": "Loading...",
