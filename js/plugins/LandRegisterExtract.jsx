@@ -23,6 +23,7 @@ import ConfigUtils from 'qwc2/utils/ConfigUtils';
 import CoordinatesUtils from 'qwc2/utils/CoordinatesUtils';
 import LocaleUtils from 'qwc2/utils/LocaleUtils';
 import MapUtils from 'qwc2/utils/MapUtils';
+import MiscUtils from 'qwc2/utils/MiscUtils';
 
 import './style/LandRegisterExtract.css';
 
@@ -126,6 +127,7 @@ class LandRegisterExtract extends React.Component {
         return (
             <div className="print-body" role="body">
                 <form action={action} method="POST" target="_blank">
+                    <input name="csrf_token" type="hidden" value={MiscUtils.getCsrfToken()} />
                     <table className="options-table"><tbody>
                         <tr>
                             <td>{LocaleUtils.tr("print.layout")}</td>
