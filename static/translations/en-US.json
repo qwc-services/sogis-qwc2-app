@@ -87,7 +87,8 @@
       "recent": "Recent searches",
       "search": "Search",
       "themelayers": "Theme layers",
-      "themes": "Themes"
+      "themes": "Themes",
+      "unknownmore": "More results"
     },
     "app": {
       "missingbg": "Unable to find the background \"{0}\", displaying the default background.",

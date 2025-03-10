@@ -87,7 +87,8 @@
       "recent": "Zuletzt gesucht",
       "search": "Suchen",
       "themelayers": "Themenebenen",
-      "themes": "Themen"
+      "themes": "Themen",
+      "unknownmore": "Weitere Treffer"
     },
     "app": {
       "missingbg": "Der Hintergrund \"{0}\" konnte nicht gefunden werden, der Standardhintergrund wird angezeigt.",
