@@ -38,6 +38,24 @@
 #LandRegisterExtract div.button-bar {
     margin-top: 0.5em;
 }
+
 #LandRegisterExtract div.button-bar > button {
     width: 100%;
+}
+
+#LandRegisterExtract span.print-wait {
+    display: flex;
+    align-items: center;
+}
+
+#LandRegisterExtract span.print-wait {
+    display: flex;
+    align-items: center;
+}
+
+#LandRegisterExtract span.print-wait div.spinner {
+    width: 1.25em;
+    height: 1.25em;
+    margin-right: 0.5em;
+    flex: 0 0 auto;
 }

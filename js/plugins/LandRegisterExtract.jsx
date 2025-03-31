@@ -10,6 +10,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import axios from 'axios';
+import FileSaver from 'file-saver';
+import formDataEntries from 'formdata-json';
 import isEmpty from 'lodash.isempty';
 import PropTypes from 'prop-types';
 import Icon from 'qwc2/components/Icon';
@@ -18,6 +20,7 @@ import SideBar from 'qwc2/components/SideBar';
 import EditableSelect from 'qwc2/components/widgets/EditableSelect';
 import InputContainer from 'qwc2/components/widgets/InputContainer';
 import NumberInput from 'qwc2/components/widgets/NumberInput';
+import Spinner from 'qwc2/components/widgets/Spinner';
 import ToggleSwitch from 'qwc2/components/widgets/ToggleSwitch';
 import ConfigUtils from 'qwc2/utils/ConfigUtils';
 import CoordinatesUtils from 'qwc2/utils/CoordinatesUtils';
@@ -42,8 +45,13 @@ class LandRegisterExtract extends React.Component {
         extents: [],
         layout: null,
         rotation: 0,
-        scale: 0
+        scale: 0,
+        printing: false
     };
+    constructor(props) {
+        super(props);
+        this.printForm = null;
+    }
     componentDidMount() {
         // Get available templates
         const query = ConfigUtils.getConfigProp("landRegisterService").replace(/\/$/g, "") + '/templates';
@@ -126,7 +134,7 @@ class LandRegisterExtract extends React.Component {
 
         return (
             <div className="print-body" role="body">
-                <form action={action} method="POST" target="_blank">
+                <form action={action} method="POST" onSubmit={this.print} ref={el => { this.printForm = el; }}>
                     <input name="csrf_token" type="hidden" value={MiscUtils.getCsrfToken()} />
                     <table className="options-table"><tbody>
                         <tr>
@@ -183,7 +191,9 @@ class LandRegisterExtract extends React.Component {
                         {resolutionInput}
                     </div>
                     <div className="button-bar">
-                        <button className="button" type="submit">{LocaleUtils.tr("print.submit")}</button>
+                        <button className="button" disabled={this.state.printing} type="submit">
+                            {this.state.printing ? (<span className="print-wait"><Spinner /> {LocaleUtils.tr("print.wait")}</span>) : LocaleUtils.tr("print.submit")}
+                        </button>
                     </div>
                 </form>
             </div>
@@ -247,6 +257,33 @@ class LandRegisterExtract extends React.Component {
             extents: extents,
             rotation: rotation,
             scale: scale
+        });
+    };
+    print = (ev) => {
+        ev.preventDefault();
+        this.setState({printing: true});
+        const formData = formDataEntries(new FormData(this.printForm));
+        const data = Object.entries(formData).map((pair) =>
+            pair.map(entry => encodeURIComponent(entry).replace(/%20/g, '+')).join("=")
+        ).join("&");
+        const config = {
+            headers: {'Content-Type': 'application/x-www-form-urlencoded' },
+            responseType: "arraybuffer"
+        };
+        const action = ConfigUtils.getConfigProp("landRegisterService").replace(/\/$/g, "") + '/print';
+        axios.post(action, data, config).then(response => {
+            this.setState({printing: false});
+            const contentType = response.headers["content-type"];
+            const file = new Blob([response.data], { type: contentType });
+            FileSaver.saveAs(file, "grundbuchplanauszug.pdf");
+        }).catch(e => {
+            this.setState({printing: false});
+            if (e.response) {
+                /* eslint-disable-next-line */
+                console.warn(new TextDecoder().decode(e.response.data));
+            }
+            /* eslint-disable-next-line */
+            alert('Print failed');
         });
     };
 }
