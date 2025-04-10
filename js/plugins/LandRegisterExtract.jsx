@@ -122,16 +122,6 @@ class LandRegisterExtract extends React.Component {
             resolutionChooser = (<NumberInput max={1200} min={50} mobile name="DPI" onChange={this.changeResolution} suffix=" dpi" value={this.state.dpi || ""} />);
         }
 
-        let gridIntervalX = null;
-        let gridIntervalY = null;
-        const printGrid = this.props.theme.printGrid;
-        if (printGrid && printGrid.length > 0 && this.state.scale && this.state.grid) {
-            let cur = 0;
-            for (; cur < printGrid.length - 1 && this.state.scale < printGrid[cur].s; ++cur);
-            gridIntervalX = (<input name={"GRID_INTERVAL_X"} readOnly type={formvisibility} value={printGrid[cur].x} />);
-            gridIntervalY = (<input name={"GRID_INTERVAL_Y"} readOnly type={formvisibility} value={printGrid[cur].y} />);
-        }
-
         return (
             <div className="print-body" role="body">
                 <form action={action} method="POST" onSubmit={this.print} ref={el => { this.printForm = el; }}>
@@ -174,7 +164,7 @@ class LandRegisterExtract extends React.Component {
                                 </InputContainer>
                             </td>
                         </tr>
-                        {printGrid ? (
+                        {!isEmpty(this.props.theme.printGrid) ? (
                             <tr>
                                 <td>{LocaleUtils.tr("print.grid")}</td>
                                 <td>
@@ -186,8 +176,6 @@ class LandRegisterExtract extends React.Component {
                     <div>
                         <input name="extent" readOnly type={formvisibility} value={extent || ""} />
                         <input name="SRS" readOnly type={formvisibility} value={mapCrs} />
-                        {gridIntervalX}
-                        {gridIntervalY}
                         {resolutionInput}
                     </div>
                     <div className="button-bar">
@@ -263,6 +251,23 @@ class LandRegisterExtract extends React.Component {
         ev.preventDefault();
         this.setState({printing: true});
         const formData = formDataEntries(new FormData(this.printForm));
+
+        // Add grid params
+        const printGrid = this.props.theme.printGrid;
+        if (!isEmpty(printGrid)) {
+            if (this.state.grid) {
+                let cur = 0;
+                while (cur < printGrid.length - 1 && this.state.scale < printGrid[cur].s) {
+                    cur += 1;
+                }
+                formData.GRID_INTERVAL_X = printGrid[cur].x;
+                formData.GRID_INTERVAL_Y = printGrid[cur].y;
+            } else {
+                formData.GRID_INTERVAL_X = 0;
+                formData.GRID_INTERVAL_Y = 0;
+            }
+        }
+
         const data = Object.entries(formData).map((pair) =>
             pair.map(entry => encodeURIComponent(entry).replace(/%20/g, '+')).join("=")
         ).join("&");
