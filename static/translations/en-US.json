@@ -65,8 +65,8 @@
       "help": "Help"
     },
     "sotopbar": {
-      "leave": "Leave SOMAP!",
-      "unknownidentity": "No SOMAP! user exists for your my.so.ch identity"
+      "leave": "Leave Web GIS Client",
+      "unknownidentity": "No Web GIS Client user exists for your my.so.ch identity"
     },
     "search": {
       "coordinates": "Coordinates",
