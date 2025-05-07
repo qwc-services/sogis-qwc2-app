@@ -666,6 +666,11 @@
       "unmaximize": "Wiederherstellen",
       "unminimize": "Vergrössern"
     },
+    "colorschemes": {
+      "default": "Standard",
+      "dark": "Dunkel",
+      "highcontrast": "Hochkontrast"
+    },
     "oereb": {
       "concernedThemes": "Betroffene Themen",
       "fundationdatastate": "Daten der amtlichen Vermessung. Stand der amtlichen Vermessung:",

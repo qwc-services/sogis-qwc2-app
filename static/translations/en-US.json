@@ -666,6 +666,11 @@
       "unmaximize": "Restore",
       "unminimize": "Unminimize"
     },
+    "colorschemes": {
+      "default": "Default",
+      "dark": "Dark",
+      "highcontrast": "High contrast"
+    },
     "oereb": {
       "concernedThemes": "Concerned themes",
       "fundationdatastate": "Cadastral surveying data. Status of the cadastral survey:",
