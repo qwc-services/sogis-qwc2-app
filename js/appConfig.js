@@ -6,6 +6,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import API from 'qwc2/plugins/API';
 import AppMenu from 'qwc2/components/AppMenu';
 import FullscreenSwitcher from 'qwc2/components/FullscreenSwitcher';
 import SearchBox from 'qwc2/components/SearchBox';
@@ -66,6 +67,7 @@ export default {
     },
     pluginsDef: {
         plugins: {
+	    APIPlugin: APIPlugin,
             MapPlugin: MapPlugin({
                 EditingSupport: EditingSupport,
                 MeasurementSupport: MeasurementSupport,
