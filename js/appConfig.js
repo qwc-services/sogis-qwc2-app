@@ -6,11 +6,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import API from 'qwc2/plugins/API';
 import AppMenu from 'qwc2/components/AppMenu';
 import FullscreenSwitcher from 'qwc2/components/FullscreenSwitcher';
 import SearchBox from 'qwc2/components/SearchBox';
 import Toolbar from 'qwc2/components/Toolbar';
+import APIPlugin from 'qwc2/plugins/API';
 import AttributeTablePlugin from 'qwc2/plugins/AttributeTable';
 import AuthenticationPlugin from 'qwc2/plugins/Authentication';
 import BackgroundSwitcherPlugin from 'qwc2/plugins/BackgroundSwitcher';
@@ -67,7 +67,7 @@ export default {
     },
     pluginsDef: {
         plugins: {
-	    APIPlugin: APIPlugin,
+            APIPlugin: APIPlugin,
             MapPlugin: MapPlugin({
                 EditingSupport: EditingSupport,
                 MeasurementSupport: MeasurementSupport,
