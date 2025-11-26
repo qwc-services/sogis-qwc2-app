@@ -27,6 +27,8 @@
     "appmenu.items.LayerTree",
     "appmenu.items.MeasureLineString",
     "appmenu.items.PlotInfoTool_comment",
+    "appmenu.items.Login",
+    "appmenu.items.Logout",
     "oereb.failed",
     "bottombar.viewertitle_label",
     "editing.layer",
