@@ -37,6 +37,7 @@ import PrintPlugin from 'qwc2/plugins/Print';
 import RedliningPlugin from 'qwc2/plugins/Redlining';
 import SharePlugin from 'qwc2/plugins/Share';
 import StartupMarkerPlugin from 'qwc2/plugins/StartupMarker';
+import TaskButtonPlugin from 'qwc2/plugins/TaskButton';
 import ThemeSwitcherPlugin from 'qwc2/plugins/ThemeSwitcher';
 import TimeManagerPlugin from 'qwc2/plugins/TimeManager';
 import {ZoomInPlugin, ZoomOutPlugin} from 'qwc2/plugins/ZoomButtons';
@@ -101,10 +102,13 @@ export default {
             MapTipPlugin: MapTipPlugin,
             SharePlugin: SharePlugin,
             StartupMarkerPlugin: StartupMarkerPlugin,
+	    TaskButtonPlugin: TaskButtonPlugin,
+	    TimeManagerPlugin: TimeManagerPlugin,
             MapCopyrightPlugin: MapCopyrightPlugin,
             PrintPlugin: PrintPlugin,
             HelpPlugin: HelpPlugin(renderHelp),
             MapExportPlugin: MapExportPlugin,
+	    MapFilterPlugin: MapFilterPlugin,
             RedliningPlugin: RedliningPlugin({}),
             EditingPlugin: EditingPlugin(),
             MapComparePlugin: MapComparePlugin,
