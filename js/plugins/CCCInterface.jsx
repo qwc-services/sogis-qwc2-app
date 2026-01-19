@@ -143,7 +143,7 @@ class CCCInterface extends React.Component {
         let message = {};
         try {
             message = JSON.parse(ev.data);
-        } catch (e) {
+        } catch {
             /* eslint-disable-next-line */
             console.log("Invalid message: " + ev.data);
         }

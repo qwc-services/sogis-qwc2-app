@@ -12,8 +12,7 @@ import {connect} from 'react-redux';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import {toggleFullscreen} from 'qwc2/actions/display';
-import {setTopbarHeight} from 'qwc2/actions/map';
-import {openExternalUrl} from 'qwc2/actions/windows';
+import {openExternalUrl, setTopbarHeight} from 'qwc2/actions/windows';
 import {showNotification, NotificationType} from 'qwc2/actions/windows';
 import Icon from 'qwc2/components/Icon';
 import TopBarPlugin from 'qwc2/plugins/TopBar';
@@ -26,6 +25,7 @@ import './style/SoTopBar.css';
 
 class SoTopBar extends React.Component {
     static propTypes = {
+        // eslint-disable-next-line new-cap
         ...TopBarPlugin().propTypes,
         /** The my.so.ch help URL. */
         helpUrl: PropTypes.string,
@@ -35,6 +35,7 @@ class SoTopBar extends React.Component {
         logoutUrl: PropTypes.string,
         showNotification: PropTypes.func
     };
+    // eslint-disable-next-line new-cap
     static defaultProps = TopBarPlugin().defaultProps;
     state = {
         bannerExpanded: true,
@@ -45,6 +46,7 @@ class SoTopBar extends React.Component {
         super(props);
         const userInfos = ConfigUtils.getConfigProp("user_infos");
         if (!userInfos?.mysoch) {
+            // eslint-disable-next-line new-cap
             this.state.qwc2TopBar = TopBarPlugin(this.props.components);
         }
     }
