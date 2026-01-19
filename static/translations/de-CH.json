@@ -1,5 +1,5 @@
 {
-  "locale": "de-DE",
+  "locale": "de-CH",
   "messages": {
     "appmenu": {
       "items": {
@@ -7,20 +7,27 @@
         "LegendPrint": "Legende drucken",
         "Bookmark": "Lesezeichen",
         "Compare3D": "Vergleichen",
-        "DateTime3D": "Datum und Zeit",
         "Editing": "Editieren",
+        "ExportObjects3D": "Objektexport",
         "Help": "Hilfe",
+        "HideObjects3D": "Objekte ausblenden",
         "LayerTree": "Kartenebenen und Legende",
         "LayerTree3D": "Ebenen",
         "MapExport": "Karte exportieren",
         "MapExport3D": "Karte exportieren",
         "MapFilter": "Kartenfilter",
+        "MapLight3D": "Beleuchtung und Schatten",
+        "ObjectList": "Objektliste",
+        "PlotInfoTool": "Grundstücksinformation",
         "Print": "Drucken",
         "Reports": "Berichte",
         "Settings": "Einstellungen",
+        "Settings3D": "3D Einstellungen",
         "Share": "Teilen",
         "ThemeSwitcher": "Themen",
         "AttributeTable": "Attributtabelle",
+        "AuthenticationLogin": "Anmelden",
+        "AuthenticationLogout": "Abmelden - {0}",
         "Cyclomedia": "Cyclomedia",
         "Draw3D": "Zeichnen",
         "FeatureForm": "Objektformular",
@@ -37,18 +44,20 @@
         "MeasureLineString": "Messen",
         "MeasurePolygon": "Messen Polygon",
         "NewsPopup": "Aktuelles",
+        "ObliqueView": "Schrägluftbildansicht",
+        "Panoramax": "Panoramax",
         "Portal": "Portal",
         "PrintScreen3D": "Raster Export",
         "Redlining": "Zeichnen",
         "Routing": "Routing",
         "Tools": "Werkzeuge",
+        "TourGuide": "Einführung",
         "TimeManager": "Zeitleiste",
         "View3D": "3D Ansicht",
-        "PlotInfoTool": "Grundstücksinformation",
         "PlotInfoTool_comment": " "
       },
-      "filter": "Menü filtern...",
-      "menulabel": "Karte & Werkzeuge"
+      "menulabel": "Karte & Werkzeuge",
+      "filter": "Menü filtern..."
     },
     "ccc": {
       "cancel": "Abbrechen",
@@ -60,6 +69,44 @@
       "editObject": "Objektgeometrie editieren",
       "showObject": "Objekt(e) selektiert"
     },
+    "layertree": {
+      "printlegend": "Legende drucken",
+      "compare": "Oberste Kartenebene vergleichen",
+      "deletealllayers": "Alle Ebenen entfernen",
+      "hidealllayers": "Alle Ebenen ausblenden",
+      "importlayer": "Kartenebene importieren",
+      "maptip": "Kartentipps anzeigen",
+      "separator": "Separator",
+      "separatortooltip": "Separator hinzufügen",
+      "togglegroup": "Inklusive aller Kinder an-/abhaken",
+      "transparency": "Transparenz",
+      "visiblefilter": "Unsichtbare Ebenen filtern",
+      "zoomtolayer": "Auf den Layer zoomen"
+    },
+    "map": {
+      "resetrotation": "Drehung zurücksetzen",
+      "loading": "Karte wird geladen..."
+    },
+    "print": {
+      "grid": "Gitter",
+      "layout": "Layout",
+      "nolayouts": "Das gewählte Thema stellt keine Druck-Vorlagen zur Verfügung.",
+      "resolution": "Auflösung",
+      "rotation": "Rotation",
+      "scale": "Massstab",
+      "submit": "Erzeugen",
+      "wait": "Bitte warten...",
+      "atlasfeature": "Atlasobjekt",
+      "download_as_onepdf": "als ein PDF-Dokument",
+      "download_as_onezip": "als ein ZIP-Archiv",
+      "download_as_single": "als einzelne Dateien",
+      "legend": "Legende",
+      "notheme": "Kein Thema selektiert",
+      "output": "Druckausgabe",
+      "overlap": "Überlappung",
+      "pickatlasfeature": "In Ebene {0} auswählen...",
+      "series": "Seriendruck"
+    },
     "sobottombar": {
       "contact": "Kontakt",
       "help": "Online-Hilfe"
@@ -70,9 +117,7 @@
     },
     "search": {
       "coordinates": "Koordinaten",
-      "all": "Alle",
       "circleradius": "Kreis radius",
-      "clearfilter": "Zurücksetzen",
       "existinglayer": "Die Ebene existiert bereits in der Karte",
       "filter": "Suche verfeinern",
       "layers": "Ebenen",
@@ -80,18 +125,19 @@
       "more": "{0} weitere Treffer",
       "nodescription": "Keine Beschreibung verfügbar",
       "none": "Keine",
-      "noresults": "Keine Ergebnisse",
       "placeholder": "Ort suchen oder Karte hinzufügen...",
       "places": "Orte",
       "providerselection": "Suchdienste",
       "recent": "Zuletzt gesucht",
       "search": "Suchen",
+      "tasks": "Menüwerkzeuge",
       "themelayers": "Themenebenen",
       "themes": "Themen",
       "unknownmore": "Weitere Treffer"
     },
     "app": {
       "missingbg": "Der Hintergrund \"{0}\" konnte nicht gefunden werden, der Standardhintergrund wird angezeigt.",
+      "missingdefaulttheme": "Das Standardthema konnte nicht geladen werden.",
       "missinglayers": "Die folgenden Ebenen können nicht gefunden werden: {0}.",
       "missingpermalink": "Der Permalink oder das Lesezeichen ist ungültig oder abgelaufen.",
       "missingprojection": "Das Thema \"{0}\" konnte nicht geladen werden: die Projektion {1} ist nicht definiert.",
@@ -99,23 +145,22 @@
     },
     "attribtable": {
       "addfeature": "Objekt hinzufügen",
+      "calculatedfield": "Berechnetes Feld",
       "commit": "Geänderte Zeile speichern",
       "csvexport": "CSV Export",
-      "delete": "Löschen",
       "deletefailed": "Ein oder mehrere Objekte konnten nicht gelöscht werden",
       "deletefeatures": "Ausgewählte Objekte löschen",
       "deleting": "Objekte werden gelöscht",
       "discard": "Geänderte Zeile zurücksetzen",
       "formeditmode": "Ausgewähltes Objekt in der Formularansicht editieren",
+      "fulldatasetload": "Das Filtern oder Sortieren nach virtuellen Feldern löst das vollständige Laden des Datensatzes aus.",
       "geomnoadd": "Bitte die Formularansicht verwenden, um neue Objekte für diese Ebene zu erstellen",
       "limittoextent": "In Kartenausschnitt",
       "loadfailed": "Die Objektdaten konnten nicht geladen werden",
-      "loading": "Laden...",
       "nodelete": "Nicht löschen",
       "nogeomnoform": "Die Formularansicht ist für geometrielose Ebenen nicht verfügbar",
       "pleasereload": "Auf 'Neu laden' drücken, um die Attributtabelle zu laden...",
       "reload": "Neu laden",
-      "selectlayer": "Ebene auswählen...",
       "title": "Attributtabelle",
       "zoomtoselection": "Auf ausgewählte Objekte zoomen"
     },
@@ -125,14 +170,12 @@
     "bookmark": {
       "add": "Neues Lesezeichen anlegen",
       "addfailed": "Lesezeichen konnte nicht angelegt werden",
-      "description": "Beschreibung eingeben...",
       "lastUpdate": "Zuletzt gespeichert",
       "manage": "Lesezeichen verwalten",
       "nobookmarks": "Keine Lesezeichen",
       "notloggedin": "Sie müssen angemeldet sein, um Lesezeichen zu verwenden",
       "open": "In aktuellem Fenster öffnen",
       "openTab": "In neuem Fenster öffnen",
-      "remove": "Lesezeichen entfernen",
       "removefailed": "Lesezeichen konnte nicht entfernt werden",
       "savefailed": "Lesezeichen konnte nicht aktualisiert werden",
       "update": "Lesezeichen aktualisieren",
@@ -144,9 +187,43 @@
       "terms_label": "Nutzungsbedingungen",
       "viewertitle_label": "Geoportal Kt. Solothurn"
     },
+    "common": {
+      "all": "Alle",
+      "cancel": "Abbrechen",
+      "circle": "Kreis",
+      "clear": "Zurücksetzen",
+      "clone": "Kopieren",
+      "close": "Schliessen",
+      "delete": "Löschen",
+      "download": "Herunterladen",
+      "ellipse": "Ellipse",
+      "export": "Exportieren",
+      "format": "Format",
+      "line": "Linie",
+      "loading": "Laden...",
+      "lock2dview": "Mit 2D Ansicht bewegen",
+      "noresults": "Keine Ergebnisse",
+      "pick": "Auswählen",
+      "point": "Punkt",
+      "polygon": "Polygon",
+      "rectangle": "Rechteck",
+      "rename": "Unbenennen",
+      "resolution": "Auflösung",
+      "save": "Speichern",
+      "select": "Auswählen...",
+      "selectlayer": "Ebene auswählen...",
+      "square": "Quadrat",
+      "sync2dview": "Mit 2D Ansicht synchronisieren",
+      "text": "Text",
+      "wait": "Bitte warten...",
+      "zoomin": "Hineinzoomen",
+      "zoomout": "Hinauszoomen"
+    },
     "compare3d": {
       "clipplane": "Schnittebene",
       "compare_objects": "Objekte vergleichen",
+      "info_message": "Objektvergleich ist aktiv",
+      "modify": "Ändern",
       "toggleall": "Alle"
     },
     "cookiepopup": {
@@ -171,59 +248,73 @@
       "cone": "Kegel",
       "cuboid": "Quader",
       "cylinder": "Zylinder",
-      "delete": "Löschen",
       "drawings": "Zeichnungen",
+      "intersect": "Verschnitt",
+      "label": "Beschriftung",
       "newgroupprompt": "Zeichungsgruppe hinzufügen",
       "numericinput": "Numerische Eingabe",
-      "pick": "Auswählen",
       "position": "Position",
       "pyramid": "Pyramide",
       "rotate": "Rotieren",
       "rotation": "Rotation",
       "scale": "Skalieren",
       "sphere": "Kugel",
+      "subtract": "Differenz",
       "thescale": "Skalierung",
+      "thesize": "Dimensionen",
       "translate": "Verschieben",
+      "undoBool": "Operation rückgängig machen",
+      "union": "Vereinigung",
       "wedge": "Kegel"
+    },
+    "editdataset3d": {
+      "moveobj": "Objekt in Sichtbereich bringen",
+      "zoomto": "Auf Objekt zoomen"
     },
     "editing": {
       "add": "Hinzufügen",
       "attrtable": "Tabelle",
       "canceldelete": "Abbrechen",
-      "clearpicture": "Zurücksetzen",
+      "clone_all": "Alle",
+      "clone_copy": "Auswahl kopieren",
+      "clone_defaulted": "(Defaultwert)",
+      "clone_dontcopy": "Keine kopieren",
+      "clone_hidden": "(versteckt)",
+      "clone_none": "Keine",
+      "clone_select_attrs": "Zu kopierende Attribute auswählen:",
+      "clone_visible": "Sichtbare ohne Defaultwert",
       "commit": "Speichern",
       "commitfailed": "Fehler beim Speichern",
       "contraintviolation": "Verletzung einer Bedingung",
       "create": "Erstellen",
-      "delete": "Löschen",
       "discard": "Abbrechen",
       "draw": "Neues Objekt",
       "feature": "Objekt",
-      "geomreadonly": "Die Geometrie enthält Z-Werte ungleich Null und kann daher nicht veränderbar.",
+      "geomnonzeroz": "Die Geometrie enthält Z-Werte ungleich Null und ist daher nicht veränderbar.",
+      "geomreadonly": "Die Geometrie ist nicht veränderbar.",
       "invalidform": "Formular ungültig",
-      "maximize": "Maximieren",
-      "minimize": "Minimieren",
       "noeditablelayers": "Keine editierbare Kartenebenen.",
       "paint": "Bearb.",
-      "pick": "Auswählen",
       "pickdrawfeature": "Existierende Geometrie kopieren",
       "reallydelete": "Löschen",
       "relationcommitfailed": "Einige Relationen konnten nicht gespeichert werden, siehe Tooltips der Icons für mehr Details.",
-      "select": "Auswählen",
       "takepicture": "Bild schiessen",
       "unsavedchanged": "Es gibt nicht gespeicherte Änderungen. Soll die Seite trotzdem verlassen werden?",
       "layer": "Kartenebene"
     },
+    "featureattributes": {
+      "name": "Name",
+      "nofeatureormultiple": "Kein oder mehrere Objekte aktiv",
+      "value": "Wert",
+      "windowtitle": "Objektattribute"
+    },
     "featureform": {
       "feature": "Objekt",
-      "noresults": "Keine Ergebnisse",
       "querying": "Objekte werden abgefragt...",
       "title": "Objektformular"
     },
     "featuresearch": {
-      "noresults": "Keine Ergebnisse",
       "query": "Begriff",
-      "select": "Auswählen...",
       "title": "Objektsuche"
     },
     "fileselector": {
@@ -241,11 +332,11 @@
       "line_buffer": "Linie (zu puffern)",
       "point_buffer": "Punkt (zu puffern)",
       "selfinter": "Eins oder mehrere Polygone sind selbst schneidend",
-      "send": "Senden",
-      "wait": "Laden..."
+      "send": "Senden"
     },
     "heightprofile": {
       "asl": "ü. NHN",
+      "dhmdefaultname": "Datensatz",
       "distance": "Distanz",
       "drawnodes": "Knoten zeichnen",
       "error": "Fehler beim Berechnen des Höhenprofils",
@@ -256,25 +347,38 @@
       "print": "Höhenprofil drucken",
       "title": "Höhenprofil"
     },
+    "hideobjects3d": {
+      "clickonmap": "Objekte anclicken um sie auszublenden...",
+      "object": "Objekt",
+      "restore": "Objekt wiederherstellen",
+      "restoreall": "Alle wiederherstellen"
+    },
     "identify": {
       "aggregatedreport": "Aggregierter Bericht",
       "clipboard": "Nach Zwischenablage kopieren",
-      "download": "Herunterladen",
-      "export": "Exportieren",
+      "compare": "Selektierte Objekte vergleichen",
+      "comparing": "Vergleich von {0} Objekte",
       "featureReport": "Objektblatt",
-      "featurecount": "Anzahl Objekte",
+      "featurecount": "{0} Objekt(e)",
       "layerall": "Alle Ebenen",
       "link": "Link",
+      "multiview": "Mehrfachansicht",
       "noattributes": "Keine Attribute",
-      "noresults": "Keine Resultate an der ausgewählten Position",
+      "noresults": "Keine Treffer an der ausgewählten Position",
       "querying": "Objekte werden abgefragt...",
       "reportfail": "Bericht konnt nicht erstellt werden",
-      "selectlayer": "Ebene auswählen",
+      "results": "Ergebnisse",
+      "selectforcompare": "Für Vergleich auswählen",
+      "selectreport": "Bericht auswählen...",
       "title": "Objektinformationen"
     },
     "imageeditor": {
       "confirmclose": "Schließen, ohne zu speichern?",
       "title": "Bildbearbeitung"
+    },
+    "import3d": {
+      "importing": "Wird importiert: {0}...",
+      "noprocessesserver": "Kein Importservice konfiguriert"
     },
     "importlayer": {
       "addfailed": "Die Ebene konnte nicht hinzugefügt werden",
@@ -282,14 +386,14 @@
       "asgroup": "Als Gruppe hinzufügen",
       "connect": "Verbinden",
       "filter": "Filter...",
-      "loading": "Laden...",
       "localfile": "Lokale Datei",
       "nofeatures": "Keine Objekte konnten importiert werden",
       "noresults": "Keine Resultate oder ungültige URL",
       "notgeopdf": "Die ausgewählte Datei scheint kein GeoPDF zu sein.",
       "shpreprojectionerror": "Die Shapefile-Geometrie konnte nicht umprojiziert werden und ist möglicherweise nicht richtig platziert.",
-      "supportedformats": "Unterstützte Formate",
+      "supportedformats": "Unterstützte Formate: KML, GeoJSON, GeoPDF, SHP (in zip)",
       "unknownproj": "Das ausgewählte GeoPDF verwendet eine unbekannte Projektion: {0}.",
+      "unsupportedfile": "Nicht unterstütztes Dateiformat.",
       "url": "URL",
       "urlplaceholder": "WMS, WMTS oder WFS URL eingeben..."
     },
@@ -313,25 +417,16 @@
       "minscale": "Min. Darstellungsmassstab",
       "title": "Kartenebeneninformationen"
     },
-    "layertree": {
-      "compare": "Oberste Kartenebene vergleichen",
-      "deletealllayers": "Alle Ebenen entfernen",
-      "importlayer": "Kartenebene importieren",
-      "maptip": "Kartentipps anzeigen",
-      "printlegend": "Legende drucken",
-      "separator": "Separator",
-      "separatortooltip": "Separator hinzufügen",
-      "transparency": "Transparenz",
-      "visiblefilter": "Unsichtbare Ebenen filtern",
-      "zoomtolayer": "Auf den Layer zoomen"
-    },
     "layertree3d": {
+      "customheight": "Wert",
+      "import": "Importieren",
+      "importobjects": "Objekte importieren",
       "layers": "Ebenen",
-      "objects": "Objekte"
+      "objects": "Objekte",
+      "supportedformats": "Unterstützte Formate: GLTF",
+      "zoomtoobject": "Auf Objekt zoomen"
     },
     "linkfeatureform": {
-      "cancel": "Abbrechen",
-      "close": "Schliessen",
       "drawhint": "Objekt auf der Karte zeichnen...",
       "pickhint": "Objekt auf der Karte auswählen..."
     },
@@ -347,35 +442,27 @@
         "PERMISSION_DENIED": "Position: Zugriff verweigert"
       }
     },
-    "map": {
-      "loading": "Karte wird geladen...",
-      "resetrotation": "Drehung zurücksetzen"
+    "locationrecorder": {
+      "record": "Position aufzeichen",
+      "stop": "Aufzeichnung stoppen"
     },
     "map3d": {
-      "syncview": "Ansicht synchronisieren",
       "terrain": "Gelände",
       "title": "3D Ansicht"
     },
     "mapexport": {
       "configuration": "Konfiguration",
-      "format": "Format",
-      "resolution": "Auflösung",
+      "projection": "Projektion",
       "scale": "Massstab",
       "size": "Dimensionen",
-      "submit": "Exportieren",
-      "usersize": "Auf Karte auswählen...",
-      "wait": "Bitte warten..."
+      "usersize": "Auf Karte auswählen..."
     },
     "mapfilter": {
       "addcustomfilter": "Benutzerdef. filter hinzufügen",
       "brokenrendering": "Die Kartendarstellung könnte aufgrund eines ungültigen Filterausdrucks fehlerhaft sein",
-      "cancel": "Abbrechen",
       "geomfilter": "Geometrie",
       "hidefiltergeom": "Filtergeometrie ausblenden",
       "invalidfilter": "Ungültiger Filterausdruck",
-      "save": "Speichern",
-      "select": "Auswählen...",
-      "selectlayer": "Ebene auswählen",
       "timefilter": "Zeit",
       "timefrom": "Von",
       "timeto": "Bis"
@@ -390,24 +477,47 @@
       "scaledependent": "Legende abhängig vom Kartenmassstab",
       "windowtitle": "Legende"
     },
+    "maplight3d": {
+      "animationstep": "Animationsschritt",
+      "date": "Datum",
+      "dayspersec": "Tage / Sek",
+      "helpersVisible": "Hilfen anzeigen",
+      "minspersec": "Min / Sek",
+      "moonLightIntensity": "Mondlichtintensität",
+      "normalBias": "Normal-Verzerrung",
+      "shadowBias": "Schatten-Verzerrung",
+      "shadowMapSize": "Grösse der Schattentextur",
+      "shadowType": "Schattentyp",
+      "shadowVolumeFar": "Schattenvolumen von",
+      "shadowVolumeNear": "Schattenvolumen bis",
+      "shadowintensity": "Schattenintensität",
+      "shadows": "Schatten aktivieren",
+      "showadvanced": "Erweitert anzeigen",
+      "sunLightIntensity": "Sonnenlichtintensität",
+      "time": "Zeit",
+      "zFactor": "Z-Faktor"
+    },
     "measureComponent": {
       "absolute": "m ü.M.",
       "areaLabel": "Fläche",
       "bearingLabel": "Richtung",
       "ground": "m ü.B.",
+      "heightDiffLabel": "Höhenunterschied",
       "imperial": "Imperial",
       "lengthLabel": "Länge",
       "metric": "Metrisch",
-      "pointLabel": "Position"
+      "pointLabel": "Position",
+      "showmeasurements": "Messungen anzeigen"
     },
     "misc": {
       "ctrlclickhint": "Öffne mit Ctrl+Click"
     },
     "navbar": {
-      "perpage": "pro Seite"
+      "next": "Vorherige Seite",
+      "perpage": "pro Seite",
+      "prev": "Nächste Seite"
     },
     "newspopup": {
-      "dialogclose": "Schliessen",
       "dontshowagain": "Nicht mehr anzeigen",
       "title": "Aktuelles"
     },
@@ -415,94 +525,87 @@
       "angle": "Winkel",
       "featureunsupported": "Numerische Eingabe nicht verfügbar für dieses Objekt",
       "height": "Höhe",
-      "nofeature": "Kein Objekt aktiv",
+      "nofeatureormultiple": "Kein oder mehrere Objekte aktiv",
       "side": "Seite",
       "width": "Breite",
       "windowtitle": "Numerische Eingabe"
     },
+    "obliqueview": {
+      "nodataset": "Keine Schrägluftbilder verfügbar",
+      "title": "Schrägluftbildansicht"
+    },
+    "oereb": {
+      "concernedThemes": "Betroffene Themen",
+      "fundationdatastate": "Daten der amtlichen Vermessung. Stand der amtlichen Vermessung:",
+      "fundations": "Grundlagedaten",
+      "generalInformation": "Allgemeine und rechtliche Informationen",
+      "generalinfo": "Allgemeine Informationen",
+      "hidefulllegend": "Vollständige Legende ausblenden",
+      "hints": "Weitere Informationen und Hinweise",
+      "legalbasis": "Gesetzliche Grundlagen",
+      "notConcernedThemes": "Nicht betroffene Themen",
+      "nrpoints": "Punkt(e)",
+      "perc": "Anteil in %",
+      "regulations": "Rechtsvorschriften",
+      "responsibleauthority": "Katasterverantwortliche Stelle",
+      "responsibleoffice": "Zuständige Stelle",
+      "share": "Anteil",
+      "showfulllegend": "Vollständige Legende einblenden",
+      "themeWithoutData": "Nicht verfügbare Themen",
+      "type": "Typ",
+      "title": "Öffentlich-rechtliche Eigentumsbeschränkungen",
+      "failed": "Der Auszug aus dem Kataster der öffentlich-rechtlichen Eigentumsbeschränkungen konnte nicht abgefragt werden. Bitte wenden Sie sich an die Katasterverantwortliche Stelle: Amt für Geoinformation, Rötistrasse 4, 4501 Solothurn, agi.so.ch"
+    },
+    "panoramax": {
+      "notfound": "An diesem Ort ist kein Bild verfügbar.",
+      "title": "Panoramax Viewer"
+    },
     "pickfeature": {
       "querying": "Abfragen..."
     },
+    "plotinfotool": {
+      "failed": "Datenabfrage gescheitert",
+      "loading": "Daten werden geladen..."
+    },
     "portal": {
       "filter": "Themen filtern...",
-      "menulabel": "Menu"
-    },
-    "print": {
-      "atlasfeature": "Atlasobjekt",
-      "download": "Herunterladen",
-      "download_as_onepdf": "als ein PDF-Dokument",
-      "download_as_onezip": "als ein ZIP-Archiv",
-      "download_as_single": "als einzelne Dateien",
-      "format": "Format",
-      "grid": "Gitter",
-      "layout": "Format",
-      "legend": "Legende",
-      "maximize": "Maximieren",
-      "minimize": "Minimieren",
-      "nolayouts": "Das gewählte Thema stellt keine Druck-Vorlagen zur Verfügung.",
-      "notheme": "Kein Thema selektiert",
-      "output": "Druckausgabe",
-      "overlap": "Überlappung",
-      "pickatlasfeature": "In Ebene {0} auswählen...",
-      "resolution": "Auflösung",
-      "rotation": "Rotation",
-      "save": "Speichern",
-      "scale": "Massstab",
-      "series": "Seriendruck",
-      "submit": "Erzeugen",
-      "wait": "Bitte warten..."
+      "menulabel": "Menü"
     },
     "qtdesignerform": {
       "loading": "Formular wird geladen..."
     },
     "redlining": {
-      "border": "Rand",
+      "attributes": "Objektattribute",
       "buffer": "Puffern",
       "buffercompute": "Berechnen",
       "bufferdistance": "Distanz",
       "bufferlayer": "Zielebene",
       "bufferlayername": "Objektpuffer",
       "bufferselectfeature": "Zu pufferndes Objekt auswählen...",
-      "circle": "Kreis",
-      "delete": "Löschen",
+      "ctrlhint": "Mehrfachselektion mit Ctrl...",
       "draw": "Zeichnen",
       "edit": "Bearbeiten",
-      "ellipse": "Ellipse",
-      "export": "Exportieren",
       "freehand": "Freihand",
       "label": "Beschriftung",
       "layer": "Kartenebene",
       "layertitle": "Zeichnung",
-      "line": "Linie",
       "markers": "Pfeile",
-      "measurements": "Messungen anzeigen",
       "numericinput": "Numerische Eingabe",
-      "pick": "Auswählen",
-      "point": "Punkt",
-      "polygon": "Polygon",
-      "rectangle": "Rechteck",
       "size": "Grösse",
-      "square": "Quadrat",
-      "text": "Text",
-      "transform": "Transformieren",
-      "width": "Breite"
+      "transform": "Transformieren"
     },
     "reports": {
-      "all": "Alle",
-      "download": "Herunterladen",
-      "pick": "Auswählen",
       "region": "Region auswählen",
       "selectlayer": "Berichtebene auswählen..."
     },
     "routing": {
       "add": "Hinzufügen",
+      "addlayer": "Als Ebene exportieren",
       "addviapoint": "Routenpunkt hinzufügen",
       "arriveat": "Ankunft bis",
-      "clear": "Zurücksetzen",
       "computefailed": "Berechnung fehlgeschlagen",
       "computing": "Berechnung...",
       "excludepolygons": "Flächen ausschliessen",
-      "export": "Exportieren",
       "fastest": "Schnellste",
       "fromhere": "Route von hier",
       "importerror": "Import fehlgeschlagen. Der Dateinhalt muss eine GeoJSON FeatureCollection bestehend aus Punktobjekte sein.",
@@ -559,11 +662,16 @@
       "systemlang": "Systemsprache",
       "themes": "Themen"
     },
+    "settings3d": {
+      "quality": "Qualität"
+    },
     "share": {
       "QRCodeLinkTitle": "QR Code (Smartphone)",
       "directLinkTitle": "Über einen direkten Link",
       "expires": "Dieser Permalink ist bis am {0} gültig.",
+      "norestriction": "Keine Einschränkung",
       "refresh": "Permalink generieren",
+      "restricttogroup": "Auf Gruppe einschränken",
       "shareTitle": "QWC2",
       "showpin": "Pin anzeigen",
       "socialIntro": "In den sozialen Medien"
@@ -575,6 +683,7 @@
       "vertex": "An Ecken einrasten"
     },
     "themelayerslist": {
+      "addanyway": "Trotzdem hinzufügen",
       "addlayer": "Layer hinzufügen",
       "addlayerstotheme": "Ebenen der Karte hinzufügen",
       "addselectedlayers": "Selektierte Ebenen hinzufügen",
@@ -608,7 +717,6 @@
       "group": "Gruppierungsattribut",
       "groupnone": "Keins",
       "home": "Zeitleiste Zurücksetzen",
-      "loading": "Laden...",
       "loop": "Schleife",
       "markers": "Marker",
       "notemporaldata": "Keine sichtbare Ebenen in der Karte sind mit Zeitinformationen versehen.",
@@ -639,24 +747,46 @@
         "months": "Monate",
         "seconds": "Sekunden",
         "years": "Jahre"
-      },
-      "zoomin": "Vergrössern",
-      "zoomout": "Verkleinern"
+      }
     },
     "tooltip": {
       "background": "Hintergrundkarte wechseln",
       "fullscreendisable": "Vollbildmodus deaktivieren",
       "fullscreenenable": "Vollbildmodus aktivieren",
-      "home": "Ganze Karte anzeigen",
-      "zoomin": "Hineinzoomen",
-      "zoomout": "Hinauszoomen"
+      "home": "Ganze Karte anzeigen"
+    },
+    "tourguide": {
+      "done": "Fertig",
+      "next": "Weiter",
+      "previous": "Zurück"
+    },
+    "valuetool": {
+      "allbands": "Alle Bänder",
+      "alllayers": "Alle Ebenen",
+      "bands": "Bänder",
+      "graph": "Graph",
+      "layer": "Ebene",
+      "nodata": "Keine Daten",
+      "options": "Optionen",
+      "selectedbands": "Selektierte Bänder",
+      "selectedlayers": "Selektierte Ebenen",
+      "selectlayersbands": "Ebenen / Bänder auswählen",
+      "showbands": "Bänder",
+      "showlayers": "Ebenen",
+      "table": "Tabelle",
+      "title": "Value Tool",
+      "visiblelayers": "Sichtbare Ebenen",
+      "ymax": "Min Y",
+      "ymin": "Max Y"
     },
     "vectorlayerpicker": {
       "none": "Keine",
       "prompt": "Ebenenname eingeben"
     },
+    "view3d": {
+      "storingstate": "3D Ansicht wird gespeichert..."
+    },
     "window": {
-      "close": "Schliessen",
       "detach": "Abkoppeln",
       "dock": "Andocken",
       "embed": "Einbetten",
@@ -670,32 +800,6 @@
       "default": "Standard",
       "dark": "Dunkel",
       "highcontrast": "Hochkontrast"
-    },
-    "oereb": {
-      "concernedThemes": "Betroffene Themen",
-      "fundationdatastate": "Daten der amtlichen Vermessung. Stand der amtlichen Vermessung:",
-      "fundations": "Grundlagedaten",
-      "generalInformation": "Allgemeine und rechtliche Informationen",
-      "generalinfo": "Allgemeine Informationen",
-      "hidefulllegend": "Vollständige Legende ausblenden",
-      "hints": "Weitere Informationen und Hinweise",
-      "legalbasis": "Gesetzliche Grundlagen",
-      "notConcernedThemes": "Nicht betroffene Themen",
-      "nrpoints": "Punkt(e)",
-      "perc": "Anteil in %",
-      "regulations": "Rechtsvorschriften",
-      "responsibleauthority": "Katasterverantwortliche Stelle",
-      "responsibleoffice": "Zuständige Stelle",
-      "share": "Anteil",
-      "showfulllegend": "Vollständige Legende einblenden",
-      "themeWithoutData": "Nicht verfügbare Themen",
-      "type": "Typ",
-      "title": "Öffentlich-rechtliche Eigentumsbeschränkungen",
-      "failed": "Der Auszug aus dem Kataster der öffentlich-rechtlichen Eigentumsbeschränkungen konnte nicht abgefragt werden. Bitte wenden Sie sich an die Katasterverantwortliche Stelle: Amt für Geoinformation, Rötistrasse 4, 4501 Solothurn, agi.so.ch"
-    },
-    "plotinfotool": {
-      "failed": "Datenabfrage gescheitert",
-      "loading": "Daten werden geladen..."
     },
     "plotdescr": {
       "title": "Grundstücksbeschrieb",

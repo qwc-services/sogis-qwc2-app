@@ -34,470 +34,284 @@
     "textStroke": "white"
   },
   "externalLayerFeatureInfoFormats": {
-      "wms.geo.admin.ch": "application/vnd.ogc.gml"
+    "wms.geo.admin.ch": "application/vnd.ogc.gml"
   },
   "projections": [
-      {
-          "code": "EPSG:21781",
-          "proj": "+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +towgs84=674.4,15.1,405.3,0,0,0,0 +units=m +no_defs",
-          "label": "CH1903 / LV03"
-      },
-      {
-          "code": "EPSG:2056",
-          "proj": "+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs",
-          "label": "CH1903+ / LV95"
-      },
-      {
-          "code": "urn:ogc:def:crs:EPSG::2056",
-          "proj": "+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs",
-          "label": "CH1903+ / LV95"
-      }
+    {
+      "code": "EPSG:21781",
+      "proj": "+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +towgs84=674.4,15.1,405.3,0,0,0,0 +units=m +no_defs",
+      "label": "CH1903 / LV03"
+    },
+    {
+      "code": "EPSG:2056",
+      "proj": "+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs",
+      "label": "CH1903+ / LV95"
+    },
+    {
+      "code": "urn:ogc:def:crs:EPSG::2056",
+      "proj": "+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs",
+      "label": "CH1903+ / LV95"
+    }
   ],
   "plugins": {
-      "mobile": [
-        {
-          "name": "Map"
-        },
-        {
-          "name": "HomeButton"
-          ,
-          "cfg": {
-            "position": 2
-          }
-        },
-        {
-          "name": "LocateButton",
-          "cfg": {
-            "position": 1
-          }
-        },
-        {
-          "name": "BackgroundSwitcher",
-          "cfg": {
-            "position": 0
-          }
-        },
-        {
-            "name": "TopBar",
-            "cfg": {
-              "logoFormat": "jpg",
-              "menuItems": [
-                {"key": "ThemeSwitcher", "icon": "themes"},
-                {"key": "LayerTree", "icon": "layers"},
-                {"key": "PlotInfoTool", "icon": "plot_info", "comment": true},
-                {"key": "Share", "icon": "share"},
-                {"key": "Tools", "icon": "tools", "subitems": [
-                  {"key": "Measure", "icon": "measure"},
-                  {"key": "Redlining", "icon": "draw"},
-                  {"key": "Editing", "icon": "editing"},
-                  {"key": "RasterExport", "icon": "rasterexport"}
-                ]},
-                {"key": "Print", "icon": "print"},
-                {"key": "LegendPrint", "icon": "print"},
-                {"key": "LandRegisterExtract", "icon": "print"},
-                {"key": "Help", "icon": "info"},
-                {"key": "Login", "icon": "login"}
-              ],
-              "searchOptions": {
-                "minScale": 1000,
-                "resultLimit": 20
-              },
-              "appMenuClearsTask": true,
-              "logoClickResetsTheme": true,
-              "logoUrl": "/"
-            }
-        },
-        {
-          "name": "ThemeSwitcher"
-        },
-        {
-          "name": "Measure",
-          "cfg": {
-            "showMeasureModeSwitcher": true
-          }
-        },
-        {
-          "name": "Identify",
-          "cfg": {
-            "params": {
-              "FI_POINT_TOLERANCE": 32,
-              "FI_LINE_TOLERANCE": 16,
-              "FI_POLYGON_TOLERANCE": 8,
-              "feature_count": 20
-            },
-            "exportFormat": null,
-            "longAttributesDisplay": "wrap",
-            "displayResultTree": false
-          }
-        },
-        {
-          "name": "Share",
-          "cfg": {
-            "showSocials": true,
-            "showLink": true,
-            "showQRCode": true
-          },
-          "mapClickAction": "identify"
-        },
-        {
-          "name": "Print",
-          "cfg": {
-            "printExternalLayers": true
-          }
-        },
-        {
-          "name": "Help",
-          "cfg": {
-            "bodyContentsFragmentUrl": "assets/help.html"
-          },
-          "mapClickAction": "identify"
-        },
-        {
-          "name": "MapCopyright"
-        },
-        {
-          "name": "LayerTree",
-          "cfg": {
-            "width": "30em",
-            "allowMapTips": false,
-            "showLegendIcons": false,
-            "showRootEntry": true,
-            "showQueryableIcon": false,
-            "groupTogglesSublayers": true,
-            "transparencyIcon": false,
-            "grayUnchecked": true,
-            "flattenGroups": true,
-            "legendThumbnail": "legend_thumbnail.svg",
-            "bboxDependentLegend": true,
-            "layerInfoWindowSize": {"width": 480, "height": 400}
-          },
-          "mapClickAction": "identify"
-        },
-        {
-          "name": "RasterExport",
-          "cfg": {
-            "dpis": [96, 300]
-          }
-        },
-        {
-          "name": "Redlining",
-          "cfg": {
-            "allowGeometryLabels": false
-          }
-        },
-        {
-          "name": "Editing",
-          "cfg": {
-            "touchFriendly": false
-          }
-        },
-        {
-          "name": "MapCompare"
-        },
-        {
-          "name": "HeightProfile"
-        },
-        {
-          "name": "MapInfoTooltip"
-        },
-        {
-          "name": "Authentication"
-        },
-        {
-          "name": "LegendPrint"
-        },
-        {
-          "name": "LandRegisterExtract"
-        },
-        {
-          "name": "CCCInterface"
-        },
-        {
-          "name": "PlotInfoTool",
-          "cfg": {
-            "toolLayers": ["ch.so.agi.av.grundstuecke"],
-            "infoQueries": [
-              {
-                "key": "plotdescr",
-                "titleMsgId": "plotdescr.title",
-                "query": "/plot/$egrid$",
-                "pdfQuery": null,
-                "urlKey": "cadastre_egrid"
-              },
-              {
-                "key": "oereb",
-                "titleMsgId": "oereb.title",
-                "failMsgId": "oereb.failed",
-                "query": "/oereb/xml/$egrid$",
-                "pdfQuery": "/oereb/pdf/$egrid$",
-                "pdfTooltip": "oereb.requestPdf",
-                "urlKey": "oereb_egrid",
-                "scrollmode": "parent",
-                "cfg": {
-                  "hideLogo": true,
-                  "responsibleOfficeFromRestriction": true,
-                  "themes": ["ch.SO.NutzungsplanungGrundnutzung", "ch.SO.NutzungsplanungUeberlagernd", "ch.SO.NutzungsplanungSondernutzungsplaene","ch.SO.Baulinien", "MotorwaysProjectPlaningZones", "MotorwaysBuildingLines", "RailwaysProjectPlanningZones", "RailwaysBuildingLines", "AirportsProjectPlanningZones", "AirportsBuildingLines", "AirportsSecurityZonePlans", "ContaminatedSites", "ContaminatedMilitarySites", "ContaminatedCivilAviationSites", "ContaminatedPublicTransportSites", "GroundwaterProtectionZones", "GroundwaterProtectionSites", "NoiseSensitivityLevels", "ForestPerimeters", "ForestDistanceLines", "ch.SO.Einzelschutz"]
-                }
-              },
-              {
-                "key": "plotowner",
-                "title": "Eigentümerinformationen",
-                "query": "/plot_owner/captcha/$egrid$",
-                "pdfQuery": null,
-                "urlKey": "property_egrid",
-                "cfg": {
-                  "queryUrl": "/plot_owner/$egrid$"
-                }
-              }
-            ]
-          }
-        },
-        {
-            "name": "LoginUser"
-        },
-        {
-          "name": "StartupMarker",
-          "cfg": {
-            "removeMode": "onclickonmarker"
-          }
+    "common": [
+      {
+        "name": "Authentication"
+      },
+      {
+        "name": "BackgroundSwitcher",
+        "cfg": {
+          "position": 0
         }
-      ],
-      "desktop": [
-        {
-          "name": "Map"
+      },
+      {
+        "name": "CCCInterface"
+      },
+      {
+        "name": "Editing"
+      },
+      {
+        "name": "HeightProfile"
+      },
+      {
+        "name": "Help",
+        "cfg": {
+          "bodyContentsFragmentUrl": "assets/help.html"
         },
-        {
-          "name": "HomeButton"
-          ,
-          "cfg": {
-            "position": 4
-          }
-        },
-        {
-          "name": "LocateButton"
-          ,
-          "cfg": {
-            "position": 3
-          }
-        },
-        {
-          "name": "ZoomIn",
-          "cfg": {
-            "position": 2
-          }
-        },
-        {
-          "name": "ZoomOut",
-          "cfg": {
-            "position": 1
-          }
-        },
-        {
-          "name": "BackgroundSwitcher",
-          "cfg": {
-            "position": 0
-          }
-        },
-        {
-            "name": "TopBar",
-            "cfg": {
-              "logoFormat": "png",
-              "menuItems": [
-                {"key": "ThemeSwitcher", "icon": "themes"},
-                {"key": "LayerTree", "icon": "layers"},
-                {"key": "PlotInfoTool", "icon": "plot_info", "comment": true},
-                {"key": "Share", "icon": "share"},
-                {"key": "Tools", "icon": "tools", "subitems": [
-                  {"key": "Measure", "icon": "measure"},
-                  {"key": "Redlining", "icon": "draw"},
-                  {"key": "Editing", "icon": "editing"},
-                  {"key": "RasterExport", "icon": "rasterexport"}
-                ]},
-                {"key": "Print", "icon": "print"},
-                {"key": "LegendPrint", "icon": "print"},
-                {"key": "LandRegisterExtract", "icon": "print"},
-                {"key": "Help", "icon": "info"},
-                {"key": "Login", "icon": "login"}
-              ],
-              "searchOptions": {
-                "minScale": 1000,
-                "resultLimit": 20
-              },
-              "appMenuClearsTask": true,
-              "logoClickResetsTheme": true,
-              "logoUrl": "/"
-            }
-        },
-        {
-          "name": "BottomBar",
-          "cfg": {
-            "viewertitleUrl": "https://www.so.ch/verwaltung/bau-und-justizdepartement/amt-fuer-geoinformation/geoportal/",
-            "termsUrl":  "https://www.so.ch/rechtliches/"
-
-          }
-        },
-        {
-          "name": "Measure",
-          "cfg": {
-            "showMeasureModeSwitcher": true
-          }
-        },
-        {
-          "name": "ThemeSwitcher"
-        },
-        {
-          "name": "LayerTree",
-          "cfg": {
-            "width": "30em",
-            "allowMapTips": false,
-            "showLegendIcons": false,
-            "showRootEntry": true,
-            "showQueryableIcon": false,
-            "groupTogglesSublayers": true,
-            "transparencyIcon": false,
-            "grayUnchecked": true,
-            "flattenGroups": true,
-            "legendThumbnail": "legend_thumbnail.svg",
-            "bboxDependentLegend": true,
-            "layerInfoWindowSize": {"width": 480, "height": 400}
+        "mapClickAction": "identify"
+      },
+      {
+        "name": "Identify",
+        "cfg": {
+          "params": {
+            "FI_POINT_TOLERANCE": 32,
+            "FI_LINE_TOLERANCE": 16,
+            "FI_POLYGON_TOLERANCE": 8,
+            "feature_count": 20
           },
-          "mapClickAction": "identify"
-        },
-        {
-          "name": "Identify",
-          "cfg": {
-            "params": {
-              "FI_POINT_TOLERANCE": 16,
-              "FI_LINE_TOLERANCE": 8,
-              "FI_POLYGON_TOLERANCE": 4,
-              "feature_count": 20
-            },
-            "exportFormat": null,
-            "longAttributesDisplay": "wrap",
-            "displayResultTree": false,
-            "initialWidth": 480,
-            "initialHeight": 550
-          }
-        },
-        {
-          "name": "MapTip"
-        },
-        {
-          "name": "Share",
-          "cfg": {
-            "showSocials": true,
-            "showLink": true,
-            "showQRCode": true
-          },
-          "mapClickAction": "identify"
-        },
-        {
-          "name": "Print",
-          "cfg": {
-            "printExternalLayers": true
-          }
-        },
-        {
-          "name": "Help",
-          "cfg": {
-            "bodyContentsFragmentUrl": "assets/help.html"
-          },
-          "mapClickAction": "identify"
-        },
-        {
-          "name": "MapCopyright"
-        },
-        {
-          "name": "RasterExport",
-          "cfg": {
-            "dpis": [96, 300]
-          }
-        },
-        {
-          "name": "Redlining",
-          "cfg": {
-            "allowGeometryLabels": false
-          }
-        },
-        {
-          "name": "Editing",
-          "cfg": {
-            "touchFriendly": false
-          }
-        },
-        {
-          "name": "MapCompare"
-        },
-        {
-          "name": "HeightProfile",
-          "cfg": {
-            "height": 200
-          }
-        },
-        {
-          "name": "MapInfoTooltip"
-        },
-        {
-          "name": "Authentication"
-        },
-        {
-          "name": "LegendPrint"
-        },
-        {
-          "name": "LandRegisterExtract"
-        },
-        {
-          "name": "CCCInterface"
-        },
-        {
-          "name": "PlotInfoTool",
-          "cfg": {
-            "toolLayers": ["ch.so.agi.av.grundstuecke"],
-            "infoQueries": [
-              {
-                "key": "plotdescr",
-                "titleMsgId": "plotdescr.title",
-                "query": "/plot/$egrid$",
-                "pdfQuery": "/landreg/$egrid$",
-                "urlKey": "cadastre_egrid"
-              },
-              {
-                "key": "oereb",
-                "titleMsgId": "oereb.title",
-                "failMsgId": "oereb.failed",
-                "query": "/oereb/xml/$egrid$",
-                "pdfQuery": "/oereb/pdf/$egrid$",
-                "pdfTooltip": "oereb.requestPdf",
-                "urlKey": "oereb_egrid",
-                "scrollmode": "parent",
-                "cfg": {
-                  "hideLogo": true,
-                  "responsibleOfficeFromRestriction": true,
-                  "themes": ["ch.SO.NutzungsplanungGrundnutzung", "ch.SO.NutzungsplanungUeberlagernd", "ch.SO.NutzungsplanungSondernutzungsplaene","ch.SO.Baulinien", "MotorwaysProjectPlaningZones", "MotorwaysBuildingLines", "RailwaysProjectPlanningZones", "RailwaysBuildingLines", "AirportsProjectPlanningZones", "AirportsBuildingLines", "AirportsSecurityZonePlans", "ContaminatedSites", "ContaminatedMilitarySites", "ContaminatedCivilAviationSites", "ContaminatedPublicTransportSites", "GroundwaterProtectionZones", "GroundwaterProtectionSites", "NoiseSensitivityLevels", "ForestPerimeters", "ForestDistanceLines", "ch.SO.Einzelschutz"]
-                }
-              },
-              {
-                "key": "plotowner",
-                "title": "Eigentümerinformationen",
-                "query": "/plot_owner/captcha/$egrid$",
-                "pdfQuery": "/landreg/$egrid$",
-                "urlKey": "property_egrid",
-                "cfg": {
-                  "queryUrl": "/plot_owner/$egrid$"
-                }
-              }
-            ]
-          }
-        },
-        {
-            "name": "LoginUser"
-        },
-        {
-          "name": "StartupMarker",
-          "cfg": {
-            "removeMode": "onclickonmarker"
-          }
+          "exportFormat": null,
+          "longAttributesDisplay": "wrap",
+          "displayResultTree": false
         }
-      ]
+      },
+      {
+        "name": "LayerTree",
+        "cfg": {
+          "width": "30em",
+          "allowMapTips": false,
+          "showLegendIcons": false,
+          "showRootEntry": true,
+          "showQueryableIcon": false,
+          "groupTogglesSublayers": true,
+          "transparencyIcon": false,
+          "grayUnchecked": true,
+          "flattenGroups": true,
+          "legendThumbnail": "legend_thumbnail.svg",
+          "bboxDependentLegend": true,
+          "layerInfoWindowSize": {"width": 480, "height": 400}
+        },
+        "mapClickAction": "identify"
+      },
+      {
+        "name": "LandRegisterExtract"
+      },
+      {
+        "name": "LegendPrint"
+      },
+      {
+        "name": "Map"
+      },
+      {
+        "name": "MapCompare"
+      },
+      {
+        "name": "MapCopyright"
+      },
+      {
+        "name": "MapExport",
+        "cfg": {
+          "dpis": [96, 300]
+        }
+      },
+      {
+        "name": "MapInfoTooltip"
+      },
+      {
+        "name": "Measure",
+        "cfg": {
+          "showMeasureModeSwitcher": true
+        }
+      },
+      {
+        "name": "PlotInfoTool",
+        "cfg": {
+          "toolLayers": ["ch.so.agi.av.grundstuecke"],
+          "infoQueries": [
+            {
+              "key": "plotdescr",
+              "titleMsgId": "plotdescr.title",
+              "query": "/plot/$egrid$",
+              "pdfQuery": "/landreg/$egrid$",
+              "urlKey": "cadastre_egrid"
+            },
+            {
+              "key": "oereb2",
+              "titleMsgId": "oereb.title",
+              "failMsgId": "oereb.failed",
+              "query": "/oereb/xml/$egrid$",
+              "pdfQuery": "/oereb/pdf/$egrid$",
+              "pdfTooltip": "oereb.requestPdf",
+              "urlKey": "oereb_egrid",
+              "scrollmode": "parent",
+              "cfg": {
+                "hideLogo": true,
+                "responsibleOfficeFromRestriction": true,
+                "themes": ["ch.SO.NutzungsplanungGrundnutzung", "ch.SO.NutzungsplanungUeberlagernd", "ch.SO.NutzungsplanungSondernutzungsplaene","ch.SO.Baulinien", "MotorwaysProjectPlaningZones", "MotorwaysBuildingLines", "RailwaysProjectPlanningZones", "RailwaysBuildingLines", "AirportsProjectPlanningZones", "AirportsBuildingLines", "AirportsSecurityZonePlans", "ContaminatedSites", "ContaminatedMilitarySites", "ContaminatedCivilAviationSites", "ContaminatedPublicTransportSites", "GroundwaterProtectionZones", "GroundwaterProtectionSites", "NoiseSensitivityLevels", "ForestPerimeters", "ForestDistanceLines", "ch.SO.Einzelschutz"]
+              }
+            },
+            {
+              "key": "plotowner",
+              "title": "Eigentümerinformationen",
+              "query": "/plot_owner/captcha/$egrid$",
+              "pdfQuery": "/landreg/$egrid$",
+              "urlKey": "property_egrid",
+              "cfg": {
+                "queryUrl": "/plot_owner/$egrid$"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "Print",
+        "cfg": {
+          "printExternalLayers": true
+        }
+      },
+      {
+        "name": "Redlining",
+        "cfg": {
+          "allowGeometryLabels": false
+        }
+      },
+      {
+        "name": "Share",
+        "cfg": {
+          "showSocials": true,
+          "showLink": true,
+          "showQRCode": true
+        },
+        "mapClickAction": "identify"
+      },
+      {
+        "name": "StartupMarker",
+        "cfg": {
+          "removeMode": "onclickonmarker"
+        }
+      },
+      {
+        "name": "ThemeSwitcher"
+      },
+      {
+        "name": "TopBar",
+        "cfg": {
+          "logoFormat": "png",
+          "menuItems": [
+            {"key": "ThemeSwitcher", "icon": "themes"},
+            {"key": "LayerTree", "icon": "layers"},
+            {"key": "PlotInfoTool", "icon": "plot_info", "comment": true},
+            {"key": "Share", "icon": "share"},
+            {"key": "Tools", "icon": "tools", "subitems": [
+              {"key": "Measure", "icon": "measure"},
+              {"key": "Redlining", "icon": "draw"},
+              {"key": "Editing", "icon": "editing"},
+              {"key": "MapExport", "icon": "rasterexport"}
+            ]},
+            {"key": "Print", "icon": "print"},
+            {"key": "LegendPrint", "icon": "print"},
+            {"key": "LandRegisterExtract", "icon": "print"},
+            {"key": "Help", "icon": "info"},
+            {"key": "Authentication", "mode": "Login", "icon": "login"}
+          ],
+          "searchOptions": {
+            "minScale": 1000,
+            "resultLimit": 20
+          },
+          "appMenuClearsTask": true,
+          "logoClickResetsTheme": true,
+          "logoUrl": "/"
+        }
+      }
+    ],
+    "mobile": [
+      {
+        "name": "HomeButton",
+        "cfg": {
+          "position": 2
+        }
+      },
+      {
+        "name": "LocateButton",
+        "cfg": {
+          "position": 1
+        }
+      }
+    ],
+    "desktop": [
+      {
+        "name": "Authentication",
+        "cfg": {
+          "showLoginUser": true
+        }
+      },
+      {
+        "name": "BottomBar",
+        "cfg": {
+          "viewertitleUrl": "https://www.so.ch/verwaltung/bau-und-justizdepartement/amt-fuer-geoinformation/geoportal/",
+          "termsUrl":  "https://www.so.ch/rechtliches/"
+        }
+      },
+      {
+        "name": "HeightProfile",
+        "cfg": {
+          "height": 200
+        }
+      },
+      {
+        "name": "HomeButton"
+        ,
+        "cfg": {
+          "position": 4
+        }
+      },
+      {
+        "name": "Identify",
+        "cfg": {
+          "initialWidth": 480,
+          "initialHeight": 550
+        }
+      },
+      {
+        "name": "LocateButton",
+        "cfg": {
+          "position": 3
+        }
+      },
+      {
+        "name": "MapTip"
+      },
+      {
+        "name": "ZoomIn",
+        "cfg": {
+          "position": 2
+        }
+      },
+      {
+        "name": "ZoomOut",
+        "cfg": {
+          "position": 1
+        }
+      }
+    ]
   }
 }

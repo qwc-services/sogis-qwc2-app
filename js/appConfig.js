@@ -10,6 +10,8 @@ import AppMenu from 'qwc2/components/AppMenu';
 import FullscreenSwitcher from 'qwc2/components/FullscreenSwitcher';
 import SearchBox from 'qwc2/components/SearchBox';
 import Toolbar from 'qwc2/components/Toolbar';
+import Oereb2Document from 'qwc2/extra/components/Oereb2Document';
+import PlotInfoToolPlugin from 'qwc2/extra/plugins/PlotInfoTool';
 import APIPlugin from 'qwc2/plugins/API';
 import AttributeTablePlugin from 'qwc2/plugins/AttributeTable';
 import AuthenticationPlugin from 'qwc2/plugins/Authentication';
@@ -22,8 +24,12 @@ import HomeButtonPlugin from 'qwc2/plugins/HomeButton';
 import IdentifyPlugin from 'qwc2/plugins/Identify';
 import LayerTreePlugin from 'qwc2/plugins/LayerTree';
 import LocateButtonPlugin from 'qwc2/plugins/LocateButton';
-import LoginUserPlugin from 'qwc2/plugins/LoginUser';
 import MapPlugin from 'qwc2/plugins/Map';
+import EditingSupport from 'qwc2/plugins/map/EditingSupport';
+import LocateSupport from 'qwc2/plugins/map/LocateSupport';
+import MeasurementSupport from 'qwc2/plugins/map/MeasurementSupport';
+import RedliningSupport from 'qwc2/plugins/map/RedliningSupport';
+import SnappingSupport from 'qwc2/plugins/map/SnappingSupport';
 import MapComparePlugin from 'qwc2/plugins/MapCompare';
 import MapCopyrightPlugin from 'qwc2/plugins/MapCopyright';
 import MapExportPlugin from 'qwc2/plugins/MapExport';
@@ -33,6 +39,7 @@ import MapLegendPlugin from 'qwc2/plugins/MapLegend';
 import MapTipPlugin from 'qwc2/plugins/MapTip';
 import MeasurePlugin from 'qwc2/plugins/Measure';
 import NewsPopupPlugin from 'qwc2/plugins/NewsPopup';
+import OverviewMapPlugin from 'qwc2/plugins/OverviewMap';
 import PrintPlugin from 'qwc2/plugins/Print';
 import RedliningPlugin from 'qwc2/plugins/Redlining';
 import SharePlugin from 'qwc2/plugins/Share';
@@ -41,15 +48,7 @@ import TaskButtonPlugin from 'qwc2/plugins/TaskButton';
 import ThemeSwitcherPlugin from 'qwc2/plugins/ThemeSwitcher';
 import TimeManagerPlugin from 'qwc2/plugins/TimeManager';
 import {ZoomInPlugin, ZoomOutPlugin} from 'qwc2/plugins/ZoomButtons';
-import EditingSupport from 'qwc2/plugins/map/EditingSupport';
-import LocateSupport from 'qwc2/plugins/map/LocateSupport';
-import MeasurementSupport from 'qwc2/plugins/map/MeasurementSupport';
-import RedliningSupport from 'qwc2/plugins/map/RedliningSupport';
-import ScaleBarSupport from 'qwc2/plugins/map/ScaleBarSupport';
-import SnappingSupport from 'qwc2/plugins/map/SnappingSupport';
 import LayerUtils from 'qwc2/utils/LayerUtils';
-import Oereb2Document from 'qwc2-extra/components/Oereb2Document';
-import PlotInfoToolPlugin from 'qwc2-extra/plugins/PlotInfoTool';
 
 import defaultLocaleData from '../static/translations/de-CH.json';
 import {renderHelp} from './Help';
@@ -76,7 +75,6 @@ export default {
                 MeasurementSupport: MeasurementSupport,
                 LocateSupport: LocateSupport,
                 RedliningSupport: RedliningSupport,
-                ScaleBarSupport: ScaleBarSupport,
                 CCCEditSupport: CCCEditSupport,
                 SnappingSupport: SnappingSupport
             }),
@@ -96,6 +94,7 @@ export default {
             BottomBarPlugin: SoBottomBarPlugin,
             MeasurePlugin: MeasurePlugin,
             NewsPopupPlugin: NewsPopupPlugin,
+            OverviewMapPlugin: OverviewMapPlugin,
             ThemeSwitcherPlugin: ThemeSwitcherPlugin,
             LayerTreePlugin: LayerTreePlugin,
             IdentifyPlugin: IdentifyPlugin,
@@ -119,7 +118,6 @@ export default {
             PlotInfoToolPlugin: PlotInfoToolPlugin,
             LandRegisterExtractPlugin: LandRegisterExtractPlugin,
             CCCInterfacePlugin: CCCInterfacePlugin,
-            LoginUserPlugin: LoginUserPlugin,
             LegendPrintPlugin: LegendPrintPlugin
         },
         cfg: {
