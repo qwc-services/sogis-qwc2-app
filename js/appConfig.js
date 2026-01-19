@@ -51,7 +51,6 @@ import {ZoomInPlugin, ZoomOutPlugin} from 'qwc2/plugins/ZoomButtons';
 import LayerUtils from 'qwc2/utils/LayerUtils';
 
 import defaultLocaleData from '../static/translations/de-CH.json';
-import {renderHelp} from './Help';
 import CCCEditSupport from './plugins/CCCEditSupport';
 import {CCCInterfacePlugin, CCCAttributeCalculator} from './plugins/CCCInterface';
 import LandRegisterExtractPlugin from './plugins/LandRegisterExtract';
@@ -105,7 +104,7 @@ export default {
 	    TimeManagerPlugin: TimeManagerPlugin,
             MapCopyrightPlugin: MapCopyrightPlugin,
             PrintPlugin: PrintPlugin,
-            HelpPlugin: HelpPlugin(renderHelp),
+            HelpPlugin: HelpPlugin(),
             MapExportPlugin: MapExportPlugin,
 	    MapFilterPlugin: MapFilterPlugin,
             RedliningPlugin: RedliningPlugin({}),
