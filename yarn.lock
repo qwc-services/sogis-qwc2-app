@@ -6270,10 +6270,10 @@ quickselect@^3.0.0:
   resolved "https://registry.yarnpkg.com/quickselect/-/quickselect-3.0.0.tgz#a37fc953867d56f095a20ac71c6d27063d2de603"
   integrity sha512-XdjUArbK4Bm5fLLvlm5KpTFOiOThgfWWI4axAZDWg4E/0mKdZyI9tNEfds27qCi1ze/vwTR16kvmmGhRra3c2g==
 
-qwc2@2026.01.19:
-  version "2026.1.19"
-  resolved "https://registry.yarnpkg.com/qwc2/-/qwc2-2026.1.19.tgz#89dd9308ccb82073736190bcad4fe6048cd0f5d2"
-  integrity sha512-m5S+ogdcFKGw5ZikLibUbw3Fae1KSIJfLehF5fIA8y/2GND0Ga4R/e4Pha5X6CZz6TXOl/7W/BpF8kxDvrzZEg==
+qwc2@2026.01.20:
+  version "2026.1.20"
+  resolved "https://registry.yarnpkg.com/qwc2/-/qwc2-2026.1.20.tgz#a6c428f6280634f65b9175238d1b7d6ddec8a801"
+  integrity sha512-g1W7Ab22ZgTFpVM3n5TpGpQ74GO1P9qrZ4XFpQqVwk4velACY48xtNHoxbFfV6loyzdpF6ejSsPOsxFaTw2AoQ==
   dependencies:
     "@furkot/webfonts-generator" "^2.0.3"
     "@kayahr/text-encoding" "^2.1.0"
