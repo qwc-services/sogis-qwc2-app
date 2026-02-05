@@ -29,11 +29,11 @@
 }
 
 div.mysoch-scaleline {
-    left: 4em;
-    bottom: 1em;
+    margin-left: 4em!important;
+    background-color: transparent!important;
 }
 
-div.mysoch-scaleline > div.ol-scale-line-inner {
-    color: white;
-    border-color: white;
+div.mysoch-scaleline > div.bottombar-scalebar-inner {
+    color: white!important;
+    border-color: white!important;
 }

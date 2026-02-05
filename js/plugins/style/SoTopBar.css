@@ -64,6 +64,11 @@
     padding: 0 0.3em;
 }
 
+#SoTopBar div.AppMenu span.mysoch-appmenu-label {
+    color: white;
+    font-weight: bold;
+}
+
 #SoTopBar div.AppMenu span.appmenu-button {
     display: flex;
     flex-direction: row-reverse;
@@ -89,6 +94,11 @@
     top: 100%;
     background-color: #cc0000;
     padding: 0.25em;
+}
+
+#SoTopBar div.SearchBox {
+    flex: 1 1 auto;
+    max-width: 70ch;
 }
 
 #SoTopBar div.SearchBox, 

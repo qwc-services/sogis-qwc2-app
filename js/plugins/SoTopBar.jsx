@@ -33,7 +33,8 @@ class SoTopBar extends React.Component {
         leaveUrl: PropTypes.string,
         /** The URL to logout from my.so.ch. */
         logoutUrl: PropTypes.string,
-        showNotification: PropTypes.func
+        showNotification: PropTypes.func,
+        topbarHeight: PropTypes.number
     };
     // eslint-disable-next-line new-cap
     static defaultProps = TopBarPlugin().defaultProps;
@@ -85,7 +86,7 @@ class SoTopBar extends React.Component {
         } else {
             buttonContents = (
                 <span className="appmenu-button">
-                    <span className="appmenu-label">{LocaleUtils.tr("appmenu.menulabel")}</span>
+                    <span className="mysoch-appmenu-label">{LocaleUtils.tr("appmenu.menulabel")}</span>
                     <Icon className="mysoch-menu-icon" icon="mysoch-hamburger" title={tooltip}/>
                 </span>
             );
@@ -155,7 +156,11 @@ class SoTopBar extends React.Component {
         if (el) {
             this.props.setTopbarHeight(el.clientHeight);
             new ResizeObserver(() => {
-                this.props.setTopbarHeight(el.clientHeight);
+                setTimeout(() => {
+                    if (el.clientHeight !== this.props.topbarHeight) {
+                        this.props.setTopbarHeight(el.clientHeight);
+                    }
+                }, 50);
             }).observe(el);
         }
     };
@@ -191,7 +196,8 @@ class SoTopBar extends React.Component {
 export default (components) => {
     return connect((state) => ({
         fullscreen: state.display.fullscreen,
-        components: components
+        components: components,
+        topbarHeight: state.windows.topbarHeight
     }), {
         toggleFullscreen: toggleFullscreen,
         openExternalUrl: openExternalUrl,
