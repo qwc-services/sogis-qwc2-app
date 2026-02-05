@@ -30,7 +30,7 @@ export default class SoBottomBar extends React.Component {
     componentDidMount() {
         const userInfos = ConfigUtils.getConfigProp("user_infos");
         if (userInfos?.mysoch) {
-            document.querySelector('div.ol-scale-line').classList.add("mysoch-scaleline");
+            document.querySelector('div.bottombar-scalebar').classList.add("mysoch-scaleline");
         }
     }
     render() {
