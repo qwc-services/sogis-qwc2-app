@@ -664,6 +664,7 @@
       "themes": "Themen"
     },
     "settings3d": {
+      "fov": "Sichtfeld",
       "quality": "Qualität"
     },
     "share": {

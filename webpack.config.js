@@ -21,7 +21,7 @@ module.exports = (env, argv) => {
             assetModuleFilename: 'dist/[hash][ext][query]'
         },
         watchOptions: {
-            ignored: /node_modules(\\|\/)(?!qwc2)/
+            ignored: /node_modules(\\|\/)(?!qwc2-lts)/
         },
         devtool: isProd ? 'source-map' : 'inline-source-map',
         optimization: {
@@ -40,12 +40,15 @@ module.exports = (env, argv) => {
         },
         resolve: {
             extensions: [".mjs", ".js", ".jsx"],
+            alias: {
+                "qwc2": "qwc2-lts"
+            },
             fallback: {
                 path: require.resolve("path-browserify")
             }
         },
         snapshot: {
-            managedPaths: [/(.*(\\|\/)node_modules(\\|\/)(?!qwc2))/]
+            managedPaths: [/(.*(\\|\/)node_modules(\\|\/)(?!qwc2-lts))/]
         },
         plugins: [
             new webpack.DefinePlugin({
@@ -55,7 +58,7 @@ module.exports = (env, argv) => {
                     AvailableLanguages: JSON.stringify(availableLanguages)
                 }
             }),
-            new webpack.NormalModuleReplacementPlugin(/openlayers$/, path.join(__dirname, "node_modules", "qwc2", "libs", "openlayers")),
+            new webpack.NormalModuleReplacementPlugin(/openlayers$/, path.join(__dirname, "node_modules", "qwc2-lts", "libs", "openlayers")),
             new HtmlWebpackPlugin({
                 template: path.resolve(__dirname, "index.html"),
                 build: buildDate,
@@ -82,10 +85,10 @@ module.exports = (env, argv) => {
                 },
                 {
                     test: /\.jsx?$/,
-                    exclude: /node_modules(\\|\/)(?!qwc2)/,
+                    exclude: /node_modules(\\|\/)(?!qwc2-lts)/,
                     use: {
                         loader: 'babel-loader',
-                        options: { babelrcRoots: ['.', path.resolve(__dirname, 'node_modules', 'qwc2')] }
+                        options: { babelrcRoots: ['.', path.resolve(__dirname, 'node_modules', 'qwc2-lts')] }
                     }
                 },
                 {
