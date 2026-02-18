@@ -1,11 +1,15 @@
-const webpack = require('webpack');
-const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
 const availableLanguages = require('./static/translations/tsconfig.json').languages;
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 
 const today = new Date();
 const buildDate = today.getFullYear() + "." + String(1 + today.getMonth()).padStart(2, '0') + "." + String(today.getDate()).padStart(2, '0');
+
+const isQwcLts = 'qwc2-lts' in require('./package.json').dependencies;
+const qwc2ModName = isQwcLts ? 'qwc2-lts' : 'qwc2';
 
 module.exports = (env, argv) => {
     const isProd = argv.mode === "production";
@@ -18,10 +22,11 @@ module.exports = (env, argv) => {
             hashFunction: 'sha256',
             path: path.resolve(__dirname, 'prod'),
             filename: 'dist/QWC2App.js',
-            assetModuleFilename: 'dist/[hash][ext][query]'
+            assetModuleFilename: 'dist/[hash][ext][query]',
+            clean: true
         },
         watchOptions: {
-            ignored: /node_modules(\\|\/)(?!qwc2-lts)/
+            ignored: new RegExp(String.raw`node_modules(\\|\/)(?!${qwc2ModName})`)
         },
         devtool: isProd ? 'source-map' : 'inline-source-map',
         optimization: {
@@ -41,14 +46,15 @@ module.exports = (env, argv) => {
         resolve: {
             extensions: [".mjs", ".js", ".jsx"],
             alias: {
-                "qwc2": "qwc2-lts"
+                "@giro3d/giro3d": "@sourcepole/qwc-giro3d",
+                "qwc2": qwc2ModName
             },
             fallback: {
                 path: require.resolve("path-browserify")
             }
         },
         snapshot: {
-            managedPaths: [/(.*(\\|\/)node_modules(\\|\/)(?!qwc2-lts))/]
+            managedPaths: [new RegExp(String.raw`(.*(\\|\/)node_modules(\\|\/)(?!${qwc2ModName}))`)]
         },
         plugins: [
             new webpack.DefinePlugin({
@@ -58,7 +64,7 @@ module.exports = (env, argv) => {
                     AvailableLanguages: JSON.stringify(availableLanguages)
                 }
             }),
-            new webpack.NormalModuleReplacementPlugin(/openlayers$/, path.join(__dirname, "node_modules", "qwc2-lts", "libs", "openlayers")),
+            new webpack.NormalModuleReplacementPlugin(/openlayers$/, path.join(__dirname, "node_modules", qwc2ModName, "libs", "openlayers")),
             new HtmlWebpackPlugin({
                 template: path.resolve(__dirname, "index.html"),
                 build: buildDate,
@@ -68,7 +74,12 @@ module.exports = (env, argv) => {
                 patterns: [
                     { from: 'static' }
                 ]
-            })
+            }),
+            env.ANALYZE === "1" ? new BundleAnalyzerPlugin({
+                analyzerMode: 'server',   // opens browser automatically
+                openAnalyzer: true,       // ensures browser launches
+                generateStatsFile: true  // optional, creates stats.json
+            }) : null
         ],
         module: {
             rules: [
@@ -85,10 +96,10 @@ module.exports = (env, argv) => {
                 },
                 {
                     test: /\.jsx?$/,
-                    exclude: /node_modules(\\|\/)(?!qwc2-lts)/,
+                    exclude: /node_modules(\\|\/)(?!qwc2)/,
                     use: {
                         loader: 'babel-loader',
-                        options: { babelrcRoots: ['.', path.resolve(__dirname, 'node_modules', 'qwc2-lts')] }
+                        options: { babelrcRoots: ['.', path.resolve(__dirname, 'node_modules', qwc2ModName)] }
                     }
                 },
                 {
