@@ -13,7 +13,7 @@ import axios from 'axios';
 import assign from 'object-assign';
 import ol from 'openlayers';
 import PropTypes from 'prop-types';
-import {LayerRole, addLayerFeatures, refreshLayer, removeLayer} from 'qwc2/actions/layers';
+import {LayerRole, addLayerFeatures, addThemeSublayer, refreshLayer, removeLayer} from 'qwc2/actions/layers';
 import {zoomToPoint, zoomToExtent} from 'qwc2/actions/map';
 import {setCurrentTask, setCurrentTaskBlocked} from 'qwc2/actions/task';
 import {setCurrentTheme} from 'qwc2/actions/theme';
@@ -26,6 +26,7 @@ import MapUtils from 'qwc2/utils/MapUtils';
 import {UrlParams} from 'qwc2/utils/PermaLinkUtils';
 import {v4 as uuidv4} from 'uuid';
 
+import {themeLayerRestorer} from '../themeLayerRestorer';
 import {changeCCCState} from './actions/ccc';
 
 import './style/CCCInterface.css';
@@ -42,6 +43,7 @@ const CCCStatus = {
 class CCCInterface extends React.Component {
     static propTypes = {
         addLayerFeatures: PropTypes.func,
+        addThemeSublayer: PropTypes.func,
         ccc: PropTypes.object,
         cccselection: PropTypes.bool,
         changeCCCState: PropTypes.func,
@@ -91,7 +93,7 @@ class CCCInterface extends React.Component {
                 document.title = CccAppConfig.title;
 
                 // Load ccc theme
-                this.loadTheme(props);
+                this.loadThemeOrLayers(props);
 
                 // Start websocket session
                 this.createWebSocket();
@@ -103,13 +105,19 @@ class CCCInterface extends React.Component {
             });
         }
     };
-    loadTheme = (props) => {
-        const theme = props.themes.items.find(t => t.name === CccAppConfig.map);
-        if (theme) {
-            props.setCurrentTheme(theme, props.themes, false);
-        } else {
-            /* eslint-disable-next-line */
-            console.warn("Could not find theme " + CccAppConfig.map);
+    loadThemeOrLayers = (props) => {
+        if (CccAppConfig.map) {
+            const theme = props.themes.items.find(t => t.name === CccAppConfig.map);
+            if (theme) {
+                props.setCurrentTheme(theme, props.themes, false);
+            } else {
+                /* eslint-disable-next-line */
+                console.warn("Could not find theme " + CccAppConfig.map);
+            }
+        } else if (CccAppConfig.layers) {
+            themeLayerRestorer(CccAppConfig.layers, null, (layers) => {
+                this.props.addThemeSublayer({sublayers: layers});
+            });
         }
     };
     createWebSocket = () => {
@@ -367,6 +375,7 @@ export const CCCInterfacePlugin = connect(selector, {
     setCurrentTaskBlocked: setCurrentTaskBlocked,
     refreshLayer: refreshLayer,
     addLayerFeatures: addLayerFeatures,
+    addThemeSublayer: addThemeSublayer,
     setCurrentTheme: setCurrentTheme,
     removeLayer: removeLayer
 })(CCCInterface);
