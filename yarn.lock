@@ -6501,10 +6501,10 @@ quickselect@^3.0.0:
   resolved "https://registry.yarnpkg.com/quickselect/-/quickselect-3.0.0.tgz#a37fc953867d56f095a20ac71c6d27063d2de603"
   integrity sha512-XdjUArbK4Bm5fLLvlm5KpTFOiOThgfWWI4axAZDWg4E/0mKdZyI9tNEfds27qCi1ze/vwTR16kvmmGhRra3c2g==
 
-qwc2-lts@2026.0.6:
-  version "2026.0.6"
-  resolved "https://registry.yarnpkg.com/qwc2-lts/-/qwc2-lts-2026.0.6.tgz#5c51cac787aa47a4e744bbd1ddf181d888dd6f10"
-  integrity sha512-4RD5FS7jyJ5V4PP6BWbyACwWJ59i6erZuZWWCTT9ufKvjErX5Kug1LswenLdbBfJ02DDocxBMiw7Z61/C0yFKg==
+qwc2-lts@2026.0.7:
+  version "2026.0.7"
+  resolved "https://registry.yarnpkg.com/qwc2-lts/-/qwc2-lts-2026.0.7.tgz#f2741b22c0f12d21447587d718e6b0b97b04bdfc"
+  integrity sha512-zNL29lmiVSD/ayavHq9rhHdLHDNvd2KeyGuj8dO4LRdjSlrKN/s13deMEjVwJQIcovhthi2lmW+Ggvx2QJRC0w==
   dependencies:
     "@furkot/webfonts-generator" "^2.0.3"
     "@kayahr/text-encoding" "^2.1.0"
@@ -7521,15 +7521,9 @@ strip-json-comments@^3.1.1:
   integrity sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==
 
 strnum@^2.2.0:
-<<<<<<< HEAD
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/strnum/-/strnum-2.2.1.tgz#d28f896b4ef9985212494ce8bcf7ca304fad8368"
-  integrity sha512-BwRvNd5/QoAtyW1na1y1LsJGQNvRlkde6Q/ipqqEaivoMdV+B1OMOTVdwR+N/cwVUcIt9PYyHmV8HyexCZSupg==
-=======
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/strnum/-/strnum-2.2.2.tgz#f11fd94ab62b536ba2ecc615858f3747c2881b3f"
   integrity sha512-DnR90I+jtXNSTXWdwrEy9FakW7UX+qUZg28gj5fk2vxxl7uS/3bpI4fjFYVmdK9etptYBPNkpahuQnEwhwECqA==
->>>>>>> b314a57 (Update to fast-xml-parser 5.5.8)
 
 style-loader@^4.0.0:
   version "4.0.0"
