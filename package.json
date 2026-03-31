@@ -1,13 +1,13 @@
 {
     "name": "QWC2Solothurn",
-    "version": "2026.03.24",
+    "version": "2026.03.31",
     "description": "QGIS Web Client 2",
     "author": "Sourcepole",
     "license": "BSD-2-Clause",
     "repository": "git@git.sourcepole.ch:ktso/qwc2-solothurn.git",
     "private": true,
     "dependencies": {
-        "qwc2-lts": "2026.0.8"
+        "qwc2-lts": "2026.0.9"
     },
     "devDependencies": {
         "@babel/core": "^7.29.0",
