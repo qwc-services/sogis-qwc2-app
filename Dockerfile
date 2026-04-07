@@ -1,3 +1,3 @@
-FROM sourcepole/qwc-map-viewer-base:latest-2026-lts
+FROM sourcepole/qwc-map-viewer-base:latest
 
 COPY prod/ /qwc2
