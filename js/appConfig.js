@@ -186,7 +186,7 @@ export default {
                     }
                 }
             } else if (actionType === "CHANGE_LAYER_PROPERTY") {
-                let layer = state.layers.flat.find(l => l.uuid === data.layerUuid);
+                let layer = state.layers.flat.find(l => l.id === data.layerId);
                 (data.sublayerpath || []).forEach(idx => { layer = layer.sublayers[idx]; });
                 const payload = {layername: layer.name, [data.property]: data.newvalue};
                 pushAction("CHANGE_LAYER_PROPERTY", payload);
