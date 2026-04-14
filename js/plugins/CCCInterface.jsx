@@ -13,7 +13,7 @@ import axios from 'axios';
 import assign from 'object-assign';
 import ol from 'openlayers';
 import PropTypes from 'prop-types';
-import {LayerRole, addLayerFeatures, addThemeSublayer, refreshLayer, removeLayer} from 'qwc2/actions/layers';
+import {LayerRole, addLayerFeatures, addThemeSublayer, refreshLayer, removeLayer, changeLayerProperty} from 'qwc2/actions/layers';
 import {zoomToPoint, zoomToExtent} from 'qwc2/actions/map';
 import {setCurrentTask, setCurrentTaskBlocked} from 'qwc2/actions/task';
 import {setCurrentTheme} from 'qwc2/actions/theme';
@@ -26,6 +26,7 @@ import MapUtils from 'qwc2/utils/MapUtils';
 import {UrlParams} from 'qwc2/utils/PermaLinkUtils';
 import {v4 as uuidv4} from 'uuid';
 
+import LayerUtils from '../../qwc2/utils/LayerUtils';
 import {themeLayerRestorer} from '../themeLayerRestorer';
 import {changeCCCState} from './actions/ccc';
 
@@ -47,6 +48,8 @@ class CCCInterface extends React.Component {
         ccc: PropTypes.object,
         cccselection: PropTypes.bool,
         changeCCCState: PropTypes.func,
+        changeLayerProperty: PropTypes.func,
+        layers: PropTypes.array,
         map: PropTypes.object,
         refreshLayer: PropTypes.func,
         removeLayer: PropTypes.func,
@@ -207,6 +210,17 @@ class CCCInterface extends React.Component {
             this.props.addLayerFeatures(layer, [feature], true);
             this.props.changeCCCState({action: 'Show'});
             this.props.setCurrentTask('CccEdit', null, 'identify');
+        } else if (message.method === "changeLayerVisibility") {
+            const layerId = message.data?.layer_identifier;
+            const match = LayerUtils.searchLayer(this.props.layers, "role", LayerRole.THEME, "name", layerId);
+            if (match) {
+                this.props.changeLayerProperty(match.layer.id, "visibility", message.data?.visible ?? false);
+            } else {
+                themeLayerRestorer([layerId], null, (layers) => {
+                    layers[0].visibility = message.data?.visible ?? false;
+                    this.props.addThemeSublayer({sublayers: layers});
+                });
+            }
         }
     };
     processZoomTo = (zoomTo) => {
@@ -364,7 +378,8 @@ const selector = (state) => ({
     map: state.map,
     themes: state.theme.themes,
     ccc: state.ccc,
-    cccselection: !!(state.layers.flat || []).find(layer => layer.id === 'cccselection')
+    cccselection: !!(state.layers.flat || []).find(layer => layer.id === 'cccselection'),
+    layers: state.layers.flat
 });
 
 export const CCCInterfacePlugin = connect(selector, {
@@ -377,5 +392,6 @@ export const CCCInterfacePlugin = connect(selector, {
     addLayerFeatures: addLayerFeatures,
     addThemeSublayer: addThemeSublayer,
     setCurrentTheme: setCurrentTheme,
-    removeLayer: removeLayer
+    removeLayer: removeLayer,
+    changeLayerProperty: changeLayerProperty
 })(CCCInterface);
