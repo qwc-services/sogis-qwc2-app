@@ -177,7 +177,7 @@ class CCCInterface extends React.Component {
             if (message.zoomTo !== null) {
                 this.processZoomTo(message.zoomTo);
             }
-            this.props.changeCCCState({action: 'Draw', geomType: CccAppConfig.editGeomType});
+            this.props.changeCCCState({action: 'Draw', geomType: message.geomType ?? CccAppConfig.editGeomType, style: message.style});
             this.props.setCurrentTask('CccEdit');
             this.props.setCurrentTaskBlocked(true);
         } else if (message.method === "editGeoObject") {
@@ -188,7 +188,7 @@ class CCCInterface extends React.Component {
                 geometry: message.data
             };
             this.zoomToFeature(feature);
-            this.props.changeCCCState({action: 'Edit', geomType: message.data.type, feature: feature});
+            this.props.changeCCCState({action: 'Edit', geomType: message.data.type, feature: feature, style: message.style});
             this.props.setCurrentTask('CccEdit');
             this.props.setCurrentTaskBlocked(true);
         } else if (message.method === "cancelEditGeoObject") {
@@ -200,7 +200,9 @@ class CCCInterface extends React.Component {
             const feature = {
                 type: "Feature",
                 id: uuidv4(),
-                geometry: message.data
+                geometry: message.data,
+                styleName: "default",
+                styleOptions: message.style ?? {}
             };
             this.zoomToFeature(feature);
             const layer = {
