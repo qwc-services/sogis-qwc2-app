@@ -2822,7 +2822,7 @@ available-typed-arrays@^1.0.7:
   dependencies:
     possible-typed-array-names "^1.0.0"
 
-axios@^1.13.4:
+axios@^1.15.0:
   version "1.15.0"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.15.0.tgz#0fcee91ef03d386514474904b27863b2c683bf4f"
   integrity sha512-wWyJDlAatxk30ZJer+GeCWS209sA42X+N5jU2jy6oHTp7ufw8uzUTVFBX9+wTfAlhiJXGS0Bq7X6efruWjuK9Q==
@@ -6496,10 +6496,10 @@ quickselect@^3.0.0:
   resolved "https://registry.yarnpkg.com/quickselect/-/quickselect-3.0.0.tgz#a37fc953867d56f095a20ac71c6d27063d2de603"
   integrity sha512-XdjUArbK4Bm5fLLvlm5KpTFOiOThgfWWI4axAZDWg4E/0mKdZyI9tNEfds27qCi1ze/vwTR16kvmmGhRra3c2g==
 
-qwc2-lts@2026.0.10:
-  version "2026.0.10"
-  resolved "https://registry.yarnpkg.com/qwc2-lts/-/qwc2-lts-2026.0.10.tgz#f9295840d6d0e06e92cd91bee9b0fb64fbc49aef"
-  integrity sha512-I4CETt9Orzb1ZtDlojGKVELUssi7H4y4eARekrfklE9LIKK66BxjBaaVg6A4aon7XiARgxWXmB1bhk52EPET6g==
+qwc2-lts@2026.0.12:
+  version "2026.0.12"
+  resolved "https://registry.yarnpkg.com/qwc2-lts/-/qwc2-lts-2026.0.12.tgz#921ba6df1e56cf6f75daeb504f8b7a1ad4b1e919"
+  integrity sha512-zLq87ZaToBVJUEBGQ5N0Sd9tEOEDPoIeY0NZkW8tDlVGbMyX/1iQ7cY08M3g33bLSE1982egkkjlwy4OjNWImQ==
   dependencies:
     "@furkot/webfonts-generator" "^2.0.3"
     "@kayahr/text-encoding" "^2.1.0"
@@ -6516,7 +6516,7 @@ qwc2-lts@2026.0.10:
     "@turf/helpers" "^7.3.3"
     "@vtaits/react-color-picker" "^2.0.0"
     any-date-parser "^1.5.4"
-    axios "^1.13.4"
+    axios "^1.15.0"
     chart.js "^4.5.1"
     classnames "^2.5.1"
     clone "^2.1.2"
