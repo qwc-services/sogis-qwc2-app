@@ -50,6 +50,8 @@ class CCCInterface extends React.Component {
         cccselection: PropTypes.bool,
         changeCCCState: PropTypes.func,
         changeLayerProperty: PropTypes.func,
+        /** Whether to log CCC connection debug messages to the browser console. */
+        debug: PropTypes.bool,
         layers: PropTypes.array,
         map: PropTypes.object,
         refreshLayer: PropTypes.func,
@@ -70,7 +72,14 @@ class CCCInterface extends React.Component {
     state = {
         status: CCCStatus.NORMAL
     };
+    debug = (msg) => {
+        if (this.props.debug) {
+            /* eslint-disable-next-line no-console*/
+            console.log("CCC: " + msg);
+        }
+    };
     reset() {
+        this.debug("Reset");
         CccConnection = null;
         CccAppConfig = null;
         this.ready = false;
@@ -138,15 +147,13 @@ class CCCInterface extends React.Component {
         }
         CccConnection = new WebSocket(CccAppConfig.cccServer);
         CccConnection.onclose = () => {
-            /* eslint-disable-next-line */
-            console.log("Connection closed");
+            this.debug("Connection closed");
             this.setState({status: CCCStatus.RECONNECTING});
             // Try to reconnect
             setTimeout(this.reconnect, this.reconnectInterval * 1000);
         };
         CccConnection.onerror = (err) => {
-            /* eslint-disable-next-line */
-            console.log("Connection error: " + err);
+            this.debug("Connection error");
             this.setState({status: CCCStatus.RECONNECTING});
             // Try to reconnect
             setTimeout(this.reconnect, this.reconnectInterval * 1000);
@@ -157,31 +164,38 @@ class CCCInterface extends React.Component {
         };
     };
     connect = () => {
+        this.debug("Connect");
         this.createWebSocket();
         CccConnection.onopen = () => {
+            this.debug("Connection open");
             const msg = {
                 apiVersion: "1.2",
                 method: "connectGis",
                 session: this.session,
                 clientName: "Web GIS Client"
             };
+            this.debug("Send connectGis");
             CccConnection.send(JSON.stringify(msg));
         };
     };
     reconnect = () => {
         ++this.reconnectAttempts;
         if (this.reconnectAttempts > this.maxAttempts) {
+            this.debug("Giving up reconnect");
             this.setState({status: CCCStatus.CONNECTION_ERROR});
             this.reset();
         } else {
+            this.debug(`Reconnect (attempt ${this.reconnectAttempts} / ${this.maxAttempts})`);
             this.createWebSocket();
             CccConnection.onopen = () => {
+                this.debug("Connection open");
                 const msg = {
                     apiVersion: "1.2",
                     method: "reconnectGis",
                     oldConnectionKey: this.connectionKey,
                     oldSessionNumber: this.sessionNr
                 };
+                this.debug("Send reconnectGis");
                 CccConnection.send(JSON.stringify(msg));
             };
         }
@@ -202,6 +216,7 @@ class CCCInterface extends React.Component {
         if (message.context) {
             this.currentContext = message.context;
         }
+        this.debug("Got message " + message.method);
 
         if (message.method === "notifySessionReady") {
             this.ready = true;
@@ -356,6 +371,7 @@ class CCCInterface extends React.Component {
     }
     buttonClicked = (action) => {
         if (action === 'Commit') {
+            this.debug("Send notifyEditGeoObjectDone");
             CccConnection.send(JSON.stringify({
                 apiVersion: "1.0",
                 method: "notifyEditGeoObjectDone",
