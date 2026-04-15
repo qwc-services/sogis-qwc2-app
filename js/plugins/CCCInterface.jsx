@@ -18,19 +18,19 @@ import {LayerRole, addLayerFeatures, addThemeSublayer, refreshLayer, removeLayer
 import {zoomToPoint, zoomToExtent} from 'qwc2/actions/map';
 import {setCurrentTask, setCurrentTaskBlocked} from 'qwc2/actions/task';
 import {setCurrentTheme} from 'qwc2/actions/theme';
+import Icon from 'qwc2/components/Icon';
 import {AppInfosPortalContext} from 'qwc2/components/PluginsContainer';
 import TaskBar from 'qwc2/components/TaskBar';
 import ButtonBar from 'qwc2/components/widgets/ButtonBar';
+import Spinner from 'qwc2/components/widgets/Spinner';
 import ConfigUtils from 'qwc2/utils/ConfigUtils';
 import CoordinatesUtils from 'qwc2/utils/CoordinatesUtils';
+import LayerUtils from 'qwc2/utils/LayerUtils';
 import LocaleUtils from 'qwc2/utils/LocaleUtils';
 import MapUtils from 'qwc2/utils/MapUtils';
 import {UrlParams} from 'qwc2/utils/PermaLinkUtils';
 import {v4 as uuidv4} from 'uuid';
 
-import Icon from '../../qwc2/components/Icon';
-import Spinner from '../../qwc2/components/widgets/Spinner';
-import LayerUtils from '../../qwc2/utils/LayerUtils';
 import {themeLayerRestorer} from '../themeLayerRestorer';
 import {changeCCCState} from './actions/ccc';
 
