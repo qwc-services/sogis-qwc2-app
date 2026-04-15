@@ -25,6 +25,7 @@ span.ccc-error-overlay-sessionnr {
 
 div.ccc-info {
     pointer-events: initial;
+    order: 2;
 }
 
 div.ccc-info div.spinner {
