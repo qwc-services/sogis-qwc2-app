@@ -64,10 +64,12 @@
       "commit": "Apply",
       "configError": "CCC configuration error",
       "connError": "CCC connection closed",
+      "connecting": "Estabilishing CCC connection",
       "createObject": "Draw feature geometry",
       "deselect": "Clear selection",
       "editObject": "Edit feature geometry",
       "reconnecting": "Attempting to reconnect...",
+      "sessionnr": "Session nr: {0}",
       "showObject": "Object(s) selected"
     },
     "layertree": {

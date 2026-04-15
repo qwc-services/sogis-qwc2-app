@@ -13,3 +13,22 @@ div.ccc-error-overlay {
     font-weight: bold;
     color: white;
 }
+
+div.ccc-error-overlay div {
+    text-align: center;
+}
+
+span.ccc-error-overlay-sessionnr {
+    margin-top: 0.5em;
+    font-size: 75%;
+}
+
+div.ccc-info {
+    pointer-events: initial;
+}
+
+div.ccc-info div.spinner {
+    width: 1.25em;
+    height: 1.25em;
+    margin-right: 0.25em;
+}

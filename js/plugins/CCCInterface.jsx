@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 
 import axios from 'axios';
@@ -17,6 +18,7 @@ import {LayerRole, addLayerFeatures, addThemeSublayer, refreshLayer, removeLayer
 import {zoomToPoint, zoomToExtent} from 'qwc2/actions/map';
 import {setCurrentTask, setCurrentTaskBlocked} from 'qwc2/actions/task';
 import {setCurrentTheme} from 'qwc2/actions/theme';
+import {AppInfosPortalContext} from 'qwc2/components/PluginsContainer';
 import TaskBar from 'qwc2/components/TaskBar';
 import ButtonBar from 'qwc2/components/widgets/ButtonBar';
 import ConfigUtils from 'qwc2/utils/ConfigUtils';
@@ -26,6 +28,8 @@ import MapUtils from 'qwc2/utils/MapUtils';
 import {UrlParams} from 'qwc2/utils/PermaLinkUtils';
 import {v4 as uuidv4} from 'uuid';
 
+import Icon from '../../qwc2/components/Icon';
+import Spinner from '../../qwc2/components/widgets/Spinner';
 import LayerUtils from '../../qwc2/utils/LayerUtils';
 import {themeLayerRestorer} from '../themeLayerRestorer';
 import {changeCCCState} from './actions/ccc';
@@ -38,11 +42,12 @@ let CccConnection = null;
 const CCCStatus = {
     NORMAL: {msgId: ""},
     CONFIG_ERROR: {msgId: LocaleUtils.trmsg("ccc.configError")},
-    RECONNECTING: {msgId: LocaleUtils.trmsg("ccc.reconnecting")},
+    CONNECTING: {msgId: LocaleUtils.trmsg("ccc.reconnecting")},
     CONNECTION_ERROR: {msgId: LocaleUtils.trmsg("ccc.connError")}
 };
 
 class CCCInterface extends React.Component {
+    static contextType = AppInfosPortalContext;
     static propTypes = {
         addLayerFeatures: PropTypes.func,
         addThemeSublayer: PropTypes.func,
@@ -82,7 +87,6 @@ class CCCInterface extends React.Component {
         this.debug("Reset");
         CccConnection = null;
         CccAppConfig = null;
-        this.ready = false;
         this.connectionKey = null;
         this.sessionNr = null;
         this.session = null;
@@ -146,15 +150,14 @@ class CCCInterface extends React.Component {
             CccConnection.close();
         }
         CccConnection = new WebSocket(CccAppConfig.cccServer);
+        this.setState({status: CCCStatus.CONNECTING});
         CccConnection.onclose = () => {
             this.debug("Connection closed");
-            this.setState({status: CCCStatus.RECONNECTING});
             // Try to reconnect
             setTimeout(this.reconnect, this.reconnectInterval * 1000);
         };
         CccConnection.onerror = (err) => {
             this.debug("Connection error");
-            this.setState({status: CCCStatus.RECONNECTING});
             // Try to reconnect
             setTimeout(this.reconnect, this.reconnectInterval * 1000);
         };
@@ -219,7 +222,7 @@ class CCCInterface extends React.Component {
         this.debug("Got message " + message.method);
 
         if (message.method === "notifySessionReady") {
-            this.ready = true;
+            this.setState({status: CCCStatus.NORMAL});
             this.connectionKey = message.connectionKey;
             this.sessionNr = message.sessionNr;
         } else if (message.method === "notifyError") {
@@ -351,23 +354,44 @@ class CCCInterface extends React.Component {
         );
     };
     render() {
-        if (this.state.status && this.state.status !== CCCStatus.NORMAL) {
-            return (
-                <div className="ccc-error-overlay">
-                    {LocaleUtils.tr(this.state.status.msgId)}
+        if (!this.session) {
+            return null;
+        }
+        const widgets = [];
+        if (this.state.status && this.state.status === CCCStatus.CONNECTION_ERROR) {
+            widgets.push(
+                <div className="ccc-error-overlay" key="CCCStatusOverlay">
+                    <div>
+                        {LocaleUtils.tr(this.state.status.msgId)}<br />
+                        <span className="ccc-error-overlay-sessionnr">({LocaleUtils.tr("ccc.sessionnr", this.sessionNr)})</span>
+                    </div>
                 </div>
             );
+        } else {
+            if (this.props.ccc.action) {
+                widgets.push(
+                    <TaskBar key="CCCTaskBar" onHide={this.stopEdit} task="CCCEdit" unblockOnClose>
+                        {() => ({
+                            body: this.renderBody()
+                        })}
+                    </TaskBar>
+                );
+            }
+            if (this.state.status === CCCStatus.NORMAL) {
+                widgets.push(ReactDOM.createPortal((
+                    <div className="app-info ccc-info" key="CCCInfo" title={LocaleUtils.tr("ccc.sessionnr", this.sessionNr)}>
+                        <Icon icon="connected" />
+                    </div>
+                ), this.context));
+            } else if (this.state.status === CCCStatus.CONNECTING) {
+                widgets.push(ReactDOM.createPortal((
+                    <div className="app-info ccc-info" key="CCCInfo" title={LocaleUtils.tr("ccc.sessionnr", this.sessionNr)}>
+                        <Spinner /> {LocaleUtils.tr("ccc.connecting")}
+                    </div>
+                ), this.context));
+            }
         }
-        if (this.props.ccc.action) {
-            return (
-                <TaskBar onHide={this.stopEdit} task="CccEdit" unblockOnClose>
-                    {() => ({
-                        body: this.renderBody()
-                    })}
-                </TaskBar>
-            );
-        }
-        return null;
+        return widgets;
     }
     buttonClicked = (action) => {
         if (action === 'Commit') {

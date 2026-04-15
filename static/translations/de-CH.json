@@ -64,10 +64,12 @@
       "commit": "Übernehmen",
       "configError": "CCC Konfigurationsfehler",
       "connError": "CCC-Verbindung wurde geschlossen",
+      "connecting": "CCC-Verbindung wird hergestellt",
       "createObject": "Objektgeometrie erfassen",
       "deselect": "Selektion aufheben",
       "editObject": "Objektgeometrie editieren",
       "reconnecting": "Verbindung wird wiederhergestellt...",
+      "sessionnr": "session nr: {0}",
       "showObject": "Objekt(e) selektiert"
     },
     "layertree": {
