@@ -13,6 +13,7 @@
     "ccc.createObject",
     "ccc.deselect",
     "ccc.editObject",
+    "ccc.reconnecting",
     "ccc.showObject",
     "layertree.printlegend",
     "map.resetrotation",

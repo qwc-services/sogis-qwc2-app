@@ -67,6 +67,7 @@
       "createObject": "Draw feature geometry",
       "deselect": "Clear selection",
       "editObject": "Edit feature geometry",
+      "reconnecting": "Attempting to reconnect...",
       "showObject": "Object(s) selected"
     },
     "layertree": {

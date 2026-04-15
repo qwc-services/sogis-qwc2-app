@@ -67,6 +67,7 @@
       "createObject": "Objektgeometrie erfassen",
       "deselect": "Selektion aufheben",
       "editObject": "Objektgeometrie editieren",
+      "reconnecting": "Verbindung wird wiederhergestellt...",
       "showObject": "Objekt(e) selektiert"
     },
     "layertree": {
