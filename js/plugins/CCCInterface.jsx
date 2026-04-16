@@ -389,7 +389,7 @@ class CCCInterface extends React.Component {
         } else {
             if (this.props.ccc.action) {
                 widgets.push(
-                    <TaskBar key="CCCTaskBar" onHide={this.stopEdit} task="CCCEdit" unblockOnClose>
+                    <TaskBar key="CCCTaskBar" onHide={this.stopEdit} task="CccEdit" unblockOnClose>
                         {() => ({
                             body: this.renderBody()
                         })}
