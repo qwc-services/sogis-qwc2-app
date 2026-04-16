@@ -276,7 +276,7 @@ class CCCInterface extends React.Component {
             const layerId = message.data?.layer_identifier;
             const match = LayerUtils.searchLayer(this.props.layers, "role", LayerRole.THEME, "name", layerId);
             if (match) {
-                this.props.changeLayerProperty(match.layer.id, "visibility", message.data?.visible ?? false);
+                this.props.changeLayerProperty(match.layer.id, "visibility", message.data?.visible ?? false, match.path);
             } else {
                 themeLayerRestorer([layerId], null, (layers) => {
                     layers[0].visibility = message.data?.visible ?? false;
