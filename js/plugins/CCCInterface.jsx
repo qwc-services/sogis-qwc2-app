@@ -94,7 +94,6 @@ class CCCInterface extends React.Component {
         CccAppConfig = null;
         this.connectionKey = null;
         this.sessionNr = null;
-        this.session = null;
         this.currentContext = null;
         this.reconnectAttempts = 0;
     }
