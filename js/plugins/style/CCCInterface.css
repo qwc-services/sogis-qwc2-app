@@ -14,15 +14,6 @@ div.ccc-error-overlay {
     color: white;
 }
 
-div.ccc-error-overlay div {
-    text-align: center;
-}
-
-span.ccc-error-overlay-sessionnr {
-    margin-top: 0.5em;
-    font-size: 75%;
-}
-
 div.ccc-info {
     pointer-events: initial;
     order: 2;

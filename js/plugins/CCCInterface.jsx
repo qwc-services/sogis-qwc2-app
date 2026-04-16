@@ -384,10 +384,7 @@ class CCCInterface extends React.Component {
         if (this.state.status === CCCStatus.CONNECTION_ERROR) {
             widgets.push(
                 <div className="ccc-error-overlay" key="CCCStatusOverlay">
-                    <div>
-                        {LocaleUtils.tr(this.state.status.msgId)}<br />
-                        <span className="ccc-error-overlay-sessionnr">({LocaleUtils.tr("ccc.sessionnr", this.sessionNr)})</span>
-                    </div>
+                    {LocaleUtils.tr(this.state.status.msgId)}
                 </div>
             );
         } else {
