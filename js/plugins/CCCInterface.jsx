@@ -80,7 +80,7 @@ class CCCInterface extends React.Component {
         this.maxAttempts = 60;
     }
     state = {
-        status: CCCStatus.NORMAL
+        status: CCCStatus.CONNECTING
     };
     debug = (msg) => {
         if (this.props.debug) {
@@ -381,7 +381,7 @@ class CCCInterface extends React.Component {
             return null;
         }
         const widgets = [];
-        if (this.state.status && this.state.status === CCCStatus.CONNECTION_ERROR) {
+        if (this.state.status === CCCStatus.CONNECTION_ERROR) {
             widgets.push(
                 <div className="ccc-error-overlay" key="CCCStatusOverlay">
                     <div>
