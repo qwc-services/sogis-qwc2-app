@@ -57,6 +57,8 @@ class CCCInterface extends React.Component {
         changeLayerProperty: PropTypes.func,
         /** Whether to log CCC connection debug messages to the browser console. */
         debug: PropTypes.bool,
+        /** Expected websocket close codes */
+        expectedCloseCodes: PropTypes.array,
         layers: PropTypes.array,
         map: PropTypes.object,
         refreshLayer: PropTypes.func,
@@ -67,6 +69,9 @@ class CCCInterface extends React.Component {
         themes: PropTypes.object,
         zoomToExtent: PropTypes.func,
         zoomToPoint: PropTypes.func
+    };
+    static defaultProps = {
+        expectedCloseCodes: [1000, 1001, 1008, 1012]
     };
     constructor(props) {
         super(props);
@@ -151,10 +156,16 @@ class CCCInterface extends React.Component {
         }
         CccConnection = new WebSocket(CccAppConfig.cccServer);
         this.setState({status: CCCStatus.CONNECTING});
-        CccConnection.onclose = () => {
-            this.debug("Connection closed");
-            // Try to reconnect
-            setTimeout(this.reconnect, this.reconnectInterval * 1000);
+        CccConnection = new WebSocket(CccAppConfig.cccServer);
+        CccConnection.onclose = (ev) => {
+            this.debug(`Connection closed with code ${ev.code} (${ev.reason})`);
+            if ((this.props.expectedCloseCodes || []).includes(ev.code)) {
+                this.setState({status: CCCStatus.CONNECTION_ERROR});
+                this.reset();
+            } else {
+                // Try to reconnect if code is not one of the expected ones
+                setTimeout(this.reconnect, this.reconnectInterval * 1000);
+            }
         };
         CccConnection.onerror = (err) => {
             this.debug("Connection error");
