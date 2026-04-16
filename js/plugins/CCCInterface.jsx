@@ -279,8 +279,20 @@ class CCCInterface extends React.Component {
                 this.props.changeLayerProperty(match.layer.id, "visibility", message.data?.visible ?? false, match.path);
             } else {
                 themeLayerRestorer([layerId], null, (layers) => {
-                    layers[0].visibility = message.data?.visible ?? false;
-                    this.props.addThemeSublayer({sublayers: layers});
+                    if (layers.length === 0) {
+                        this.debug("Send notifyError");
+                        CccConnection.send(JSON.stringify({
+                            method: "notifyError",
+                            code: 404,
+                            message: `Can not set the layer visibility. Layer ${layerId} is unknown`,
+                            userData: null,
+                            nativeCode: "0",
+                            technicalDetails: "Layer not found"
+                        }));
+                    } else {
+                        layers[0].visibility = message.data?.visible ?? false;
+                        this.props.addThemeSublayer({sublayers: layers});
+                    }
                 });
             }
         }
