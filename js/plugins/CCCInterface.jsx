@@ -101,12 +101,23 @@ class CCCInterface extends React.Component {
         if (this.props.themes) {
             this.initialize(this.props);
         }
+        window.addEventListener('beforeunload', this.beforeUnloadListener);
+    }
+    componentWillUnmount() {
+        window.removeEventListener('beforeunload', this.beforeUnloadListener);
     }
     componentDidUpdate(prevProps) {
         if (!prevProps.themes && this.props.themes) {
             this.initialize(this.props);
         }
     }
+    beforeUnloadListener = () => {
+        if (CccConnection) {
+            CccConnection.send(JSON.stringify({method: "disconnectGis"}));
+            this.reset();
+        }
+        return null;
+    };
     initialize = (props) => {
         // If "session" and "appintegration" URL params are set, query configuration
         this.session = UrlParams.getParam('session');
