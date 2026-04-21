@@ -166,7 +166,6 @@ class CCCInterface extends React.Component {
         }
         CccConnection = new WebSocket(CccAppConfig.cccServer);
         this.setState({status: CCCStatus.CONNECTING});
-        CccConnection = new WebSocket(CccAppConfig.cccServer);
         CccConnection.onclose = (ev) => {
             this.debug(`Connection closed with code ${ev.code} (${ev.reason})`);
             if ((this.props.expectedCloseCodes || []).includes(ev.code)) {
