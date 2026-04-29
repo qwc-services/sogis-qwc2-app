@@ -7,20 +7,25 @@
  */
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 
 import axios from 'axios';
 import assign from 'object-assign';
 import ol from 'openlayers';
 import PropTypes from 'prop-types';
-import {LayerRole, addLayerFeatures, addThemeSublayer, refreshLayer, removeLayer} from 'qwc2/actions/layers';
+import {LayerRole, addLayerFeatures, addThemeSublayer, refreshLayer, removeLayer, changeLayerProperty} from 'qwc2/actions/layers';
 import {zoomToPoint, zoomToExtent} from 'qwc2/actions/map';
 import {setCurrentTask, setCurrentTaskBlocked} from 'qwc2/actions/task';
 import {setCurrentTheme} from 'qwc2/actions/theme';
+import Icon from 'qwc2/components/Icon';
+import {AppInfosPortalContext} from 'qwc2/components/PluginsContainer';
 import TaskBar from 'qwc2/components/TaskBar';
 import ButtonBar from 'qwc2/components/widgets/ButtonBar';
+import Spinner from 'qwc2/components/widgets/Spinner';
 import ConfigUtils from 'qwc2/utils/ConfigUtils';
 import CoordinatesUtils from 'qwc2/utils/CoordinatesUtils';
+import LayerUtils from 'qwc2/utils/LayerUtils';
 import LocaleUtils from 'qwc2/utils/LocaleUtils';
 import MapUtils from 'qwc2/utils/MapUtils';
 import {UrlParams} from 'qwc2/utils/PermaLinkUtils';
@@ -37,16 +42,24 @@ let CccConnection = null;
 const CCCStatus = {
     NORMAL: {msgId: ""},
     CONFIG_ERROR: {msgId: LocaleUtils.trmsg("ccc.configError")},
+    CONNECTING: {msgId: LocaleUtils.trmsg("ccc.reconnecting")},
     CONNECTION_ERROR: {msgId: LocaleUtils.trmsg("ccc.connError")}
 };
 
 class CCCInterface extends React.Component {
+    static contextType = AppInfosPortalContext;
     static propTypes = {
         addLayerFeatures: PropTypes.func,
         addThemeSublayer: PropTypes.func,
         ccc: PropTypes.object,
         cccselection: PropTypes.bool,
         changeCCCState: PropTypes.func,
+        changeLayerProperty: PropTypes.func,
+        /** Whether to log CCC connection debug messages to the browser console. */
+        debug: PropTypes.bool,
+        /** Expected websocket close codes */
+        expectedCloseCodes: PropTypes.array,
+        layers: PropTypes.array,
         map: PropTypes.object,
         refreshLayer: PropTypes.func,
         removeLayer: PropTypes.func,
@@ -57,30 +70,54 @@ class CCCInterface extends React.Component {
         zoomToExtent: PropTypes.func,
         zoomToPoint: PropTypes.func
     };
+    static defaultProps = {
+        expectedCloseCodes: [1000, 1001, 1008, 1012]
+    };
     constructor(props) {
         super(props);
         this.reset();
+        this.reconnectInterval = 1;
+        this.maxAttempts = 60;
     }
     state = {
-        status: CCCStatus.NORMAL
+        status: CCCStatus.CONNECTING
+    };
+    debug = (msg) => {
+        if (this.props.debug) {
+            /* eslint-disable-next-line no-console*/
+            console.log("CCC: " + msg);
+        }
     };
     reset() {
+        this.debug("Reset");
         CccConnection = null;
         CccAppConfig = null;
-        this.ready = false;
-        this.session = null;
+        this.connectionKey = null;
+        this.sessionNr = null;
         this.currentContext = null;
+        this.reconnectAttempts = 0;
     }
     componentDidMount() {
         if (this.props.themes) {
             this.initialize(this.props);
         }
+        window.addEventListener('beforeunload', this.beforeUnloadListener);
+    }
+    componentWillUnmount() {
+        window.removeEventListener('beforeunload', this.beforeUnloadListener);
     }
     componentDidUpdate(prevProps) {
         if (!prevProps.themes && this.props.themes) {
             this.initialize(this.props);
         }
     }
+    beforeUnloadListener = () => {
+        if (CccConnection) {
+            CccConnection.send(JSON.stringify({method: "disconnectGis"}));
+            this.reset();
+        }
+        return null;
+    };
     initialize = (props) => {
         // If "session" and "appintegration" URL params are set, query configuration
         this.session = UrlParams.getParam('session');
@@ -96,7 +133,7 @@ class CCCInterface extends React.Component {
                 this.loadThemeOrLayers(props);
 
                 // Start websocket session
-                this.createWebSocket();
+                this.connect();
             }).catch(() => {
                 /* eslint-disable-next-line */
                 console.warn("Failed to query app configuration");
@@ -121,31 +158,70 @@ class CCCInterface extends React.Component {
         }
     };
     createWebSocket = () => {
+        if (CccConnection) {
+            CccConnection.onopen = undefined;
+            CccConnection.onclose = undefined;
+            CccConnection.onerror = undefined;
+            CccConnection.close();
+        }
         CccConnection = new WebSocket(CccAppConfig.cccServer);
-        CccConnection.onopen = () => {
-            if (this.session) {
-                const msg = {
-                    apiVersion: "1.0",
-                    method: "connectGis",
-                    session: this.session,
-                    clientName: "Web GIS Client"
-                };
-                CccConnection.send(JSON.stringify(msg));
+        this.setState({status: CCCStatus.CONNECTING});
+        CccConnection.onclose = (ev) => {
+            this.debug(`Connection closed with code ${ev.code} (${ev.reason})`);
+            if ((this.props.expectedCloseCodes || []).includes(ev.code)) {
+                this.setState({status: CCCStatus.CONNECTION_ERROR});
+                this.reset();
+            } else {
+                // Try to reconnect if code is not one of the expected ones
+                setTimeout(this.reconnect, this.reconnectInterval * 1000);
             }
         };
-        CccConnection.onclose = () => {
-            /* eslint-disable-next-line */
-            console.log("Connection closed");
-            this.setState({status: CCCStatus.CONNECTION_ERROR});
-            this.reset();
-        };
         CccConnection.onerror = (err) => {
-            /* eslint-disable-next-line */
-            console.log("Connection error: " + err);
-            this.setState({status: CCCStatus.CONNECTION_ERROR});
-            this.reset();
+            this.debug("Connection error");
+            // Try to reconnect
+            setTimeout(this.reconnect, this.reconnectInterval * 1000);
         };
         CccConnection.onmessage = this.processWebSocketMessage;
+        window.qwc2.reconnectCCC = () => {
+            this.reconnect();
+        };
+    };
+    connect = () => {
+        this.debug("Connect");
+        this.createWebSocket();
+        CccConnection.onopen = () => {
+            this.debug("Connection open");
+            const msg = {
+                apiVersion: "1.2",
+                method: "connectGis",
+                session: this.session,
+                clientName: "Web GIS Client"
+            };
+            this.debug("Send connectGis");
+            CccConnection.send(JSON.stringify(msg));
+        };
+    };
+    reconnect = () => {
+        ++this.reconnectAttempts;
+        if (this.reconnectAttempts > this.maxAttempts) {
+            this.debug("Giving up reconnect");
+            this.setState({status: CCCStatus.CONNECTION_ERROR});
+            this.reset();
+        } else {
+            this.debug(`Reconnect (attempt ${this.reconnectAttempts} / ${this.maxAttempts})`);
+            this.createWebSocket();
+            CccConnection.onopen = () => {
+                this.debug("Connection open");
+                const msg = {
+                    apiVersion: "1.2",
+                    method: "reconnectGis",
+                    oldConnectionKey: this.connectionKey,
+                    oldSessionNumber: this.sessionNr
+                };
+                this.debug("Send reconnectGis");
+                CccConnection.send(JSON.stringify(msg));
+            };
+        }
     };
     processWebSocketMessage = (ev) => {
         let message = {};
@@ -155,7 +231,7 @@ class CCCInterface extends React.Component {
             /* eslint-disable-next-line */
             console.log("Invalid message: " + ev.data);
         }
-        if (/* message.apiVersion !== "1.0" || */!message.method) {
+        if (!message.method) {
             /* eslint-disable-next-line */
             console.log("Invalid message: " + ev.data);
         }
@@ -163,18 +239,25 @@ class CCCInterface extends React.Component {
         if (message.context) {
             this.currentContext = message.context;
         }
+        this.debug("Got message " + message.method);
 
         if (message.method === "notifySessionReady") {
-            this.ready = true;
+            this.setState({status: CCCStatus.NORMAL});
+            this.connectionKey = message.connectionKey;
+            this.sessionNr = message.sessionNr;
         } else if (message.method === "notifyError") {
             /* eslint-disable-next-line */
-            alert(message.message);
+            console.warn(message.message);
+        } else if (message.method === "keyChange") {
+            this.connectionKey = message.newConnectionKey;
+            this.setState({status: CCCStatus.NORMAL});
+            this.reconnectAttempts = 0;
         } else if (message.method === "createGeoObject") {
             this.stopEdit();
             if (message.zoomTo !== null) {
                 this.processZoomTo(message.zoomTo);
             }
-            this.props.changeCCCState({action: 'Draw', geomType: CccAppConfig.editGeomType});
+            this.props.changeCCCState({action: 'Draw', geomType: message.geomType ?? CccAppConfig.editGeomType, style: message.style});
             this.props.setCurrentTask('CccEdit');
             this.props.setCurrentTaskBlocked(true);
         } else if (message.method === "editGeoObject") {
@@ -185,7 +268,7 @@ class CCCInterface extends React.Component {
                 geometry: message.data
             };
             this.zoomToFeature(feature);
-            this.props.changeCCCState({action: 'Edit', geomType: message.data.type, feature: feature});
+            this.props.changeCCCState({action: 'Edit', geomType: message.data.type, feature: feature, style: message.style});
             this.props.setCurrentTask('CccEdit');
             this.props.setCurrentTaskBlocked(true);
         } else if (message.method === "cancelEditGeoObject") {
@@ -197,7 +280,9 @@ class CCCInterface extends React.Component {
             const feature = {
                 type: "Feature",
                 id: uuidv4(),
-                geometry: message.data
+                geometry: message.data,
+                styleName: "default",
+                styleOptions: message.style ?? {}
             };
             this.zoomToFeature(feature);
             const layer = {
@@ -207,6 +292,29 @@ class CCCInterface extends React.Component {
             this.props.addLayerFeatures(layer, [feature], true);
             this.props.changeCCCState({action: 'Show'});
             this.props.setCurrentTask('CccEdit', null, 'identify');
+        } else if (message.method === "changeLayerVisibility") {
+            const layerId = message.data?.layer_identifier;
+            const match = LayerUtils.searchLayer(this.props.layers, "role", LayerRole.THEME, "name", layerId);
+            if (match) {
+                this.props.changeLayerProperty(match.layer.id, "visibility", message.data?.visible ?? false, match.path);
+            } else {
+                themeLayerRestorer([layerId], null, (layers) => {
+                    if (layers.length === 0) {
+                        this.debug("Send notifyError");
+                        CccConnection.send(JSON.stringify({
+                            method: "notifyError",
+                            code: 404,
+                            message: `Can not set the layer visibility. Layer ${layerId} is unknown`,
+                            userData: null,
+                            nativeCode: "0",
+                            technicalDetails: "Layer not found"
+                        }));
+                    } else {
+                        layers[0].visibility = message.data?.visible ?? false;
+                        this.props.addThemeSublayer({sublayers: layers});
+                    }
+                });
+            }
         }
     };
     processZoomTo = (zoomTo) => {
@@ -278,26 +386,45 @@ class CCCInterface extends React.Component {
         );
     };
     render() {
-        if (this.state.status && this.state.status !== CCCStatus.NORMAL) {
-            return (
-                <div className="ccc-error-overlay">
+        if (!this.session) {
+            return null;
+        }
+        const widgets = [];
+        if (this.state.status === CCCStatus.CONNECTION_ERROR) {
+            widgets.push(
+                <div className="ccc-error-overlay" key="CCCStatusOverlay">
                     {LocaleUtils.tr(this.state.status.msgId)}
                 </div>
             );
+        } else {
+            if (this.props.ccc.action) {
+                widgets.push(
+                    <TaskBar key="CCCTaskBar" onHide={this.stopEdit} task="CccEdit" unblockOnClose>
+                        {() => ({
+                            body: this.renderBody()
+                        })}
+                    </TaskBar>
+                );
+            }
+            if (this.state.status === CCCStatus.NORMAL) {
+                widgets.push(ReactDOM.createPortal((
+                    <div className="app-info ccc-info" key="CCCInfo" title={LocaleUtils.tr("ccc.sessionnr", this.sessionNr)}>
+                        <Icon icon="connected" />
+                    </div>
+                ), this.context));
+            } else if (this.state.status === CCCStatus.CONNECTING) {
+                widgets.push(ReactDOM.createPortal((
+                    <div className="app-info ccc-info" key="CCCInfo" title={LocaleUtils.tr("ccc.sessionnr", this.sessionNr)}>
+                        <Spinner /> {LocaleUtils.tr("ccc.connecting")}
+                    </div>
+                ), this.context));
+            }
         }
-        if (this.props.ccc.action) {
-            return (
-                <TaskBar onHide={this.stopEdit} task="CccEdit" unblockOnClose>
-                    {() => ({
-                        body: this.renderBody()
-                    })}
-                </TaskBar>
-            );
-        }
-        return null;
+        return widgets;
     }
     buttonClicked = (action) => {
         if (action === 'Commit') {
+            this.debug("Send notifyEditGeoObjectDone");
             CccConnection.send(JSON.stringify({
                 apiVersion: "1.0",
                 method: "notifyEditGeoObjectDone",
@@ -364,7 +491,8 @@ const selector = (state) => ({
     map: state.map,
     themes: state.theme.themes,
     ccc: state.ccc,
-    cccselection: !!(state.layers.flat || []).find(layer => layer.id === 'cccselection')
+    cccselection: !!(state.layers.flat || []).find(layer => layer.id === 'cccselection'),
+    layers: state.layers.flat
 });
 
 export const CCCInterfacePlugin = connect(selector, {
@@ -377,5 +505,6 @@ export const CCCInterfacePlugin = connect(selector, {
     addLayerFeatures: addLayerFeatures,
     addThemeSublayer: addThemeSublayer,
     setCurrentTheme: setCurrentTheme,
-    removeLayer: removeLayer
+    removeLayer: removeLayer,
+    changeLayerProperty: changeLayerProperty
 })(CCCInterface);
