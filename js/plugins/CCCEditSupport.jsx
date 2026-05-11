@@ -11,6 +11,7 @@ import {connect} from 'react-redux';
 
 import ol from 'openlayers';
 import PropTypes from 'prop-types';
+import FeatureStyles from 'qwc2/utils/FeatureStyles';
 import {v4 as uuidv4} from 'uuid';
 
 import {changeCCCState} from './actions/ccc';
@@ -30,40 +31,29 @@ class CCCEditSupport extends React.Component {
         this.interaction = null;
         this.layer = null;
         this.currentFeature = null;
-        this.baseStyle = new ol.style.Style({
-            fill: new ol.style.Fill({ color: [255, 0, 0, 0.5] }),
-            stroke: new ol.style.Stroke({ color: 'red', width: 2}),
-            image: new ol.style.Circle({
-                radius: 8,
-                fill: new ol.style.Fill({ color: [255, 0, 0, 0.5] }),
-                stroke: new ol.style.Stroke({ color: 'red', width: 2})
-            })
-        });
-        this.interactionStyle = [
-            new ol.style.Style({
-                fill: new ol.style.Fill({ color: [255, 0, 0, 0.5] }),
-                stroke: new ol.style.Stroke({ color: 'red', width: 2})
-            }),
-            new ol.style.Style({
-                image: new ol.style.RegularShape({
-                    fill: new ol.style.Fill({color: 'white'}),
-                    stroke: new ol.style.Stroke({color: 'red', width: 2}),
-                    points: 4,
-                    radius: 5,
-                    angle: Math.PI / 4
-                }),
-                geometry: (feature) => {
-                    if (feature.getGeometry().getType() === "Point") {
-                        return new ol.geom.MultiPoint([feature.getGeometry().getCoordinates()]);
-                    } else if (feature.getGeometry().getType() === "LineString") {
-                        return new ol.geom.MultiPoint(feature.getGeometry().getCoordinates());
-                    } else {
-                        return new ol.geom.MultiPoint(feature.getGeometry().getCoordinates()[0]);
-                    }
-                }
-            })
-        ];
     }
+    editStyle = (feature) => {
+        const geometryFunction = (f) => {
+            if (f.getGeometry().getType() === "Point") {
+                return new ol.geom.MultiPoint([f.getGeometry().getCoordinates()]);
+            } else if (f.getGeometry().getType() === "LineString") {
+                return new ol.geom.MultiPoint(f.getGeometry().getCoordinates());
+            } else if (f.getGeometry().getType() === "Polygon") {
+                return new ol.geom.MultiPoint(f.getGeometry().getCoordinates()[0]);
+            } else if (f.getGeometry().getType() === "MultiPoint") {
+                return f.getGeometry();
+            } else if (f.getGeometry().getType() === "MultiLineString") {
+                return new ol.geom.MultiPoint(f.getGeometry().getCoordinates()[0]);
+            } else if (f.getGeometry().getType() === "MultiPolygon") {
+                return new ol.geom.MultiPoint(f.getGeometry().getCoordinates()[0][0]);
+            }
+            return f.getGeometry();
+        };
+        return [
+            FeatureStyles.interaction(feature, this.props.ccc.style),
+            FeatureStyles.interactionVertex({geometryFunction, ...this.props.ccc.style})
+        ].flat();
+    };
     componentDidUpdate(prevProps) {
         if (prevProps.ccc === this.props.ccc) {
             // pass
@@ -85,7 +75,7 @@ class CCCEditSupport extends React.Component {
         this.layer = new ol.layer.Vector({
             source: source,
             zIndex: 1000000,
-            style: this.baseStyle
+            style: this.editStyle
         });
         this.props.map.addLayer(this.layer);
     };
@@ -96,7 +86,7 @@ class CCCEditSupport extends React.Component {
             type: newProps.ccc.geomType,
             source: this.layer.getSource(),
             condition: (event) => {  return event.originalEvent.buttons === 1; },
-            style: this.interactionStyle
+            style: this.editStyle
         });
         drawInteraction.on('drawstart', (evt) => {
             this.currentFeature = evt.feature;
@@ -115,7 +105,7 @@ class CCCEditSupport extends React.Component {
                         // delete vertices on SHIFT + click
                         return ol.events.condition.shiftKeyOnly(event) && ol.events.condition.singleClick(event);
                     },
-                    style: this.interactionStyle
+                    style: FeatureStyles.sketchInteraction()
                 });
                 this.props.map.addInteraction(modifyInteraction);
                 this.interaction = modifyInteraction;
@@ -143,7 +133,7 @@ class CCCEditSupport extends React.Component {
                 // delete vertices on SHIFT + click
                 return ol.events.condition.shiftKeyOnly(event) && ol.events.condition.singleClick(event);
             },
-            style: this.interactionStyle
+            style: FeatureStyles.sketchInteraction()
         });
         modifyInteraction.on('modifyend', () => {
             this.commitCurrentFeature();
@@ -157,7 +147,7 @@ class CCCEditSupport extends React.Component {
         }
         const format = new ol.format.GeoJSON();
         const feature = format.writeFeatureObject(this.currentFeature);
-        this.props.changeCCCState({feature: feature, changed: true});
+        this.props.changeCCCState({feature: feature, style: this.props.ccc.style, changed: true});
     };
     reset = () => {
         if (this.interaction) {
