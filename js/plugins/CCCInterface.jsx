@@ -71,7 +71,7 @@ class CCCInterface extends React.Component {
         zoomToPoint: PropTypes.func
     };
     static defaultProps = {
-        expectedCloseCodes: [1000, 1001, 1008, 1012]
+        expectedCloseCodes: [1000, 1001, 1008, 1012, 1013]
     };
     constructor(props) {
         super(props);
