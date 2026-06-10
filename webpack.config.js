@@ -4,11 +4,13 @@ const path = require('path');
 const webpack = require('webpack');
 const availableLanguages = require('./static/translations/tsconfig.json').languages;
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+const packageJson = require('./package.json');
 
 const today = new Date();
 const buildDate = today.getFullYear() + "." + String(1 + today.getMonth()).padStart(2, '0') + "." + String(today.getDate()).padStart(2, '0');
 
-const isQwcLts = 'qwc2-lts' in require('./package.json').dependencies;
+const isQwcLts = 'qwc2-lts' in (packageJson.dependencies ?? {}) || (packageJson.workspaces ?? []).includes('qwc2-lts');
+console.log(isQwcLts)
 const qwc2ModName = isQwcLts ? 'qwc2-lts' : 'qwc2';
 
 module.exports = (env, argv) => {
