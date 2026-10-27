@@ -6,8 +6,9 @@
     "license": "BSD-2-Clause",
     "repository": "git@git.sourcepole.ch:ktso/qwc2-solothurn.git",
     "private": true,
+    "_workspaces": ["qwc2-lts"],
     "dependencies": {
-        "qwc2-lts": "2026.0.18"
+        "qwc2-lts": "2026.0.30"
     },
     "devDependencies": {
         "@babel/core": "^7.29.6",
@@ -42,9 +43,12 @@
     "scripts": {
         "prod": "npm run tsupdate && npm run themesconfig && npm run iconfont && webpack --mode production --progress",
         "start": "npm run tsupdate && npm run themesconfig && npm run iconfont && webpack serve --mode development --progress --host 0.0.0.0 --port 8082",
-        "iconfont": "npx qwc_build_iconfont",
-        "themesconfig": "npx qwc_gen_themesconfig || touch themes.json",
-        "tsupdate": "npx qwc_update_translations",
+        "_iconfont": "npx qwc_build_iconfont",
+        "_themesconfig": "npx qwc_gen_themesconfig || touch themes.json",
+        "_tsupdate": "npx qwc_update_translations",
+        "iconfont": "node qwc2/scripts/makeIconkit.js",
+        "themesconfig": "node qwc2/scripts/themesConfig.js || :",
+        "tsupdate": "node qwc2/scripts/updateTranslations.js",
         "build": "npm run prod",
         "analyze": "webpack --mode production --progress --env ANALYZE=1",
         "release": "node -e \"process.exit(require('os').platform() === 'win32' ? 0 : 1)\" && qwc2\\scripts\\package-commands.bat release || ./qwc2/scripts/package-commands.sh release"
